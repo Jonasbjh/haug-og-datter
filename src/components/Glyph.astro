@@ -1,0 +1,51 @@
+---
+/**
+ * Glyph — per-app SVG-mark som ligger som vannmerke bak app-hero.
+ * Hver glyph er tegnet i `currentColor` så CSS-en setter accent-fargen.
+ * Kilden er identisk med GLYPHS-objektet i preview.html.
+ */
+import type { GlyphKind } from '../data/apps';
+interface Props { kind: GlyphKind }
+const { kind } = Astro.props;
+---
+<div class="app-hero__glyph" aria-hidden="true">
+  {kind === 'circles' && (
+    <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.4">
+      <circle cx="60" cy="60" r="52"/>
+      <circle cx="54" cy="54" r="36"/>
+      <circle cx="60" cy="60" r="22"/>
+      <circle cx="60" cy="60" r="3.5" fill="currentColor"/>
+    </svg>
+  )}
+  {kind === 'grid' && (
+    <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.2">
+      <path d="M60 6 V114 M6 60 H114"/>
+      <rect x="24" y="24" width="72" height="72"/>
+      <path d="M40 24 V96 M56 24 V96 M72 24 V96 M88 24 V96 M24 40 H96 M24 56 H96 M24 72 H96 M24 88 H96" stroke-width="0.6"/>
+      <circle cx="60" cy="60" r="3" fill="currentColor"/>
+    </svg>
+  )}
+  {kind === 'dots' && (
+    <svg viewBox="0 0 120 120" fill="currentColor">
+      <circle cx="30" cy="30" r="6"/><circle cx="60" cy="30" r="6"/><circle cx="90" cy="30" r="6"/>
+      <circle cx="30" cy="60" r="6"/><circle cx="60" cy="60" r="9"/><circle cx="90" cy="60" r="6"/>
+      <circle cx="30" cy="90" r="6"/><circle cx="60" cy="90" r="6"/><circle cx="90" cy="90" r="6"/>
+    </svg>
+  )}
+  {kind === 'lines' && (
+    <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M14 26 H106"/>
+      <path d="M14 42 H86"/>
+      <path d="M14 58 H106"/>
+      <path d="M14 74 H72"/>
+      <path d="M14 90 H106"/>
+      <path d="M2 110 L8 104 L14 110 L20 104 L26 110 L32 104 L38 110 L44 104 L50 110 L56 104 L62 110 L68 104 L74 110 L80 104 L86 110 L92 104 L98 110 L104 104 L110 110 L116 104" stroke-width="1"/>
+    </svg>
+  )}
+  {kind === 'script' && (
+    <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M12 92 C 28 36, 58 110, 78 52 S 110 22, 102 14"/>
+      <path d="M28 100 C 44 80, 64 96, 88 80" stroke-width="1.2"/>
+    </svg>
+  )}
+</div>

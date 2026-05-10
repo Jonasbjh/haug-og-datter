@@ -1,0 +1,29 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppNav from '../../components/AppNav.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('tenkt');
+---
+<AppLayout app={app} title={`Personvern — ${app.name}`}>
+  <Topbar variant="app" />
+  <article class="doc reveal">
+    <h1>Personvern for {app.name}</h1>
+    <p class="doc-meta">Sist oppdatert · [DATO]</p>
+    <p class="lede">{app.name} er laget av Haug og Datter (Jonas Haug, Drammen, Norge). Vi tar personvern på alvor, fordi vi selv hater apper som ikke gjør det.</p>
+
+    <h2>Hvilke data samler vi inn?</h2>
+    <p>[FYLL INN per app. Typisk: ingen data forlater enheten din. SwiftData lagrer lokalt. iCloud-sync (hvis aktivert) går via Apples krypterte tjeneste.]</p>
+
+    <h2>Tredjepartstjenester</h2>
+    <p>[FYLL INN. Typisk: ingen. Hvis StoreKit eller iCloud nevnt: Apple sin egen.]</p>
+
+    <h2>Kontakt</h2>
+    <p>Spørsmål? Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>.</p>
+  </article>
+
+  <AppNav slug={app.slug} current="personvern" />
+
+  <Footer label={`${app.name} · Personvern`} />
+</AppLayout>

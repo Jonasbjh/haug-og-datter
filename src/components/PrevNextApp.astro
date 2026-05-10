@@ -1,0 +1,30 @@
+---
+/**
+ * PrevNextApp — to-kort-blokk nederst på app-sider, over sub-nav-en.
+ * Looper sirkulært gjennom apps-rekkefølgen (siste app sin «neste»
+ * peker tilbake til første). Klikk trigger accent-svep i den
+ * destinasjons-appens farge via sweep-link-interceptor.
+ */
+import { siblings } from '../data/apps';
+interface Props { slug: string }
+const { slug } = Astro.props;
+const { prev, next } = siblings(slug);
+---
+<nav class="siblings reveal" aria-label="Andre apper">
+  <a class="prev" href={`/${prev.slug}`} style={`--sib-accent:${prev.accent}`}>
+    <span class="lab">
+      <span class="swatch-mini" aria-hidden="true"></span>
+      ← Forrige
+    </span>
+    <span class="nm">{prev.name}</span>
+    <span class="ar">{prev.tagline}</span>
+  </a>
+  <a class="next" href={`/${next.slug}`} style={`--sib-accent:${next.accent}`}>
+    <span class="lab">
+      <span class="swatch-mini" aria-hidden="true"></span>
+      Neste →
+    </span>
+    <span class="nm">{next.name}</span>
+    <span class="ar">{next.tagline}</span>
+  </a>
+</nav>

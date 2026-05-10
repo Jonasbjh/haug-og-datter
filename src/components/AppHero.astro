@@ -1,0 +1,48 @@
+---
+/**
+ * AppHero — toppen av en app-side. Eyebrow med swatch + hex + nummer,
+ * stor app-tittel, tagline, og en App-Store-«kommer snart»-pille.
+ * Glyph-en (vannmerke-SVG) renderes som søsken så den får riktig
+ * absolute-posisjonering bak hero-en.
+ */
+import type { AppDef } from '../data/apps';
+import { indexOf } from '../data/apps';
+import Glyph from './Glyph.astro';
+
+interface Props { app: AppDef }
+const { app } = Astro.props;
+const idx = indexOf(app.slug);
+const num = String(idx + 1).padStart(2, '0');
+const hex = app.accent.toUpperCase();
+const live = app.appStoreUrl && app.appStoreUrl !== '#';
+---
+<section class="app-hero reveal" aria-labelledby="app-title">
+  <Glyph kind={app.glyph} />
+  <div class="app-hero__l">
+    <span class="num">
+      <span class="swatch" aria-hidden="true"></span>
+      <span class="hex">{hex}</span>
+      <span>· {num} / 05</span>
+    </span>
+    <h1 id="app-title">{app.name}</h1>
+    <p class="tag">{app.tagline}</p>
+    <div class="app-cta">
+      {live ? (
+        <a class="badge" href={app.appStoreUrl} aria-label={`Last ned ${app.name} fra App Store`}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" role="img" aria-hidden="true">
+            <rect width="120" height="40" rx="6" fill="#000"></rect>
+            <text x="60" y="17" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="9">Last ned i</text>
+            <text x="60" y="30" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600">App Store</text>
+          </svg>
+        </a>
+      ) : (
+        <span class="soon">Kommer snart i App Store</span>
+      )}
+    </div>
+  </div>
+  <div class="app-hero__r">
+    <div class="app-hero__icon">
+      <img src={app.iconPath} alt={`${app.name} ikon`} width="132" height="132" loading="eager" />
+    </div>
+  </div>
+</section>

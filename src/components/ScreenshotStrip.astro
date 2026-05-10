@@ -1,0 +1,31 @@
+---
+/**
+ * ScreenshotStrip — 4 iPhone-formede placeholders foran skjermbildene.
+ * Når du har ekte bilder: legg dem i public/screenshots/<slug>/01.png
+ * … 04.png og send inn `shots` med src.
+ */
+interface Shot { src?: string; alt?: string; label?: string; }
+interface Props { shots?: Shot[]; }
+const { shots = [] } = Astro.props;
+const placeholders: Shot[] = shots.length
+  ? shots
+  : [
+      { label: 'Skjermbilde 1' },
+      { label: 'Skjermbilde 2' },
+      { label: 'Skjermbilde 3' },
+      { label: 'Skjermbilde 4' },
+    ];
+---
+<div class="shots-row reveal">
+  <div class="shots-row__head">
+    <span class="micro">Skjermbilder</span>
+    <span class="micro">iPhone</span>
+  </div>
+  <div class="shots" role="list">
+    {placeholders.map((s) => (
+      <figure class="shots__item" role="listitem">
+        {s.src && <img src={s.src} alt={s.alt ?? ''} />}
+      </figure>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,55 @@
+---
+/**
+ * AppLayout — for alle app-sider (oversikt, personvern, vilkår,
+ * support). Setter `data-app={slug}` på theme-root så CSS-en kan
+ * skille på app via attributt-selektorer, og setter `--accent` som
+ * inline-stil så glyph + swatcher får riktig farge.
+ */
+import '../styles/global.css';
+import type { AppDef } from '../data/apps';
+
+interface Props {
+  app: AppDef;
+  title?: string;
+  description?: string;
+}
+const { app, title, description } = Astro.props;
+const pageTitle = title ?? `${app.name} — Haug og Datter`;
+const pageDesc = description ?? app.tagline;
+---
+<!doctype html>
+<html lang="nb">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={pageDesc} />
+    <meta name="theme-color" content={app.accent} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <div class="sweep" aria-hidden="true"></div>
+    <div class="progress" aria-hidden="true"></div>
+
+    <div class="theme-root" data-app={app.slug} style={`--accent:${app.accent}`}>
+      <div class="app-backdrop" aria-hidden="true"></div>
+      <div class="stage">
+        <slot />
+      </div>
+    </div>
+
+    <div class="kbd-hint" aria-hidden="true">
+      Trykk <kbd>1</kbd>–<kbd>5</kbd> for app · <kbd>⌘K</kbd> søk · <kbd>Esc</kbd> hjem
+    </div>
+
+    <script>
+      import('../scripts/main.ts');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppHero from '../../components/AppHero.astro';
+import AppNav from '../../components/AppNav.astro';
+import ScreenshotStrip from '../../components/ScreenshotStrip.astro';
+import PrevNextApp from '../../components/PrevNextApp.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('tenkt');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <AppHero app={app} />
+
+  <section class="sect reveal">
+    <h2>Om appen</h2>
+    <div class="sect__body">
+      <p class="lede">[FYLL INN] Et til tre korte avsnitt om hva Tenkt gjør, i samme rolige tone som hub-en.</p>
+      <p class="muted">[FYLL INN] Andre avsnitt om bruksområde og hvem appen er til for.</p>
+    </div>
+  </section>
+
+  <ScreenshotStrip />
+
+  <section class="sect reveal">
+    <h2>Hva den gjør</h2>
+    <div class="sect__body">
+      <h3>[FYLL INN funksjon 1]</h3>
+      <p class="muted">[FYLL INN kort beskrivelse]</p>
+      <h3>[FYLL INN funksjon 2]</h3>
+      <p class="muted">[FYLL INN kort beskrivelse]</p>
+      <h3>[FYLL INN funksjon 3]</h3>
+      <p class="muted">[FYLL INN kort beskrivelse]</p>
+    </div>
+  </section>
+
+  <section class="sect reveal">
+    <h2>Hvorfor</h2>
+    <div class="sect__body">
+      <p>[FYLL INN] Ett avsnitt om motivasjonen. Personlig, ikke marketing.</p>
+    </div>
+  </section>
+
+  <PrevNextApp slug={app.slug} />
+  <AppNav slug={app.slug} current="oversikt" />
+
+  <Footer label={`${app.name} · Haug og Datter`} />
+</AppLayout>

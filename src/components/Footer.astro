@@ -1,0 +1,16 @@
+---
+/**
+ * Footer — vises på alle sider.
+ * Venstre side: kontekstuell tekst som forteller hvor du er.
+ * Høyre side: live klokke (synkronisert med topbar).
+ */
+interface Props {
+  /** Venstre tekst-segment. Kontekstualiserer siden brukeren er på. */
+  label?: string;
+}
+const { label = 'Haug og Datter · Drammen' } = Astro.props;
+---
+<footer class="footer">
+  <span class="l">{label}</span>
+  <span class="r mono" data-clock>——:——:——</span>
+</footer>

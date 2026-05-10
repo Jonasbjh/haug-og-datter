@@ -1,0 +1,32 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppNav from '../../components/AppNav.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('kvitteringsvakt');
+---
+<AppLayout app={app} title={`Vilkår — ${app.name}`}>
+  <Topbar variant="app" />
+  <article class="doc reveal">
+    <h1>Vilkår for bruk av {app.name}</h1>
+    <p class="doc-meta">Sist oppdatert · [DATO]</p>
+    <p class="lede">Ved å bruke {app.name} godtar du følgende vilkår.</p>
+
+    <h2>Lisens</h2>
+    <p>{app.name} distribueres via App Store. Du får en personlig, ikke-overførbar lisens til å bruke appen på enheter knyttet til din Apple-ID, i henhold til Apples standard EULA.</p>
+
+    <h2>Ansvarsfraskrivelse</h2>
+    <p>[FYLL INN]</p>
+
+    <h2>Endringer</h2>
+    <p>Vi kan oppdatere disse vilkårene. Vesentlige endringer varsles i appen.</p>
+
+    <h2>Kontakt</h2>
+    <p><a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a></p>
+  </article>
+
+  <AppNav slug={app.slug} current="vilkar" />
+
+  <Footer label={`${app.name} · Vilkår`} />
+</AppLayout>
