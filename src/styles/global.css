@@ -490,12 +490,44 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
 /* ---------- Hero ---------- */
 .hero {
   padding: 8px 0 72px;
-  max-width: 880px;
+  max-width: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "title logo"
+    "lede  logo";
+  column-gap: clamp(24px, 4vw, 56px);
+  row-gap: 0;
+  align-items: center;
+}
+.hero .display { grid-area: title; }
+.hero .lede   { grid-area: lede; }
+.hero__logo {
+  grid-area: logo;
+  width: clamp(180px, 22vw, 280px);
+  height: auto;
+  display: block;
+  align-self: center;
+  filter: drop-shadow(0 14px 28px rgba(20, 24, 26, 0.18));
+}
+@media (max-width: 720px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "logo"
+      "title"
+      "lede";
+    row-gap: 24px;
+  }
+  .hero__logo {
+    width: min(60vw, 220px);
+    margin: 0 auto;
+  }
 }
 .hero .display {
   font-family: 'Newsreader', Georgia, serif;
   font-weight: 400;
-  font-size: clamp(64px, 11vw, 156px);
+  font-size: clamp(56px, 9vw, 132px);
   line-height: 0.94;
   letter-spacing: -0.04em;
   color: var(--ink);
