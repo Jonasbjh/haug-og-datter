@@ -2,27 +2,31 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import Topbar from '../../components/Topbar.astro';
 import Footer from '../../components/Footer.astro';
-import AppNav from '../../components/AppNav.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
 import { getApp } from '../../data/apps';
 const app = getApp('kvitteringsvakt');
 ---
-<AppLayout app={app} title={`Support — ${app.name}`}>
+<AppLayout app={app} title={`Support · ${app.name}`}>
   <Topbar variant="app" />
-  <article class="doc reveal">
-    <h1>Support for {app.name}</h1>
-    <p class="lede">Trenger du hjelp? Send en e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Du får svar fra Jonas selv, vanligvis innen et døgn.</p>
-
-    <h2>Vanlige spørsmål</h2>
-    <h3 style="font-family:'Newsreader',Georgia,serif;font-size:22px;font-weight:500;color:var(--ink);letter-spacing:-0.012em;margin-top:28px;margin-bottom:6px;">[SPØRSMÅL 1]</h3>
-    <p>[SVAR]</p>
-    <h3 style="font-family:'Newsreader',Georgia,serif;font-size:22px;font-weight:500;color:var(--ink);letter-spacing:-0.012em;margin-top:28px;margin-bottom:6px;">[SPØRSMÅL 2]</h3>
-    <p>[SVAR]</p>
-
-    <h2>Send tilbakemelding</h2>
-    <p>Tips, ønsker eller bugs? Send dem til samme adresse. Vi leser alt.</p>
-  </article>
-
-  <AppNav slug={app.slug} current="support" />
-
+  <div class="app-page">
+    <AppRail app={app} current="support" />
+    <div class="app-flow">
+      <Chapter num="01" label="Kontakt" title={`Send <em>e-post</em>.`}>
+        <p class="lede">Trenger du hjelp med {app.name}? Send en e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Du får svar fra Jonas selv, vanligvis innen et døgn.</p>
+      </Chapter>
+      <Chapter num="02" label="Vanlige spørsmål" title={`Det folk <em>spør om</em>.`}>
+        <p><strong>OCR-en bommet på beløpet, hva gjør jeg?</strong></p>
+        <p class="muted">Trykk på kvitteringen for å åpne den, så på beløp-feltet og rediger manuelt. Endringen lagres med det samme.</p>
+        <p><strong>Hvordan endrer jeg garantiens lengde?</strong></p>
+        <p class="muted">Åpne en kvittering, trykk på «Forventet levetid»-feltet, og velg en av de standardiserte kategoriene eller skriv inn et eget antall år.</p>
+        <p><strong>Kan jeg eksportere alle kvitteringene mine?</strong></p>
+        <p class="muted">Ja. Gå til innstillinger og velg «Eksporter alt». Du får en samlet PDF, kategorisert etter dato. Bra for forsikringssaker eller arkivering.</p>
+      </Chapter>
+      <Chapter num="03" label="Tilbakemelding" title={`Idéer, <em>bugs</em>, tips.`}>
+        <p>Funksjoner du savner? Bugs som irriterer? Send dem til samme adresse. Jeg leser alt og prioriterer ut fra hva som faktisk gjør appen bedre.</p>
+      </Chapter>
+    </div>
+  </div>
   <Footer label={`${app.name} · Support`} />
 </AppLayout>

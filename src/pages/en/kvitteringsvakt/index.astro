@@ -1,0 +1,40 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import ChapterShots from '../../../components/ChapterShots.astro';
+import PrevNextApp from '../../../components/PrevNextApp.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('kvitteringsvakt');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Why" title={`Norwegian <em>consumer law</em>, easy to use.`}>
+        <p class="lede">Kvitteringsvakt exists because Norwegian consumer-purchase law gives you a five-year warranty period, and nobody remembers that when the washing machine breaks.</p>
+        <p class="muted">Scan the receipt at the register, the app remembers the date, and notifies you before the warranty expires. Built for the Norwegian retail pattern.</p>
+      </Chapter>
+      <Chapter num="02" label="How it feels" title={`For when you <em>need the papers</em>.`}>
+        <p>The white goods fail. Usually exactly at the moment you've forgotten where you put the receipt. Kvitteringsvakt is the one place you know you'll find it again — categorized, searchable, and with a PDF you can send the store.</p>
+        <ChapterShots shots={[
+          { src: '/screenshots/kvitteringsvakt/01-hjem.jpg', alt: 'Home screen' },
+          { src: '/screenshots/kvitteringsvakt/02-skanning.jpg', alt: 'Receipt scanning' },
+          { src: '/screenshots/kvitteringsvakt/03-reklamasjon.jpg', alt: 'Warranty claim' },
+          { src: '/screenshots/kvitteringsvakt/04-forsikring.jpg', alt: 'Insurance' },
+          { src: '/screenshots/kvitteringsvakt/05-statistikk.jpg', alt: 'Statistics' },
+        ]} />
+      </Chapter>
+      <Chapter num="03" label="What it does" title={`<em>Scan, remember</em>, export.`}>
+        <p>Scan a receipt in one second. Apple Vision reads store, amount, and date on the device. You can correct anything if OCR misses.</p>
+        <p>Remembers the warranty period for you. Appliances, electronics, bikes. Each category has a typical expected lifetime that determines the warranty deadline.</p>
+        <p>Search and export. Find by store, date, category. Export everything as a PDF for insurance claims or tax filing.</p>
+      </Chapter>
+      <PrevNextApp slug={app.slug} />
+    </div>
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
+</AppLayout>

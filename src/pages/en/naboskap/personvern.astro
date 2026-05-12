@@ -1,0 +1,96 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('naboskap');
+---
+<AppLayout app={app} title={`Privacy · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="Overview" title={`Privacy, in <em>plain English</em>.`}>
+        <p class="lede">{app.name} is an iOS app for self-organized lending groups. It is built by Haug & Datter and funded by users themselves through a voluntary one-time purchase. You own your data, we store as little as possible, and we sell nothing on.</p>
+        <p>Data controller is Haug & Datter. Contact: <a class="tx-link" href="mailto:hei@haugogdatter.no">hei@haugogdatter.no</a>.</p>
+        <p class="muted">Last updated · 12 May 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="iCloud" title={`What we store in <em>your iCloud account</em>.`}>
+        <p>{app.name} uses Apple's CloudKit to sync data between your devices and share group memberships with neighbors. The data lives in your own iCloud account — we have no servers of our own, and we have no access to the content.</p>
+        <p>What we store in CloudKit on your behalf:</p>
+        <p>· Display name and an optional context (e.g. «Main Street 14»)</p>
+        <p>· Profile picture you have uploaded yourself</p>
+        <p>· The groups you own or are a member of, with name, symbol, and an optional description</p>
+        <p>· The inventory you have listed: name, category, description, photo, pickup note</p>
+        <p>· Requests you send or receive, including the chosen delivery mode (pickup / delivery / by arrangement) and agreed dates</p>
+        <p>· Short thank-you messages after completed loans</p>
+        <p class="muted">Pickup info and pickup notes are visible only to you and the other party in an active loan. Others in the group don't see these fields.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Local" title={`What stays <em>on the device</em>.`}>
+        <p>The following is stored only on the individual device and does not sync:</p>
+        <p>· Onboarding status</p>
+        <p>· Theme choice (light / dark / follow system)</p>
+        <p>· Notification preferences per category</p>
+        <p>· Which group is currently active</p>
+        <p>· The counter behind the «New since last time» card</p>
+      </Chapter>
+
+      <Chapter num="04" label="Apple" title={`Which <em>services</em> the app uses.`}>
+        <p>Apple (CloudKit, iCloud, StoreKit, push notifications) — syncs your data between your devices and delivers push notifications. Subject to Apple's privacy policy.</p>
+      </Chapter>
+
+      <Chapter num="05" label="TelemetryDeck" title={`<em>Anonymous</em> usage statistics.`}>
+        <p>We send short event signals to TelemetryDeck that help us understand which features are actually used and where people get stuck. Never names, emails, or content you enter.</p>
+        <p>What we send:</p>
+        <p>· Event names like «app.launched», «group.created», «loan.returned», and «paywall.purchased»</p>
+        <p>· A handful of non-personal parameters (e.g. «open» vs «direct» request, choice of delivery mode)</p>
+        <p>· Device model, iOS version, and app version</p>
+        <p>· Country inferred from your IP address (the IP is not stored)</p>
+        <p>· A cryptographic hash of Apple's vendor ID that lets us count devices but not identify anyone</p>
+        <p>What we <strong>don't</strong> send:</p>
+        <p>· Names, emails, or other contact information</p>
+        <p>· Content of requests, pickup notes, thank-yous, or images</p>
+        <p>· Group names or member names</p>
+        <p>· Location</p>
+        <p class="muted">TelemetryDeck is subject to GDPR and operates from the EU. Read more in <a class="tx-link" href="https://telemetrydeck.com/privacy" target="_blank" rel="noopener">their privacy policy</a>.</p>
+        <p>You can turn off these signals at any time under <strong>Profile → Anonymous usage statistics</strong>. Then no new events are sent from your device. Signals that have already reached TelemetryDeck before you turned it off cannot be retracted retroactively — but since nothing there links signals to you as a person, there is no profile to delete.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Permissions" title={`What the app <em>asks for</em>.`}>
+        <p>{app.name} only asks for permissions when a specific feature needs them. You can always say no — features that depend on the permission just won't be active.</p>
+        <p>· <strong>Camera</strong> and <strong>Photos</strong> are used if you add a profile picture or photos of a thing you're lending out.</p>
+        <p>· <strong>Notifications</strong> are used to let you know about new requests, replies, return reminders, and thank-yous.</p>
+        <p>· <strong>Calendar (write access)</strong> is used if you want an agreed return to be added to your calendar.</p>
+        <p class="muted">iCloud is required to share groups with others — without a signed-in iCloud account, the app only works locally on your device.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Retention" title={`How long we <em>keep</em> data.`}>
+        <p>We keep your data for as long as you use the app. Content you delete yourself — inventory, requests, groups — is removed from CloudKit immediately. Pickup notes are deleted automatically when the loan is marked as returned.</p>
+        <p>If you delete {app.name} from the device, your CloudKit data is retained in your own iCloud account until you choose to delete it. You can do this via «Start over» in the app before uninstalling, or via Settings → Apple ID → iCloud → Manage account storage.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Rights" title={`<em>Access, correction, deletion.</em>`}>
+        <p>Under the General Data Protection Regulation (GDPR) you have, among others, the right to:</p>
+        <p>· <strong>Access</strong> the data we have about you</p>
+        <p>· <strong>Correction</strong> of incorrect information</p>
+        <p>· <strong>Deletion</strong> of your data</p>
+        <p>· <strong>Data portability</strong> — to take your data with you in a machine-readable format</p>
+        <p>· <strong>Complaint</strong> to <a class="tx-link" href="https://www.datatilsynet.no/" target="_blank" rel="noopener">the Norwegian Data Protection Authority</a> if you believe we are processing data incorrectly</p>
+        <p>Send an inquiry to <a class="tx-link" href="mailto:hei@haugogdatter.no">hei@haugogdatter.no</a> and we'll respond within 30 days. Most rights can also be exercised directly: any data you've entered into {app.name} can be deleted from the app or via Apple's iCloud administration.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Changes" title={`When <em>something is new</em>.`}>
+        <p>If we change how we process data, we update this page and change the date at the top. Significant changes are also announced in the app before they take effect.</p>
+      </Chapter>
+
+      <Chapter num="10" label="Contact" title={`Questions? <em>Write to us.</em>`}>
+        <p>Privacy questions: <a class="tx-link" href="mailto:hei@haugogdatter.no">hei@haugogdatter.no</a>.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Privacy`} />
+</AppLayout>

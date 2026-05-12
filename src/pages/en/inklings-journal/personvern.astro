@@ -1,0 +1,48 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('inklings-journal');
+---
+<AppLayout app={app} title={`Privacy · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="Overview" title={`Privacy, in <em>plain English</em>.`}>
+        <p class="lede">{app.name} is built by Haug & Datter (Jonas Haug, Drammen, Norway). A diary is about your most private thoughts, so this app is built with privacy as a starting point, not an afterthought.</p>
+        <p class="muted">Last updated · 10 May 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Data" title={`What we <em>don't</em> collect.`}>
+        <p>None. {app.name} has no user accounts, no registration, and no login. We don't collect names, email, IP address, location, or usage statistics. What you write is stored locally on the device via SwiftData and doesn't leave the device unless you explicitly export or share it.</p>
+      </Chapter>
+
+      <Chapter num="03" label="iCloud" title={`Syncs between <em>your own devices</em>.`}>
+        <p>iCloud sync is optional and opt-in. If you turn it on, your diary syncs between your own devices via Apple's encrypted iCloud. Synchronization is handled by Apple. We have no access to the content.</p>
+        <p class="muted">You can turn off iCloud at any time in settings. Content remains locally on each device where you've used the app.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Third parties" title={`No tracking. <em>No analytics.</em>`}>
+        <p>The app uses no analytics tools, ad SDKs, or external APIs. The only services the app may communicate with are Apple's own (iCloud and StoreKit), and only if you have chosen them.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Face ID" title={`Biometrics never leave the <em>Secure Enclave</em>.`}>
+        <p>{app.name} offers optional app lock with Face ID or Touch ID. Biometric data is handled exclusively by iOS and stored in the device's Secure Enclave. The app only receives a yes/no answer from the system. We never have access to face data or fingerprints.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Export" title={`The content is <em>yours</em>.`}>
+        <p>You can export all entries as markdown whenever you want. Export happens locally on the device. We don't see it. Once you've exported, the file leaves the app's control and is subject to the sharing channel's own terms.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Contact" title={`Questions? <em>Write to us.</em>`}>
+        <p>Send email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. You'll get a reply from Jonas himself, usually within a day.</p>
+        <p class="muted">We may update this policy as needed. Changes are published on this page with an updated date.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Privacy`} />
+</AppLayout>

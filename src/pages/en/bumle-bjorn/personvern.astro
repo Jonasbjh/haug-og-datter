@@ -1,0 +1,74 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('bumle-bjorn');
+---
+<AppLayout app={app} title={`Privacy · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="Overview" title={`Privacy, in <em>plain English</em>.`}>
+        <p class="lede">{app.name} is built by Haug & Datter (Jonas Haug, Drammen, Norway). This policy explains how the app handles data. We take privacy seriously, especially because the app is built for children.</p>
+        <p class="muted">Last updated · 25 April 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Data" title={`We have no <em>user accounts</em>.`}>
+        <p>{app.name} does not collect personal information. There is no registration, no login, and no user account. Any data the app uses is stored locally on your device or in your own iCloud account:</p>
+        <p><strong>Child profiles.</strong> Name, age, avatar, and learning progress are stored in UserDefaults and synced via iCloud Key-Value Store to your own devices.</p>
+        <p><strong>Audio recordings.</strong> Voice recordings made by parents or professionals are stored locally only and encrypted with a device-specific key. {app.name} never sends recordings to our servers or any third party.</p>
+        <p><strong>Custom categories and images.</strong> Parents can create custom categories with their own pictures. Family, toys, places the child knows. Images and category data stay local on the device.</p>
+        <p><strong>Settings.</strong> Preferences like language, difficulty, and screen time are stored locally.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Sharing" title={`Voice packs <em>you choose</em> to send.`}>
+        <p>Parents or professionals (typically a speech therapist or a grandmother recording for her grandchild) can export all recordings from one voice as a <code>.bumlepack</code> file and share it through the system's usual channels (AirDrop, iMessage, Files).</p>
+        <p class="muted">Export only happens when you explicitly choose it. When you share a pack, the file leaves the app's control and is subject to the sharing channel's own terms. The pack contains audio recordings in plaintext so the recipient can import them; the recipient's device re-encrypts the files with its own local key.</p>
+        <p class="muted">You are responsible for ensuring sharing happens with the consent of everyone involved, especially the person who recorded the voice.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Third parties" title={`No SDKs. <em>No tracking.</em>`}>
+        <p>{app.name} uses no third-party SDKs, analytics services, ad networks, or tracking tools. We share no data with third parties.</p>
+        <p class="muted">The app contains no advertising. We do not use IDFA, fingerprinting, or any other identification methods.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Bumle+" title={`Purchase via <em>App Store</em>.`}>
+        <p>Bumle+ is an optional upgrade handled by Apple via the App Store. We have no access to payment information. Purchase status is verified via StoreKit and stored locally.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Children & COPPA" title={`Extra <em>careful</em> when children use the app.`}>
+        <p>{app.name} is designed for children aged 1–8. The app complies with both COPPA and GDPR-K, and:</p>
+        <p>· Does not collect personally identifiable information from children.</p>
+        <p>· Contains no links to social media or external websites.</p>
+        <p>· Has parental controls with PIN and Face ID.</p>
+        <p>· Does not allow children to share information out of the app.</p>
+        <p>· Contains no advertising.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Data control" title={`You have <em>full control</em>.`}>
+        <p><strong>Deletion.</strong> All data can be permanently deleted via Settings → About {app.name} → Delete all data.</p>
+        <p><strong>Audio recordings.</strong> Individual recordings can be deleted via audio settings.</p>
+        <p><strong>Profiles.</strong> Profiles can be deleted individually from the side menu.</p>
+        <p><strong>Imported voices.</strong> Voices imported from a <code>.bumlepack</code> file can be deleted like any other voice.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Security" title={`Encrypted <em>on device</em>.`}>
+        <p>· PIN codes are stored as SHA256 hashes in iOS Keychain.</p>
+        <p>· Audio recordings are encrypted with AES-256-GCM via CryptoKit.</p>
+        <p>· The encryption key is device-specific and never leaves the Keychain.</p>
+        <p>· Files are protected with iOS File Protection.</p>
+        <p>· Parental lock requires PIN and/or Face ID.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Contact" title={`Questions? <em>Write to us.</em>`}>
+        <p>Send email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. You'll get a reply from Jonas himself, usually within a day.</p>
+        <p class="muted">We may update this policy as needed. Changes are published on this page with an updated date.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Privacy`} />
+</AppLayout>

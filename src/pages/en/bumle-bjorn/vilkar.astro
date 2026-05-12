@@ -1,0 +1,65 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('bumle-bjorn');
+---
+<AppLayout app={app} title={`Terms · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="vilkar" />
+    <div class="app-flow">
+      <Chapter num="01" label="About the app" title={`Learning for the <em>very youngest</em>.`}>
+        <p class="lede">{app.name} is an educational learning app for children aged 1–8, built by Haug & Datter. The app helps children learn words, numbers, and pictures through interactive game modes. By downloading and using {app.name} you accept these terms.</p>
+        <p class="muted">Last updated · 25 April 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Using the app" title={`Safe and <em>age-appropriate</em>.`}>
+        <p>The app is meant to be used by children under the supervision of parents or guardians. You agree to:</p>
+        <p>· Use the app in accordance with applicable laws and regulations.</p>
+        <p>· Not misuse, copy, or redistribute the app's content.</p>
+        <p>· Ensure that the child uses the app in a safe and age-appropriate way.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Bumle+" title={`Upgrade that <em>unlocks everything</em>.`}>
+        <p>{app.name} offers an optional upgrade, Bumle+, which unlocks additional content:</p>
+        <p>· All 21 categories (380 extra cards).</p>
+        <p>· All 7 game modes plus multiplayer.</p>
+        <p>· Unlimited voice recordings per card.</p>
+        <p>· Export of audio packs for sharing with other Bumle users.</p>
+        <p>· Bumle accessories and detailed weekly progress reports.</p>
+        <p class="muted">Access follows your Apple ID. All purchases are handled by Apple via the App Store, and payment is charged to your Apple ID account upon purchase confirmation.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Refunds" title={`Restoration and <em>refund</em>.`}>
+        <p>Access can be restored on new devices via "Restore purchases" in settings. Refunds are handled by Apple according to App Store policies.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Rights" title={`The content is <em>protected</em>.`}>
+        <p>All content in {app.name} (illustrations, text, audio, design, and code) is protected by copyright and belongs to Haug & Datter. You receive a limited, non-transferable license to use the app for personal, non-commercial use.</p>
+      </Chapter>
+
+      <Chapter num="06" label="User content" title={`What you make <em>belongs to you</em>.`}>
+        <p>Parents and professionals (such as speech therapists) can record their own audio, upload their own images, and create their own categories in the app. You retain all rights to content you add. We do not store, analyze, or share your content automatically. Everything is stored locally on your device and encrypted with a device-specific key.</p>
+        <p class="muted">You can choose to export audio recordings as a <code>.bumlepack</code> file and share with other Bumle users. When shared, the file leaves the app's control. You are responsible for ensuring sharing happens with consent from everyone involved.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Liability" title={`We <em>do our best</em>.`}>
+        <p>{app.name} is provided "as is." We do not guarantee that the app is bug-free or always available. We are not responsible for data loss due to device failure or user actions, damage or loss resulting from use of the app, or content that users add themselves.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Changes" title={`Significant changes are <em>announced</em>.`}>
+        <p>We reserve the right to change these terms. Significant changes will be announced via the app. Continued use after changes implies acceptance of the updated terms.</p>
+        <p class="muted">The terms are subject to Norwegian law. Any disputes will be resolved in Norwegian courts.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Contact" title={`Questions about terms? <em>Write to us.</em>`}>
+        <p>Send email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. The privacy policy for the app can be found <a class="tx-link" href="/en/bumle-bjorn/personvern/">here</a>.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Terms`} />
+</AppLayout>

@@ -1,0 +1,24 @@
+---
+/**
+ * LanguageSwitcher — kompakt NO/EN-velger som speiler gjeldende URL
+ * over i det andre språket. Plasseres som en del av menubar-en (eller
+ * et hvor som helst inne i theme-root) så den følger samme estetikk
+ * som resten av nav-elementene.
+ */
+import { resolveLocale, toggleLocalePath, t } from '../i18n/translations';
+
+const locale = resolveLocale(Astro.currentLocale);
+const strings = t(locale);
+const targetHref = toggleLocalePath(Astro.url.pathname);
+const targetLabel = locale === 'en' ? 'NO' : 'EN';
+const targetTitle = locale === 'en' ? strings.langSwitcher.toNo : strings.langSwitcher.toEn;
+---
+<a
+  class="lang-switch"
+  href={targetHref}
+  title={targetTitle}
+  aria-label={strings.langSwitcher.ariaLabel}
+  data-target-locale={locale === 'en' ? 'no' : 'en'}
+>
+  {targetLabel}
+</a>

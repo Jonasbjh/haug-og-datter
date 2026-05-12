@@ -161,7 +161,7 @@ function startSweepLinks() {
     const link = target.closest<HTMLAnchorElement>('a[href]');
     if (!link) return;
     if (link.target === '_blank') return;
-    const inSweepable = link.closest('.verket__row, .siblings');
+    const inSweepable = link.closest('.verket__row, .siblings, .atelier__phone');
     if (!inSweepable) return;
     const href = link.getAttribute('href') || '';
     // Kun /<slug> eller /<slug>/... matches

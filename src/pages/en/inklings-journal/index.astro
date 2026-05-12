@@ -1,0 +1,34 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import ChapterShots from '../../../components/ChapterShots.astro';
+import PrevNextApp from '../../../components/PrevNextApp.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('inklings-journal');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Why" title={`A quiet room for <em>the day's thought</em>.`}>
+        <p class="lede">Inklings Journal is built around one idea: a diary should be small and calm. A quiet room for the day's thought, not a service to keep alive.</p>
+        <p class="muted">Daily prompt or blank page. Local first, iCloud only if you choose it. Face ID if you want. Markdown export when you want to take the content with you.</p>
+      </Chapter>
+      <Chapter num="02" label="How it feels" title={`Write first. <em>The rest</em> can wait.`}>
+        <p>You have ten minutes between meetings. You open Inklings, see today's prompt («What did I notice?»), write two sentences. You close again. It didn't feel like work.</p>
+        <ChapterShots count={6} />
+      </Chapter>
+      <Chapter num="03" label="What it does" title={`Daily prompt. <em>Search.</em> Export.`}>
+        <p>Daily prompt or blank page — you choose. Inklings can show a sentence to start the pen, or you can turn it off and just write.</p>
+        <p>Time machine and search. Flip back to this date a year ago. Search by word or theme across all entries.</p>
+        <p>Local first. Everything is stored in SwiftData on your device. iCloud sync is optional and opt-in.</p>
+      </Chapter>
+      <PrevNextApp slug={app.slug} />
+    </div>
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
+</AppLayout>

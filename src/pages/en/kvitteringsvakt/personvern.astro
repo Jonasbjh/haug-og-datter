@@ -1,0 +1,66 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('kvitteringsvakt');
+---
+<AppLayout app={app} title={`Privacy · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="Overview" title={`Privacy, in <em>plain English</em>.`}>
+        <p class="lede">{app.name} collects no data about you. All information is stored locally on the device and in your private iCloud account. We use no analytics or tracking tools, and never share data with third parties.</p>
+        <p class="muted">Last updated · 25 March 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Data" title={`What <em>you</em> scan and store.`}>
+        <p>{app.name} lets you scan and store receipts to keep track of purchases and warranties. The following is stored locally on the device via SwiftData:</p>
+        <p>· Images of receipts.</p>
+        <p>· Purchase information (store, date, amount, product name).</p>
+        <p>· Warranty periods and reminders.</p>
+        <p>· Text extracted from receipts via OCR.</p>
+        <p class="muted">Nothing is sent to our servers. We don't have any.</p>
+      </Chapter>
+
+      <Chapter num="03" label="OCR" title={`Text recognition happens <em>on device</em>.`}>
+        <p>When you scan a receipt, the app uses Apple's Vision framework to read text from the image. All text recognition happens locally. No images or text are sent to external services.</p>
+      </Chapter>
+
+      <Chapter num="04" label="iCloud" title={`Syncs between <em>your own devices</em>.`}>
+        <p>If you have iCloud enabled, your data can sync between your devices via Apple's CloudKit. Synchronization is handled by Apple, and data is protected by Apple's encryption and privacy rules.</p>
+        <p class="muted">We have no access to your data in iCloud. More in <a class="tx-link" href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's privacy policy</a>.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Face ID" title={`Biometrics never leave the <em>Secure Enclave</em>.`}>
+        <p>{app.name} offers optional app lock with Face ID or Touch ID. Biometric data is handled exclusively by iOS and stored in the device's Secure Enclave. The app only receives a yes/no answer from the system. We never have access to face data or fingerprints.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Search" title={`CoreSpotlight index <em>local only</em>.`}>
+        <p>The app uses CoreSpotlight so you can find your purchases via iOS search. The index is stored locally on the device and is not shared with anyone.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Third parties" title={`No tracking. <em>No analytics.</em>`}>
+        <p>{app.name} contains no analytics tools, tracking SDKs, ad networks, or third-party libraries that collect data. We don't track how you use the app, and we collect no user data of any kind. We share no data with third parties. Period.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Deletion & GDPR" title={`You have <em>full control</em>.`}>
+        <p>Since all data is stored locally on the device and in your iCloud account, you have full control. You can:</p>
+        <p>· Delete individual receipts directly in the app.</p>
+        <p>· Delete all data via app settings.</p>
+        <p>· Uninstall the app to remove all local data.</p>
+        <p>· Manage iCloud data via Settings on the device.</p>
+        <p class="muted">Since we don't collect or store any personal information on our servers, there is no data with us to access, correct, or delete. All data is yours, and stays on your device and in your iCloud account, in line with the EU's General Data Protection Regulation (GDPR).</p>
+      </Chapter>
+
+      <Chapter num="09" label="Contact" title={`Questions? <em>Write to us.</em>`}>
+        <p>Send email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. You'll get a reply from Jonas himself, usually within a day.</p>
+        <p class="muted">If we update this policy, changes will be published on this page with a new date. For significant changes, we'll inform you via the app.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Privacy`} />
+</AppLayout>

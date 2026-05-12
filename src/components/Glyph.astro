@@ -48,4 +48,11 @@ const { kind } = Astro.props;
       <path d="M28 100 C 44 80, 64 96, 88 80" stroke-width="1.2"/>
     </svg>
   )}
+  {kind === 'rings' && (
+    <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="44" cy="50" r="28"/>
+      <circle cx="76" cy="50" r="28"/>
+      <circle cx="60" cy="78" r="28"/>
+    </svg>
+  )}
 </div>

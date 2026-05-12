@@ -1,0 +1,53 @@
+---
+/**
+ * AppMenu — flytende navigasjons-pille øverst på alle sider. Gir
+ * snarveier til hub og alle apper uten at brukeren må scrolle helt
+ * opp til topbar-en eller bruke ⌘K-paletten.
+ *
+ * Markerer aktiv side med `aria-current="page"` så CSS-en kan farge
+ * den med appens accent. Inneholder også LanguageSwitcher.
+ */
+import { apps } from '../data/apps';
+import { resolveLocale, t, localizedPath } from '../i18n/translations';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+const locale = resolveLocale(Astro.currentLocale);
+const strings = t(locale);
+const current = Astro.url.pathname;
+
+function isActive(href: string): boolean {
+  if (href === '/' || href === '/en') {
+    return current === '/' || current === '' || current === '/en' || current === '/en/';
+  }
+  // Match både /<slug> og /<slug>/personvern osv.
+  return current === href || current.startsWith(href + '/');
+}
+
+// Korte navn for menyen — fullt navn ville sprengt på smale skjermer.
+const SHORT: Record<string, string> = {
+  'bumle-bjorn': 'Bumle',
+  'plantekn': 'Plantekn',
+  'tenkt': 'Tenkt',
+  'kvitteringsvakt': 'Kvittering',
+  'inklings-journal': 'Inklings',
+  'naboskap': 'Naboskap',
+};
+
+const hubHref = localizedPath(locale, '/');
+---
+<nav class="menubar" aria-label={strings.appMenu.label}>
+  <a href={hubHref} aria-current={isActive(hubHref) ? 'page' : undefined}>{strings.nav.hub}</a>
+  {apps.map((app) => {
+    const href = localizedPath(locale, `/${app.slug}`);
+    return (
+      <a
+        href={href}
+        style={`--menu-accent:${app.accent}`}
+        aria-current={isActive(href) ? 'page' : undefined}
+      >
+        {SHORT[app.slug] ?? app.name}
+      </a>
+    );
+  })}
+  <LanguageSwitcher />
+</nav>

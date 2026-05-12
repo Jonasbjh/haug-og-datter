@@ -1,0 +1,24 @@
+# Cloudflare Pages cache-policy
+# Format: pattern \n  HeaderName: value
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+# HTML — alltid friskt så strukturendringer propagerer umiddelbart.
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Astros fingeravtrykk-hashede bundle-filer (CSS/JS/fonts).
+# Hashen endres når innholdet endres, så vi kan trygt ha lang cache.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# App-ikoner. Én dag før vi sjekker etter nytt innhold.
+# Hvis du bytter ut et ikon og vil at det skal slå igjennom raskere,
+# bump v-en i `iconPath` i src/data/apps.ts (f.eks. /icons/foo.png?v=2).
+/icons/*
+  Cache-Control: public, max-age=86400, must-revalidate
+
+# Sikkerhets-headers på alt
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

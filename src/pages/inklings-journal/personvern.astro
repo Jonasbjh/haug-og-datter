@@ -2,28 +2,47 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import Topbar from '../../components/Topbar.astro';
 import Footer from '../../components/Footer.astro';
-import AppNav from '../../components/AppNav.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
 import { getApp } from '../../data/apps';
 const app = getApp('inklings-journal');
 ---
-<AppLayout app={app} title={`Personvern — ${app.name}`}>
+<AppLayout app={app} title={`Personvern · ${app.name}`}>
   <Topbar variant="app" />
-  <article class="doc reveal">
-    <h1>Personvern for {app.name}</h1>
-    <p class="doc-meta">Sist oppdatert · [DATO]</p>
-    <p class="lede">{app.name} er laget av Haug og Datter (Jonas Haug, Drammen, Norge). Vi tar personvern på alvor, fordi vi selv hater apper som ikke gjør det.</p>
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="I korte trekk" title={`Personvern, på <em>vanlig norsk</em>.`}>
+        <p class="lede">{app.name} er utviklet av Haug & Datter (Jonas Haug, Drammen). En dagbok handler om de mest private tankene dine, derfor er denne appen bygget med personvern som utgangspunkt, ikke som en ettertanke.</p>
+        <p class="muted">Sist oppdatert · 10. mai 2026.</p>
+      </Chapter>
 
-    <h2>Hvilke data samler vi inn?</h2>
-    <p>[FYLL INN per app. Typisk: ingen data forlater enheten din. SwiftData lagrer lokalt. iCloud-sync (hvis aktivert) går via Apples krypterte tjeneste.]</p>
+      <Chapter num="02" label="Data" title={`Hva vi <em>ikke</em> samler inn.`}>
+        <p>Ingen. {app.name} har ingen brukerkontoer, ingen registrering og ingen pålogging. Vi samler ikke inn navn, e-post, IP-adresse, lokasjon, eller bruksstatistikk. Det du skriver lagres lokalt på enheten via SwiftData og forlater ikke enheten med mindre du eksplisitt eksporterer eller deler det.</p>
+      </Chapter>
 
-    <h2>Tredjepartstjenester</h2>
-    <p>[FYLL INN. Typisk: ingen. Hvis StoreKit eller iCloud nevnt: Apple sin egen.]</p>
+      <Chapter num="03" label="iCloud" title={`Synker mellom <em>dine egne enheter</em>.`}>
+        <p>iCloud-sync er valgfritt og opt-in. Hvis du slår det på, synkroniseres dagboken mellom dine egne enheter via Apples krypterte iCloud. Synkroniseringen håndteres av Apple. Vi har ingen tilgang til innholdet.</p>
+        <p class="muted">Du kan slå iCloud av når som helst i innstillingene. Innholdet forblir lokalt på hver enhet du har brukt appen på.</p>
+      </Chapter>
 
-    <h2>Kontakt</h2>
-    <p>Spørsmål? Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>.</p>
-  </article>
+      <Chapter num="04" label="Tredjepart" title={`Ingen sporing. <em>Ingen analyse.</em>`}>
+        <p>Appen bruker ikke analyseverktøy, reklame-SDK-er eller eksterne API-er. De eneste tjenestene appen eventuelt snakker med er Apples egne (iCloud og StoreKit), og kun hvis du selv har valgt det.</p>
+      </Chapter>
 
-  <AppNav slug={app.slug} current="personvern" />
+      <Chapter num="05" label="Face ID" title={`Biometrien forlater aldri <em>Secure Enclave</em>.`}>
+        <p>{app.name} tilbyr valgfri applåsing med Face ID eller Touch ID. Biometriske data håndteres utelukkende av iOS og lagres i enhetens Secure Enclave. Appen mottar bare et ja/nei-svar fra systemet. Vi har aldri tilgang til ansiktsdata eller fingeravtrykk.</p>
+      </Chapter>
 
+      <Chapter num="06" label="Eksport" title={`Innholdet er <em>ditt</em>.`}>
+        <p>Du kan eksportere alle entries som markdown når du vil. Eksporten skjer lokalt på enheten. Vi ser den ikke. Når du har eksportert, går filen utenfor appens kontroll og er underlagt delings-kanalens egne vilkår.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Kontakt" title={`Spørsmål? <em>Skriv til oss.</em>`}>
+        <p>Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Du får svar fra Jonas selv, vanligvis innen et døgn.</p>
+        <p class="muted">Vi kan oppdatere denne erklæringen ved behov. Endringer publiseres på denne siden med oppdatert dato.</p>
+      </Chapter>
+    </div>
+  </div>
   <Footer label={`${app.name} · Personvern`} />
 </AppLayout>

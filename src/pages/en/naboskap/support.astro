@@ -1,0 +1,50 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('naboskap');
+---
+<AppLayout app={app} title={`Support · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="support" />
+    <div class="app-flow">
+      <Chapter num="01" label="Contact" title={`<em>Write to us</em> by email.`}>
+        <p class="lede">Send email to <a class="tx-link" href="mailto:hei@haugogdatter.no">hei@haugogdatter.no</a>. You'll get a reply from Jonas himself.</p>
+        <p>It helps to include:</p>
+        <p>· Which iPhone or iPad and iOS version you're using.</p>
+        <p>· What you were trying to do when the problem occurred, and what happened.</p>
+        <p>· Whether you're signed in to iCloud ({app.name} syncs via CloudKit, so the iCloud state is often relevant).</p>
+      </Chapter>
+
+      <Chapter num="02" label="Response time" title={`What you <em>can expect</em>.`}>
+        <p>Haug & Datter is a small studio run in the evenings. Usually a reply within 2–3 business days. Urgent security issues are prioritized.</p>
+      </Chapter>
+
+      <Chapter num="03" label="FAQ" title={`Often <em>asked</em>.`}>
+        <p><strong>Why does the app need iCloud?</strong></p>
+        <p>{app.name} uses Apple's CloudKit to synchronize group data and inventory between your devices and other members of the same group. We have no server of our own, so without iCloud we can't share data safely.</p>
+
+        <p><strong>How do I invite others to a group?</strong></p>
+        <p>As the owner of a group, tap «Invite neighbors». You can share the invitation as a link (via Messages, Mail, etc.) or as a short code (e.g. «STORGATA-7K2»). The recipient opens the link on their iPhone and is added after the next sync.</p>
+
+        <p><strong>I bought {app.name} +, but it doesn't show on my new iPhone.</strong></p>
+        <p>Open the paywall and tap «Restore purchase». Premium status is linked to your Apple ID and works on all your devices.</p>
+
+        <p><strong>What happens if I delete the app?</strong></p>
+        <p>All local app data is gone. Groups and items synced to iCloud are kept as long as other members are active, or until you delete them manually from one of your devices.</p>
+
+        <p><strong>Can I turn off anonymous usage statistics?</strong></p>
+        <p>Yes, under Profile → Anonymous usage statistics. Then no new events are sent from your device.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Suggestions" title={`Help us make <em>${app.name} better</em>.`}>
+        <p>Bug reports, feature suggestions, and small fixes are all welcome. User feedback counts when we prioritize what to build next.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Support`} />
+</AppLayout>

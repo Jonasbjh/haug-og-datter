@@ -7,6 +7,8 @@
  */
 import '../styles/global.css';
 import type { AppDef } from '../data/apps';
+import AppMenu from '../components/AppMenu.astro';
+import { resolveLocale, t } from '../i18n/translations';
 
 interface Props {
   app: AppDef;
@@ -14,11 +16,13 @@ interface Props {
   description?: string;
 }
 const { app, title, description } = Astro.props;
-const pageTitle = title ?? `${app.name} — Haug og Datter`;
+const locale = resolveLocale(Astro.currentLocale);
+const strings = t(locale);
+const pageTitle = title ?? `${app.name} · Haug & Datter`;
 const pageDesc = description ?? app.tagline;
 ---
 <!doctype html>
-<html lang="nb">
+<html lang={strings.htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,6 +41,8 @@ const pageDesc = description ?? app.tagline;
     <div class="sweep" aria-hidden="true"></div>
     <div class="progress" aria-hidden="true"></div>
 
+    <AppMenu />
+
     <div class="theme-root" data-app={app.slug} style={`--accent:${app.accent}`}>
       <div class="app-backdrop" aria-hidden="true"></div>
       <div class="stage">
@@ -45,7 +51,7 @@ const pageDesc = description ?? app.tagline;
     </div>
 
     <div class="kbd-hint" aria-hidden="true">
-      Trykk <kbd>1</kbd>–<kbd>5</kbd> for app · <kbd>⌘K</kbd> søk · <kbd>Esc</kbd> hjem
+      {strings.kbdHint.press} <kbd>1</kbd>–<kbd>6</kbd> {strings.kbdHint.forApp} · <kbd>⌘K</kbd> {strings.kbdHint.search} · <kbd>Esc</kbd> {strings.kbdHint.home}
     </div>
 
     <script>

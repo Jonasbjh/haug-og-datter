@@ -1,0 +1,32 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('kvitteringsvakt');
+---
+<AppLayout app={app} title={`Support · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="support" />
+    <div class="app-flow">
+      <Chapter num="01" label="Contact" title={`Send <em>email</em>.`}>
+        <p class="lede">Need help with {app.name}? Send an email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. You'll get a reply from Jonas himself, usually within a day.</p>
+      </Chapter>
+      <Chapter num="02" label="FAQ" title={`What people <em>ask about</em>.`}>
+        <p><strong>OCR missed the amount, what do I do?</strong></p>
+        <p class="muted">Tap the receipt to open it, then the amount field, and edit manually. The change saves immediately.</p>
+        <p><strong>How do I change the warranty length?</strong></p>
+        <p class="muted">Open a receipt, tap the "Expected lifetime" field, and pick one of the standard categories or enter a custom number of years.</p>
+        <p><strong>Can I export all my receipts?</strong></p>
+        <p class="muted">Yes. Go to settings and choose "Export all". You get a combined PDF, categorized by date. Great for insurance claims or archiving.</p>
+      </Chapter>
+      <Chapter num="03" label="Feedback" title={`Ideas, <em>bugs</em>, tips.`}>
+        <p>Features you miss? Bugs that annoy? Send them to the same address. I read everything and prioritize based on what actually makes the app better.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Support`} />
+</AppLayout>

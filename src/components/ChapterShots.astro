@@ -1,0 +1,18 @@
+---
+/**
+ * ChapterShots — 3-kolonners grid med iPhone-formede placeholder-
+ * skjermbilder. Erstatter ScreenshotStrip på app-sider med
+ * editorial chapter-layout. Klar for ekte bilder via `shots`-prop.
+ */
+interface Shot { src?: string; alt?: string; }
+interface Props { shots?: Shot[]; count?: number; }
+const { shots = [], count = 4 } = Astro.props;
+const items: Shot[] = shots.length ? shots : Array.from({ length: count }, () => ({}));
+---
+<div class="chapter__shots" role="list">
+  {items.map((s) => (
+    <figure class="shot" role="listitem">
+      {s.src && <img src={s.src} alt={s.alt ?? ''} />}
+    </figure>
+  ))}
+</div>

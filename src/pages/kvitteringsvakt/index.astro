@@ -2,48 +2,39 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import Topbar from '../../components/Topbar.astro';
 import Footer from '../../components/Footer.astro';
-import AppHero from '../../components/AppHero.astro';
-import AppNav from '../../components/AppNav.astro';
-import ScreenshotStrip from '../../components/ScreenshotStrip.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import ChapterShots from '../../components/ChapterShots.astro';
 import PrevNextApp from '../../components/PrevNextApp.astro';
 import { getApp } from '../../data/apps';
 const app = getApp('kvitteringsvakt');
 ---
 <AppLayout app={app}>
   <Topbar variant="app" />
-  <AppHero app={app} />
-
-  <section class="sect reveal">
-    <h2>Om appen</h2>
-    <div class="sect__body">
-      <p class="lede">[FYLL INN] Et til tre korte avsnitt om hva Kvitteringsvakt gjør, i samme rolige tone som hub-en.</p>
-      <p class="muted">[FYLL INN] Andre avsnitt om bruksområde og hvem appen er til for.</p>
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Hvorfor" title={`Norsk <em>forbrukerlov</em>, lett å bruke.`}>
+        <p class="lede">Kvitteringsvakt finnes fordi norsk forbrukerkjøpslov gir deg fem års reklamasjonsrett, og ingen husker det når vaskemaskinen ryker.</p>
+        <p class="muted">Skann kvitteringen i kassa, app-en husker datoen, og varsler deg før garantien går ut. Bygd for det norske handelsmønsteret.</p>
+      </Chapter>
+      <Chapter num="02" label="Slik føles det" title={`For når du <em>trenger papirene</em>.`}>
+        <p>Hvitevarene ryker. Vanligvis akkurat det øyeblikket du har glemt hvor du la kvitteringen. Kvitteringsvakt er den ene plassen du vet du finner det igjen, kategorisert, søkbart, og med en PDF du kan sende butikken.</p>
+        <ChapterShots shots={[
+          { src: '/screenshots/kvitteringsvakt/01-hjem.jpg', alt: 'Hjem-skjerm' },
+          { src: '/screenshots/kvitteringsvakt/02-skanning.jpg', alt: 'Kvitteringsskanning' },
+          { src: '/screenshots/kvitteringsvakt/03-reklamasjon.jpg', alt: 'Reklamasjon' },
+          { src: '/screenshots/kvitteringsvakt/04-forsikring.jpg', alt: 'Forsikring' },
+          { src: '/screenshots/kvitteringsvakt/05-statistikk.jpg', alt: 'Statistikk' },
+        ]} />
+      </Chapter>
+      <Chapter num="03" label="Hva den gjør" title={`<em>Skann, husk</em>, eksporter.`}>
+        <p>Skann en kvittering på ett sekund. Apple Vision leser butikk, beløp og dato på enheten. Du kan korrigere hvis OCR-en bommer.</p>
+        <p>Husker garantitiden for deg. Hvitevarer, elektronikk, sykler. Hver kategori har en typisk forventet levetid som styrer reklamasjonsfristen.</p>
+        <p>Søk og eksport. Finn med butikk, dato, kategori. Eksporter alt som PDF til forsikringssak eller skattemelding.</p>
+      </Chapter>
+      <PrevNextApp slug={app.slug} />
     </div>
-  </section>
-
-  <ScreenshotStrip />
-
-  <section class="sect reveal">
-    <h2>Hva den gjør</h2>
-    <div class="sect__body">
-      <h3>[FYLL INN funksjon 1]</h3>
-      <p class="muted">[FYLL INN kort beskrivelse]</p>
-      <h3>[FYLL INN funksjon 2]</h3>
-      <p class="muted">[FYLL INN kort beskrivelse]</p>
-      <h3>[FYLL INN funksjon 3]</h3>
-      <p class="muted">[FYLL INN kort beskrivelse]</p>
-    </div>
-  </section>
-
-  <section class="sect reveal">
-    <h2>Hvorfor</h2>
-    <div class="sect__body">
-      <p>[FYLL INN] Ett avsnitt om motivasjonen. Personlig, ikke marketing.</p>
-    </div>
-  </section>
-
-  <PrevNextApp slug={app.slug} />
-  <AppNav slug={app.slug} current="oversikt" />
-
-  <Footer label={`${app.name} · Haug og Datter`} />
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
 </AppLayout>

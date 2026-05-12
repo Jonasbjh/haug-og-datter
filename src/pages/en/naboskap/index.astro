@@ -1,0 +1,47 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import ChapterShots from '../../../components/ChapterShots.astro';
+import PrevNextApp from '../../../components/PrevNextApp.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('naboskap');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Why" title={`For <em>lending groups</em> you build yourself.`}>
+        <p class="lede">Naboskap is for the friend group, the street, the cabin neighbors, the parents' group. Not for the whole apartment building or the entire neighborhood — just for those you actually trust enough to borrow from.</p>
+        <p>Closed, hand-picked groups. Trust comes from existing relationships. The app just relays the contact.</p>
+        <p class="muted">This is a two-and-a-half-person app studio. The daughter is two and a half and has strong opinions about everything, including which things are worth lending.</p>
+      </Chapter>
+
+      <Chapter num="02" label="How it feels" title={`Asynchronous, <em>not chat</em>.`}>
+        <p>Request → notification → reply. You post «need a ladder this weekend», someone in the group answers «mine's by the garage», and you agree on a time. No direct chat, no pressure to respond instantly.</p>
+        <p>It's easy to borrow from an existing group, and <em>slightly</em> more friction to start one or invite people. That's a feature, not a flaw — hand-picked is the whole point.</p>
+        <ChapterShots shots={[
+          { src: '/screenshots/naboskap/01-hjem.png', alt: 'Home screen' },
+          { src: '/screenshots/naboskap/02-til-utlan.png', alt: 'For lending' },
+          { src: '/screenshots/naboskap/03-mine-ting.png', alt: 'My things' },
+          { src: '/screenshots/naboskap/04-detail.png', alt: 'Loan detail' },
+          { src: '/screenshots/naboskap/05-paywall.png', alt: 'Naboskap +' },
+          { src: '/screenshots/naboskap/06-deg.png', alt: 'Profile' },
+        ]} />
+      </Chapter>
+
+      <Chapter num="03" label="What it does" title={`The structure for <em>borrowing from each other</em>.`}>
+        <p>Groups you own or are a member of. The free version lets you be in 1 group at a time; Naboskap + (one-time purchase, 59 NOK) raises the cap to 5.</p>
+        <p>Inventory — things you've listed for lending with name, photo, and a short pickup note. The same thing can be visible in multiple groups, and you choose which ones.</p>
+        <p>Requests in two styles. <em>Open</em>, where everyone in the group sees them, or <em>direct</em>, where only one specific neighbor gets the alert. Choose a delivery mode (pickup, delivery, by arrangement) and an agreed date.</p>
+        <p>Syncs via your own iCloud. No server, no analytics profile, no identifiers. Anonymous usage signals can be turned off in the app.</p>
+      </Chapter>
+
+      <PrevNextApp slug={app.slug} />
+    </div>
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
+</AppLayout>

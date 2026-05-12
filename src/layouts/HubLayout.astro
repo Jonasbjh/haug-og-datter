@@ -1,23 +1,29 @@
 ---
 /**
- * HubLayout — kun for forsiden (`/`). Setter accent til forest (default),
- * inkluderer chrome (sweep, spotlight, progress, kbd-hint), laster
- * Google Fonts og kjører klient-script. Spotlight aktiveres via
+ * HubLayout — kun for forsiden (`/` og `/en`). Setter accent til forest
+ * (default), inkluderer chrome (sweep, spotlight, progress, kbd-hint),
+ * laster Google Fonts og kjører klient-script. Spotlight aktiveres via
  * `data-spotlight` på theme-root så scriptet vet vi er på hub-en.
  */
 import '../styles/global.css';
+import AppMenu from '../components/AppMenu.astro';
+import { resolveLocale, t } from '../i18n/translations';
 
 interface Props {
   title?: string;
   description?: string;
 }
-const {
-  title = 'Haug og Datter',
-  description = 'Et lite app-makeri fra Drammen. Apper laget med tid, tålmodighet og litt for mye kaffe.',
-} = Astro.props;
+const locale = resolveLocale(Astro.currentLocale);
+const strings = t(locale);
+
+const defaultTitle = 'Haug & Datter';
+const defaultDescription = locale === 'en'
+  ? 'A small app studio from Drammen. Apps built with time, patience, and a little too much coffee.'
+  : 'Et lite app-makeri fra Drammen. Apper laget med tid, tålmodighet og litt for mye kaffe.';
+const { title = defaultTitle, description = defaultDescription } = Astro.props;
 ---
 <!doctype html>
-<html lang="nb">
+<html lang={strings.htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,6 +42,8 @@ const {
     <div class="spotlight" aria-hidden="true"></div>
     <div class="progress" aria-hidden="true"></div>
 
+    <AppMenu />
+
     <div class="theme-root" data-spotlight>
       <div class="stage">
         <slot />
@@ -43,7 +51,7 @@ const {
     </div>
 
     <div class="kbd-hint" aria-hidden="true">
-      Trykk <kbd>1</kbd>–<kbd>5</kbd> for app · <kbd>⌘K</kbd> søk · <kbd>Esc</kbd> hjem
+      {strings.kbdHint.press} <kbd>1</kbd>–<kbd>6</kbd> {strings.kbdHint.forApp} · <kbd>⌘K</kbd> {strings.kbdHint.search} · <kbd>Esc</kbd> {strings.kbdHint.home}
     </div>
 
     <script>

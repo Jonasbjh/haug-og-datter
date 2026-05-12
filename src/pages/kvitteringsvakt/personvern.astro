@@ -2,28 +2,65 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import Topbar from '../../components/Topbar.astro';
 import Footer from '../../components/Footer.astro';
-import AppNav from '../../components/AppNav.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
 import { getApp } from '../../data/apps';
 const app = getApp('kvitteringsvakt');
 ---
-<AppLayout app={app} title={`Personvern — ${app.name}`}>
+<AppLayout app={app} title={`Personvern · ${app.name}`}>
   <Topbar variant="app" />
-  <article class="doc reveal">
-    <h1>Personvern for {app.name}</h1>
-    <p class="doc-meta">Sist oppdatert · [DATO]</p>
-    <p class="lede">{app.name} er laget av Haug og Datter (Jonas Haug, Drammen, Norge). Vi tar personvern på alvor, fordi vi selv hater apper som ikke gjør det.</p>
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="I korte trekk" title={`Personvern, på <em>vanlig norsk</em>.`}>
+        <p class="lede">{app.name} samler ikke inn data om deg. All informasjon lagres lokalt på enheten og i din private iCloud-konto. Vi bruker ingen analyse- eller sporingsverktøy, og deler aldri data med tredjeparter.</p>
+        <p class="muted">Sist oppdatert · 25. mars 2026.</p>
+      </Chapter>
 
-    <h2>Hvilke data samler vi inn?</h2>
-    <p>[FYLL INN per app. Typisk: ingen data forlater enheten din. SwiftData lagrer lokalt. iCloud-sync (hvis aktivert) går via Apples krypterte tjeneste.]</p>
+      <Chapter num="02" label="Data" title={`Det <em>du</em> skanner og lagrer.`}>
+        <p>{app.name} lar deg skanne og lagre kvitteringer for å holde oversikt over kjøp og garantier. Følgende lagres lokalt på enheten via SwiftData:</p>
+        <p>· Bilder av kvitteringer.</p>
+        <p>· Kjøpsinformasjon (butikk, dato, beløp, produktnavn).</p>
+        <p>· Garantiperioder og påminnelser.</p>
+        <p>· Tekst hentet fra kvitteringer via OCR.</p>
+        <p class="muted">Ingenting sendes til våre servere. Vi har ingen.</p>
+      </Chapter>
 
-    <h2>Tredjepartstjenester</h2>
-    <p>[FYLL INN. Typisk: ingen. Hvis StoreKit eller iCloud nevnt: Apple sin egen.]</p>
+      <Chapter num="03" label="OCR" title={`Tekstgjenkjenning skjer <em>på enheten</em>.`}>
+        <p>Når du skanner en kvittering, bruker appen Apples Vision-rammeverk til å lese tekst fra bildet. All tekstgjenkjenning skjer lokalt. Ingen bilder eller tekst sendes til eksterne tjenester.</p>
+      </Chapter>
 
-    <h2>Kontakt</h2>
-    <p>Spørsmål? Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>.</p>
-  </article>
+      <Chapter num="04" label="iCloud" title={`Synker mellom <em>dine egne enheter</em>.`}>
+        <p>Hvis du har iCloud aktivert, kan dataene dine synkroniseres mellom enhetene dine via Apples CloudKit. Synkroniseringen håndteres av Apple, og dataene er beskyttet av Apples kryptering og personvernregler.</p>
+        <p class="muted">Vi har ikke tilgang til dataene dine i iCloud. Mer i <a class="tx-link" href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apples personvernerklæring</a>.</p>
+      </Chapter>
 
-  <AppNav slug={app.slug} current="personvern" />
+      <Chapter num="05" label="Face ID" title={`Biometrien forlater aldri <em>Secure Enclave</em>.`}>
+        <p>{app.name} tilbyr valgfri applåsing med Face ID eller Touch ID. Biometriske data håndteres utelukkende av iOS og lagres i enhetens Secure Enclave. Appen mottar bare et ja/nei-svar fra systemet. Vi har aldri tilgang til ansiktsdata eller fingeravtrykk.</p>
+      </Chapter>
 
+      <Chapter num="06" label="Søk" title={`CoreSpotlight-indeks <em>kun lokalt</em>.`}>
+        <p>Appen bruker CoreSpotlight slik at du kan finne kjøpene dine via iOS-søk. Indeksen lagres lokalt på enheten og deles ikke med noen.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Tredjepart" title={`Ingen sporing. <em>Ingen analyse.</em>`}>
+        <p>{app.name} inneholder ingen analyseverktøy, sporings-SDK-er, annonsenettverk eller tredjepartsbiblioteker som samler data. Vi sporer ikke hvordan du bruker appen, og vi samler ikke inn noen form for brukerdata. Vi deler ingen data med tredjeparter. Punktum.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Sletting og GDPR" title={`Du har <em>full kontroll</em>.`}>
+        <p>Siden all data lagres lokalt på enheten og i din iCloud-konto, har du full kontroll. Du kan:</p>
+        <p>· Slette enkeltkvitteringer direkte i appen.</p>
+        <p>· Slette all data via appens innstillinger.</p>
+        <p>· Avinstallere appen for å fjerne all lokal data.</p>
+        <p>· Administrere iCloud-data via Innstillinger på enheten.</p>
+        <p class="muted">Siden vi ikke samler inn eller lagrer noen personopplysninger på våre servere, er det ingen data hos oss å få innsyn i, rette eller slette. All data er din, og forblir på enheten din og i din iCloud-konto, i tråd med EUs personvernforordning (GDPR).</p>
+      </Chapter>
+
+      <Chapter num="09" label="Kontakt" title={`Spørsmål? <em>Skriv til oss.</em>`}>
+        <p>Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Du får svar fra Jonas selv, vanligvis innen et døgn.</p>
+        <p class="muted">Dersom vi oppdaterer denne erklæringen, publiseres endringene på denne siden med ny dato. Ved vesentlige endringer informerer vi via appen.</p>
+      </Chapter>
+    </div>
+  </div>
   <Footer label={`${app.name} · Personvern`} />
 </AppLayout>

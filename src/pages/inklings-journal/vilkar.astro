@@ -2,31 +2,38 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import Topbar from '../../components/Topbar.astro';
 import Footer from '../../components/Footer.astro';
-import AppNav from '../../components/AppNav.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
 import { getApp } from '../../data/apps';
 const app = getApp('inklings-journal');
 ---
-<AppLayout app={app} title={`Vilkår — ${app.name}`}>
+<AppLayout app={app} title={`Vilkår · ${app.name}`}>
   <Topbar variant="app" />
-  <article class="doc reveal">
-    <h1>Vilkår for bruk av {app.name}</h1>
-    <p class="doc-meta">Sist oppdatert · [DATO]</p>
-    <p class="lede">Ved å bruke {app.name} godtar du følgende vilkår.</p>
+  <div class="app-page">
+    <AppRail app={app} current="vilkar" />
+    <div class="app-flow">
+      <Chapter num="01" label="Lisens" title={`Distribueres via <em>App Store</em>.`}>
+        <p class="lede">{app.name} distribueres via App Store. Du får en personlig, ikke-overførbar lisens til å bruke appen på enheter knyttet til din Apple-ID, i henhold til Apples standard sluttbruker-lisensavtale (EULA).</p>
+        <p class="muted">Det du skriver i appen tilhører deg. Vi har ingen tilgang til, kopi av, eller rett til å bruke det.</p>
+      </Chapter>
 
-    <h2>Lisens</h2>
-    <p>{app.name} distribueres via App Store. Du får en personlig, ikke-overførbar lisens til å bruke appen på enheter knyttet til din Apple-ID, i henhold til Apples standard EULA.</p>
+      <Chapter num="02" label="Bruk" title={`Personlig <em>dagbok</em>.`}>
+        <p>{app.name} er ment for personlig dagbokføring. Du samtykker til å bruke appen i samsvar med gjeldende lover og regler, og til ikke å misbruke, kopiere eller redistribuere appens innhold.</p>
+      </Chapter>
 
-    <h2>Ansvarsfraskrivelse</h2>
-    <p>[FYLL INN]</p>
+      <Chapter num="03" label="Ansvar" title={`Vi <em>gjør vårt beste</em>.`}>
+        <p>{app.name} leveres «som den er». Vi gjør vårt beste for at appen skal fungere godt, men kan ikke garantere at den er fri for feil eller alltid tilgjengelig. Vi er ikke ansvarlige for tap av entries ved enhetsfeil eller sletting av appen, så slå på iCloud eller eksporter regelmessig hvis innholdet er viktig for deg.</p>
+      </Chapter>
 
-    <h2>Endringer</h2>
-    <p>Vi kan oppdatere disse vilkårene. Vesentlige endringer varsles i appen.</p>
+      <Chapter num="04" label="Endringer" title={`Vesentlige endringer <em>varsles</em>.`}>
+        <p>Vi kan oppdatere disse vilkårene over tid. Vesentlige endringer varsles i appen ved neste oppdatering, og du kan velge å slutte å bruke appen hvis du ikke godtar endringene.</p>
+        <p class="muted">Vilkårene er underlagt norsk lov. Eventuelle tvister skal løses ved norske domstoler.</p>
+      </Chapter>
 
-    <h2>Kontakt</h2>
-    <p><a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a></p>
-  </article>
-
-  <AppNav slug={app.slug} current="vilkar" />
-
+      <Chapter num="05" label="Kontakt" title={`Spørsmål om vilkår? <em>Skriv til oss.</em>`}>
+        <p>Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Personvernerklæringen for appen finner du <a class="tx-link" href="/inklings-journal/personvern/">her</a>.</p>
+      </Chapter>
+    </div>
+  </div>
   <Footer label={`${app.name} · Vilkår`} />
 </AppLayout>

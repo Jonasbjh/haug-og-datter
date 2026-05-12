@@ -1,0 +1,101 @@
+---
+/**
+ * AppFan — «Atelieret»-vifta som erstatter den vertikale app-lista
+ * midt på hub-en. Seks iPhone-mockups fanned ut med roterte
+ * transformasjoner; hover løfter den aktive opp og demper de andre.
+ *
+ * Sweep-animasjonen ved klikk håndteres av main.ts via
+ * `.atelier__phone` i sweep-link-interceptoren.
+ */
+import { apps } from '../data/apps';
+import { resolveLocale, localizedPath } from '../i18n/translations';
+
+const locale = resolveLocale(Astro.currentLocale);
+---
+<section class="atelier reveal" aria-label="Apper">
+  <div class="atelier__head">
+    <span class="atelier__eyebrow l">Atelieret</span>
+    <span class="atelier__eyebrow r">Hold over en app</span>
+  </div>
+
+  <div
+    class="atelier__stage"
+    role="list"
+    data-default-num="01"
+    data-default-name={apps[0]?.name ?? ''}
+  >
+    {apps.map((app, i) => {
+      const num = String(i + 1).padStart(2, '0');
+      return (
+        <a
+          class="atelier__phone"
+          href={localizedPath(locale, `/${app.slug}`)}
+          role="listitem"
+          data-idx={i}
+          data-num={num}
+          data-name={app.name}
+          style={`--accent: ${app.accent}; --idx: ${i};`}
+          aria-label={`Gå til ${app.name}`}
+        >
+          <span class="atelier__notch" aria-hidden="true"></span>
+          <div class="atelier__screen">
+            <div class="atelier__icon">
+              <img
+                src={app.iconPath}
+                alt=""
+                width="72"
+                height="72"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            <div class="atelier__name">{app.name}</div>
+            <div class="atelier__grid" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="atelier__dock" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </a>
+      );
+    })}
+  </div>
+
+  <div class="atelier__caption" aria-live="polite">
+    <span class="atelier__counter">{`01 / ${String(apps.length).padStart(2, '0')}`}</span>
+    <span class="atelier__label">{apps[0]?.name ?? ''}</span>
+  </div>
+</section>
+
+<script>
+  // Oppdater caption (counter + navn) basert på hvilken telefon som er
+  // hovret/fokusert. Faller tilbake til app-1 når man forlater.
+  const stage = document.querySelector<HTMLElement>('.atelier__stage');
+  const counter = document.querySelector<HTMLElement>('.atelier__counter');
+  const label = document.querySelector<HTMLElement>('.atelier__label');
+
+  if (stage && counter && label) {
+    const total = stage.querySelectorAll('.atelier__phone').length;
+    const totalStr = String(total).padStart(2, '0');
+    const defaultNum = stage.dataset.defaultNum ?? '01';
+    const defaultName = stage.dataset.defaultName ?? '';
+
+    const setActive = (num: string, name: string) => {
+      counter.textContent = `${num} / ${totalStr}`;
+      label.textContent = name;
+    };
+    const reset = () => setActive(defaultNum, defaultName);
+
+    stage.querySelectorAll<HTMLAnchorElement>('.atelier__phone').forEach((p) => {
+      const onIn = () => setActive(p.dataset.num ?? '', p.dataset.name ?? '');
+      p.addEventListener('mouseenter', onIn);
+      p.addEventListener('focusin', onIn);
+      p.addEventListener('mouseleave', reset);
+      p.addEventListener('focusout', reset);
+    });
+  }
+</script>

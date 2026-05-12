@@ -1,0 +1,31 @@
+---
+/**
+ * Phone — iPhone-mockup som er stjerna i venstre rail på app-sider.
+ * Bezel + notch i mørk gradient, skjerm i app-accent-gradient med
+ * hero-ikon på toppen, 4×3 grid med dummy-app-flekker for å gi en
+ * homescreen-følelse, og en blurred dock nederst.
+ */
+import type { AppDef } from '../data/apps';
+interface Props { app: AppDef }
+const { app } = Astro.props;
+const gridDots = ['','b1','','b2','b3','','b1','','','b2','b3','b1','b1','','b2',''];
+---
+<div class="app-rail__phone">
+  <div class="app-rail__screen">
+    <div class="app-rail__hero">
+      <img src={app.iconPath} alt={`${app.name} ikon`} width="64" height="64" />
+    </div>
+    <div class="app-rail__heroLabel">{app.name}</div>
+    <div class="app-rail__grid" aria-hidden="true">
+      {gridDots.map((c) => (
+        <div class={`app ${c}`.trim()}></div>
+      ))}
+    </div>
+    <div class="app-rail__dock" aria-hidden="true">
+      <div class="app"></div>
+      <div class="app"></div>
+      <div class="app"></div>
+      <div class="app"></div>
+    </div>
+  </div>
+</div>

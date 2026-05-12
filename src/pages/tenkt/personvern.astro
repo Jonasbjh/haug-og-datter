@@ -2,28 +2,116 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import Topbar from '../../components/Topbar.astro';
 import Footer from '../../components/Footer.astro';
-import AppNav from '../../components/AppNav.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
 import { getApp } from '../../data/apps';
 const app = getApp('tenkt');
 ---
-<AppLayout app={app} title={`Personvern — ${app.name}`}>
+<AppLayout app={app} title={`Personvern · ${app.name}`}>
   <Topbar variant="app" />
-  <article class="doc reveal">
-    <h1>Personvern for {app.name}</h1>
-    <p class="doc-meta">Sist oppdatert · [DATO]</p>
-    <p class="lede">{app.name} er laget av Haug og Datter (Jonas Haug, Drammen, Norge). Vi tar personvern på alvor, fordi vi selv hater apper som ikke gjør det.</p>
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="I korte trekk" title={`Personvern, på <em>vanlig norsk</em>.`}>
+        <p class="lede">Denne erklæringen forklarer hvordan {app.name} håndterer informasjon i iOS-appen. De fleste funksjoner virker helt frakoblet, og vi driver verken egne servere eller analyseverktøy.</p>
+        <p class="muted">Sist oppdatert · 12. mai 2026 (dekker app-versjon 1.2.2).</p>
+      </Chapter>
 
-    <h2>Hvilke data samler vi inn?</h2>
-    <p>[FYLL INN per app. Typisk: ingen data forlater enheten din. SwiftData lagrer lokalt. iCloud-sync (hvis aktivert) går via Apples krypterte tjeneste.]</p>
+      <Chapter num="02" label="Lokalt" title={`Det som ligger <em>på enheten</em>.`}>
+        <p>Lagres lokalt og sendes aldri til oss:</p>
+        <p>· Puslespill-fremgang, fullføringstider, streaks og statistikk</p>
+        <p>· App-innstillinger (tema, språk, lyd, haptics)</p>
+        <p>· Pågående puslespill for gjenoppretting etter krasj</p>
+        <p>· Saldo av appens valuta («spor»), opplåste merker og oppdrag-fremgang</p>
+        <p>· Lokal cache av venner du har lagt til (deres anonyme identifikator og eventuelt valgt visningsnavn)</p>
+        <p class="muted">Data forblir kun i iOS-lagring og slettes når appen fjernes.</p>
+      </Chapter>
 
-    <h2>Tredjepartstjenester</h2>
-    <p>[FYLL INN. Typisk: ingen. Hvis StoreKit eller iCloud nevnt: Apple sin egen.]</p>
+      <Chapter num="03" label="Toppliste" title={`Anonym <em>global toppliste</em>.`}>
+        <p>Når du fullfører dagens puslespill, sender appen følgende til Apples offentlige CloudKit-database:</p>
+        <p>· Anonym identifikator fra din iCloud-konto</p>
+        <p>· Lokal datostreng for puslespillet (<code>seedID</code>)</p>
+        <p>· Total fullføringstid i sekunder</p>
+        <p>Disse dataene brukes utelukkende til å beregne og vise den globale topplista. Spillere ser anonymiserte identifikatorer som «Player A3F4», ikke ekte navn. Du kan logge ut av iCloud i iOS-innstillingene for å deaktivere denne funksjonen.</p>
+      </Chapter>
 
-    <h2>Kontakt</h2>
-    <p>Spørsmål? Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>.</p>
-  </article>
+      <Chapter num="04" label="Venner" title={`Vennesystem, <em>lagt til i v1.2.0</em>.`}>
+        <p>Hvis du velger å bruke venne-funksjonen, lagrer appen følgende i Apples offentlige CloudKit-database:</p>
+        <p>· <strong>Vennekode:</strong> en tilfeldig seks-tegns identifikator (f.eks. «K7P3MQ») generert av appen og knyttet til den samme anonyme iCloud-identifikatoren som brukes på topplista.</p>
+        <p>· <strong>Visningsnavn (valgfritt):</strong> en kort etikett på opptil 12 tegn som du selv velger. La det stå tomt for å vises som «Player XXXX» hos vennene dine.</p>
+        <p>· <strong>Vennskapsposter:</strong> når du legger til en annen spiller med kode, lagres en post som inneholder begge anonyme identifikatorer slik at koblingen kan vises på begge sider.</p>
+        <p>Vennekoder kan ikke oppdages — de må deles direkte mellom personer. Visningsnavn er kun synlig for de som har lagt deg til som venn; de blir aldri indeksert eller søkbare. Appen har ingen følger-lister, ingen profil-sider, ingen meldinger og ingen varsler om venneaktivitet.</p>
+        <p class="muted">Å fjerne en venn sletter vennskapsposten fra CloudKit. For å slette vennekoden din eller all venne-data, kontakt oss på e-post-adressen nedenfor.</p>
+      </Chapter>
 
-  <AppNav slug={app.slug} current="personvern" />
+      <Chapter num="05" label="Backup" title={`Kjøps-backup, <em>lagt til i v1.2.2</em>.`}>
+        <p>For å hindre tap av kjøp og opplåste elementer når du installerer appen på nytt eller bytter enhet, speiler appen følgende til din private iCloud Key-Value Store:</p>
+        <p>· Totalsummer for opptjent, brukt og kjøpt in-app valuta («spor»)</p>
+        <p>· Identifikatorer for opplåste visuelle tema og symbol-pakker</p>
+        <p>· Apple StoreKit transaksjons-ID-er som allerede er kreditert (for å hindre dobbel-kreditering på flere enheter)</p>
+        <p>· Flagg som indikerer hvilke ikke-forbrukbare kjøp (Fjern reklame, Daglig 2×, Pro Bundle) du eier</p>
+        <p>Disse dataene lagres i din personlige iCloud-konto via Apples Key-Value Store-API. Utvikleren kan ikke lese dem — de ligger i din iCloud, kun tilgjengelig for din Apple-ID og {app.name}-appen på enhetene dine. Total størrelse er under 2 KB per bruker. Hvis du logger ut av iCloud, deaktiveres denne backupen; appen fungerer fortsatt frakoblet.</p>
+      </Chapter>
 
+      <Chapter num="06" label="Reklame" title={`Reklame via <em>Google AdMob</em>.`}>
+        <p>AdMob kan samle inn enhetens reklame-identifikator (IDFA), reklame-prestasjonsdata og diagnostisk informasjon for levering av annonser. Appen viser tre annonse-formater: banner-annonser, interstitielle annonser mellom økter, og valgfrie belønnede annonser (som brukere aktivt velger å se i bytte mot in-app valuta). Alle tre følger de samme AdMob-praksisene for data.</p>
+        <p>Hvis du avslår App Tracking Transparency-spørringen, vises kun ikke-personaliserte annonser. Du kan kjøpe «Fjern reklame» eller «Pro Bundle» for å deaktivere alle AdMob-annonser fullstendig.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Kjøp" title={`Kjøp via <em>Apples StoreKit</em>.`}>
+        <p>Apple behandler følgende in-app-kjøp gjennom StoreKit:</p>
+        <p>· <strong>Fjern reklame</strong> (engangskjøp, kr 29) — deaktiverer reklame</p>
+        <p>· <strong>Daglig 2×</strong> (engangskjøp, kr 19) — dobler daglig spor-opptjening</p>
+        <p>· <strong>Pro Bundle</strong> (engangskjøp, kr 39) — kombinerer begge over</p>
+        <p>· <strong>Spor-pakker</strong> (forbruksvare, kr 19 / 49 / 99) — kjøp 500 / 1500 / 3500 in-app valuta («spor»)</p>
+        <p>Utvikleren mottar transaksjonsposter (produkt-ID, kjøpsdato, transaksjons-ID) for å verifisere kjøp og låse opp funksjoner. Betalingsdetaljer (kredittkort, Apple-ID-passord) forblir hos Apple — utvikleren ser dem aldri.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Ikke samlet inn" title={`Hva vi <em>ikke</em> samler inn.`}>
+        <p>{app.name} gjør ikke følgende:</p>
+        <p>· Driver egne servere eller backend-infrastruktur</p>
+        <p>· Bruker analyseverktøy utover AdMob</p>
+        <p>· Samler navn, e-post, telefonnummer eller kontaktinformasjon</p>
+        <p>· Tilgangsbestiller kamera, mikrofon, kontakter eller posisjonsdata</p>
+        <p>· Sender markedsføring</p>
+        <p>· Selger brukerdata</p>
+        <p>· Tilbyr chat, meldinger eller kommentarer mellom spillere</p>
+        <p>· Leser din iCloud Key-Value Store-backup (den er privat for din Apple-ID)</p>
+      </Chapter>
+
+      <Chapter num="09" label="Varsler" title={`Push-<em>varsler</em>.`}>
+        <p>Hvis du aktiverer varsler, planlegger {app.name} lokale påminnelser kun på enheten — daglige dult, streak-beskyttelses-varsler og rang-oppdateringer etter en topp-100-plassering. Det sendes ingen eksterne push-varsler. Du kan deaktivere varsler i iOS-innstillingene.</p>
+      </Chapter>
+
+      <Chapter num="10" label="Barn" title={`<em>Barneprivacy</em>.`}>
+        <p>{app.name} samler ikke bevisst inn personlig informasjon fra barn under 13 år. Appen har 4+ rating og har ingen chat, meldinger eller kommentarer. Det valgfrie vennesystemet bruker kun anonyme koder og krever eksplisitt deling av koder mellom personer. AdMob viser familievennlige annonser i henhold til Googles retningslinjer.</p>
+      </Chapter>
+
+      <Chapter num="11" label="Rettigheter" title={`Dine <em>rettigheter</em> (GDPR / CCPA).`}>
+        <p>Brukere i EØS, Storbritannia eller California har rett til:</p>
+        <p>· <strong>Innsyn:</strong> Be om data vi har om dem.</p>
+        <p>· <strong>Sletting:</strong> Be om at toppliste-poster, vennekode eller vennskapsposter fjernes via e-post. Din iCloud Key-Value Store-backup kan fjernes ved å logge ut av iCloud og installere appen på nytt, eller ved å kontakte Apple support.</p>
+        <p>· <strong>Trekke samtykke:</strong> Deaktiver App Tracking Transparency i iOS-innstillingene eller kjøp annonse-fjerning.</p>
+      </Chapter>
+
+      <Chapter num="12" label="Lagring" title={`Hvor lenge vi <em>tar vare</em> på data.`}>
+        <p>· <strong>Lokal data:</strong> lagres til appen slettes.</p>
+        <p>· <strong>CloudKit topplistedata:</strong> lagres på ubestemt tid for historiske topplister; brukere kan be om sletting.</p>
+        <p>· <strong>CloudKit vennskapsdata:</strong> lagres til brukeren fjerner vennskapet i appen eller ber om sletting via e-post.</p>
+        <p>· <strong>iCloud Key-Value Store-backup:</strong> lagres i din iCloud-konto til du logger ut av iCloud eller ber om sletting via Apple.</p>
+        <p>· <strong>AdMob-data:</strong> lagres i henhold til Googles retningslinjer (typisk 14 måneder for identifiserte data).</p>
+      </Chapter>
+
+      <Chapter num="13" label="Endringer" title={`Endringer i <em>denne erklæringen</em>.`}>
+        <p>Oppdateringer reflekteres i «Sist oppdatert»-datoen. Vesentlige endringer fremkommer i lanseringsnotatene.</p>
+      </Chapter>
+
+      <Chapter num="14" label="Kontakt" title={`<em>Kontakt.</em>`}>
+        <p><strong>E-post:</strong> <a class="tx-link" href="mailto:jonasbjh@gmail.com">jonasbjh@gmail.com</a></p>
+        <p><strong>Utvikler:</strong> Jonas Haug</p>
+        <p><strong>Adresse:</strong> Konvallveien 20a, Drammen, Norge</p>
+      </Chapter>
+    </div>
+  </div>
   <Footer label={`${app.name} · Personvern`} />
 </AppLayout>

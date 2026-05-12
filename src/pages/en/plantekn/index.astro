@@ -1,0 +1,41 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import ChapterShots from '../../../components/ChapterShots.astro';
+import PrevNextApp from '../../../components/PrevNextApp.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('plantekn');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Why" title={`The tool you <em>should have had</em> at the build meeting.`}>
+        <p class="lede">Plantekn exists because the professional planning apps are too heavy, and pencil and paper are too loose.</p>
+        <p class="muted">A quiet tool that gives you precise measurements, a Nordic furniture library, and a simple electrical-symbol vocabulary, with no learning curve.</p>
+      </Chapter>
+      <Chapter num="02" label="How it feels" title={`<em>iPad and pencil</em>, in one.`}>
+        <p>You're standing in the middle of the room you're renovating. The iPad is on, you draw walls with a fingertip, drag in the sofa from the library, and see if everything fits before you call the store.</p>
+        <ChapterShots shots={[
+          { src: '/screenshots/plantekn/01-hero.png', alt: 'Main view' },
+          { src: '/screenshots/plantekn/02-furniture.png', alt: 'Furniture library' },
+          { src: '/screenshots/plantekn/03-freeform.png', alt: 'Freeform drawing' },
+          { src: '/screenshots/plantekn/04-3d.png', alt: '3D view' },
+          { src: '/screenshots/plantekn/05-pro.png', alt: 'PRO features' },
+          { src: '/screenshots/plantekn/06-settings.png', alt: 'Settings' },
+        ]} />
+      </Chapter>
+      <Chapter num="03" label="What it does" title={`<em>Measurements, furniture</em>, wiring.`}>
+        <p>Room layout in real measurements. Draw walls, each line shows meters and centimeters. Everything stays precise when you zoom or move.</p>
+        <p>Furniture library in Nordic dimensions. Sofa, bed, table, kitchen units. Drag in, rotate, check the fit.</p>
+        <p>Wiring and outlets. Standardized symbols, good enough to talk to an electrician without misunderstandings.</p>
+      </Chapter>
+      <PrevNextApp slug={app.slug} />
+    </div>
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
+</AppLayout>

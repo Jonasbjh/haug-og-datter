@@ -2,31 +2,64 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import Topbar from '../../components/Topbar.astro';
 import Footer from '../../components/Footer.astro';
-import AppNav from '../../components/AppNav.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
 import { getApp } from '../../data/apps';
 const app = getApp('bumle-bjorn');
 ---
-<AppLayout app={app} title={`Vilkår — ${app.name}`}>
+<AppLayout app={app} title={`Vilkår · ${app.name}`}>
   <Topbar variant="app" />
-  <article class="doc reveal">
-    <h1>Vilkår for bruk av {app.name}</h1>
-    <p class="doc-meta">Sist oppdatert · [DATO]</p>
-    <p class="lede">Ved å bruke {app.name} godtar du følgende vilkår.</p>
+  <div class="app-page">
+    <AppRail app={app} current="vilkar" />
+    <div class="app-flow">
+      <Chapter num="01" label="Om appen" title={`Læring for de <em>aller minste</em>.`}>
+        <p class="lede">{app.name} er en pedagogisk læringsapp for barn i alderen 1–8 år, utviklet av Haug & Datter. Appen hjelper barn å lære ord, tall og bilder gjennom interaktive spillmoduser. Ved å laste ned og bruke {app.name} godtar du disse vilkårene.</p>
+        <p class="muted">Sist oppdatert · 25. april 2026.</p>
+      </Chapter>
 
-    <h2>Lisens</h2>
-    <p>{app.name} distribueres via App Store. Du får en personlig, ikke-overførbar lisens til å bruke appen på enheter knyttet til din Apple-ID, i henhold til Apples standard EULA.</p>
+      <Chapter num="02" label="Bruk av appen" title={`Trygt og <em>alderstilpasset</em>.`}>
+        <p>Appen er ment å brukes av barn under tilsyn av foreldre eller foresatte. Du samtykker til å:</p>
+        <p>· Bruke appen i samsvar med gjeldende lover og regler.</p>
+        <p>· Ikke misbruke, kopiere eller redistribuere appens innhold.</p>
+        <p>· Sørge for at barnet bruker appen på en trygg og alderstilpasset måte.</p>
+      </Chapter>
 
-    <h2>Ansvarsfraskrivelse</h2>
-    <p>[FYLL INN]</p>
+      <Chapter num="03" label="Bumle+" title={`Oppgradering som <em>låser opp alt</em>.`}>
+        <p>{app.name} tilbyr en valgfri oppgradering, Bumle+, som låser opp ekstra innhold:</p>
+        <p>· Alle 21 kategorier (380 ekstra kort).</p>
+        <p>· Alle 7 spillmoduser pluss flerspiller.</p>
+        <p>· Ubegrenset stemmeopptak per kort.</p>
+        <p>· Eksport av lyd-pakker for deling med andre Bumle-brukere.</p>
+        <p>· Bumle-tilbehør og detaljert ukentlig fremdriftsrapport.</p>
+        <p class="muted">Tilgangen følger Apple-ID-en din. Alle kjøp håndteres av Apple via App Store, og betaling belastes Apple-ID-kontoen din ved bekreftelse av kjøp.</p>
+      </Chapter>
 
-    <h2>Endringer</h2>
-    <p>Vi kan oppdatere disse vilkårene. Vesentlige endringer varsles i appen.</p>
+      <Chapter num="04" label="Refusjoner" title={`Gjenoppretting og <em>refusjon</em>.`}>
+        <p>Tilgangen kan gjenopprettes på nye enheter via «Gjenopprett kjøp» i innstillingene. Refusjoner håndteres av Apple i henhold til App Stores retningslinjer.</p>
+      </Chapter>
 
-    <h2>Kontakt</h2>
-    <p><a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a></p>
-  </article>
+      <Chapter num="05" label="Rettigheter" title={`Innholdet er <em>beskyttet</em>.`}>
+        <p>Alt innhold i {app.name} (illustrasjoner, tekst, lyd, design og kode) er beskyttet av opphavsrett og tilhører Haug & Datter. Du får en begrenset, ikke-overførbar lisens til å bruke appen til personlig, ikke-kommersiell bruk.</p>
+      </Chapter>
 
-  <AppNav slug={app.slug} current="vilkar" />
+      <Chapter num="06" label="Brukerinnhold" title={`Det du lager <em>tilhører deg</em>.`}>
+        <p>Foreldre og fagpersoner (for eksempel logopeder) kan ta opp egne lyd-opptak, laste opp egne bilder og lage egne kategorier i appen. Du beholder alle rettigheter til innhold du legger til. Vi lagrer ikke, analyserer ikke og deler ikke ditt innhold automatisk. Alt lagres lokalt på enheten din og er kryptert med en enhetsspesifikk nøkkel.</p>
+        <p class="muted">Du kan velge å eksportere lyd-opptak som en <code>.bumlepack</code>-fil og dele med andre Bumle-brukere. Ved deling går filen utenfor appens kontroll. Du har ansvar for at delingen skjer med samtykke fra alle involverte.</p>
+      </Chapter>
 
+      <Chapter num="07" label="Ansvar" title={`Vi <em>gjør vårt beste</em>.`}>
+        <p>{app.name} tilbys «som den er». Vi garanterer ikke at appen er feilfri eller alltid tilgjengelig. Vi er ikke ansvarlige for tap av data ved enhetsfeil eller brukerhandlinger, skade eller tap som følge av bruk av appen, eller innhold som brukere selv legger til.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Endringer" title={`Vesentlige endringer <em>varsles</em>.`}>
+        <p>Vi forbeholder oss retten til å endre disse vilkårene. Vesentlige endringer varsles via appen. Fortsatt bruk etter endringer innebærer aksept av de oppdaterte vilkårene.</p>
+        <p class="muted">Vilkårene er underlagt norsk lov. Eventuelle tvister skal løses ved norske domstoler.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Kontakt" title={`Spørsmål om vilkår? <em>Skriv til oss.</em>`}>
+        <p>Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Personvernerklæringen for appen finner du <a class="tx-link" href="/bumle-bjorn/personvern/">her</a>.</p>
+      </Chapter>
+    </div>
+  </div>
   <Footer label={`${app.name} · Vilkår`} />
 </AppLayout>

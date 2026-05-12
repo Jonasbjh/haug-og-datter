@@ -2,48 +2,39 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import Topbar from '../../components/Topbar.astro';
 import Footer from '../../components/Footer.astro';
-import AppHero from '../../components/AppHero.astro';
-import AppNav from '../../components/AppNav.astro';
-import ScreenshotStrip from '../../components/ScreenshotStrip.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import ChapterShots from '../../components/ChapterShots.astro';
 import PrevNextApp from '../../components/PrevNextApp.astro';
 import { getApp } from '../../data/apps';
 const app = getApp('tenkt');
 ---
 <AppLayout app={app}>
   <Topbar variant="app" />
-  <AppHero app={app} />
-
-  <section class="sect reveal">
-    <h2>Om appen</h2>
-    <div class="sect__body">
-      <p class="lede">[FYLL INN] Et til tre korte avsnitt om hva Tenkt gjør, i samme rolige tone som hub-en.</p>
-      <p class="muted">[FYLL INN] Andre avsnitt om bruksområde og hvem appen er til for.</p>
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Hvorfor" title={`Stille logikk, <em>hver morgen</em>.`}>
+        <p class="lede">Tenkt finnes fordi en pause med ren logikk fortjener å være ren. Ingen reklame, ingen profil, ingen fjas. Fem til ti korte oppgaver hver dag, samme for alle, fornyes ved midnatt.</p>
+        <p class="muted">Norsk er et godt språk å tenke logisk i. Tenkt er på norsk fra første sekund.</p>
+      </Chapter>
+      <Chapter num="02" label="Slik føles det" title={`Fem minutter med <em>kaffe og tanke</em>.`}>
+        <p>Du setter deg ned. Tar den første slurken. Åpner Tenkt. Et lite puslespill, kanskje to. Du føler deg våken, ferdig, og dagen kan begynne uten å ha åpnet et eneste varsel.</p>
+        <ChapterShots shots={[
+          { src: '/screenshots/tenkt/01-home.png', alt: 'Hjem-skjerm' },
+          { src: '/screenshots/tenkt/02-puzzle-active.png', alt: 'Aktivt puslespill' },
+          { src: '/screenshots/tenkt/03-puzzle-flow.png', alt: 'Stifinner-puslespill' },
+          { src: '/screenshots/tenkt/04-summary.png', alt: 'Oppsummering' },
+          { src: '/screenshots/tenkt/05-settings.png', alt: 'Innstillinger' },
+        ]} />
+      </Chapter>
+      <Chapter num="03" label="Hva den gjør" title={`Et nytt sett <em>hver dag</em>.`}>
+        <p>Daglig sett, generert lokalt. Alle som åpner Tenkt en gitt dag får eksakt det samme settet. Tre vanskelighetsgrader bygger seg opp gjennom dagens oppgaver.</p>
+        <p>Fem ulike puslespilltyper. Rutenett, Stifinner, Plassering, Balanse og Kobling. Hver har egen mekanikk, alle løses med ren logikk uten gjetting.</p>
+        <p>Streaks og statistikk, lokalt. Antall dager på rad, tider, stjerner. Alt på enheten din. Ingen leaderboard, ingen profil.</p>
+      </Chapter>
+      <PrevNextApp slug={app.slug} />
     </div>
-  </section>
-
-  <ScreenshotStrip />
-
-  <section class="sect reveal">
-    <h2>Hva den gjør</h2>
-    <div class="sect__body">
-      <h3>[FYLL INN funksjon 1]</h3>
-      <p class="muted">[FYLL INN kort beskrivelse]</p>
-      <h3>[FYLL INN funksjon 2]</h3>
-      <p class="muted">[FYLL INN kort beskrivelse]</p>
-      <h3>[FYLL INN funksjon 3]</h3>
-      <p class="muted">[FYLL INN kort beskrivelse]</p>
-    </div>
-  </section>
-
-  <section class="sect reveal">
-    <h2>Hvorfor</h2>
-    <div class="sect__body">
-      <p>[FYLL INN] Ett avsnitt om motivasjonen. Personlig, ikke marketing.</p>
-    </div>
-  </section>
-
-  <PrevNextApp slug={app.slug} />
-  <AppNav slug={app.slug} current="oversikt" />
-
-  <Footer label={`${app.name} · Haug og Datter`} />
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
 </AppLayout>

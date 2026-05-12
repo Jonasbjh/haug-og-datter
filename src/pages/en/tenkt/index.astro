@@ -1,0 +1,40 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import ChapterShots from '../../../components/ChapterShots.astro';
+import PrevNextApp from '../../../components/PrevNextApp.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('tenkt');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Why" title={`Quiet logic, <em>every morning</em>.`}>
+        <p class="lede">Tenkt exists because a break filled with pure logic deserves to be uncluttered. No ads, no profile, no fluff. Five to ten short puzzles each day, the same for everyone, refreshed at midnight.</p>
+        <p class="muted">Norwegian is a good language to think logically in. Tenkt is in Norwegian from the very first second — and now in English too.</p>
+      </Chapter>
+      <Chapter num="02" label="How it feels" title={`Five minutes with <em>coffee and thought</em>.`}>
+        <p>You sit down. Take the first sip. Open Tenkt. A little puzzle, maybe two. You feel awake, finished, and the day can begin without having opened a single notification.</p>
+        <ChapterShots shots={[
+          { src: '/screenshots/tenkt/01-home.png', alt: 'Home screen' },
+          { src: '/screenshots/tenkt/02-puzzle-active.png', alt: 'Active puzzle' },
+          { src: '/screenshots/tenkt/03-puzzle-flow.png', alt: 'Path puzzle' },
+          { src: '/screenshots/tenkt/04-summary.png', alt: 'Summary' },
+          { src: '/screenshots/tenkt/05-settings.png', alt: 'Settings' },
+        ]} />
+      </Chapter>
+      <Chapter num="03" label="What it does" title={`A new set <em>every day</em>.`}>
+        <p>Daily set, generated locally. Everyone who opens Tenkt on a given day gets exactly the same set. Three difficulty levels build up through the day's puzzles.</p>
+        <p>Five different puzzle types. Grid, Path, Placement, Balance, and Connect. Each has its own mechanic; all are solved by pure logic without guessing.</p>
+        <p>Streaks and statistics, locally. Days in a row, times, stars. Everything on your device. No leaderboard distractions, no profile.</p>
+      </Chapter>
+      <PrevNextApp slug={app.slug} />
+    </div>
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
+</AppLayout>

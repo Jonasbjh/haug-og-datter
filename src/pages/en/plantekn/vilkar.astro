@@ -1,0 +1,40 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('plantekn');
+---
+<AppLayout app={app} title={`Terms · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="vilkar" />
+    <div class="app-flow">
+      <Chapter num="01" label="License" title={`Distributed via <em>App Store</em>.`}>
+        <p class="lede">{app.name} is distributed via the App Store. You receive a personal, non-transferable license to use the app on devices linked to your Apple ID, in accordance with Apple's standard end-user license agreement (EULA).</p>
+        <p class="muted">The drawings you create in the app belong to you. We have no access to, copy of, or right to use them.</p>
+      </Chapter>
+
+      <Chapter num="02" label="PRO" title={`Optional <em>upgrade</em>.`}>
+        <p>{app.name} offers an optional PRO upgrade that unlocks additional features. Access follows your Apple ID and can be restored on new devices via "Restore purchases" in settings.</p>
+        <p class="muted">All purchases are handled by Apple via the App Store. Refunds follow Apple's policies.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Liability" title={`We <em>do our best</em>.`}>
+        <p>{app.name} is provided "as is." We do our best to make the app work well, but cannot guarantee that it is free of bugs or always available. We are not responsible for data loss due to device failure or app deletion, so back up if the content is important to you.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Changes" title={`Significant changes are <em>announced</em>.`}>
+        <p>We may update these terms over time. Significant changes will be announced in the app at the next update, and you may choose to stop using the app if you do not accept the changes.</p>
+        <p class="muted">The terms are subject to Norwegian law. Any disputes will be resolved in Norwegian courts.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Contact" title={`Questions about terms? <em>Write to us.</em>`}>
+        <p>Send email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. The privacy policy for the app can be found <a class="tx-link" href="/en/plantekn/personvern/">here</a>.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Terms`} />
+</AppLayout>

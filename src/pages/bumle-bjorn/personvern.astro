@@ -2,31 +2,73 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import Topbar from '../../components/Topbar.astro';
 import Footer from '../../components/Footer.astro';
-import AppNav from '../../components/AppNav.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
 import { getApp } from '../../data/apps';
 const app = getApp('bumle-bjorn');
 ---
-<AppLayout app={app} title={`Personvern — ${app.name}`}>
+<AppLayout app={app} title={`Personvern · ${app.name}`}>
   <Topbar variant="app" />
-  <article class="doc reveal">
-    <h1>Personvern for {app.name}</h1>
-    <p class="doc-meta">Sist oppdatert · [DATO]</p>
-    <p class="lede">{app.name} er laget av Haug og Datter (Jonas Haug, Drammen, Norge). Vi tar personvern på alvor, fordi vi selv hater apper som ikke gjør det.</p>
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="I korte trekk" title={`Personvern, på <em>vanlig norsk</em>.`}>
+        <p class="lede">{app.name} er utviklet av Haug & Datter (Jonas Haug, Drammen). Denne erklæringen forklarer hvordan appen håndterer data. Vi tar personvern på alvor, spesielt fordi appen er laget for barn.</p>
+        <p class="muted">Sist oppdatert · 25. april 2026.</p>
+      </Chapter>
 
-    <h2>Hvilke data samler vi inn?</h2>
-    <p>[FYLL INN per app. Typisk: ingen data forlater enheten din. SwiftData lagrer lokalt. iCloud-sync (hvis aktivert) går via Apples krypterte tjeneste.]</p>
+      <Chapter num="02" label="Datainnsamling" title={`Vi har ingen <em>brukerkontoer</em>.`}>
+        <p>{app.name} samler ikke inn personopplysninger. Det finnes ingen registrering, ingen pålogging, og ingen brukerkonto. All data appen bruker, lagres lokalt på enheten din eller i din egen iCloud-konto:</p>
+        <p><strong>Barneprofiler.</strong> Navn, alder, avatar og læringsframgang lagres i UserDefaults og synkroniseres via iCloud Key-Value Store til dine egne enheter.</p>
+        <p><strong>Lydopptak.</strong> Stemmeopptak som foreldre eller fagpersoner spiller inn, lagres kun lokalt og er kryptert med en enhetsspesifikk nøkkel. {app.name} sender aldri opptak til våre eller tredjeparts servere.</p>
+        <p><strong>Egne kategorier og bilder.</strong> Foreldre kan lage egne kategorier med egne bilder. Familien, leker, steder barnet kjenner. Bilder og kategori-data forblir lokalt på enheten.</p>
+        <p><strong>Innstillinger.</strong> Brukervalg som språk, vanskelighetsgrad og skjermtid lagres lokalt.</p>
+      </Chapter>
 
-    <h2>Tredjepartstjenester</h2>
-    <p>[FYLL INN. Typisk: ingen. Hvis StoreKit eller iCloud nevnt: Apple sin egen.]</p>
+      <Chapter num="03" label="Deling" title={`Lyd-pakker du <em>velger å sende</em>.`}>
+        <p>Foreldre eller fagpersoner (typisk en logoped eller en bestemor som spiller inn til barnebarnet) kan eksportere alle opptak fra én stemme som en <code>.bumlepack</code>-fil og dele den via systemets vanlige kanaler (AirDrop, iMessage, Filer).</p>
+        <p class="muted">Eksport skjer kun når du eksplisitt velger det. Når du deler en pakke, går filen utenfor appens kontroll og er underlagt delings-kanalens egne vilkår. Pakken inneholder lydopptak i klartekst slik at mottakeren kan importere dem; mottakerens enhet krypterer filene på nytt med sin egen lokale nøkkel.</p>
+        <p class="muted">Du har ansvar for at delingen skjer med samtykke fra alle involverte, særlig den som har spilt inn stemmen.</p>
+      </Chapter>
 
-    <h2>Barn</h2>
-    <p>[FYLL INN. Spesielt avsnitt om COPPA og GDPR-K, siden appen er for barn 1 til 8 år.]</p>
+      <Chapter num="04" label="Tredjepart" title={`Ingen SDK-er. <em>Ingen sporing.</em>`}>
+        <p>{app.name} bruker ingen tredjeparts SDK-er, analysetjenester, annonsenettverk eller sporingsverktøy. Vi deler ingen data med tredjeparter.</p>
+        <p class="muted">Appen inneholder ingen reklame. Vi bruker ikke IDFA, fingerprinting eller andre identifiseringsmetoder.</p>
+      </Chapter>
 
-    <h2>Kontakt</h2>
-    <p>Spørsmål? Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>.</p>
-  </article>
+      <Chapter num="05" label="Bumle+" title={`Kjøp via <em>App Store</em>.`}>
+        <p>Bumle+ er en valgfri oppgradering som håndteres av Apple gjennom App Store. Vi har ikke tilgang til betalingsinformasjon. Kjøpsstatus sjekkes via StoreKit og lagres lokalt.</p>
+      </Chapter>
 
-  <AppNav slug={app.slug} current="personvern" />
+      <Chapter num="06" label="Barn og COPPA" title={`Ekstra <em>varsom</em> når barn bruker appen.`}>
+        <p>{app.name} er designet for barn i alderen 1–8 år. Appen følger både COPPA og GDPR-K, og:</p>
+        <p>· Samler ikke inn personlig identifiserbar informasjon fra barn.</p>
+        <p>· Inneholder ingen lenker til sosiale medier eller eksterne nettsider.</p>
+        <p>· Har foreldrekontroll med PIN-kode og Face ID.</p>
+        <p>· Tillater ikke barn å dele informasjon ut av appen.</p>
+        <p>· Inneholder ingen reklame.</p>
+      </Chapter>
 
+      <Chapter num="07" label="Datakontroll" title={`Du har <em>full kontroll</em>.`}>
+        <p><strong>Sletting.</strong> All data kan slettes permanent via Innstillinger → Om {app.name} → Slett alle data.</p>
+        <p><strong>Lydopptak.</strong> Individuelle opptak kan slettes via lydinnstillingene.</p>
+        <p><strong>Profiler.</strong> Profiler kan slettes enkeltvis i sidemenyen.</p>
+        <p><strong>Importerte stemmer.</strong> Stemmer importert fra en <code>.bumlepack</code>-pakke kan slettes som en vanlig stemme.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Sikkerhet" title={`Kryptert <em>på enheten</em>.`}>
+        <p>· PIN-koder lagres som SHA256-hash i iOS Keychain.</p>
+        <p>· Lydopptak krypteres med AES-256-GCM via CryptoKit.</p>
+        <p>· Krypteringsnøkkelen er enhetsspesifikk og forlater aldri Keychain.</p>
+        <p>· Filer er beskyttet med iOS File Protection.</p>
+        <p>· Foreldrelås krever PIN og/eller Face ID.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Kontakt" title={`Spørsmål? <em>Skriv til oss.</em>`}>
+        <p>Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Du får svar fra Jonas selv, vanligvis innen et døgn.</p>
+        <p class="muted">Vi kan oppdatere denne erklæringen ved behov. Endringer publiseres på denne siden med oppdatert dato.</p>
+      </Chapter>
+    </div>
+  </div>
   <Footer label={`${app.name} · Personvern`} />
 </AppLayout>

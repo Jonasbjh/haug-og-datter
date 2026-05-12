@@ -1,0 +1,96 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('naboskap');
+---
+<AppLayout app={app} title={`Personvern · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="I korte trekk" title={`Personvern, på <em>vanlig norsk</em>.`}>
+        <p class="lede">{app.name} er en iOS-app for selvkonstituerte lånegrupper. Den er bygd av Haug &amp; Datter og finansieres av brukerne selv gjennom et frivillig engangskjøp. Du eier dataene dine, vi lagrer minst mulig, og vi selger ingenting videre.</p>
+        <p>Behandlingsansvarlig er Haug &amp; Datter. Kontakt: <a class="tx-link" href="mailto:hei@haugogdatter.no">hei@haugogdatter.no</a>.</p>
+        <p class="muted">Sist oppdatert · 12. mai 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="iCloud" title={`Hva vi lagrer i <em>din iCloud-konto</em>.`}>
+        <p>{app.name} bruker Apples CloudKit for å synke data mellom enhetene dine og dele gruppemedlemskap med naboer. Dataene ligger i din egen iCloud-konto — vi har ingen egne servere, og vi har ikke tilgang til innholdet.</p>
+        <p>Det vi lagrer i CloudKit på dine vegne:</p>
+        <p>· Visningsnavn og en valgfri kontekst (f.eks. «Storgata 14»)</p>
+        <p>· Profilbilde du selv har lastet opp</p>
+        <p>· Gruppene du eier eller er medlem av, med navn, symbol og en valgfri beskrivelse</p>
+        <p>· Inventaret du har lagt ut: navn, kategori, beskrivelse, bilde, hentenotat</p>
+        <p>· Forespørsler du sender eller mottar, inkludert valgt leveringsmodus og avtalte datoer</p>
+        <p>· Korte takk-meldinger etter fullførte lån</p>
+        <p class="muted">Henteinfo og hentenotater er kun synlig for deg og motparten i et aktivt lån. Andre i gruppen ser ikke disse feltene.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Lokalt" title={`Hva som bare ligger <em>på enheten</em>.`}>
+        <p>Følgende lagres bare på den enkelte enheten din og synkes ikke:</p>
+        <p>· Onboarding-status</p>
+        <p>· Tema-valg (lys / mørk / følg systemet)</p>
+        <p>· Varsel-preferanser per kategori</p>
+        <p>· Hvilken gruppe som er aktiv akkurat nå</p>
+        <p>· Telleren bak «Nytt siden sist»-kortet</p>
+      </Chapter>
+
+      <Chapter num="04" label="Apple" title={`Hvilke <em>tjenester</em> appen bruker.`}>
+        <p>Apple (CloudKit, iCloud, StoreKit, push-varsler) — synker dataene dine mellom enhetene dine og leverer push-varsler. Underlagt Apples personvernerklæring.</p>
+      </Chapter>
+
+      <Chapter num="05" label="TelemetryDeck" title={`<em>Anonyme</em> bruksstatistikker.`}>
+        <p>Vi sender korte hendelses-signaler til TelemetryDeck som hjelper oss å forstå hvilke funksjoner som faktisk brukes og hvor folk strever. Aldri navn, e-post eller innhold du legger inn.</p>
+        <p>Det vi sender:</p>
+        <p>· Hendelses-navn som «app.launched», «group.created», «loan.returned» og «paywall.purchased»</p>
+        <p>· Et fåtall ikke-personlige parametere (f.eks. «åpen» vs «direkte» forespørsel, valg av leveringsmodus)</p>
+        <p>· Enhetsmodell, iOS-versjon og app-versjon</p>
+        <p>· Land utledet fra IP-adressen din (IP-en lagres ikke)</p>
+        <p>· En kryptografisk hash av Apples leverandør-ID som lar oss telle antall enheter, men ikke identifisere noen</p>
+        <p>Det vi <strong>ikke</strong> sender:</p>
+        <p>· Navn, e-post eller andre kontaktopplysninger</p>
+        <p>· Innhold i forespørsler, hentenotater, takk eller bilder</p>
+        <p>· Gruppe-navn eller medlems-navn</p>
+        <p>· Posisjon</p>
+        <p class="muted">TelemetryDeck er underlagt GDPR og drives fra EU. Les mer i <a class="tx-link" href="https://telemetrydeck.com/privacy" target="_blank" rel="noopener">deres personvernerklæring</a>.</p>
+        <p>Du kan slå av disse signalene når som helst under <strong>Profil → Anonyme bruksstatistikker</strong>. Da sendes ingen nye hendelser fra enheten din. Signaler som allerede har nådd TelemetryDeck før du slo av, kan vi ikke trekke tilbake retroaktivt — men siden ingenting der knytter signaler til deg som person, er det ingen profil å slette.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Tilganger" title={`Hva appen <em>spør om</em>.`}>
+        <p>{app.name} ber kun om tilganger når en bestemt funksjon trenger dem. Du kan alltid si nei — funksjonene som er avhengige av tilgangen blir bare ikke aktive.</p>
+        <p>· <strong>Kamera</strong> og <strong>Bilder</strong> brukes hvis du legger til profilbilde eller bilder av en ting du låner ut.</p>
+        <p>· <strong>Varsler</strong> brukes for å si fra om nye forespørsler, svar, retur-påminnelser og takk.</p>
+        <p>· <strong>Kalender (skrive-tilgang)</strong> brukes hvis du ønsker at avtalt retur skal legges i kalenderen din.</p>
+        <p class="muted">iCloud kreves for å dele grupper med andre — uten innlogget iCloud-konto fungerer appen bare lokalt på din enhet.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Lagring" title={`Hvor lenge vi <em>tar vare</em> på data.`}>
+        <p>Vi lagrer dataene dine så lenge du bruker appen. Innhold du sletter selv — inventar, forespørsler, grupper — fjernes umiddelbart fra CloudKit. Hentenotater slettes automatisk når lånet markeres som levert tilbake.</p>
+        <p>Hvis du sletter {app.name} fra enheten, beholdes CloudKit-dataene dine i din egen iCloud-konto inntil du selv velger å slette dem. Du kan gjøre dette via «Start på nytt» i appen før avinstallasjon, eller via Innstillinger → Apple-ID → iCloud → Behandle kontolagring.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Rettigheter" title={`<em>Innsyn, retting, sletting.</em>`}>
+        <p>Etter personvernforordningen (GDPR) har du blant annet rett til:</p>
+        <p>· <strong>Innsyn</strong> i hvilke data vi har om deg</p>
+        <p>· <strong>Retting</strong> av feilaktige opplysninger</p>
+        <p>· <strong>Sletting</strong> av opplysningene dine</p>
+        <p>· <strong>Dataportabilitet</strong> — å få med deg dataene i et maskinlesbart format</p>
+        <p>· <strong>Klage</strong> til <a class="tx-link" href="https://www.datatilsynet.no/" target="_blank" rel="noopener">Datatilsynet</a> hvis du mener vi behandler data feil</p>
+        <p>Send en henvendelse til <a class="tx-link" href="mailto:hei@haugogdatter.no">hei@haugogdatter.no</a> så svarer vi innen 30 dager. De fleste rettighetene kan også utøves direkte: alle data du har lagt inn i {app.name} kan slettes fra appen eller via Apples iCloud-administrasjon.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Endringer" title={`Når <em>noe blir nytt</em>.`}>
+        <p>Hvis vi endrer hvordan vi behandler data, oppdaterer vi denne siden og endrer datoen øverst. Vesentlige endringer varsles også i appen før de trer i kraft.</p>
+      </Chapter>
+
+      <Chapter num="10" label="Kontakt" title={`Spørsmål? <em>Skriv til oss.</em>`}>
+        <p>Spørsmål om personvern: <a class="tx-link" href="mailto:hei@haugogdatter.no">hei@haugogdatter.no</a>.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Personvern`} />
+</AppLayout>

@@ -1,0 +1,50 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('naboskap');
+---
+<AppLayout app={app} title={`Support · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="support" />
+    <div class="app-flow">
+      <Chapter num="01" label="Kontakt" title={`<em>Skriv til oss</em> på e-post.`}>
+        <p class="lede">Send e-post til <a class="tx-link" href="mailto:hei@haugogdatter.no">hei@haugogdatter.no</a>. Du får svar fra Jonas selv.</p>
+        <p>Det hjelper å oppgi:</p>
+        <p>· Hvilken iPhone eller iPad og iOS-versjon du bruker.</p>
+        <p>· Hva du prøvde å gjøre da problemet oppsto, og hva som skjedde.</p>
+        <p>· Om du er logget inn på iCloud ({app.name} synker via CloudKit, så iCloud-tilstanden er ofte relevant).</p>
+      </Chapter>
+
+      <Chapter num="02" label="Responstid" title={`Hva du <em>kan forvente</em>.`}>
+        <p>Haug &amp; Datter er et lite studio drevet på kveldstid. Svar vanligvis innen 2–3 hverdager. Akutte sikkerhetsproblemer prioriteres.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Vanlige spørsmål" title={`Ofte <em>spurt</em>.`}>
+        <p><strong>Hvorfor trenger appen iCloud?</strong></p>
+        <p>{app.name} bruker Apples CloudKit til å synkronisere gruppe-data og inventar mellom dine enheter og andre medlemmer i samme gruppe. Vi har ingen egen server, så uten iCloud kan vi ikke dele data trygt.</p>
+
+        <p><strong>Hvordan inviterer jeg andre til en gruppe?</strong></p>
+        <p>Som eier av en gruppe trykker du «Inviter naboer». Du kan dele invitasjonen som lenke (via Meldinger, Mail osv.) eller som kort kode (f.eks. «STORGATA-7K2»). Mottakeren åpner lenken på sin iPhone og blir lagt til etter neste sync.</p>
+
+        <p><strong>Jeg har kjøpt {app.name} +, men det vises ikke på den nye iPhonen min.</strong></p>
+        <p>Åpne paywallen og trykk «Gjenopprett kjøp». Premium-status er knyttet til Apple-ID-en din og fungerer på alle enhetene dine.</p>
+
+        <p><strong>Hva skjer hvis jeg sletter appen?</strong></p>
+        <p>All lokal app-data forsvinner. Grupper og items som er synket til iCloud beholdes så lenge andre medlemmer er aktive, eller til du sletter dem manuelt fra en av enhetene dine.</p>
+
+        <p><strong>Kan jeg slå av anonyme bruksstatistikker?</strong></p>
+        <p>Ja, under Profil → Anonyme bruksstatistikker. Da sendes ingen nye hendelser fra enheten din.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Forslag" title={`Hjelp oss å gjøre <em>${app.name} bedre</em>.`}>
+        <p>Bug-rapporter, feature-forslag og småfix-er er alle velkomne. Brukerstemmen teller når vi prioriterer hva som skal lages neste.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Support`} />
+</AppLayout>

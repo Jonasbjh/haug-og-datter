@@ -1,0 +1,78 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('naboskap');
+---
+<AppLayout app={app} title={`Vilkår for bruk · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="vilkar" />
+    <div class="app-flow">
+      <Chapter num="01" label="I korte trekk" title={`Velkommen til <em>${app.name}</em>.`}>
+        <p class="lede">Når du bruker appen er du enig i disse vilkårene. Vi har forsøkt å holde dem korte og leselige. Hvis noe er uklart, skriv til <a class="tx-link" href="mailto:hei@haugogdatter.no">hei@haugogdatter.no</a>.</p>
+        <p class="muted">Sist oppdatert · 12. mai 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Om appen" title={`Hva <em>${app.name} er</em>.`}>
+        <p>{app.name} er en app som hjelper folk å låne av hverandre i lukkede grupper man velger selv — vennegjenger, gater, hyttenaboer, foreldregrupper. Appen er <strong>et verktøy</strong> som lar dere koordinere lån. Den er ikke en markedsplass, ikke en betalingsformidler, og ikke en part i selve utlånet.</p>
+        <p>Alle avtaler om hva som lånes, når, hvor og under hvilke forutsetninger, gjøres mellom medlemmene selv. {app.name} stiller bare strukturen til rådighet.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Aldersgrense" title={`<em>13 år</em> og oppover.`}>
+        <p>Appen er beregnet for personer over 13 år. Hvis du er under myndighetsalder må en foresatt være innforstått med at du bruker appen.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Ditt ansvar" title={`Det vi <em>forventer</em> av deg.`}>
+        <p>Som bruker er du ansvarlig for:</p>
+        <p>· Innholdet du legger inn (navn, beskrivelser, bilder, hentenotater, takk)</p>
+        <p>· At du har lov til å låne ut det du legger ut</p>
+        <p>· Avtaler du gjør med andre medlemmer</p>
+        <p>· Hvordan du behandler ting du har lånt</p>
+        <p>· Å være ærlig og høflig i kontakt med andre medlemmer</p>
+        <p>Du forplikter deg til <strong>ikke</strong> å:</p>
+        <p>· Legge ut innhold som er ulovlig, krenkende, truende eller diskriminerende</p>
+        <p>· Bruke appen til kommersiell aktivitet uten samtykke</p>
+        <p>· Forsøke å omgå tilgangskontroll eller invitasjonsmekanismen</p>
+        <p>· Bruke appen til å trakassere eller forfølge enkeltpersoner</p>
+        <p class="muted">Vi forbeholder oss retten til å avslutte en konto som bryter med disse vilkårene.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Naboskap +" title={`<em>Engangskjøp</em>, ikke abonnement.`}>
+        <p>Appen har et frivillig engangskjøp som heter {app.name} +. Det koster 59 kr og gir tilgang til å være medlem av opptil 5 grupper samtidig (gratis-versjonen tillater 1). Kjøpet behandles av Apple gjennom App Store, og Apples vilkår for kjøp gjelder. Refusjon må eventuelt søkes hos Apple — vi har ikke tilgang til å refundere kjøp selv.</p>
+        <p>Det er ingen abonnement. Du betaler én gang.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Vårt ansvar" title={`Appen leveres <em>som den er</em>.`}>
+        <p>Vi gjør vårt beste for at appen virker som den skal, men vi kan ikke garantere:</p>
+        <p>· At appen alltid er tilgjengelig (vi er avhengige av Apples iCloud-infrastruktur)</p>
+        <p>· At synkronisering alltid skjer umiddelbart</p>
+        <p>· At andre medlemmer overholder sine avtaler med deg</p>
+        <p>· At ting som lånes ut, hentes eller leveres på avtalt tid</p>
+        <p>{app.name} fraskriver seg ansvar for tap, skade eller konflikter som oppstår mellom medlemmer i forbindelse med lån som koordineres gjennom appen. Hvis noe går galt mellom deg og en annen nabo, oppfordrer vi til å snakke sammen og finne en løsning — det er sånn naboskap fungerer.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Innhold" title={`<em>Du eier</em> det du legger inn.`}>
+        <p>Du eier alt innhold du legger inn i {app.name}. Vi har en begrenset rett til å lagre og vise innholdet ditt til andre medlemmer i samme gruppe — strengt nødvendig for at appen skal fungere. Innholdet ditt synkes via din egen iCloud-konto, ikke via våre servere.</p>
+        <p>Hvis du sletter en gruppe eller forlater den, slettes også dataene knyttet til medlemskapet. Bilder og henteinformasjon i avsluttede lån slettes automatisk.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Endringer" title={`Når <em>noe blir nytt</em>.`}>
+        <p>Vi kan oppdatere funksjonalitet, design og disse vilkårene. Vesentlige endringer varsles i appen før de trer i kraft. Den til enhver tid gjeldende versjonen ligger på <a class="tx-link" href="https://haugogdatter.no/naboskap/vilkar">haugogdatter.no/naboskap/vilkar</a>.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Avslutning" title={`Slik <em>slutter du</em>.`}>
+        <p>Du kan slutte å bruke {app.name} når som helst ved å avinstallere appen eller bruke «Start på nytt» under Profil for å slette alt lokalt. Hvis du vil slette CloudKit-dataene dine, gjør det før avinstallasjon — eller via Apples iCloud-administrasjon.</p>
+      </Chapter>
+
+      <Chapter num="10" label="Lovvalg" title={`<em>Norsk rett</em>, og en god prat først.`}>
+        <p>Norsk rett gjelder. Eventuelle tvister søkes løst i minnelighet, og hvis det ikke lar seg gjøre, ved verneting i Norge.</p>
+        <p class="muted">Spørsmål om vilkårene: <a class="tx-link" href="mailto:hei@haugogdatter.no">hei@haugogdatter.no</a>.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Vilkår`} />
+</AppLayout>

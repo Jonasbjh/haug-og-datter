@@ -2,41 +2,28 @@
 import HubLayout from '../layouts/HubLayout.astro';
 import Topbar from '../components/Topbar.astro';
 import Footer from '../components/Footer.astro';
-import AppCard from '../components/AppCard.astro';
-import { apps } from '../data/apps';
-
-function splitLetters(text: string) {
-  return [...text];
-}
-const left = splitLetters('Haug ');
-const right = splitLetters(' Datter');
+import AppFan from '../components/AppFan.astro';
 ---
 <HubLayout>
   <Topbar variant="hub" />
 
   <section class="hero reveal">
     <h1 class="display" data-parallax-title>
-      {left.map((ch) => <span class="ltr">{ch === ' ' ? ' ' : ch}</span>)}
-      <span class="amp">og</span>
-      {right.map((ch) => <span class="ltr">{ch === ' ' ? ' ' : ch}</span>)}
+      <span class="word">{[...'Haug'].map((ch) => <span class="ltr">{ch}</span>)}</span>
+      {' '}
+      <span class="amp">&amp;</span>
+      {' '}
+      <span class="word">{[...'Datter'].map((ch) => <span class="ltr">{ch}</span>)}</span>
     </h1>
     <p class="lede">Et lite app-makeri. Apper laget med tid, tålmodighet og litt for mye kaffe.</p>
   </section>
 
-  <section class="verket reveal" aria-label="Apper">
-    <div class="verket__head">
-      <span class="micro l">Apper</span>
-      <span class="micro r">{apps.length} / {apps.length}</span>
-    </div>
-    <div class="verket__list stagger">
-      {apps.map((app, i) => <AppCard app={app} index={i} />)}
-    </div>
-  </section>
+  <AppFan />
 
   <section class="blocks reveal">
     <div class="block">
       <h2>Om</h2>
-      <p>Haug og Datter drives av Jonas Haug fra Drammen. På kveldstid lager han apper han selv ville brukt.</p>
+      <p>Haug & Datter drives av Jonas Haug fra Drammen. På kveldstid lager han apper han selv ville brukt. Datteren er to og et halvt og har, som folk i den alderen flest, sterke meninger om absolutt alt. Hun tester barneappene før de slippes, og «igjen, pappa!» er den beste karakteren vi kan få.</p>
     </div>
     <div class="block">
       <h2>Kontakt</h2>
@@ -46,5 +33,5 @@ const right = splitLetters(' Datter');
     </div>
   </section>
 
-  <Footer label="Haug og Datter · Drammen" />
+  <Footer label="Haug & Datter · Drammen" />
 </HubLayout>

@@ -3,19 +3,30 @@
  * den. Hvis du legger til en ny app: legg til en oppføring her, en
  * glyph i Glyph.astro, et ikon i public/icons/<slug>.png, og fire
  * sider under src/pages/<slug>/.
+ *
+ * App Store-URL-er:
+ *   Når en app er live, bytt ut search-URL-en med den kanoniske app-
+ *   siden:  https://apps.apple.com/no/app/<slug>/id<10-sifret-tall>
+ *   (slug-en kan være hva som helst, det er id-en som teller). Du
+ *   finner id-en øverst i App Store Connect, eller i App-Store-URL-
+ *   en når du åpner appen i App Store. Inntil da peker hver app til
+ *   App Store-søk så lenken funker dag én og auto-løser seg når
+ *   appen publiseres.
  */
 export type GlyphKind =
   | 'circles'   // bumle-bjorn
   | 'grid'      // plantekn
   | 'dots'      // tenkt
   | 'lines'     // kvitteringsvakt
-  | 'script';   // inklings-journal
+  | 'script'    // inklings-journal
+  | 'rings';    // naboskap
 
 export interface AppDef {
   slug: string;
   name: string;
   tagline: string;
-  /** App Store-URL. Tom streng eller '#' = «Kommer snart»-pille. */
+  /** App Store-URL. Bytt til kanonisk app-side (`/app/<slug>/id<n>`)
+   *  så snart appen er live. Søk-URL er fallback inntil da. */
   appStoreUrl: string;
   /** Sti til 1024×1024 PNG i public/icons/. */
   iconPath: string;
@@ -30,7 +41,7 @@ export const apps: AppDef[] = [
     slug: 'bumle-bjorn',
     name: 'Bumle Bjørn',
     tagline: 'Pedagogisk app for barn 1 til 8 år.',
-    appStoreUrl: '#',
+    appStoreUrl: 'https://apps.apple.com/no/app/bumle-bjorn/id6761500591',
     iconPath: '/icons/bumle-bjorn.png',
     accent: '#A85436',
     glyph: 'circles',
@@ -39,7 +50,7 @@ export const apps: AppDef[] = [
     slug: 'plantekn',
     name: 'Plantekn',
     tagline: 'Tegn romplaner, møbler og ledningsføring.',
-    appStoreUrl: '#',
+    appStoreUrl: 'https://apps.apple.com/no/app/plantekn/id6760789999',
     iconPath: '/icons/plantekn.png',
     accent: '#2C4A3A',
     glyph: 'grid',
@@ -48,7 +59,7 @@ export const apps: AppDef[] = [
     slug: 'tenkt',
     name: 'Tenkt',
     tagline: 'Daglige logikkpuslespill.',
-    appStoreUrl: '#',
+    appStoreUrl: 'https://apps.apple.com/no/app/tenkt/id6766308807',
     iconPath: '/icons/tenkt.png',
     accent: '#8B6F47',
     glyph: 'dots',
@@ -57,7 +68,7 @@ export const apps: AppDef[] = [
     slug: 'kvitteringsvakt',
     name: 'Kvitteringsvakt',
     tagline: 'Kvittering- og garantitracker for det norske markedet.',
-    appStoreUrl: '#',
+    appStoreUrl: 'https://apps.apple.com/no/app/kvitteringsvakt/id6761110905',
     iconPath: '/icons/kvitteringsvakt.png',
     accent: '#7A3A22',
     glyph: 'lines',
@@ -66,10 +77,19 @@ export const apps: AppDef[] = [
     slug: 'inklings-journal',
     name: 'Inklings Journal',
     tagline: 'En journalapp.',
-    appStoreUrl: '#',
+    appStoreUrl: 'https://apps.apple.com/no/app/inklings-journal/id6760267915',
     iconPath: '/icons/inklings-journal.png',
     accent: '#1F3528',
     glyph: 'script',
+  },
+  {
+    slug: 'naboskap',
+    name: 'Naboskap',
+    tagline: 'For lånegrupper du bygger selv.',
+    appStoreUrl: 'https://apps.apple.com/no/app/naboskap/id6768093048',
+    iconPath: '/icons/naboskap.png',
+    accent: '#4A6B58',
+    glyph: 'rings',
   },
 ];
 

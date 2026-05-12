@@ -1,0 +1,78 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('naboskap');
+---
+<AppLayout app={app} title={`Terms of Use · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="vilkar" />
+    <div class="app-flow">
+      <Chapter num="01" label="Overview" title={`Welcome to <em>${app.name}</em>.`}>
+        <p class="lede">When you use the app you agree to these terms. We've tried to keep them short and readable. If anything is unclear, write to <a class="tx-link" href="mailto:hei@haugogdatter.no">hei@haugogdatter.no</a>.</p>
+        <p class="muted">Last updated · 12 May 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="About the app" title={`What <em>${app.name} is</em>.`}>
+        <p>{app.name} is an app that helps people borrow from each other in closed groups they choose themselves — friend groups, streets, cabin neighbors, parent groups. The app is <strong>a tool</strong> that lets you coordinate loans. It is not a marketplace, not a payment intermediary, and not a party to the actual loan.</p>
+        <p>All agreements about what is borrowed, when, where, and under what conditions are made between the members themselves. {app.name} just provides the structure.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Age limit" title={`<em>13 years</em> and up.`}>
+        <p>The app is intended for people aged 13 and over. If you are under the age of majority, a guardian must be aware that you are using the app.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Your responsibility" title={`What we <em>expect</em> of you.`}>
+        <p>As a user, you are responsible for:</p>
+        <p>· The content you add (names, descriptions, images, pickup notes, thank-yous)</p>
+        <p>· That you are allowed to lend out what you list</p>
+        <p>· Agreements you make with other members</p>
+        <p>· How you treat things you have borrowed</p>
+        <p>· Being honest and polite in contact with other members</p>
+        <p>You agree <strong>not</strong> to:</p>
+        <p>· Post content that is illegal, offensive, threatening, or discriminatory</p>
+        <p>· Use the app for commercial activity without consent</p>
+        <p>· Attempt to circumvent access control or the invitation mechanism</p>
+        <p>· Use the app to harass or stalk individuals</p>
+        <p class="muted">We reserve the right to terminate an account that breaches these terms.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Naboskap +" title={`<em>One-time purchase</em>, not a subscription.`}>
+        <p>The app has a voluntary one-time purchase called {app.name} +. It costs 59 NOK and gives access to being a member of up to 5 groups simultaneously (the free version allows 1). The purchase is handled by Apple through the App Store, and Apple's terms of purchase apply. Refunds must be requested from Apple — we have no access to refund purchases ourselves.</p>
+        <p>There is no subscription. You pay once.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Our responsibility" title={`The app is provided <em>as is</em>.`}>
+        <p>We do our best to make the app work as it should, but we cannot guarantee:</p>
+        <p>· That the app is always available (we depend on Apple's iCloud infrastructure)</p>
+        <p>· That synchronization always happens immediately</p>
+        <p>· That other members keep their agreements with you</p>
+        <p>· That items lent out are picked up or delivered at the agreed time</p>
+        <p>{app.name} disclaims responsibility for loss, damage, or conflicts that arise between members in connection with loans coordinated through the app. If something goes wrong between you and another neighbor, we encourage you to talk it out and find a solution — that's how neighborhoods work.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Content" title={`<em>You own</em> what you enter.`}>
+        <p>You own all content you enter in {app.name}. We have a limited right to store and display your content to other members in the same group — strictly necessary for the app to function. Your content syncs via your own iCloud account, not via our servers.</p>
+        <p>If you delete a group or leave it, the data linked to the membership is also deleted. Images and pickup information in completed loans are deleted automatically.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Changes" title={`When <em>something is new</em>.`}>
+        <p>We may update functionality, design, and these terms. Significant changes are announced in the app before they take effect. The currently effective version always lives at <a class="tx-link" href="https://haugogdatter.no/en/naboskap/vilkar">haugogdatter.no/en/naboskap/vilkar</a>.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Termination" title={`How to <em>stop</em>.`}>
+        <p>You can stop using {app.name} at any time by uninstalling the app or using «Start over» under Profile to delete everything locally. If you want to delete your CloudKit data, do so before uninstalling — or via Apple's iCloud administration.</p>
+      </Chapter>
+
+      <Chapter num="10" label="Governing law" title={`<em>Norwegian law</em>, and a good talk first.`}>
+        <p>Norwegian law applies. Any disputes are sought resolved amicably, and if not possible, at a Norwegian venue.</p>
+        <p class="muted">Questions about terms: <a class="tx-link" href="mailto:hei@haugogdatter.no">hei@haugogdatter.no</a>.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Terms`} />
+</AppLayout>

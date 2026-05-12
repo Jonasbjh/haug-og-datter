@@ -4,14 +4,19 @@
  * Hub-varianten viser GPS-koordinater + live klokke.
  * App-varianten viser «Tilbake»-lenker.
  */
+import { resolveLocale, t, localizedPath } from '../i18n/translations';
+
 interface Props {
   variant?: 'hub' | 'app';
 }
 const { variant = 'hub' } = Astro.props;
+const locale = resolveLocale(Astro.currentLocale);
+const strings = t(locale);
+const hubHref = localizedPath(locale, '/');
 ---
 <header class="topbar">
-  <a class="mark" href="/">
-    <span class="nm">Haug og Datter</span>
+  <a class="mark" href={hubHref}>
+    <span class="nm">Haug & Datter</span>
   </a>
   {variant === 'hub' ? (
     <span class="meter">
@@ -20,13 +25,13 @@ const { variant = 'hub' } = Astro.props;
         59°44′ N · 10°12′ E
       </span>
       <span class="seg">
-        <span class="clock mono" data-clock>——:——:——</span>
+        <span class="clock mono" data-clock>--:--:--</span>
       </span>
     </span>
   ) : (
     <nav class="nav" aria-label="Topbar">
-      <a href="/">Tilbake</a>
-      <a href="mailto:jonas@haugogdatter.no">Kontakt</a>
+      <a href={hubHref}>{strings.topbar.back}</a>
+      <a href="mailto:jonas@haugogdatter.no">{strings.topbar.contact}</a>
     </nav>
   )}
 </header>

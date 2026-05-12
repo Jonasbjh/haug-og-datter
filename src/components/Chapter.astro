@@ -1,0 +1,22 @@
+---
+/**
+ * Chapter — én editorial seksjon på en app-underside.
+ *   • mono eyebrow «01 — Hvorfor» med kort hairline etter
+ *   • Newsreader display-tittel med italic-emfase via <em> i accent
+ *   • slot for body (paragrafer, skjermbilder, hva som helst)
+ */
+interface Props {
+  num: string;
+  label: string;
+  /** HTML-streng — bruk <em>...</em> for accent-emfase. */
+  title: string;
+}
+const { num, label, title } = Astro.props;
+---
+<section class="chapter reveal">
+  <div class="chapter__num">{num} · {label}</div>
+  <h2 class="chapter__title" set:html={title} />
+  <div class="chapter__body">
+    <slot />
+  </div>
+</section>

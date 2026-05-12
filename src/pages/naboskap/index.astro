@@ -1,0 +1,47 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import ChapterShots from '../../components/ChapterShots.astro';
+import PrevNextApp from '../../components/PrevNextApp.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('naboskap');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Hvorfor" title={`For <em>lånegrupper</em> du bygger selv.`}>
+        <p class="lede">Naboskap er for vennegjengen, gata, hyttenaboene, foreldregruppa. Ikke for hele borettslaget eller hele nabolaget — bare for de du faktisk stoler på nok til å låne av.</p>
+        <p>Lukkede, håndplukkede grupper. Tilliten kommer fra eksisterende relasjon. Appen formidler bare kontakten.</p>
+        <p class="muted">Det er to og en halv app-makeri som har bygd dette. Datteren er to og et halvt og har sterke meninger om alt, inkludert hvilke ting som er verdt å låne.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Slik føles det" title={`Asynkront, <em>ikke chat</em>.`}>
+        <p>Forespørsel → varsel → svar. Du legger ut «trenger en stige til helga», noen i gruppa svarer «min står ved garasjen», dere blir enige om når. Ingen direktechat, ingen press til å svare straks.</p>
+        <p>Det er lett å låne fra eksisterende gruppe, og <em>litt</em> friksjon å starte eller invitere. Det er en feature, ikke en feil — håndplukket er hele poenget.</p>
+        <ChapterShots shots={[
+          { src: '/screenshots/naboskap/01-hjem.png', alt: 'Hjem-skjerm' },
+          { src: '/screenshots/naboskap/02-til-utlan.png', alt: 'Til utlån' },
+          { src: '/screenshots/naboskap/03-mine-ting.png', alt: 'Mine ting' },
+          { src: '/screenshots/naboskap/04-detail.png', alt: 'Lånedetalj' },
+          { src: '/screenshots/naboskap/05-paywall.png', alt: 'Naboskap +' },
+          { src: '/screenshots/naboskap/06-deg.png', alt: 'Profil' },
+        ]} />
+      </Chapter>
+
+      <Chapter num="03" label="Hva den gjør" title={`Strukturen for å <em>låne av hverandre</em>.`}>
+        <p>Grupper du eier eller er medlem av. Gratis-versjonen tillater å være med i 1 gruppe samtidig; Naboskap + (engangskjøp, 59 kr) hever taket til 5.</p>
+        <p>Inventar — ting du har lagt ut for utlån med navn, bilde og et kort hentenotat. Samme ting kan være synlig i flere grupper, og du velger selv hvilke.</p>
+        <p>Forespørsler i to stiler. <em>Åpen</em>, der alle i gruppa ser; eller <em>direkte</em>, der bare én bestemt nabo får varselet. Velg leveringsmodus (hentes, leveres, etter avtale) og avtalt dato.</p>
+        <p>Synker via din egen iCloud. Ingen server, ingen analyse-profil, ingen identifikatorer. Anonyme bruks-signaler kan slås av i appen.</p>
+      </Chapter>
+
+      <PrevNextApp slug={app.slug} />
+    </div>
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
+</AppLayout>

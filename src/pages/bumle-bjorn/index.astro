@@ -2,48 +2,39 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import Topbar from '../../components/Topbar.astro';
 import Footer from '../../components/Footer.astro';
-import AppHero from '../../components/AppHero.astro';
-import AppNav from '../../components/AppNav.astro';
-import ScreenshotStrip from '../../components/ScreenshotStrip.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import ChapterShots from '../../components/ChapterShots.astro';
 import PrevNextApp from '../../components/PrevNextApp.astro';
 import { getApp } from '../../data/apps';
 const app = getApp('bumle-bjorn');
 ---
 <AppLayout app={app}>
   <Topbar variant="app" />
-  <AppHero app={app} />
-
-  <section class="sect reveal">
-    <h2>Om appen</h2>
-    <div class="sect__body">
-      <p class="lede">[FYLL INN] Et til tre korte avsnitt om hva Bumle Bjørn gjør, i samme rolige tone som hub-en.</p>
-      <p class="muted">[FYLL INN] Andre avsnitt om bruksområde og hvem appen er til for.</p>
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Hvorfor" title={`Et lite stykke <em>hverdagsmagi</em>.`}>
+        <p class="lede">Bumle Bjørn finnes fordi datteren min skulle ha bedre apper enn de jeg så på App Store.</p>
+        <p class="muted">Foreldrenes egen stemme, ikke en syntetisk amerikansk fortellerstemme. Ingen reklame. Helt greit å slutte etter fem minutter.</p>
+      </Chapter>
+      <Chapter num="02" label="Slik føles det" title={`Bygget for <em>de små øyeblikkene</em>.`}>
+        <p>På bussen, før leggetid, mens middagen koker. Du henter telefonen, gir den til barnet, og vet at det som dukker opp er trygt og laget for nettopp dette øyeblikket.</p>
+        <ChapterShots shots={[
+          { src: '/screenshots/bumle-bjorn/01-home.png', alt: 'Hjem-skjerm' },
+          { src: '/screenshots/bumle-bjorn/02-game.png', alt: 'Spillmodus' },
+          { src: '/screenshots/bumle-bjorn/03-voices.png', alt: 'Stemmeopptak' },
+          { src: '/screenshots/bumle-bjorn/04-result.png', alt: 'Resultat' },
+          { src: '/screenshots/bumle-bjorn/05-bear.png', alt: 'Bumle' },
+        ]} />
+      </Chapter>
+      <Chapter num="03" label="Hva den gjør" title={`Tre ting den gjør <em>godt</em>.`}>
+        <p>Egne stemmer. Foreldre, besteforeldre eller pedagoger spiller inn ordene selv. Barnet hører kjente stemmer og dialekter, ikke en syntetisk fortellerstemme.</p>
+        <p>Bilde og lyd-gjenkjennelse. Barnet drar, peker eller velger. Ingen poeng eller stjerner som fjerner fokuset fra mestringen.</p>
+        <p>Foreldremodus med kode. Innstillinger og opptak låst bak en enkel sperre, så barnet ikke kan slette innholdet ved et uhell.</p>
+      </Chapter>
+      <PrevNextApp slug={app.slug} />
     </div>
-  </section>
-
-  <ScreenshotStrip />
-
-  <section class="sect reveal">
-    <h2>Hva den gjør</h2>
-    <div class="sect__body">
-      <h3>[FYLL INN funksjon 1]</h3>
-      <p class="muted">[FYLL INN kort beskrivelse]</p>
-      <h3>[FYLL INN funksjon 2]</h3>
-      <p class="muted">[FYLL INN kort beskrivelse]</p>
-      <h3>[FYLL INN funksjon 3]</h3>
-      <p class="muted">[FYLL INN kort beskrivelse]</p>
-    </div>
-  </section>
-
-  <section class="sect reveal">
-    <h2>Hvorfor</h2>
-    <div class="sect__body">
-      <p>[FYLL INN] Ett avsnitt om motivasjonen. Personlig, ikke marketing.</p>
-    </div>
-  </section>
-
-  <PrevNextApp slug={app.slug} />
-  <AppNav slug={app.slug} current="oversikt" />
-
-  <Footer label={`${app.name} · Haug og Datter`} />
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
 </AppLayout>

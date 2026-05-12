@@ -46,6 +46,11 @@ body {
   text-rendering: optimizeLegibility;
   font-feature-settings: 'kern','liga','calt','ss01';
   overflow-x: hidden;
+  /* Plass øverst til den flytende AppMenu-pillen. */
+  padding-top: 56px;
+}
+@media (max-width: 720px) {
+  body { padding-top: 44px; }
 }
 
 /* Fin støvkornet tekstur — meget subtil */
@@ -299,6 +304,63 @@ body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in okl
   transition: width 80ms linear, background 320ms ease;
 }
 
+/* Hovedmeny — flytende pille øverst med snarveier til alle apper */
+.menubar {
+  position: fixed; top: 12px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: rgba(20, 24, 26, 0.92);
+  color: var(--paper-warm);
+  padding: 6px 8px;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  display: flex; gap: 2px; align-items: center;
+  box-shadow: 0 10px 32px rgba(0,0,0,0.18);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  border: 1px solid rgba(244,236,215,0.08);
+  max-width: calc(100vw - 16px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.menubar::-webkit-scrollbar { display: none; }
+.menubar a {
+  color: var(--paper-warm);
+  padding: 4px 11px;
+  border-radius: 999px;
+  transition: background 160ms ease, color 160ms ease;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.menubar a:hover { background: rgba(244,236,215,0.08); }
+.menubar a[aria-current="page"] {
+  background: var(--menu-accent, var(--accent));
+  color: var(--paper-warm);
+}
+/* Språkvelger — integrert i menubar, men visuelt avgrenset
+   med en hairline-divider på venstresiden. */
+.menubar .lang-switch {
+  margin-left: 4px;
+  padding: 4px 9px;
+  border-left: 1px solid rgba(244,236,215,0.15);
+  border-radius: 0 999px 999px 0;
+  font-weight: 500;
+  opacity: 0.82;
+  letter-spacing: 0.08em;
+}
+.menubar .lang-switch:hover { opacity: 1; background: rgba(244,236,215,0.10); }
+@media (max-width: 720px) {
+  .menubar {
+    top: 8px;
+    font-size: 9.5px;
+    padding: 4px 6px;
+  }
+  .menubar a { padding: 4px 8px; }
+  .menubar .lang-switch { padding: 4px 7px; }
+}
+
 /* ---------- Type ---------- */
 h1, h2, h3 {
   font-family: 'Newsreader', Georgia, serif;
@@ -441,6 +503,10 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   perspective: 1000px;
   transform-style: preserve-3d;
 }
+.hero .display .word {
+  display: inline-block;
+  white-space: nowrap;
+}
 .hero .display .ltr {
   display: inline-block;
   transition: transform 480ms var(--ease-out);
@@ -548,6 +614,284 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   color: var(--ink-mute);
   font-size: 22px;
   transition: transform 360ms var(--ease), color 320ms var(--ease);
+}
+
+/* ---------- Atelieret (app-vifte på hub) ---------- */
+.atelier { margin: 24px 0 96px; }
+.atelier__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.atelier__eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ink-mute);
+}
+
+.atelier__stage {
+  position: relative;
+  height: 600px;
+  margin: 0 auto;
+  /* La telefonene fanne ut til sidene uten å klippe; fang
+     pointer-events kun på telefon-elementene. */
+  overflow: visible;
+  perspective: 1400px;
+}
+
+/* Telefon-«chrome»: bezel + notch */
+.atelier__phone {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  width: 220px;
+  aspect-ratio: 9 / 19.5;
+  background: linear-gradient(180deg, #14181A, #1c2024);
+  border-radius: 42px;
+  padding: 7px;
+  box-shadow:
+    0 1px 0 rgba(255,255,250,0.4),
+    0 38px 70px -32px rgba(20,24,26,0.55),
+    0 18px 36px -22px rgba(20,24,26,0.4),
+    inset 0 0 0 1px rgba(255,255,255,0.06);
+  text-decoration: none;
+  cursor: pointer;
+  transform-origin: bottom center;
+  transition:
+    transform 700ms var(--ease-out),
+    opacity 360ms var(--ease),
+    filter 360ms var(--ease),
+    box-shadow 700ms var(--ease-out);
+  will-change: transform;
+}
+.atelier__notch {
+  position: absolute;
+  top: 16px; left: 50%;
+  width: 70px; height: 20px;
+  background: #000;
+  border-radius: 14px;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+/* Home-indicator nederst på atelier-telefonene — speiler iOS sin egen
+   home-indicator og gir samme visuelle avgrensning som AppRail. */
+.atelier__phone::after {
+  content: "";
+  position: absolute;
+  bottom: 18px; left: 50%; transform: translateX(-50%);
+  width: 64px; height: 5px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 2.5px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Vifte-rotasjoner. translateX gir spredning, translateY gir
+   bue-følelsen, rotate gir vifte-vinkelen. transformene blir
+   overstyrt på hover. Symmetrisk 6-app-layout (3 par rundt sentrum). */
+.atelier__phone[data-idx="0"] { transform: translateX(calc(-50% - 350px)) translateY(80px)  rotate(-20deg); z-index: 1; }
+.atelier__phone[data-idx="1"] { transform: translateX(calc(-50% - 210px)) translateY(40px)  rotate(-12deg); z-index: 2; }
+.atelier__phone[data-idx="2"] { transform: translateX(calc(-50% - 70px))  translateY(6px)   rotate(-4deg);  z-index: 3; }
+.atelier__phone[data-idx="3"] { transform: translateX(calc(-50% + 70px))  translateY(6px)   rotate(4deg);   z-index: 3; }
+.atelier__phone[data-idx="4"] { transform: translateX(calc(-50% + 210px)) translateY(40px)  rotate(12deg);  z-index: 2; }
+.atelier__phone[data-idx="5"] { transform: translateX(calc(-50% + 350px)) translateY(80px)  rotate(20deg);  z-index: 1; }
+
+/* Demp resten når vifta er hovret over */
+.atelier__stage:hover .atelier__phone,
+.atelier__stage:focus-within .atelier__phone {
+  opacity: 0.62;
+  filter: saturate(0.85);
+}
+.atelier__phone:hover,
+.atelier__phone:focus-visible {
+  opacity: 1 !important;
+  filter: none !important;
+  z-index: 10 !important;
+  outline: none;
+}
+/* Aktiv tilstand: rett opp og løft */
+.atelier__phone[data-idx="0"]:hover,
+.atelier__phone[data-idx="0"]:focus-visible { transform: translateX(calc(-50% - 350px)) translateY(-32px) rotate(-10deg) scale(1.06); }
+.atelier__phone[data-idx="1"]:hover,
+.atelier__phone[data-idx="1"]:focus-visible { transform: translateX(calc(-50% - 210px)) translateY(-44px) rotate(-4deg)  scale(1.06); }
+.atelier__phone[data-idx="2"]:hover,
+.atelier__phone[data-idx="2"]:focus-visible { transform: translateX(calc(-50% - 70px))  translateY(-52px) rotate(-1deg)  scale(1.06); }
+.atelier__phone[data-idx="3"]:hover,
+.atelier__phone[data-idx="3"]:focus-visible { transform: translateX(calc(-50% + 70px))  translateY(-52px) rotate(1deg)   scale(1.06); }
+.atelier__phone[data-idx="4"]:hover,
+.atelier__phone[data-idx="4"]:focus-visible { transform: translateX(calc(-50% + 210px)) translateY(-44px) rotate(4deg)   scale(1.06); }
+.atelier__phone[data-idx="5"]:hover,
+.atelier__phone[data-idx="5"]:focus-visible { transform: translateX(calc(-50% + 350px)) translateY(-32px) rotate(10deg)  scale(1.06); }
+
+.atelier__screen {
+  width: 100%; height: 100%;
+  border-radius: 36px;
+  background: linear-gradient(160deg,
+    var(--accent),
+    color-mix(in oklch, var(--accent) 50%, #000)
+  );
+  position: relative;
+  overflow: hidden;
+  padding: 56px 18px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.atelier__icon {
+  flex: 0 0 auto;
+  width: 76px; height: 76px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--card);
+  box-shadow:
+    0 12px 28px -10px rgba(0,0,0,0.55),
+    inset 0 0 0 1px rgba(255,255,255,0.18);
+}
+.atelier__icon img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.atelier__name {
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.2;
+  color: rgba(255,255,255,0.94);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.32);
+  letter-spacing: 0.005em;
+}
+.atelier__grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+.atelier__grid > span {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.14);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+.atelier__grid > span:nth-child(3n)   { background: rgba(255,255,255,0.22); }
+.atelier__grid > span:nth-child(5n)   { background: rgba(0,0,0,0.16); }
+.atelier__grid > span:nth-child(7n)   { background: rgba(255,255,255,0.10); }
+.atelier__dock {
+  flex: 0 0 auto;
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  width: 100%;
+  padding: 6px;
+  background: rgba(255,255,255,0.10);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.atelier__dock > span {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.22);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.10);
+}
+
+.atelier__caption {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 18px;
+}
+.atelier__counter {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-feature-settings: 'tnum';
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--ink-mute);
+}
+.atelier__label {
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  transition: opacity 220ms var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atelier__phone { transition: none; }
+  .atelier__phone:hover,
+  .atelier__phone:focus-visible { transform: translateX(-50%) translateY(0) rotate(0) scale(1) !important; }
+  .atelier__stage:hover .atelier__phone,
+  .atelier__stage:focus-within .atelier__phone { opacity: 1; filter: none; }
+}
+
+/* Mindre canvas — strammere vifte */
+@media (max-width: 1100px) {
+  .atelier__stage { height: 540px; }
+  .atelier__phone { width: 192px; }
+  .atelier__phone[data-idx="0"] { transform: translateX(calc(-50% - 270px)) translateY(60px) rotate(-17deg); }
+  .atelier__phone[data-idx="1"] { transform: translateX(calc(-50% - 160px)) translateY(30px) rotate(-10deg); }
+  .atelier__phone[data-idx="2"] { transform: translateX(calc(-50% - 54px))  translateY(6px)  rotate(-3deg);  }
+  .atelier__phone[data-idx="3"] { transform: translateX(calc(-50% + 54px))  translateY(6px)  rotate(3deg);   }
+  .atelier__phone[data-idx="4"] { transform: translateX(calc(-50% + 160px)) translateY(30px) rotate(10deg);  }
+  .atelier__phone[data-idx="5"] { transform: translateX(calc(-50% + 270px)) translateY(60px) rotate(17deg);  }
+  .atelier__phone[data-idx="0"]:hover,
+  .atelier__phone[data-idx="0"]:focus-visible { transform: translateX(calc(-50% - 270px)) translateY(-28px) rotate(-8deg) scale(1.06); }
+  .atelier__phone[data-idx="1"]:hover,
+  .atelier__phone[data-idx="1"]:focus-visible { transform: translateX(calc(-50% - 160px)) translateY(-38px) rotate(-3deg) scale(1.06); }
+  .atelier__phone[data-idx="2"]:hover,
+  .atelier__phone[data-idx="2"]:focus-visible { transform: translateX(calc(-50% - 54px))  translateY(-44px) rotate(-1deg) scale(1.06); }
+  .atelier__phone[data-idx="3"]:hover,
+  .atelier__phone[data-idx="3"]:focus-visible { transform: translateX(calc(-50% + 54px))  translateY(-44px) rotate(1deg)  scale(1.06); }
+  .atelier__phone[data-idx="4"]:hover,
+  .atelier__phone[data-idx="4"]:focus-visible { transform: translateX(calc(-50% + 160px)) translateY(-38px) rotate(3deg)  scale(1.06); }
+  .atelier__phone[data-idx="5"]:hover,
+  .atelier__phone[data-idx="5"]:focus-visible { transform: translateX(calc(-50% + 270px)) translateY(-28px) rotate(8deg)  scale(1.06); }
+}
+
+/* Mobil — vifte fungerer ikke; horisontal scroll med snap */
+@media (max-width: 720px) {
+  .atelier__head { margin-bottom: 16px; }
+  .atelier__stage {
+    height: auto;
+    perspective: none;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: visible;
+    gap: 18px;
+    padding: 24px 24px 36px;
+    margin: 0 -24px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .atelier__stage::-webkit-scrollbar { display: none; }
+  .atelier__phone {
+    position: relative;
+    bottom: auto; left: auto;
+    flex: 0 0 auto;
+    width: 196px;
+    transform: none !important;
+    z-index: auto !important;
+    scroll-snap-align: center;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  .atelier__phone:hover,
+  .atelier__phone:focus-visible {
+    transform: translateY(-4px) !important;
+  }
+  .atelier__caption { margin-top: 8px; }
 }
 
 /* ---------- Editorial-tekst ---------- */
@@ -669,15 +1013,18 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   display: flex; align-items: center; gap: 14px;
 }
 .app-cta .badge svg { display: block; height: 44px; }
-.app-cta .soon {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  padding: 10px 14px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
+.app-cta .badge {
+  display: inline-flex;
+  border-radius: 8px;
+  transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+}
+.app-cta .badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px -14px rgba(20, 24, 26, 0.5);
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-cta .badge { transition: none; }
+  .app-cta .badge:hover { transform: none; }
 }
 
 /* ---------- Skjermbilder ---------- */
@@ -723,36 +1070,403 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   .shots { margin: 0; padding: 0 0 12px; flex-wrap: nowrap; overflow-x: auto; }
 }
 
-/* ---------- App content sections ---------- */
-.sect {
-  margin-bottom: 72px;
+/* ---------- App-page grid (sticky rail + chapter flow) ---------- */
+.app-page {
   display: grid;
   grid-template-columns: 1fr;
+  gap: 56px;
+  margin-bottom: 96px;
+}
+@media (min-width: 880px)  { .app-page { grid-template-columns: 168px 1fr; gap: 56px; } }
+@media (min-width: 1100px) { .app-page { grid-template-columns: 176px 1fr; gap: 88px; } }
+
+.app-rail__inner {
+  display: flex;
+  flex-direction: column;
   gap: 24px;
-  max-width: 720px;
 }
-@media (min-width: 720px) {
-  .sect { grid-template-columns: 140px 1fr; gap: 48px; }
+@media (min-width: 880px) {
+  .app-rail__inner { position: sticky; top: 56px; }
 }
-.sect h2 {
+
+/* iPhone-mockup */
+.app-rail__phone {
+  position: relative;
+  width: 100%;
+  max-width: 168px;
+  aspect-ratio: 9 / 19.5;
+  background: linear-gradient(180deg, #14181A, #1c2024);
+  border-radius: 38px;
+  padding: 9px;
+  box-shadow:
+    0 1px 0 rgba(255,255,250,0.4),
+    0 30px 60px -30px rgba(20,24,26,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+.app-rail__phone::before {
+  content: "";
+  position: absolute;
+  top: 13px; left: 50%; transform: translateX(-50%);
+  width: 58px; height: 16px;
+  background: #000;
+  border-radius: 11px;
+  z-index: 2;
+}
+/* Home-indicator nederst i skjermen — hjelper visuelt med å avgrense
+   skjermen mot bezel-en, og speiler iOS sin egen home-indicator. */
+.app-rail__phone::after {
+  content: "";
+  position: absolute;
+  bottom: 14px; left: 50%; transform: translateX(-50%);
+  width: 48px; height: 4px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 2px;
+  z-index: 2;
+  pointer-events: none;
+}
+.app-rail__screen {
+  width: 100%; height: 100%;
+  border-radius: 29px;
+  background: linear-gradient(160deg,
+    var(--accent),
+    color-mix(in oklch, var(--accent) 55%, #000)
+  );
+  position: relative;
+  overflow: hidden;
+  padding: 36px 14px 22px;
+  display: flex; flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.app-rail__hero {
+  flex: 0 0 auto;
+  width: 64px; height: 64px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--card);
+  box-shadow:
+    0 10px 24px -10px rgba(0,0,0,0.5),
+    inset 0 0 0 1px rgba(255,255,255,0.18);
+  animation: heroBob 4.8s var(--ease) infinite;
+}
+.app-rail__hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.app-rail__heroLabel {
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+  font-size: 12px;
+  color: rgba(255,255,255,0.92);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+.app-rail__grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+  width: 100%;
+}
+.app-rail__grid .app {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.14);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+.app-rail__grid .app.b1 { background: rgba(255,255,255,0.22); }
+.app-rail__grid .app.b2 { background: rgba(0,0,0,0.16); }
+.app-rail__grid .app.b3 { background: rgba(255,255,255,0.10); }
+.app-rail__dock {
+  flex: 0 0 auto;
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+  width: 100%;
+  padding: 5px;
+  background: rgba(255,255,255,0.10);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.app-rail__dock .app {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.22);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.10);
+}
+@keyframes heroBob {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-2px) scale(1.02); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-rail__hero { animation: none; }
+}
+
+/* Rail-meta */
+.app-rail__name {
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(26px, 2.4vw, 32px);
+  line-height: 1;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+}
+.app-rail__tag {
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  max-width: 28ch;
+}
+.app-rail__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 11px;
-  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--ink-mute);
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.app-rail__meta .swatch {
+  width: 10px; height: 10px;
+  border-radius: 2px;
+  background: var(--accent);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.10);
+}
+.app-rail__meta .hex { color: var(--ink-soft); text-transform: uppercase; }
+
+/* App Store-badge i venstrespalten. SVG-en bruker currentColor på
+   bakplaten så vi kan endre farge på hover/focus. */
+.app-rail__cta {
+  display: inline-flex;
+  align-self: flex-start;
+  color: var(--ink);
+  border-radius: 8px;
+  transition: transform 200ms var(--ease), color 200ms var(--ease), box-shadow 200ms var(--ease);
+  text-decoration: none;
+}
+.app-rail__cta-badge {
+  display: block;
+  height: 40px;
+  width: auto;
+  border-radius: 8px;
+}
+.app-rail__cta:hover {
+  color: var(--accent-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px -10px rgba(20, 24, 26, 0.45);
+}
+.app-rail__cta:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--paper), 0 0 0 5px var(--accent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-rail__cta { transition: none; }
+  .app-rail__cta:hover { transform: none; }
+}
+
+.app-rail__sub {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+.app-rail__sub a {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 17px;
+  color: var(--ink-soft);
+  padding: 6px 0;
+  transition: color 220ms var(--ease), padding-left 220ms var(--ease);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.app-rail__sub a::before {
+  content: "—";
+  color: var(--ink-faint);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  transition: color 220ms var(--ease);
+}
+.app-rail__sub a:hover {
+  color: var(--accent);
+  padding-left: 6px;
+}
+.app-rail__sub a:hover::before { color: var(--accent); }
+.app-rail__sub a[aria-current="page"],
+.app-rail__sub a[aria-current="page"]::before {
+  color: var(--accent);
+}
+
+/* ---------- App-flow (høyre kolonne, kapittel-stack) ---------- */
+.app-flow > * + * { margin-top: 88px; }
+@media (max-width: 720px) {
+  .app-flow > * + * { margin-top: 64px; }
+}
+
+.chapter {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  max-width: 640px;
+}
+.chapter__num {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-mute);
-  align-self: start;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.chapter__num::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+  max-width: 80px;
+}
+.chapter__title {
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(30px, 4.4vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+.chapter__title em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 500;
+}
+.chapter__body {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.chapter__body p {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 56ch;
+  letter-spacing: -0.003em;
+}
+.chapter__body p.muted { color: var(--ink-soft); }
+.chapter__body p.lede { font-size: 22px; line-height: 1.5; color: var(--ink); }
+.chapter__shots {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.chapter__shots .shot {
+  width: 100%;
+  aspect-ratio: 9 / 19.5;
+  background: var(--card);
+  border-radius: 28px;
+  position: relative;
+  box-shadow:
+    0 1px 0 rgba(255,255,250,0.5),
+    0 24px 48px -28px rgba(20,24,26,0.32),
+    inset 0 0 0 1px var(--line);
+  overflow: hidden;
+}
+.chapter__shots .shot::before {
+  content: "";
+  position: absolute;
+  top: 10px; left: 50%; transform: translateX(-50%);
+  width: 78px; height: 20px;
+  background: var(--ink); opacity: 0.85;
+  border-radius: 12px;
+}
+/* Skjul fake notch når et ekte skjermbilde er lastet inn — bildet har
+   allerede iOS status-bar med Dynamic Island. */
+.chapter__shots .shot:has(img)::before { display: none; }
+/* Sørg for at skjermbildet fyller hele rammen. */
+.chapter__shots .shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* ---------- Gammel .sect (beholdt for bakoverkompatibilitet) ---------- */
+.sect {
+  margin-bottom: 112px;
+  max-width: none;
+  display: block;
+}
+.sect__head {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding-bottom: 32px;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+.sect__head h2 {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: 0;
+}
+.sect__num {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-feature-settings: 'tnum';
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--ink-mute);
+}
+.sect__num::after {
+  content: ' —';
+  margin-left: 6px;
+  color: var(--ink-faint);
+}
+.sect__display {
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(36px, 5.4vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+  margin-bottom: 28px;
+  max-width: 22ch;
+}
+.sect__display em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--wood-deep);
+}
+.sect__body {
+  max-width: 60ch;
 }
 .sect__body p {
   font-family: 'Newsreader', Georgia, serif;
   font-size: 19px;
   line-height: 1.55;
-  color: var(--ink);
-  max-width: 56ch;
+  color: var(--ink-soft);
   letter-spacing: -0.005em;
 }
-.sect__body p + p { margin-top: 14px; }
-.sect__body p.lede { font-size: 22px; line-height: 1.45; color: var(--ink); }
+.sect__body p + p { margin-top: 16px; }
+.sect__body p.lede {
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
 .sect__body p.muted { color: var(--ink-soft); }
 .sect__body h3 {
   font-family: 'Newsreader', Georgia, serif;
@@ -760,10 +1474,18 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   font-weight: 500;
   color: var(--ink);
   letter-spacing: -0.012em;
-  margin-top: 28px;
+  margin-top: 32px;
   margin-bottom: 6px;
 }
 .sect__body h3:first-child { margin-top: 0; }
+@media (max-width: 720px) {
+  .sect { margin-bottom: 80px; }
+  .sect__head { padding-bottom: 18px; margin-bottom: 22px; gap: 12px; }
+  .sect__display { font-size: clamp(28px, 9vw, 42px); margin-bottom: 20px; max-width: 18ch; }
+  .sect__body p { font-size: 17px; }
+  .sect__body p.lede { font-size: 19px; }
+  .sect__body h3 { font-size: 19px; margin-top: 24px; }
+}
 
 /* ---------- Forrige / Neste ---------- */
 .siblings {
@@ -973,11 +1695,7 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   .shots { gap: 12px; margin: 0 -18px; padding: 0 18px 12px; }
   .shots__item { width: 70vw; max-width: 220px; min-width: 168px; }
 
-  .sect { gap: 12px; margin-bottom: 48px; }
-  .sect h2 { font-size: 10px; }
-  .sect__body p { font-size: 17px; }
-  .sect__body p.lede { font-size: 19px; }
-  .sect__body h3 { font-size: 19px; }
+  /* .sect mobile rules ligger nå i selve .sect-blokken over. */
 
   .siblings { grid-template-columns: 1fr; }
   .siblings a + a { border-left: 0; border-top: 1px solid var(--line); }
