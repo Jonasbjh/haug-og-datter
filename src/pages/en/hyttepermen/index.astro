@@ -4,9 +4,8 @@ import Topbar from '../../../components/Topbar.astro';
 import Footer from '../../../components/Footer.astro';
 import AppRail from '../../../components/AppRail.astro';
 import Chapter from '../../../components/Chapter.astro';
-import PrevNextApp from '../../../components/PrevNextApp.astro';
 import { getApp } from '../../../data/apps';
-const app = getApp('hytteliv');
+const app = getApp('hyttepermen');
 ---
 <AppLayout app={app}>
   <Topbar variant="app" />
@@ -14,12 +13,12 @@ const app = getApp('hytteliv');
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
       <Chapter num="01" label="Why" title={`For the cabin <em>you share</em>.`}>
-        <p class="lede">Hytteliv exists because a shared cabin is one of the most well-meaning ways to create chaos. Three families, one group chat, four checklists, and nobody knows who took out the trash last or where the electricity bill ended up.</p>
-        <p>Hytteliv is one place for the whole cabin. Who's there now, what needs buying, what's been fixed, what got left behind. Synced via the family's own Apple accounts. No server on my end.</p>
+        <p class="lede">Hyttepermen exists because a shared cabin is one of the most well-meaning ways to create chaos. Three families, one group chat, four checklists, and nobody knows who took out the trash last or where the electricity bill ended up.</p>
+        <p>Hyttepermen is one place for the whole cabin. Who's there now, what needs buying, what's been fixed, what got left behind. Synced via the family's own Apple accounts. No server on my end.</p>
         <p class="muted">Built because my own family actually shares a cabin, and the group chat wasn't up to the job.</p>
       </Chapter>
       <Chapter num="02" label="How it feels" title={`The cabin in <em>one app</em>, not ten.`}>
-        <p>You're driving to the cabin. You open Hytteliv. The «Winter prep» checklist is there. Your sister has already ticked off «Check the water», your dad has added «Oil the door». The shopping list has milk, bread, and a bag of firewood from last weekend. You know it all before you reach the tunnel.</p>
+        <p>You're driving to the cabin. You open Hyttepermen. The «Winter prep» checklist is there. Your sister has already ticked off «Check the water», your dad has added «Oil the door». The shopping list has milk, bread, and a bag of firewood from last weekend. You know it all before you reach the tunnel.</p>
         <p>The design is «cosy premium, forest at dusk». Dark forest green base, warm ember accent, generous whitespace. It should feel like the cabin itself. No flashing, no badges, no red button asking for something.</p>
         <p class="muted">Asynchronous, not chat (you already have one of those). Request, notification, reply, done.</p>
       </Chapter>
@@ -27,9 +26,8 @@ const app = getApp('hytteliv');
         <p><strong>Four tabs.</strong> <em>Home</em> is the dashboard with the next trip, status, quick access. <em>The Hearth</em> is the cabin's chat between trips. <em>Active trip</em> appears when someone's at the cabin, with its own trip feed. <em>The Shed</em> is the settings hub for people, rooms, rules and key info.</p>
         <p><strong>Checklists, shopping lists, calendar, cabin log, maintenance.</strong> All the practical stuff in one place, searchable and shared with whoever you've invited. Roles (admin, family, guest, child, tenant) give the right access to the right person.</p>
         <p><strong>Syncs via your own iCloud.</strong> No server on my end, no analytics, no identifiers. The cabin is shared via a six-character invitation code. That's it.</p>
-        <p><strong>Hytteliv Plus (one-time purchase, 99 NOK).</strong> Unlocks maintenance log, cabin binder, multiple cabins, smart checklist (AI fill), photos on checklists, area guide, expense insights, and natural-language shopping lists. Buy once, keep forever.</p>
+        <p><strong>Hyttepermen Plus (one-time purchase, 99 NOK).</strong> Unlocks maintenance log, cabin binder, multiple cabins, smart checklist (AI fill), photos on checklists, area guide, expense insights, and natural-language shopping lists. Buy once, keep forever.</p>
       </Chapter>
-      <PrevNextApp slug={app.slug} />
     </div>
   </div>
   <Footer label={`${app.name} · Haug & Datter`} />

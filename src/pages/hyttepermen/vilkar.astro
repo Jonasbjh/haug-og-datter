@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.astro';
 import AppRail from '../../components/AppRail.astro';
 import Chapter from '../../components/Chapter.astro';
 import { getApp } from '../../data/apps';
-const app = getApp('hytteliv');
+const app = getApp('hyttepermen');
 ---
 <AppLayout app={app} title={`Vilkår · ${app.name}`}>
   <Topbar variant="app" />
@@ -24,7 +24,7 @@ const app = getApp('hytteliv');
 
       <Chapter num="03" label="Gratis og Plus" title={`Engangskjøp, <em>ikke abonnement</em>.`}>
         <p>Appen er gratis å laste ned. Gratis-versjonen lar deg eie eller være med i én hytte og bruke kjernefunksjonene (turer, sjekklister, handlelister, hyttebok, kalender, Peisen).</p>
-        <p>Hytteliv Plus er et engangskjøp på 99 kr. Etter kjøp får du:</p>
+        <p>Hyttepermen Plus er et engangskjøp på 99 kr. Etter kjøp får du:</p>
         <p>· Vedlikeholdslogg</p>
         <p>· Hyttepermen (digitale dokumenter)</p>
         <p>· Flere hytter (mer enn 1)</p>
@@ -38,12 +38,12 @@ const app = getApp('hytteliv');
       </Chapter>
 
       <Chapter num="04" label="Refusjon" title={`Refusjon håndteres av <em>Apple</em>.`}>
-        <p>Refusjon av Hytteliv Plus håndteres av Apple. Be om refusjon via App Store på <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
+        <p>Refusjon av Hyttepermen Plus håndteres av Apple. Be om refusjon via App Store på <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
         <p class="muted">{app.name} kan ikke selv refundere kjøp gjort gjennom App Store.</p>
       </Chapter>
 
       <Chapter num="05" label="Eierskap" title={`Hytteinnholdet <em>tilhører deg</em>.`}>
-        <p>Det du legger inn i appen er ditt. Det lagres i Core Data på enheten din og synkes via din iCloud-konto. Du kan eksportere alt som JSON via «Backup» i Boden, og slette appen eller fjerne hytter når du vil. Vi samler ikke inn personopplysninger. Se <a class="tx-link" href="/hytteliv/personvern/">personvernerklæringen</a> for detaljer.</p>
+        <p>Det du legger inn i appen er ditt. Det lagres i Core Data på enheten din og synkes via din iCloud-konto. Du kan eksportere alt som JSON via «Backup» i Boden, og slette appen eller fjerne hytter når du vil. Vi samler ikke inn personopplysninger. Se <a class="tx-link" href="/hyttepermen/personvern/">personvernerklæringen</a> for detaljer.</p>
         <p class="muted">Selve appen, kode, design, ikoner og navn, eies av Haug og Datter. Plus gir deg en personlig, ikke-eksklusiv lisens i samsvar med Apples standardlisens. Du kan ikke kopiere, distribuere, modifisere eller reverse-engineerere appen.</p>
       </Chapter>
 
@@ -59,7 +59,7 @@ const app = getApp('hytteliv');
       </Chapter>
 
       <Chapter num="08" label="Kontakt" title={`Spørsmål? <em>Skriv til oss.</em>`}>
-        <p>Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. <a class="tx-link" href="/hytteliv/personvern/">Personvernerklæringen</a> for appen ligger her.</p>
+        <p>Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. <a class="tx-link" href="/hyttepermen/personvern/">Personvernerklæringen</a> for appen ligger her.</p>
       </Chapter>
     </div>
   </div>

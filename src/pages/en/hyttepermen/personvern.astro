@@ -5,7 +5,7 @@ import Footer from '../../../components/Footer.astro';
 import AppRail from '../../../components/AppRail.astro';
 import Chapter from '../../../components/Chapter.astro';
 import { getApp } from '../../../data/apps';
-const app = getApp('hytteliv');
+const app = getApp('hyttepermen');
 ---
 <AppLayout app={app} title={`Privacy · ${app.name}`}>
   <Topbar variant="app" />
@@ -41,7 +41,7 @@ const app = getApp('hytteliv');
       </Chapter>
 
       <Chapter num="06" label="Purchases" title={`Plus is handled by <em>Apple</em>.`}>
-        <p>Hytteliv Plus (one-time purchase, 99 NOK) is handled entirely by Apple via the App Store and StoreKit. We only receive a signal that the purchase is complete. We do not see payment details, card numbers or billing addresses.</p>
+        <p>Hyttepermen Plus (one-time purchase, 99 NOK) is handled entirely by Apple via the App Store and StoreKit. We only receive a signal that the purchase is complete. We do not see payment details, card numbers or billing addresses.</p>
       </Chapter>
 
       <Chapter num="07" label="Third parties" title={`<em>No tracking.</em> No ads.`}>

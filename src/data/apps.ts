@@ -36,6 +36,11 @@ export interface AppDef {
   accent: string;
   /** SVG-glyph som ligger som dempet vannmerke bak app-hero. */
   glyph: GlyphKind;
+  /** Hvis true: appen vises ikke i hub-vifta, top-meny eller
+   *  forrige/neste-navigasjon, men sidene fungerer fortsatt på
+   *  `/<slug>` for direkte lenking. Brukes for apper som ikke er
+   *  lansert ennå (typisk for å gi App Store Connect URL-er). */
+  hidden?: boolean;
 }
 
 export const apps: AppDef[] = [
@@ -112,19 +117,24 @@ export const apps: AppDef[] = [
     glyph: 'script',
   },
   {
-    slug: 'hytteliv',
-    name: 'Hytteliv',
+    slug: 'hyttepermen',
+    name: 'Hyttepermen',
     tagline: {
       no: 'For hytta dere eier sammen.',
       en: 'For the cabin you share.',
     },
-    /* App Store-URL: bytt til kanonisk app-side når Hytteliv er live. */
-    appStoreUrl: 'https://apps.apple.com/no/search?term=Hytteliv',
-    iconPath: '/icons/hytteliv.png',
+    /* App Store-URL: bytt til kanonisk app-side når Hyttepermen er live. */
+    appStoreUrl: 'https://apps.apple.com/no/search?term=Hyttepermen',
+    iconPath: '/icons/hyttepermen.png',
     accent: '#C97B5A',
     glyph: 'cabin',
+    hidden: true,
   },
 ];
+
+/** Apper som vises i hub-vifta og top-menyen. Filtrerer ut alt som
+ *  har `hidden: true` (typisk apper som ikke er lansert ennå). */
+export const visibleApps: AppDef[] = apps.filter((a) => !a.hidden);
 
 /** Hent tagline i riktig locale med no som fallback. */
 export function getTagline(app: AppDef, locale: string | undefined): string {
@@ -137,14 +147,20 @@ export function getApp(slug: string): AppDef {
   return app;
 }
 
+/** Naboer i forrige/neste-navigasjon. Henter fra visibleApps slik at
+ *  hidden apper ikke dukker opp som naboer, og hidden apper får
+ *  visibleApps[0]/visibleApps[siste] som fallback. */
 export function siblings(slug: string): { prev: AppDef; next: AppDef } {
-  const i = apps.findIndex((a) => a.slug === slug);
-  if (i === -1) throw new Error(`Ukjent app: ${slug}`);
-  const prev = apps[(i - 1 + apps.length) % apps.length];
-  const next = apps[(i + 1) % apps.length];
+  const list = visibleApps;
+  const i = list.findIndex((a) => a.slug === slug);
+  if (i === -1) {
+    return { prev: list[list.length - 1], next: list[0] };
+  }
+  const prev = list[(i - 1 + list.length) % list.length];
+  const next = list[(i + 1) % list.length];
   return { prev, next };
 }
 
 export function indexOf(slug: string): number {
-  return apps.findIndex((a) => a.slug === slug);
+  return visibleApps.findIndex((a) => a.slug === slug);
 }

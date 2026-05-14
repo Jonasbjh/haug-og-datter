@@ -5,7 +5,7 @@ import Footer from '../../../components/Footer.astro';
 import AppRail from '../../../components/AppRail.astro';
 import Chapter from '../../../components/Chapter.astro';
 import { getApp } from '../../../data/apps';
-const app = getApp('hytteliv');
+const app = getApp('hyttepermen');
 ---
 <AppLayout app={app} title={`Terms · ${app.name}`}>
   <Topbar variant="app" />
@@ -24,7 +24,7 @@ const app = getApp('hytteliv');
 
       <Chapter num="03" label="Free and Plus" title={`A one-time purchase, <em>not a subscription</em>.`}>
         <p>The app is free to download. The free version lets you own or be in one cabin and use the core features (trips, checklists, shopping lists, cabin log, calendar, the Hearth).</p>
-        <p>Hytteliv Plus is a one-time purchase of 99 NOK. After purchase you get:</p>
+        <p>Hyttepermen Plus is a one-time purchase of 99 NOK. After purchase you get:</p>
         <p>· Maintenance log</p>
         <p>· Cabin binder (digital documents)</p>
         <p>· Multiple cabins (more than 1)</p>
@@ -38,12 +38,12 @@ const app = getApp('hytteliv');
       </Chapter>
 
       <Chapter num="04" label="Refunds" title={`Refunds are handled by <em>Apple</em>.`}>
-        <p>Refunds for Hytteliv Plus are handled by Apple. Request a refund via the App Store at <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
+        <p>Refunds for Hyttepermen Plus are handled by Apple. Request a refund via the App Store at <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
         <p class="muted">{app.name} cannot itself refund purchases made through the App Store.</p>
       </Chapter>
 
       <Chapter num="05" label="Ownership" title={`Cabin content <em>belongs to you</em>.`}>
-        <p>What you put into the app is yours. It's stored in Core Data on your device and synced via your iCloud account. You can export everything as JSON via "Backup" in the Shed, and delete the app or remove cabins whenever. We do not collect personal data. See the <a class="tx-link" href="/en/hytteliv/personvern/">privacy policy</a> for details.</p>
+        <p>What you put into the app is yours. It's stored in Core Data on your device and synced via your iCloud account. You can export everything as JSON via "Backup" in the Shed, and delete the app or remove cabins whenever. We do not collect personal data. See the <a class="tx-link" href="/en/hyttepermen/personvern/">privacy policy</a> for details.</p>
         <p class="muted">The app itself, code, design, icons and name, is owned by Haug og Datter. Plus grants you a personal, non-exclusive licence in accordance with Apple's Standard EULA. You may not copy, distribute, modify or reverse-engineer the app.</p>
       </Chapter>
 
@@ -59,7 +59,7 @@ const app = getApp('hytteliv');
       </Chapter>
 
       <Chapter num="08" label="Contact" title={`Questions? <em>Write to us.</em>`}>
-        <p>Send email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. The <a class="tx-link" href="/en/hytteliv/personvern/">privacy policy</a> for the app is here.</p>
+        <p>Send email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. The <a class="tx-link" href="/en/hyttepermen/personvern/">privacy policy</a> for the app is here.</p>
       </Chapter>
     </div>
   </div>

@@ -9,7 +9,7 @@
  * Høyre spalte (.app-flow) er der det meste skjer.
  */
 import type { AppDef } from '../data/apps';
-import { apps, indexOf, getTagline } from '../data/apps';
+import { visibleApps, indexOf, getTagline } from '../data/apps';
 import { resolveLocale, t, localizedPath } from '../i18n/translations';
 import Phone from './Phone.astro';
 
@@ -22,7 +22,7 @@ const locale = resolveLocale(Astro.currentLocale);
 const strings = t(locale);
 const idx = indexOf(app.slug);
 const num = String(idx + 1).padStart(2, '0');
-const total = String(apps.length).padStart(2, '0');
+const total = String(visibleApps.length).padStart(2, '0');
 const items = [
   { id: 'oversikt',   href: localizedPath(locale, `/${app.slug}`),             label: strings.appRail.oversikt },
   { id: 'personvern', href: localizedPath(locale, `/${app.slug}/personvern`),  label: strings.appRail.personvern },
@@ -38,7 +38,7 @@ const items = [
     <div class="app-rail__meta">
       <span class="swatch" aria-hidden="true"></span>
       <span class="hex">{app.accent.toUpperCase()}</span>
-      <span>· {num} / {total}</span>
+      {idx >= 0 && <span>· {num} / {total}</span>}
     </div>
     <a class="app-rail__cta" href={app.appStoreUrl} target="_blank" rel="noopener" aria-label={strings.appRail.appStoreAria(app.name)}>
       <svg class="app-rail__cta-badge" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 44" role="img" aria-hidden="true">

@@ -4,9 +4,8 @@ import Topbar from '../../components/Topbar.astro';
 import Footer from '../../components/Footer.astro';
 import AppRail from '../../components/AppRail.astro';
 import Chapter from '../../components/Chapter.astro';
-import PrevNextApp from '../../components/PrevNextApp.astro';
 import { getApp } from '../../data/apps';
-const app = getApp('hytteliv');
+const app = getApp('hyttepermen');
 ---
 <AppLayout app={app}>
   <Topbar variant="app" />
@@ -14,12 +13,12 @@ const app = getApp('hytteliv');
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
       <Chapter num="01" label="Hvorfor" title={`For hytta <em>dere eier sammen</em>.`}>
-        <p class="lede">Hytteliv finnes fordi delt hytte er en av de mest velmenende måtene å lage rot på. Tre familier, en gruppechat, fire sjekklister, ingen vet hvem som tok ut søpla sist eller hvor strømregningen havnet.</p>
-        <p>Hytteliv er ett sted for hele hytta. Hvem er der nå, hva skal kjøpes, hva er fikset, hva er gjenglemt. Synkes via familiens egne Apple-kontoer, ingen server hos meg.</p>
+        <p class="lede">Hyttepermen finnes fordi delt hytte er en av de mest velmenende måtene å lage rot på. Tre familier, en gruppechat, fire sjekklister, ingen vet hvem som tok ut søpla sist eller hvor strømregningen havnet.</p>
+        <p>Hyttepermen er ett sted for hele hytta. Hvem er der nå, hva skal kjøpes, hva er fikset, hva er gjenglemt. Synkes via familiens egne Apple-kontoer, ingen server hos meg.</p>
         <p class="muted">Bygd fordi familien min faktisk eier hytte sammen, og fordi gruppechatten ikke holdt til oppgaven.</p>
       </Chapter>
       <Chapter num="02" label="Slik føles det" title={`Hytta i <em>en app</em>, ikke i ti.`}>
-        <p>Du er på vei til hytta. Du åpner Hytteliv. Sjekklista for «Klargjøring vinter» ligger der. Lillesøster har allerede haket av «Sjekk vannet», far har lagt til «Smør døra». Handlelista har melk, brød og en pose ved fra forrige besøk. Du vet alt før bilen er i Drammenstunnelen.</p>
+        <p>Du er på vei til hytta. Du åpner Hyttepermen. Sjekklista for «Klargjøring vinter» ligger der. Lillesøster har allerede haket av «Sjekk vannet», far har lagt til «Smør døra». Handlelista har melk, brød og en pose ved fra forrige besøk. Du vet alt før bilen er i Drammenstunnelen.</p>
         <p>Designet er «koselig premium, skog ved kveld». Mørk skog-grønn base, varm ember-aksent, generøs whitespace. Det skal føles som hytta selv. Ingen blink, ingen badges, ingen rød knapp som vil ha noe.</p>
         <p class="muted">Asynkront, ikke chat (det har dere allerede). Forespørsel, varsel, svar, ferdig.</p>
       </Chapter>
@@ -27,9 +26,8 @@ const app = getApp('hytteliv');
         <p><strong>Fire faner.</strong> <em>Hjem</em> er dashbordet med neste tur, status, hurtigtilgang. <em>Peisen</em> er hyttas chat mellom turer. <em>Aktiv tur</em> dukker opp når noen er på hytta, med egen tur-feed. <em>Boden</em> er settings-huben for folk, rom, regler og nøkkelinfo.</p>
         <p><strong>Sjekklister, handlelister, kalender, hyttebok, vedlikehold.</strong> Alt det praktiske på ett sted, søkbart og delt med dem dere har invitert. Roller (admin, familie, gjest, barn, leietaker) gir rett tilgang til rett person.</p>
         <p><strong>Synker via Apples iCloud.</strong> Ingen server hos meg, ingen analyse, ingen identifikatorer. Hytta deles via 6-tegns invitasjonskode. Det er det.</p>
-        <p><strong>Hytteliv Plus (engangskjøp, 99 kr).</strong> Låser opp vedlikeholdslogg, hyttepermen, flere hytter, smart sjekkliste (AI-fyll), bilder på sjekklister, områdeguide, utgiftsinnsikt og naturlig-språk handlelister. Kjøp én gang, har for alltid.</p>
+        <p><strong>Hyttepermen Plus (engangskjøp, 99 kr).</strong> Låser opp vedlikeholdslogg, digitale dokumenter, flere hytter, smart sjekkliste (AI-fyll), bilder på sjekklister, områdeguide, utgiftsinnsikt og naturlig-språk handlelister. Kjøp én gang, har for alltid.</p>
       </Chapter>
-      <PrevNextApp slug={app.slug} />
     </div>
   </div>
   <Footer label={`${app.name} · Haug & Datter`} />

@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.astro';
 import AppRail from '../../components/AppRail.astro';
 import Chapter from '../../components/Chapter.astro';
 import { getApp } from '../../data/apps';
-const app = getApp('hytteliv');
+const app = getApp('hyttepermen');
 ---
 <AppLayout app={app} title={`Personvern · ${app.name}`}>
   <Topbar variant="app" />
@@ -41,7 +41,7 @@ const app = getApp('hytteliv');
       </Chapter>
 
       <Chapter num="06" label="Kjøp" title={`Plus håndteres av <em>Apple</em>.`}>
-        <p>Hytteliv Plus (engangskjøp, 99 kr) håndteres i sin helhet av Apple via App Store og StoreKit. Vi mottar kun et signal om at kjøpet er gjennomført. Vi ser ikke betalingsdetaljer, kortnummer eller faktureringsadresse.</p>
+        <p>Hyttepermen Plus (engangskjøp, 99 kr) håndteres i sin helhet av Apple via App Store og StoreKit. Vi mottar kun et signal om at kjøpet er gjennomført. Vi ser ikke betalingsdetaljer, kortnummer eller faktureringsadresse.</p>
       </Chapter>
 
       <Chapter num="07" label="Tredjepart og analyse" title={`<em>Ingen sporing.</em> Ingen reklame.`}>

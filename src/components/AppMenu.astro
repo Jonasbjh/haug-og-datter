@@ -7,7 +7,7 @@
  * Markerer aktiv side med `aria-current="page"` så CSS-en kan farge
  * den med appens accent. Inneholder også LanguageSwitcher.
  */
-import { apps } from '../data/apps';
+import { visibleApps } from '../data/apps';
 import { resolveLocale, t, localizedPath } from '../i18n/translations';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
@@ -38,7 +38,7 @@ const hubHref = localizedPath(locale, '/');
 ---
 <nav class="menubar" aria-label={strings.appMenu.label}>
   <a href={hubHref} aria-current={isActive(hubHref) ? 'page' : undefined}>{strings.nav.hub}</a>
-  {apps.map((app) => {
+  {visibleApps.map((app) => {
     const href = localizedPath(locale, `/${app.slug}`);
     return (
       <a

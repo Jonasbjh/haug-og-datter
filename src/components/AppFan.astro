@@ -7,7 +7,7 @@
  * Sweep-animasjonen ved klikk håndteres av main.ts via
  * `.atelier__phone` i sweep-link-interceptoren.
  */
-import { apps, getTagline } from '../data/apps';
+import { visibleApps, getTagline } from '../data/apps';
 import { resolveLocale, t, localizedPath } from '../i18n/translations';
 
 const locale = resolveLocale(Astro.currentLocale);
@@ -23,9 +23,9 @@ const strings = t(locale);
     class="atelier__stage"
     role="list"
     data-default-num="01"
-    data-default-name={apps[0]?.name ?? ''}
+    data-default-name={visibleApps[0]?.name ?? ''}
   >
-    {apps.map((app, i) => {
+    {visibleApps.map((app, i) => {
       const num = String(i + 1).padStart(2, '0');
       return (
         <a
@@ -70,8 +70,8 @@ const strings = t(locale);
   </div>
 
   <div class="atelier__caption" aria-live="polite">
-    <span class="atelier__counter">{`01 / ${String(apps.length).padStart(2, '0')}`}</span>
-    <span class="atelier__label">{apps[0]?.name ?? ''}</span>
+    <span class="atelier__counter">{`01 / ${String(visibleApps.length).padStart(2, '0')}`}</span>
+    <span class="atelier__label">{visibleApps[0]?.name ?? ''}</span>
   </div>
 </section>
 

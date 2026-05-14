@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.astro';
 import AppRail from '../../components/AppRail.astro';
 import Chapter from '../../components/Chapter.astro';
 import { getApp } from '../../data/apps';
-const app = getApp('hytteliv');
+const app = getApp('hyttepermen');
 ---
 <AppLayout app={app} title={`Support · ${app.name}`}>
   <Topbar variant="app" />
@@ -18,10 +18,10 @@ const app = getApp('hytteliv');
 
       <Chapter num="02" label="Vanlige spørsmål" title={`Det folk <em>spør om</em>.`}>
         <p><strong>Hvordan inviterer jeg familien til hytta?</strong></p>
-        <p class="muted">Åpne hytta, gå til Boden, velg «Folk» og «Inviter». Du får en seks-tegns kode du sender til familien. De skriver inn koden i sin egen Hytteliv-app, godkjenner CloudKit-delingen, og er med.</p>
+        <p class="muted">Åpne hytta, gå til Boden, velg «Folk» og «Inviter». Du får en seks-tegns kode du sender til familien. De skriver inn koden i sin egen Hyttepermen-app, godkjenner CloudKit-delingen, og er med.</p>
         <p><strong>Hvorfor ser ikke de andre i familien det jeg legger inn?</strong></p>
         <p class="muted">Sjekk at iCloud Drive er aktivert i iOS-innstillingene på alle enhetene, og at alle er innlogget med sin egen Apple-ID. Dele-funksjonen krever at både du og mottakeren har akseptert CloudKit-invitasjonen.</p>
-        <p><strong>Hva får jeg med Hytteliv Plus?</strong></p>
+        <p><strong>Hva får jeg med Hyttepermen Plus?</strong></p>
         <p class="muted">Vedlikeholdslogg, hyttepermen, flere hytter, flere på samme tur, smart sjekkliste, bilder på sjekklister, områdeguide, AI-utgiftsinnsikt og smart handleliste. Engangskjøp på 99 kr, gjelder for livstid på Apple-ID-en din.</p>
         <p><strong>Hvilke data sendes til OpenAI?</strong></p>
         <p class="muted">Kun ved aktiv bruk av Plus AI-funksjoner sendes konteksten du har lagt inn (eks. en sjekklistetittel) som tekst til OpenAIs API. Ingen navn på folk, ingen bilder, ingen kontaktinfo. Slå av AI-funksjoner i innstillingene hvis du vil holde alt lokalt.</p>
