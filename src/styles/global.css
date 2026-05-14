@@ -1755,6 +1755,28 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   .app-hero__icon { width: 96px; height: 96px; }
   .app-cta { margin-top: 24px; }
 
+  /* Mobile-spesifikk override for app-rail. Safari mobile har vist bug
+     der icon-en blåses opp til intrinsic størrelse (512×512) — vi
+     overstyrer aggressivt med !important + sentrer hele rail-en. */
+  .app-rail__inner { align-items: center; text-align: center; }
+  .app-rail__phone { width: 100%; max-width: 168px; }
+  .app-rail__hero {
+    flex: 0 0 64px !important;
+    width: 64px !important;
+    height: 64px !important;
+    min-width: 64px !important;
+    min-height: 64px !important;
+    max-width: 64px !important;
+    max-height: 64px !important;
+  }
+  .app-rail__hero img {
+    width: 64px !important;
+    height: 64px !important;
+    max-width: 64px !important;
+    max-height: 64px !important;
+    object-fit: cover !important;
+  }
+
   .shots-row { margin: 56px 0 64px; }
   .shots-row__head { padding-bottom: 10px; margin-bottom: 18px; }
   .shots { gap: 12px; margin: 0 -18px; padding: 0 18px 12px; }
