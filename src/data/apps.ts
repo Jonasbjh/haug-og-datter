@@ -19,7 +19,8 @@ export type GlyphKind =
   | 'dots'      // tenkt
   | 'lines'     // kvitteringsvakt
   | 'script'    // inklings-journal
-  | 'rings';    // naboskap
+  | 'rings'     // naboskap
+  | 'cabin';    // hytteliv
 
 export interface AppDef {
   slug: string;
@@ -109,6 +110,19 @@ export const apps: AppDef[] = [
     iconPath: '/icons/inklings-journal.png',
     accent: '#1F3528',
     glyph: 'script',
+  },
+  {
+    slug: 'hytteliv',
+    name: 'Hytteliv',
+    tagline: {
+      no: 'For hytta dere eier sammen.',
+      en: 'For the cabin you share.',
+    },
+    /* App Store-URL: bytt til kanonisk app-side når Hytteliv er live. */
+    appStoreUrl: 'https://apps.apple.com/no/search?term=Hytteliv',
+    iconPath: '/icons/hytteliv.png',
+    accent: '#C97B5A',
+    glyph: 'cabin',
   },
 ];
 

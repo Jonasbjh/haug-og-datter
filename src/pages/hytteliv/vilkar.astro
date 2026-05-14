@@ -1,0 +1,67 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('hytteliv');
+---
+<AppLayout app={app} title={`Vilkår · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="vilkar" />
+    <div class="app-flow">
+      <Chapter num="01" label="Lisens" title={`Distribueres via <em>App Store</em>.`}>
+        <p class="lede">{app.name} utvikles og utgis av Haug og Datter, og distribueres gjennom Apple App Store. Du får en personlig, ikke-overførbar lisens til å bruke appen i henhold til <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apples standard sluttbruker-lisensavtale</a>.</p>
+        <p class="muted">Sist oppdatert · 15. mai 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Bruk" title={`For hytta <em>dere eier sammen</em>.`}>
+        <p>{app.name} er ment for delt hytteforvaltning. Du oppretter en hytte, inviterer familien (eller hvem du vil dele med), og bruker appen til turer, sjekklister, handlelister, vedlikehold, hyttebok og samtaler.</p>
+        <p>Du kan bruke appen til personlig og familiemessig bruk. Profesjonell utleieadministrasjon i kommersiell skala er ikke det appen er bygd for, men det er ingen begrensning på antall hytter med Plus.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Gratis og Plus" title={`Engangskjøp, <em>ikke abonnement</em>.`}>
+        <p>Appen er gratis å laste ned. Gratis-versjonen lar deg eie eller være med i én hytte og bruke kjernefunksjonene (turer, sjekklister, handlelister, hyttebok, kalender, Peisen).</p>
+        <p>Hytteliv Plus er et engangskjøp på 99 kr. Etter kjøp får du:</p>
+        <p>· Vedlikeholdslogg</p>
+        <p>· Hyttepermen (digitale dokumenter)</p>
+        <p>· Flere hytter (mer enn 1)</p>
+        <p>· Flere deltakere på samme tur</p>
+        <p>· Smart sjekkliste (AI-foreslåtte punkter)</p>
+        <p>· Bilder på sjekkliste-punkter</p>
+        <p>· Auto-fyll av områdeguide (POI fra MapKit)</p>
+        <p>· AI-utgiftsinnsikt</p>
+        <p>· Smart handleliste (naturlig språk til varer via AI)</p>
+        <p class="muted">Pris og lokal valuta vises i App Store-kjøpsdialogen. Plus-tilgangen følger Apple-ID-en din og kan gjenopprettes på nye enheter via «Gjenopprett kjøp».</p>
+      </Chapter>
+
+      <Chapter num="04" label="Refusjon" title={`Refusjon håndteres av <em>Apple</em>.`}>
+        <p>Refusjon av Hytteliv Plus håndteres av Apple. Be om refusjon via App Store på <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
+        <p class="muted">{app.name} kan ikke selv refundere kjøp gjort gjennom App Store.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Eierskap" title={`Hytteinnholdet <em>tilhører deg</em>.`}>
+        <p>Det du legger inn i appen er ditt. Det lagres i Core Data på enheten din og synkes via din iCloud-konto. Du kan eksportere alt som JSON via «Backup» i Boden, og slette appen eller fjerne hytter når du vil. Vi samler ikke inn personopplysninger. Se <a class="tx-link" href="/hytteliv/personvern/">personvernerklæringen</a> for detaljer.</p>
+        <p class="muted">Selve appen, kode, design, ikoner og navn, eies av Haug og Datter. Plus gir deg en personlig, ikke-eksklusiv lisens i samsvar med Apples standardlisens. Du kan ikke kopiere, distribuere, modifisere eller reverse-engineerere appen.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Ansvar" title={`Et verktøy, <em>ikke en garanti</em>.`}>
+        <p>{app.name} leveres «som den er». Vi gir ingen garanti for at appen er feilfri, eller at den oppfyller dine spesifikke behov. Sjekklister, vedlikeholdspåminnelser og utgiftslogg er hjelpemidler, ikke en erstatning for forsikring, fagperson eller regnskap.</p>
+        <p>AI-genererte forslag (smart sjekkliste, områdeguide, utgiftsinnsikt) er antydende. De kan ta feil. Bruk dem som inspirasjon, ikke som fasit. Så langt det er tillatt etter norsk lov, kan {app.name} ikke holdes ansvarlig for økonomiske tap eller andre konsekvenser som følger av bruk av appen.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Endringer" title={`Vesentlige endringer <em>varsles</em>.`}>
+        <p>Vi kan oppdatere, endre eller fjerne funksjoner i appen. Vesentlige endringer kommuniseres gjennom App Stores oppdateringstekst eller en melding i appen.</p>
+        <p>Disse vilkårene kan endres. Endringer publiseres på denne siden med ny «Sist oppdatert»-dato. Fortsatt bruk av appen etter endringer regnes som aksept av de nye vilkårene.</p>
+        <p class="muted">Vilkårene reguleres av norsk lov. Tvister skal forsøkes løst i minnelighet. Hvis det ikke lykkes, er rette verneting Forbrukertilsynet og deretter norske domstoler.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Kontakt" title={`Spørsmål? <em>Skriv til oss.</em>`}>
+        <p>Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. <a class="tx-link" href="/hytteliv/personvern/">Personvernerklæringen</a> for appen ligger her.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Vilkår`} />
+</AppLayout>

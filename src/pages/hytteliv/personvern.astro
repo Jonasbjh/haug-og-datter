@@ -1,0 +1,59 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('hytteliv');
+---
+<AppLayout app={app} title={`Personvern · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="I korte trekk" title={`Personvern, på <em>vanlig norsk</em>.`}>
+        <p class="lede">{app.name} er en app for delt hytteforvaltning på iPhone og iPad. Det du legger inn, ligger på enheten din og synkes mellom dine egne enheter (og familiens, hvis dere deler hytte) via din egen iCloud-konto. Vi har ingen server som ser dataene dine.</p>
+        <p class="muted">Sist oppdatert · 15. mai 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Data" title={`Hva appen <em>faktisk lagrer</em>.`}>
+        <p>Appen lagrer det du selv legger inn:</p>
+        <p>· <strong>Hytter</strong> med navn, adresse, koordinater og bilder.</p>
+        <p>· <strong>Folk</strong> du har invitert (visningsnavn og rolle).</p>
+        <p>· <strong>Turer, sjekklister, handlelister, hyttebok, vedlikehold, utgifter, dokumenter, regler, hyttelogg, nøkkelinfo</strong> og chat-meldinger på Peisen.</p>
+        <p>· <strong>App-innstillinger</strong> som tema, varslinger og demo-modus.</p>
+        <p class="muted">Alt lagres lokalt i Core Data og synkes til iCloud via Apples NSPersistentCloudKitContainer. {app.name} har ingen tilgang til iCloud-kontoen din.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Deling" title={`Hytter deles <em>via CloudKit</em>.`}>
+        <p>Når dere deler en hytte, opprettes en CloudKit-delt sone (CKShare) hos Apple. Familiemedlemmene får tilgang til den samme hytta gjennom sine egne iCloud-kontoer. {app.name} ser ikke hvem som er med eller hva som deles. Apple er teknisk databehandler for selve synkroniseringen.</p>
+        <p class="muted">Invitasjonskoden er seks tegn (genereres lokalt) og ligger i CloudKit til den brukes eller utløper.</p>
+      </Chapter>
+
+      <Chapter num="04" label="AI-funksjoner" title={`OpenAI brukes <em>kun ved Plus</em>.`}>
+        <p>Plus-funksjoner som smart sjekkliste, områdeguide-autofyll, AI-utgiftsinnsikt og naturlig-språk handlelister sender en kort tekstforespørsel til OpenAIs API (gpt-4o-mini) når du aktivt bruker funksjonen. Forespørselen inneholder konteksten du selv har lagt inn, ikke navn på folk eller bilder.</p>
+        <p class="muted">Bruker du ikke disse funksjonene, kontaktes ikke OpenAI. AI-funksjonene kan slås av i innstillingene. Se <a class="tx-link" href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener">OpenAIs personvernerklæring</a> for hva de gjør med forespørsler (gpt-4o-mini brukes ikke til å trene modellene).</p>
+      </Chapter>
+
+      <Chapter num="05" label="Vær og kart" title={`<em>met.no</em> og MapKit.`}>
+        <p>Værdata hentes fra <a class="tx-link" href="https://www.met.no/om-oss/personvern" target="_blank" rel="noopener">met.no</a> via koordinatene til hytta du har valgt. Områdeguiden bruker Apples MapKit for å hente nærliggende steder (POI). Begge tjenester får bare koordinatene, ikke hvem du er.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Kjøp" title={`Plus håndteres av <em>Apple</em>.`}>
+        <p>Hytteliv Plus (engangskjøp, 99 kr) håndteres i sin helhet av Apple via App Store og StoreKit. Vi mottar kun et signal om at kjøpet er gjennomført. Vi ser ikke betalingsdetaljer, kortnummer eller faktureringsadresse.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Tredjepart og analyse" title={`<em>Ingen sporing.</em> Ingen reklame.`}>
+        <p>Det finnes ingen analyse- eller sporingsteknologi i {app.name}. Vi bruker ikke Google Analytics, Firebase, Crashlytics eller liknende. Ingen IDFA, ingen reklame-ID.</p>
+        <p class="muted">Tredjeparter som er involvert: Apple (App Store, iCloud, StoreKit, MapKit, kalender-eksport), met.no (vær), og OpenAI (kun når du aktivt bruker en Plus AI-funksjon).</p>
+      </Chapter>
+
+      <Chapter num="08" label="Kontakt og endringer" title={`Spørsmål? <em>Skriv til oss.</em>`}>
+        <p>Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Du får svar fra Jonas selv, vanligvis innen et døgn.</p>
+        <p class="muted">Denne erklæringen kan oppdateres når funksjoner i appen endrer seg. Endringer publiseres på denne siden med ny «Sist oppdatert»-dato.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Personvern`} />
+</AppLayout>

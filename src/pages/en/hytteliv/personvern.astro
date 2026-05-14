@@ -1,0 +1,59 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('hytteliv');
+---
+<AppLayout app={app} title={`Privacy · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="Overview" title={`Privacy, in <em>plain English</em>.`}>
+        <p class="lede">{app.name} is an app for shared cabin management on iPhone and iPad. What you put in stays on your device and syncs between your own devices (and your family's, if you share a cabin) via your own iCloud account. We don't run a server that sees your data.</p>
+        <p class="muted">Last updated · 15 May 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Data" title={`What the app <em>actually stores</em>.`}>
+        <p>The app stores what you put in:</p>
+        <p>· <strong>Cabins</strong> with name, address, coordinates and photos.</p>
+        <p>· <strong>People</strong> you've invited (display name and role).</p>
+        <p>· <strong>Trips, checklists, shopping lists, cabin log, maintenance, expenses, documents, rules, key info</strong> and chat messages on the Hearth.</p>
+        <p>· <strong>App preferences</strong> like theme, notifications and demo mode.</p>
+        <p class="muted">Everything is stored locally in Core Data and synced to iCloud via Apple's NSPersistentCloudKitContainer. {app.name} has no access to your iCloud account.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Sharing" title={`Cabins are shared <em>via CloudKit</em>.`}>
+        <p>When you share a cabin, a CloudKit shared zone (CKShare) is created with Apple. Family members get access to the same cabin through their own iCloud accounts. {app.name} doesn't see who's a member or what's shared. Apple is the technical processor for the sync itself.</p>
+        <p class="muted">The invitation code is six characters (generated locally) and lives in CloudKit until used or expired.</p>
+      </Chapter>
+
+      <Chapter num="04" label="AI features" title={`OpenAI is used <em>only with Plus</em>.`}>
+        <p>Plus features like smart checklist, area guide auto-fill, AI expense insights and natural-language shopping lists send a short text request to OpenAI's API (gpt-4o-mini) when you actively use the feature. The request contains the context you've entered, not names of people or photos.</p>
+        <p class="muted">If you don't use these features, OpenAI is not contacted. AI features can be turned off in settings. See <a class="tx-link" href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener">OpenAI's privacy policy</a> for what they do with requests (gpt-4o-mini is not used to train their models).</p>
+      </Chapter>
+
+      <Chapter num="05" label="Weather and maps" title={`<em>met.no</em> and MapKit.`}>
+        <p>Weather data is fetched from <a class="tx-link" href="https://www.met.no/om-oss/personvern" target="_blank" rel="noopener">met.no</a> using the coordinates of the cabin you've selected. The area guide uses Apple's MapKit to fetch nearby places (POI). Both services only get the coordinates, not who you are.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Purchases" title={`Plus is handled by <em>Apple</em>.`}>
+        <p>Hytteliv Plus (one-time purchase, 99 NOK) is handled entirely by Apple via the App Store and StoreKit. We only receive a signal that the purchase is complete. We do not see payment details, card numbers or billing addresses.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Third parties" title={`<em>No tracking.</em> No ads.`}>
+        <p>There is no analytics or tracking technology in {app.name}. We do not use Google Analytics, Firebase, Crashlytics or similar. No IDFA, no ad identifier.</p>
+        <p class="muted">Third parties involved: Apple (App Store, iCloud, StoreKit, MapKit, calendar export), met.no (weather), and OpenAI (only when you actively use a Plus AI feature).</p>
+      </Chapter>
+
+      <Chapter num="08" label="Contact and changes" title={`Questions? <em>Write to us.</em>`}>
+        <p>Send email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. You'll get a reply from Jonas himself, usually within a day.</p>
+        <p class="muted">This policy may be updated when the app's features change. Updates will be posted on this page with a new "Last updated" date.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Privacy`} />
+</AppLayout>

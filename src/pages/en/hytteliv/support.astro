@@ -1,0 +1,38 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('hytteliv');
+---
+<AppLayout app={app} title={`Support · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="support" />
+    <div class="app-flow">
+      <Chapter num="01" label="Contact" title={`Send <em>email</em>.`}>
+        <p class="lede">Need help with {app.name}? Send an email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. You'll get a reply from Jonas himself, usually within a day.</p>
+      </Chapter>
+
+      <Chapter num="02" label="FAQ" title={`What people <em>ask about</em>.`}>
+        <p><strong>How do I invite the family to the cabin?</strong></p>
+        <p class="muted">Open the cabin, go to the Shed, choose "People" and "Invite". You'll get a six-character code to send to the family. They enter the code in their own Hytteliv app, accept the CloudKit share, and they're in.</p>
+        <p><strong>Why don't the others in the family see what I've added?</strong></p>
+        <p class="muted">Check that iCloud Drive is enabled in iOS settings on all devices, and that everyone is signed in with their own Apple ID. The sharing feature requires that both you and the recipient have accepted the CloudKit invitation.</p>
+        <p><strong>What do I get with Hytteliv Plus?</strong></p>
+        <p class="muted">Maintenance log, cabin binder, multiple cabins, more on the same trip, smart checklist, photos on checklists, area guide, AI expense insights and smart shopping list. One-time purchase of 99 NOK, valid for the lifetime of your Apple ID.</p>
+        <p><strong>What data is sent to OpenAI?</strong></p>
+        <p class="muted">Only when you actively use a Plus AI feature, the context you've entered (e.g. a checklist title) is sent as text to OpenAI's API. No names of people, no photos, no contact info. Turn off AI features in settings if you want everything to stay local.</p>
+        <p><strong>Can I export everything I've added?</strong></p>
+        <p class="muted">Yes. The Shed has "Backup" which makes a JSON file with all your cabins, checklists, cabin log and the rest. The file can be imported back later.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Feedback" title={`Ideas, <em>bugs</em>, tips.`}>
+        <p>Features you miss? Bugs that bother you? Send them to the same address. I read everything and prioritise based on what actually makes the app better for cabins that are shared.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Support`} />
+</AppLayout>

@@ -55,4 +55,14 @@ const { kind } = Astro.props;
       <circle cx="60" cy="78" r="28"/>
     </svg>
   )}
+  {kind === 'cabin' && (
+    <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 60 L60 24 L98 60"/>
+      <path d="M30 60 V96 H90 V60"/>
+      <path d="M52 96 V72 H68 V96"/>
+      <rect x="38" y="68" width="8" height="8"/>
+      <rect x="74" y="68" width="8" height="8"/>
+      <path d="M76 38 V20 H84 V46"/>
+    </svg>
+  )}
 </div>
