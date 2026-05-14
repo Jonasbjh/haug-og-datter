@@ -1167,13 +1167,18 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   pointer-events: none;
 }
 .app-rail__screen {
-  width: 100%; height: 100%;
+  /* Posisjoner eksplisitt 9px fra hver side av phone-bezelen i stedet
+     for å stole på width:100%/height:100% + parent-padding. Safari
+     beregnet høyden feil i kombinasjon med aspect-ratio på phone, så
+     screen stakk ut nederst. */
+  position: absolute;
+  top: 9px; right: 9px; bottom: 9px; left: 9px;
+  width: auto; height: auto;
   border-radius: 29px;
   background: linear-gradient(160deg,
     var(--accent),
     color-mix(in oklch, var(--accent) 55%, #000)
   );
-  position: relative;
   overflow: hidden;
   padding: 36px 14px 22px;
   display: flex; flex-direction: column;
