@@ -805,12 +805,19 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   text-shadow: 0 1px 2px rgba(0,0,0,0.32);
   letter-spacing: 0.005em;
 }
-.atelier__grid {
+/* Body wrapper — holder grid og tag oppå hverandre slik at de kan
+   krysse-fade ved hover (homescreen-grid → app-tagline). */
+.atelier__body {
+  position: relative;
+  width: 100%;
   margin-top: 18px;
+}
+.atelier__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   width: 100%;
+  transition: opacity 220ms var(--ease);
 }
 .atelier__grid > span {
   aspect-ratio: 1;
@@ -821,6 +828,30 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
 .atelier__grid > span:nth-child(3n)   { background: rgba(255,255,255,0.22); }
 .atelier__grid > span:nth-child(5n)   { background: rgba(0,0,0,0.16); }
 .atelier__grid > span:nth-child(7n)   { background: rgba(255,255,255,0.10); }
+.atelier__tag {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.96);
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.32);
+  letter-spacing: 0.005em;
+  opacity: 0;
+  transition: opacity 220ms var(--ease);
+  pointer-events: none;
+}
+.atelier__phone:hover .atelier__grid,
+.atelier__phone:focus-visible .atelier__grid { opacity: 0; }
+.atelier__phone:hover .atelier__tag,
+.atelier__phone:focus-visible .atelier__tag { opacity: 1; }
 .atelier__dock {
   flex: 0 0 auto;
   margin-top: auto;
@@ -863,25 +894,6 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   color: var(--ink);
   letter-spacing: -0.01em;
   transition: opacity 220ms var(--ease);
-}
-
-/* Tagline som dukker opp når man hovrer en app i vifta. Tom og usynlig
-   som default — fades inn med tekst når en telefon er hovret/fokusert. */
-.atelier__tagline {
-  margin: 12px auto 0;
-  max-width: 36ch;
-  text-align: center;
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 16px;
-  line-height: 1.45;
-  color: var(--ink-soft);
-  min-height: 1.5em;
-  opacity: 0;
-  transition: opacity 220ms var(--ease);
-}
-.atelier__tagline.is-on { opacity: 1; }
-@media (max-width: 720px) {
-  .atelier__tagline { font-size: 15px; max-width: 30ch; }
 }
 
 @media (prefers-reduced-motion: reduce) {
