@@ -24,7 +24,8 @@ export type GlyphKind =
 export interface AppDef {
   slug: string;
   name: string;
-  tagline: string;
+  /** Tagline i begge språk. Bruk getTagline(app, locale) for å hente. */
+  tagline: { no: string; en: string };
   /** App Store-URL. Bytt til kanonisk app-side (`/app/<slug>/id<n>`)
    *  så snart appen er live. Søk-URL er fallback inntil da. */
   appStoreUrl: string;
@@ -40,7 +41,10 @@ export const apps: AppDef[] = [
   {
     slug: 'bumle-bjorn',
     name: 'Bumle Bjørn',
-    tagline: 'Pedagogisk app for barn 1 til 8 år.',
+    tagline: {
+      no: 'Pedagogisk app for barn 1 til 8 år.',
+      en: 'Educational app for kids ages 1 to 8.',
+    },
     appStoreUrl: 'https://apps.apple.com/no/app/bumle-bjorn/id6761500591',
     iconPath: '/icons/bumle-bjorn.png',
     accent: '#A85436',
@@ -49,7 +53,10 @@ export const apps: AppDef[] = [
   {
     slug: 'plantekn',
     name: 'Plantekn',
-    tagline: 'Tegn romplaner, møbler og ledningsføring.',
+    tagline: {
+      no: 'Tegn romplaner, møbler og ledningsføring.',
+      en: 'Draw floor plans, furniture and wiring.',
+    },
     appStoreUrl: 'https://apps.apple.com/no/app/plantekn/id6760789999',
     iconPath: '/icons/plantekn.png',
     accent: '#2C4A3A',
@@ -58,7 +65,10 @@ export const apps: AppDef[] = [
   {
     slug: 'tenkt',
     name: 'Tenkt',
-    tagline: 'Daglige logikkpuslespill.',
+    tagline: {
+      no: 'Daglige logikkpuslespill.',
+      en: 'Daily logic puzzles.',
+    },
     appStoreUrl: 'https://apps.apple.com/no/app/tenkt/id6766308807',
     iconPath: '/icons/tenkt.png',
     accent: '#8B6F47',
@@ -67,7 +77,10 @@ export const apps: AppDef[] = [
   {
     slug: 'kvitteringsvakt',
     name: 'Kvitteringsvakt',
-    tagline: 'Kvittering- og garantitracker for det norske markedet.',
+    tagline: {
+      no: 'Kvittering- og garantitracker for det norske markedet.',
+      en: 'Receipt and warranty tracker for the Norwegian market.',
+    },
     appStoreUrl: 'https://apps.apple.com/no/app/kvitteringsvakt/id6761110905',
     iconPath: '/icons/kvitteringsvakt.png',
     accent: '#7A3A22',
@@ -76,7 +89,10 @@ export const apps: AppDef[] = [
   {
     slug: 'inklings-journal',
     name: 'Inklings Journal',
-    tagline: 'En journalapp.',
+    tagline: {
+      no: 'En journalapp.',
+      en: 'A journal app.',
+    },
     appStoreUrl: 'https://apps.apple.com/no/app/inklings-journal/id6760267915',
     iconPath: '/icons/inklings-journal.png',
     accent: '#1F3528',
@@ -85,13 +101,21 @@ export const apps: AppDef[] = [
   {
     slug: 'naboskap',
     name: 'Naboskap',
-    tagline: 'For lånegrupper du bygger selv.',
+    tagline: {
+      no: 'For lånegrupper du bygger selv.',
+      en: 'For lending groups you build yourself.',
+    },
     appStoreUrl: 'https://apps.apple.com/no/app/naboskap/id6768093048',
     iconPath: '/icons/naboskap.png',
     accent: '#4A6B58',
     glyph: 'rings',
   },
 ];
+
+/** Hent tagline i riktig locale med no som fallback. */
+export function getTagline(app: AppDef, locale: string | undefined): string {
+  return locale === 'en' ? app.tagline.en : app.tagline.no;
+}
 
 export function getApp(slug: string): AppDef {
   const app = apps.find((a) => a.slug === slug);

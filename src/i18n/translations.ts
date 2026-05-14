@@ -12,6 +12,11 @@ export const translations = {
     nav: {
       hub: 'Hub',
     },
+    atelier: {
+      eyebrow: 'Atelieret',
+      hint: 'Hold over en app',
+      goTo: (name: string) => `Gå til ${name}`,
+    },
     appRail: {
       oversikt: 'Oversikt',
       personvern: 'Personvern',
@@ -50,6 +55,11 @@ export const translations = {
   en: {
     nav: {
       hub: 'Hub',
+    },
+    atelier: {
+      eyebrow: 'The Studio',
+      hint: 'Hover over an app',
+      goTo: (name: string) => `Go to ${name}`,
     },
     appRail: {
       oversikt: 'Overview',

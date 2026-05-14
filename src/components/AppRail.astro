@@ -9,7 +9,7 @@
  * Høyre spalte (.app-flow) er der det meste skjer.
  */
 import type { AppDef } from '../data/apps';
-import { apps, indexOf } from '../data/apps';
+import { apps, indexOf, getTagline } from '../data/apps';
 import { resolveLocale, t, localizedPath } from '../i18n/translations';
 import Phone from './Phone.astro';
 
@@ -34,7 +34,7 @@ const items = [
   <div class="app-rail__inner">
     <Phone app={app} />
     <h1 class="app-rail__name">{app.name}</h1>
-    <p class="app-rail__tag">{app.tagline}</p>
+    <p class="app-rail__tag">{getTagline(app, locale)}</p>
     <div class="app-rail__meta">
       <span class="swatch" aria-hidden="true"></span>
       <span class="hex">{app.accent.toUpperCase()}</span>

@@ -7,6 +7,7 @@
  */
 import '../styles/global.css';
 import type { AppDef } from '../data/apps';
+import { getTagline } from '../data/apps';
 import AppMenu from '../components/AppMenu.astro';
 import { resolveLocale, t } from '../i18n/translations';
 
@@ -19,7 +20,7 @@ const { app, title, description } = Astro.props;
 const locale = resolveLocale(Astro.currentLocale);
 const strings = t(locale);
 const pageTitle = title ?? `${app.name} · Haug & Datter`;
-const pageDesc = description ?? app.tagline;
+const pageDesc = description ?? getTagline(app, locale);
 ---
 <!doctype html>
 <html lang={strings.htmlLang}>

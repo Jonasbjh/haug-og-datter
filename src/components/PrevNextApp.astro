@@ -5,7 +5,7 @@
  * peker tilbake til første). Klikk trigger accent-svep i den
  * destinasjons-appens farge via sweep-link-interceptor.
  */
-import { siblings } from '../data/apps';
+import { siblings, getTagline } from '../data/apps';
 import { resolveLocale, t, localizedPath } from '../i18n/translations';
 
 interface Props { slug: string }
@@ -21,7 +21,7 @@ const strings = t(locale);
       {strings.prevNext.prev}
     </span>
     <span class="nm">{prev.name}</span>
-    <span class="ar">{prev.tagline}</span>
+    <span class="ar">{getTagline(prev, locale)}</span>
   </a>
   <a class="next" href={localizedPath(locale, `/${next.slug}`)} style={`--sib-accent:${next.accent}`}>
     <span class="lab">
@@ -29,6 +29,6 @@ const strings = t(locale);
       {strings.prevNext.next}
     </span>
     <span class="nm">{next.name}</span>
-    <span class="ar">{next.tagline}</span>
+    <span class="ar">{getTagline(next, locale)}</span>
   </a>
 </nav>

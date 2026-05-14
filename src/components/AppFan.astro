@@ -7,15 +7,16 @@
  * Sweep-animasjonen ved klikk håndteres av main.ts via
  * `.atelier__phone` i sweep-link-interceptoren.
  */
-import { apps } from '../data/apps';
-import { resolveLocale, localizedPath } from '../i18n/translations';
+import { apps, getTagline } from '../data/apps';
+import { resolveLocale, t, localizedPath } from '../i18n/translations';
 
 const locale = resolveLocale(Astro.currentLocale);
+const strings = t(locale);
 ---
 <section class="atelier reveal" aria-label="Apper">
   <div class="atelier__head">
-    <span class="atelier__eyebrow l">Atelieret</span>
-    <span class="atelier__eyebrow r">Hold over en app</span>
+    <span class="atelier__eyebrow l">{strings.atelier.eyebrow}</span>
+    <span class="atelier__eyebrow r">{strings.atelier.hint}</span>
   </div>
 
   <div
@@ -35,7 +36,7 @@ const locale = resolveLocale(Astro.currentLocale);
           data-num={num}
           data-name={app.name}
           style={`--accent: ${app.accent}; --idx: ${i};`}
-          aria-label={`Gå til ${app.name}`}
+          aria-label={strings.atelier.goTo(app.name)}
         >
           <span class="atelier__notch" aria-hidden="true"></span>
           <div class="atelier__screen">
@@ -57,7 +58,7 @@ const locale = resolveLocale(Astro.currentLocale);
                 <span></span><span></span><span></span><span></span>
                 <span></span><span></span><span></span><span></span>
               </div>
-              <p class="atelier__tag">{app.tagline}</p>
+              <p class="atelier__tag">{getTagline(app, locale)}</p>
             </div>
             <div class="atelier__dock" aria-hidden="true">
               <span></span><span></span><span></span><span></span>
