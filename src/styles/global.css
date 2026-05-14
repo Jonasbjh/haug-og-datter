@@ -518,10 +518,16 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
       "title"
       "lede";
     row-gap: 24px;
+    justify-items: center;
+    text-align: center;
   }
   .hero__logo {
     width: min(60vw, 220px);
     margin: 0 auto;
+  }
+  .hero .lede {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 .hero .display {
@@ -891,31 +897,32 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   .atelier__phone[data-idx="5"]:focus-visible { transform: translateX(calc(-50% + 270px)) translateY(-28px) rotate(8deg)  scale(1.06); }
 }
 
-/* Mobil — vifte fungerer ikke; horisontal scroll med snap */
+/* Mobil — vifte stables vertikalt; ingen horisontal scroll */
 @media (max-width: 720px) {
-  .atelier__head { margin-bottom: 16px; }
+  .atelier__head {
+    margin-bottom: 16px;
+    justify-content: center;
+    gap: 14px;
+    text-align: center;
+  }
   .atelier__stage {
     height: auto;
     perspective: none;
     display: flex;
-    overflow-x: auto;
-    overflow-y: visible;
-    gap: 18px;
-    padding: 24px 24px 36px;
-    margin: 0 -24px;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 24px 0 32px;
+    margin: 0;
+    overflow: visible;
   }
-  .atelier__stage::-webkit-scrollbar { display: none; }
   .atelier__phone {
     position: relative;
     bottom: auto; left: auto;
     flex: 0 0 auto;
-    width: 196px;
+    width: 220px;
     transform: none !important;
     z-index: auto !important;
-    scroll-snap-align: center;
     opacity: 1 !important;
     filter: none !important;
   }
@@ -923,7 +930,10 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   .atelier__phone:focus-visible {
     transform: translateY(-4px) !important;
   }
-  .atelier__caption { margin-top: 8px; }
+  .atelier__caption {
+    margin-top: 16px;
+    justify-content: center;
+  }
 }
 
 /* ---------- Editorial-tekst ---------- */
@@ -1685,7 +1695,16 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
    ============================================================ */
 @media (max-width: 720px) {
   .stage { padding: 22px 18px 24px; }
-  .topbar { margin-bottom: 56px; padding-bottom: 16px; }
+  .topbar {
+    margin-bottom: 56px;
+    padding-bottom: 16px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+  }
+  .topbar .mark { justify-content: center; }
+  .topbar .meter { justify-content: center; flex-wrap: wrap; }
   .topbar .nav { display: none; }
   .topbar .pill { font-size: 9.5px; padding: 5px 10px; }
   .topbar .mark .meta { display: none; }
@@ -1710,10 +1729,11 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   .verket__row:active .verket__name, .verket__row:active .verket__tag,
   .verket__row:active .verket__arrow { color: var(--paper-warm); }
 
-  .blocks { gap: 48px; margin: 64px 0 0; }
-  .block p { font-size: 19px; line-height: 1.45; }
+  .blocks { gap: 48px; margin: 64px 0 0; text-align: center; justify-items: center; }
+  .block { display: flex; flex-direction: column; align-items: center; }
+  .block p { font-size: 19px; line-height: 1.45; margin-left: auto; margin-right: auto; }
 
-  .footer { flex-direction: column; gap: 10px; align-items: flex-start; font-size: 11px; }
+  .footer { flex-direction: column; gap: 10px; align-items: center; text-align: center; font-size: 11px; }
 
   .app-hero { gap: 36px; margin-bottom: 56px; }
   .app-hero__l h1 { font-size: clamp(38px, 11vw, 64px); line-height: 1; }
