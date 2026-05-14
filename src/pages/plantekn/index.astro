@@ -15,11 +15,13 @@ const app = getApp('plantekn');
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
       <Chapter num="01" label="Hvorfor" title={`Verktøyet du <em>skulle hatt</em> i byggemøtet.`}>
-        <p class="lede">Plantekn finnes fordi de profesjonelle planleggings-appene er for tunge, og papir og blyant er for løse.</p>
-        <p class="muted">Et stille verktøy som gir deg presise mål, et nordisk møbel-bibliotek og enkelt el-symbolspråk, uten lærekurve.</p>
+        <p class="lede">Plantekn finnes fordi de profesjonelle planleggings-appene er for tunge. Du må bruke en helg på å lære dem. Papir og blyant er for løse. Du tegner sofaen og oppdager at den er to centimeter for bred når den allerede er kjøpt.</p>
+        <p>Mellom de to står Plantekn. Et stille verktøy som gir deg presise mål, et nordisk møbelbibliotek og enkelt el-symbolspråk, uten lærekurve.</p>
+        <p class="muted">Bygd fordi jeg selv pusset opp og savnet det.</p>
       </Chapter>
       <Chapter num="02" label="Slik føles det" title={`<em>iPad og blyant</em>, samlet i ett.`}>
         <p>Du står midt i rommet du skal pusse opp. iPad-en er på, du tegner inn vegger med fingertuppen, drar inn sofaen fra biblioteket, og ser om alt får plass før du ringer butikken.</p>
+        <p>Når du vipper til 3D, blir skissen til et rom du nesten kan stå i. Ikke et arkitekttegnings-rom, men nok til at du ser om kjøkkenøya er for nær veggen, om soverommet tåler en queen size, om garderoben må ha skyvedører.</p>
         <ChapterShots shots={[
           { src: '/screenshots/plantekn/01-hero.png', alt: 'Hovedvisning' },
           { src: '/screenshots/plantekn/02-furniture.png', alt: 'Møbel-bibliotek' },
@@ -28,11 +30,13 @@ const app = getApp('plantekn');
           { src: '/screenshots/plantekn/05-pro.png', alt: 'PRO-funksjoner' },
           { src: '/screenshots/plantekn/06-settings.png', alt: 'Innstillinger' },
         ]} />
+        <p class="muted">Apple Pencil hvis du har den. Finger funker også.</p>
       </Chapter>
       <Chapter num="03" label="Hva den gjør" title={`<em>Mål, møbler</em>, ledninger.`}>
-        <p>Romlayout med ekte mål. Tegn vegger, hver linje viser meter og centimeter. Alt holder seg presist når du forstørrer eller flytter.</p>
-        <p>Møbel-bibliotek i nordiske mål. Sofa, seng, bord, kjøkkenelementer. Dra inn, roter, sjekk om det passer.</p>
-        <p>Ledningsføring og uttak. Standardiserte symboler, godt nok til å snakke med en elektriker uten misforståelser.</p>
+        <p><strong>Romlayout med ekte mål.</strong> Tegn vegger. Hver linje viser meter og centimeter. Alt holder seg presist når du forstørrer eller flytter. Areal beregnes etter NS 3940 (BRA, P-rom, S-rom).</p>
+        <p><strong>Møbelbibliotek i nordiske mål.</strong> Sofa, seng, bord, kjøkkenelementer. Dra inn, roter, sjekk om det passer. PRO låser opp hele biblioteket pluss AI-baserte forslag når du står fast.</p>
+        <p><strong>Ledningsføring og uttak.</strong> Standardiserte symboler, godt nok til å snakke med en elektriker uten misforståelser.</p>
+        <p><strong>Photo Trace (PRO).</strong> Legg et bilde av et eksisterende rom under og tegn over det. Slipper å gjette mål fra fotografi.</p>
       </Chapter>
       <PrevNextApp slug={app.slug} />
     </div>

@@ -14,18 +14,22 @@ const app = getApp('inklings-journal');
   <div class="app-page">
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
-      <Chapter num="01" label="Why" title={`A quiet room for <em>the day's thought</em>.`}>
-        <p class="lede">Inklings Journal is built around one idea: a diary should be small and calm. A quiet room for the day's thought, not a service to keep alive.</p>
-        <p class="muted">Daily prompt or blank page. Local first, iCloud only if you choose it. Face ID if you want. Markdown export when you want to take the content with you.</p>
+      <Chapter num="01" label="Why" title={`A quiet room for <em>today's thought</em>.`}>
+        <p class="lede">Inklings is built around a single idea. A diary should be small and quiet. A still room for today's thought, not a service to keep alive.</p>
+        <p>There's no record to keep, no streak to lose, no reminders nagging. Skip four days, and Inklings is just as glad to see you on the fifth.</p>
+        <p class="muted">Daily prompt or blank page. Local first. iCloud only if you choose.</p>
       </Chapter>
       <Chapter num="02" label="How it feels" title={`Write first. <em>The rest</em> can wait.`}>
-        <p>You have ten minutes between meetings. You open Inklings, see today's prompt («What did I notice?»), write two sentences. You close again. It didn't feel like work.</p>
+        <p>You have ten minutes between meetings. You open Inklings, see today's prompt («What did I notice?»), write two sentences. You close it again. It didn't feel like work.</p>
+        <p>The design is deliberately editorial. Newsreader serif, brass accent, drop caps. It looks more like a notebook than an app. Dark, warm background. No flashing elements.</p>
         <ChapterShots count={6} />
+        <p class="muted">Face ID if you want. Markdown export when you want to take the content with you.</p>
       </Chapter>
       <Chapter num="03" label="What it does" title={`Daily prompt. <em>Search.</em> Export.`}>
-        <p>Daily prompt or blank page — you choose. Inklings can show a sentence to start the pen, or you can turn it off and just write.</p>
-        <p>Time machine and search. Flip back to this date a year ago. Search by word or theme across all entries.</p>
-        <p>Local first. Everything is stored in SwiftData on your device. iCloud sync is optional and opt-in.</p>
+        <p><strong>Daily prompt or blank page.</strong> Inklings can show a sentence to start the pen, or you can switch it off and just write.</p>
+        <p><strong>Time machine and search.</strong> Flip back to this date last year. Search by word or theme across all entries. Tag system for finding your way back.</p>
+        <p><strong>Local first.</strong> Everything stored in SwiftData on your device. iCloud sync is optional and opt-in. Export to markdown anytime.</p>
+        <p><strong>App Intents and Siri Shortcuts.</strong> «Hey Siri, open today's Inklings» from your wrist. Small thing, but it's the kind of thing this app is built for.</p>
       </Chapter>
       <PrevNextApp slug={app.slug} />
     </div>

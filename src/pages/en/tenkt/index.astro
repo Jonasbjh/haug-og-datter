@@ -15,11 +15,13 @@ const app = getApp('tenkt');
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
       <Chapter num="01" label="Why" title={`Quiet logic, <em>every morning</em>.`}>
-        <p class="lede">Tenkt exists because a break filled with pure logic deserves to be uncluttered. No ads, no profile, no fluff. Five to ten short puzzles each day, the same for everyone, refreshed at midnight.</p>
-        <p class="muted">Norwegian is a good language to think logically in. Tenkt is in Norwegian from the very first second — and now in English too.</p>
+        <p class="lede">Tenkt exists because a pause for pure logic deserves to be pure. No flashing ads, no profile to build, no button asking for a subscription. Five to ten short puzzles each day, the same for everyone, refreshed at midnight.</p>
+        <p>I made Tenkt for myself first. It's still the first thing I open over morning coffee.</p>
+        <p class="muted">Available in Norwegian and English. The logic doesn't care which.</p>
       </Chapter>
       <Chapter num="02" label="How it feels" title={`Five minutes with <em>coffee and thought</em>.`}>
-        <p>You sit down. Take the first sip. Open Tenkt. A little puzzle, maybe two. You feel awake, finished, and the day can begin without having opened a single notification.</p>
+        <p>You sit down. Take the first sip. Open Tenkt. A small puzzle, maybe two. You feel awake, finished, and the day can start without having opened a single notification.</p>
+        <p>The typeface is calm (Cormorant Garamond italic), the sounds are muted (stone on wood when a piece falls into place, a temple bell at the end of the set). If anything sparkles, it sparkles quietly.</p>
         <ChapterShots shots={[
           { src: '/screenshots/tenkt/01-home.png', alt: 'Home screen' },
           { src: '/screenshots/tenkt/02-puzzle-active.png', alt: 'Active puzzle' },
@@ -27,11 +29,13 @@ const app = getApp('tenkt');
           { src: '/screenshots/tenkt/04-summary.png', alt: 'Summary' },
           { src: '/screenshots/tenkt/05-settings.png', alt: 'Settings' },
         ]} />
+        <p class="muted">Difficulty builds across the day's set. You wake up gradually with it.</p>
       </Chapter>
       <Chapter num="03" label="What it does" title={`A new set <em>every day</em>.`}>
-        <p>Daily set, generated locally. Everyone who opens Tenkt on a given day gets exactly the same set. Three difficulty levels build up through the day's puzzles.</p>
-        <p>Five different puzzle types. Grid, Path, Placement, Balance, and Connect. Each has its own mechanic; all are solved by pure logic without guessing.</p>
-        <p>Streaks and statistics, locally. Days in a row, times, stars. Everything on your device. No leaderboard distractions, no profile.</p>
+        <p><strong>Daily set, generated locally.</strong> Everyone who opens Tenkt on a given day gets exactly the same set. Between five and ten puzzles spread across three difficulty levels.</p>
+        <p><strong>Five different puzzle types.</strong> Grid, Pathfinder, Placement, Balance and Connect. Each has its own mechanic, all are solved with pure logic, no guessing.</p>
+        <p><strong>Streaks and stats, locally.</strong> Days in a row, times, stars. All on your device. If you want to compare with friends you can share a code. No profile, no email, just six characters.</p>
+        <p class="muted">Traces (the in-game currency) are earned by playing and spent on extra hints, undo or new themes. Never purchasable.</p>
       </Chapter>
       <PrevNextApp slug={app.slug} />
     </div>

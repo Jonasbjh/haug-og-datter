@@ -15,14 +15,14 @@ const app = getApp('naboskap');
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
       <Chapter num="01" label="Hvorfor" title={`For <em>lånegrupper</em> du bygger selv.`}>
-        <p class="lede">Naboskap er for vennegjengen, gata, hyttenaboene, foreldregruppa. Ikke for hele borettslaget eller hele nabolaget — bare for de du faktisk stoler på nok til å låne av.</p>
-        <p>Lukkede, håndplukkede grupper. Tilliten kommer fra eksisterende relasjon. Appen formidler bare kontakten.</p>
-        <p class="muted">Det er to og en halv app-makeri som har bygd dette. Datteren er to og et halvt og har sterke meninger om alt, inkludert hvilke ting som er verdt å låne.</p>
+        <p class="lede">Naboskap er for vennegjengen, gata, hyttenaboene, foreldregruppa. Ikke for hele borettslaget eller hele nabolaget. Bare for de du faktisk stoler på nok til å låne av.</p>
+        <p>Andre nabo-apper er adressebaserte og åpner seg for alle innenfor en sirkel. Vi gjør motsatt. Lukkede, håndplukkede grupper. Tilliten kommer fra eksisterende relasjon. Appen formidler bare kontakten.</p>
+        <p class="muted">Det er to og et halvt app-makeri som har bygd dette. Datteren har sterke meninger om hvilke ting som er verdt å låne.</p>
       </Chapter>
 
       <Chapter num="02" label="Slik føles det" title={`Asynkront, <em>ikke chat</em>.`}>
-        <p>Forespørsel → varsel → svar. Du legger ut «trenger en stige til helga», noen i gruppa svarer «min står ved garasjen», dere blir enige om når. Ingen direktechat, ingen press til å svare straks.</p>
-        <p>Det er lett å låne fra eksisterende gruppe, og <em>litt</em> friksjon å starte eller invitere. Det er en feature, ikke en feil — håndplukket er hele poenget.</p>
+        <p>Forespørsel, varsel, svar. Du legger ut «trenger en stige til helga», noen i gruppa svarer «min står ved garasjen», dere blir enige om når. Ingen direktechat, ingen press til å svare straks.</p>
+        <p>Det er bevisst lett å låne fra en eksisterende gruppe, og <em>litt</em> friksjon å starte eller invitere. Det er en feature, ikke en feil. Håndplukket er hele poenget.</p>
         <ChapterShots shots={[
           { src: '/screenshots/naboskap/01-hjem.png', alt: 'Hjem-skjerm' },
           { src: '/screenshots/naboskap/02-til-utlan.png', alt: 'Til utlån' },
@@ -31,13 +31,14 @@ const app = getApp('naboskap');
           { src: '/screenshots/naboskap/05-paywall.png', alt: 'Naboskap +' },
           { src: '/screenshots/naboskap/06-deg.png', alt: 'Profil' },
         ]} />
+        <p class="muted">Designet er varmt og nordisk (Fraunces serif, papirtekstur), ikke techy. Tonen er at noen kjenner noen.</p>
       </Chapter>
 
       <Chapter num="03" label="Hva den gjør" title={`Strukturen for å <em>låne av hverandre</em>.`}>
-        <p>Grupper du eier eller er medlem av. Gratis-versjonen tillater å være med i 1 gruppe samtidig; Naboskap + (engangskjøp, 59 kr) hever taket til 5.</p>
-        <p>Inventar — ting du har lagt ut for utlån med navn, bilde og et kort hentenotat. Samme ting kan være synlig i flere grupper, og du velger selv hvilke.</p>
-        <p>Forespørsler i to stiler. <em>Åpen</em>, der alle i gruppa ser; eller <em>direkte</em>, der bare én bestemt nabo får varselet. Velg leveringsmodus (hentes, leveres, etter avtale) og avtalt dato.</p>
-        <p>Synker via din egen iCloud. Ingen server, ingen analyse-profil, ingen identifikatorer. Anonyme bruks-signaler kan slås av i appen.</p>
+        <p><strong>Grupper du eier eller er medlem av.</strong> Gratis-versjonen tillater å være med i 1 gruppe samtidig. Naboskap+ (engangskjøp, 59 kr) hever taket til 5.</p>
+        <p><strong>Inventar.</strong> Ting du har lagt ut for utlån med navn, bilde og et kort hentenotat («står ved garasjen, plukk når du vil»). Samme ting kan være synlig i flere grupper, og du velger selv hvilke.</p>
+        <p><strong>Forespørsler i to stiler.</strong> <em>Åpen</em>, der alle i gruppa ser. <em>Direkte</em>, der bare én bestemt nabo får varselet. Velg leveringsmodus (hentes, leveres, etter avtale) og avtalt dato.</p>
+        <p><strong>Synker via din egen iCloud.</strong> Ingen server, ingen analyse-profil, ingen identifikatorer. Anonyme bruks-signaler kan slås av i appen.</p>
       </Chapter>
 
       <PrevNextApp slug={app.slug} />

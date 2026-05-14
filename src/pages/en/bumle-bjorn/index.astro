@@ -14,12 +14,14 @@ const app = getApp('bumle-bjorn');
   <div class="app-page">
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
-      <Chapter num="01" label="Why" title={`A little piece of <em>everyday magic</em>.`}>
-        <p class="lede">Bumle Bjørn exists because my daughter deserved better apps than the ones I saw on the App Store.</p>
-        <p class="muted">Parents' own voices, not a synthetic American narrator. No ads. Perfectly fine to stop after five minutes.</p>
+      <Chapter num="01" label="Why" title={`A small piece of <em>everyday magic</em>.`}>
+        <p class="lede">Bumle Bjørn exists because my daughter deserved better apps than the ones I saw on the App Store. Most kids' apps I downloaded asked for something. Subscriptions, attention, stars, an account.</p>
+        <p>We wanted something different. A bear that reads words in familiar voices, and that doesn't try to keep the child a single second longer than they want to stay.</p>
+        <p class="muted">No ads. No profile. Perfectly fine to quit after five minutes.</p>
       </Chapter>
-      <Chapter num="02" label="How it feels" title={`Built for <em>those small moments</em>.`}>
-        <p>On the bus, before bedtime, while dinner simmers. You hand the phone to your child knowing that what shows up is safe and made for exactly this moment.</p>
+      <Chapter num="02" label="How it feels" title={`Built for the <em>small moments</em>.`}>
+        <p>On the bus, before bedtime, while dinner cooks. You pick up the phone, hand it to the child, and know that what shows up is safe and made for exactly that moment.</p>
+        <p>The bear says the words in the voice of mum, dad, or a grandparent. The child recognises the tone. Not a synthetic narrator that learned a foreign language one Tuesday afternoon.</p>
         <ChapterShots shots={[
           { src: '/screenshots/bumle-bjorn/01-home.png', alt: 'Home screen' },
           { src: '/screenshots/bumle-bjorn/02-game.png', alt: 'Game mode' },
@@ -27,11 +29,12 @@ const app = getApp('bumle-bjorn');
           { src: '/screenshots/bumle-bjorn/04-result.png', alt: 'Result' },
           { src: '/screenshots/bumle-bjorn/05-bear.png', alt: 'Bumle' },
         ]} />
+        <p class="muted">My daughter is the test pilot. Her «one more time, dad!» is the metric.</p>
       </Chapter>
       <Chapter num="03" label="What it does" title={`Three things it does <em>well</em>.`}>
-        <p>Your own voices. Parents, grandparents, or teachers record the words themselves. The child hears familiar voices and dialects, not a synthetic narrator.</p>
-        <p>Image and sound recognition. The child drags, points, or picks. No points or stars that distract from the sense of mastery.</p>
-        <p>Parent mode with a code. Settings and recordings locked behind a simple gate so children can't accidentally delete content.</p>
+        <p><strong>Your own voices.</strong> Parents, grandparents or teachers record the words themselves. Stored locally. The child hears familiar dialects, not a packaged voice.</p>
+        <p><strong>Image and sound recognition.</strong> The child drags, points, or selects. Right answers celebrate themselves quietly. No points or stars that pull focus away from the mastery.</p>
+        <p><strong>Parent mode with code.</strong> Settings and recordings are locked behind a simple barrier. The child can't delete the content by accident, and you can sit safely with the iPad on your lap.</p>
       </Chapter>
       <PrevNextApp slug={app.slug} />
     </div>

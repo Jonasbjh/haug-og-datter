@@ -14,12 +14,14 @@ const app = getApp('kvitteringsvakt');
   <div class="app-page">
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
-      <Chapter num="01" label="Why" title={`Norwegian <em>consumer law</em>, easy to use.`}>
-        <p class="lede">Kvitteringsvakt exists because Norwegian consumer-purchase law gives you a five-year warranty period, and nobody remembers that when the washing machine breaks.</p>
-        <p class="muted">Scan the receipt at the register, the app remembers the date, and notifies you before the warranty expires. Built for the Norwegian retail pattern.</p>
+      <Chapter num="01" label="Why" title={`Norwegian <em>consumer law</em>, made easy.`}>
+        <p class="lede">Kvitteringsvakt exists because Norwegian consumer law gives you a five-year right to complain on items meant to last. Nobody remembers that when the washing machine breaks three years in.</p>
+        <p>Scan the receipt at the till, the app remembers the date, and lets you know before the warranty runs out. Built for the Norwegian shopping pattern. Stores you actually shop in, categories that actually apply.</p>
+        <p class="muted">If you've ever rummaged through the file folder for the receipt on a washing machine, you already know why.</p>
       </Chapter>
       <Chapter num="02" label="How it feels" title={`For when you <em>need the papers</em>.`}>
-        <p>The white goods fail. Usually exactly at the moment you've forgotten where you put the receipt. Kvitteringsvakt is the one place you know you'll find it again — categorized, searchable, and with a PDF you can send the store.</p>
+        <p>The white goods break down. Usually the moment you've forgotten where you put the receipt. Kvitteringsvakt is the one place you know you'll find it again. Categorised, searchable, with a PDF you can send to the store before you hang up.</p>
+        <p>At the till: pick up the phone, scan, done. Apple Vision reads store, amount and date on the device itself. Correct it if the OCR misses a krone or a date.</p>
         <ChapterShots shots={[
           { src: '/screenshots/kvitteringsvakt/01-hjem.jpg', alt: 'Home screen' },
           { src: '/screenshots/kvitteringsvakt/02-skanning.jpg', alt: 'Receipt scanning' },
@@ -27,11 +29,13 @@ const app = getApp('kvitteringsvakt');
           { src: '/screenshots/kvitteringsvakt/04-forsikring.jpg', alt: 'Insurance' },
           { src: '/screenshots/kvitteringsvakt/05-statistikk.jpg', alt: 'Statistics' },
         ]} />
+        <p class="muted">You own the data. We don't see a single receipt. Everything sits in your iCloud.</p>
       </Chapter>
       <Chapter num="03" label="What it does" title={`<em>Scan, remember</em>, export.`}>
-        <p>Scan a receipt in one second. Apple Vision reads store, amount, and date on the device. You can correct anything if OCR misses.</p>
-        <p>Remembers the warranty period for you. Appliances, electronics, bikes. Each category has a typical expected lifetime that determines the warranty deadline.</p>
-        <p>Search and export. Find by store, date, category. Export everything as a PDF for insurance claims or tax filing.</p>
+        <p><strong>Scan a receipt in a second.</strong> OCR on the device via Apple Vision. Store, amount, date. Works with both paper receipts and digital emails (take a screenshot).</p>
+        <p><strong>Remembers the warranty for you.</strong> Each category has a typical expected lifetime (white goods 5 years, electronics 2 years, bicycles 2 years) that drives the complaint deadline. Adjustable per receipt.</p>
+        <p><strong>Search and export.</strong> Find by store, date, category or free text. Export everything or one as a PDF for an insurance claim, tax return or sale.</p>
+        <p><strong>Insurance register.</strong> Add insurance policies alongside the receipts, so you have the deductible and policy number in the same place.</p>
       </Chapter>
       <PrevNextApp slug={app.slug} />
     </div>

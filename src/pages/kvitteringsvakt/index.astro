@@ -15,11 +15,13 @@ const app = getApp('kvitteringsvakt');
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
       <Chapter num="01" label="Hvorfor" title={`Norsk <em>forbrukerlov</em>, lett å bruke.`}>
-        <p class="lede">Kvitteringsvakt finnes fordi norsk forbrukerkjøpslov gir deg fem års reklamasjonsrett, og ingen husker det når vaskemaskinen ryker.</p>
-        <p class="muted">Skann kvitteringen i kassa, app-en husker datoen, og varsler deg før garantien går ut. Bygd for det norske handelsmønsteret.</p>
+        <p class="lede">Kvitteringsvakt finnes fordi norsk forbrukerkjøpslov gir deg fem års reklamasjonsrett på ting som er ment å vare lenge. Ingen husker det når vaskemaskinen ryker tre år inn.</p>
+        <p>Skann kvitteringen i kassa, app-en husker datoen, og sier ifra før garantien går ut. Bygd for det norske handelsmønsteret. Butikker du faktisk handler i, kategorier som faktisk gjelder.</p>
+        <p class="muted">Hvis du noen gang har rotet i ringpermen for å finne kvitteringen på vaskemaskinen, vet du allerede hvorfor.</p>
       </Chapter>
       <Chapter num="02" label="Slik føles det" title={`For når du <em>trenger papirene</em>.`}>
-        <p>Hvitevarene ryker. Vanligvis akkurat det øyeblikket du har glemt hvor du la kvitteringen. Kvitteringsvakt er den ene plassen du vet du finner det igjen, kategorisert, søkbart, og med en PDF du kan sende butikken.</p>
+        <p>Hvitevarene ryker. Vanligvis akkurat det øyeblikket du har glemt hvor du la kvitteringen. Kvitteringsvakt er den ene plassen du vet du finner det igjen. Kategorisert, søkbart, og med en PDF du kan sende butikken før du legger på telefonen.</p>
+        <p>I kassa: ta opp telefonen, skann, ferdig. Apple Vision leser butikk, beløp og dato på selve enheten. Korriger hvis OCR-en bommer på en NOK eller en dato.</p>
         <ChapterShots shots={[
           { src: '/screenshots/kvitteringsvakt/01-hjem.jpg', alt: 'Hjem-skjerm' },
           { src: '/screenshots/kvitteringsvakt/02-skanning.jpg', alt: 'Kvitteringsskanning' },
@@ -27,11 +29,13 @@ const app = getApp('kvitteringsvakt');
           { src: '/screenshots/kvitteringsvakt/04-forsikring.jpg', alt: 'Forsikring' },
           { src: '/screenshots/kvitteringsvakt/05-statistikk.jpg', alt: 'Statistikk' },
         ]} />
+        <p class="muted">Du eier dataene. Vi ser ikke en eneste kvittering. Alt ligger i din iCloud.</p>
       </Chapter>
       <Chapter num="03" label="Hva den gjør" title={`<em>Skann, husk</em>, eksporter.`}>
-        <p>Skann en kvittering på ett sekund. Apple Vision leser butikk, beløp og dato på enheten. Du kan korrigere hvis OCR-en bommer.</p>
-        <p>Husker garantitiden for deg. Hvitevarer, elektronikk, sykler. Hver kategori har en typisk forventet levetid som styrer reklamasjonsfristen.</p>
-        <p>Søk og eksport. Finn med butikk, dato, kategori. Eksporter alt som PDF til forsikringssak eller skattemelding.</p>
+        <p><strong>Skann en kvittering på ett sekund.</strong> OCR på enheten via Apple Vision. Butikk, beløp, dato. Fungerer med både kvitteringsark og digitale e-poster (ta skjermbilde).</p>
+        <p><strong>Husker garantitiden for deg.</strong> Hver kategori har en typisk forventet levetid (hvitevarer 5 år, elektronikk 2 år, sykler 2 år) som styrer reklamasjonsfristen. Justerbart per kvittering.</p>
+        <p><strong>Søk og eksport.</strong> Finn på butikk, dato, kategori eller fritekst. Eksporter alt eller én som PDF til forsikringssak, skattemelding eller salgsobjekt.</p>
+        <p><strong>Forsikringsregister.</strong> Legg inn forsikringer ved siden av kvitteringene, så du har egenandel og polisenummer på samme sted.</p>
       </Chapter>
       <PrevNextApp slug={app.slug} />
     </div>

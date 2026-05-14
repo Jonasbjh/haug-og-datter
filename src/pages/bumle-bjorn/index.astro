@@ -15,11 +15,13 @@ const app = getApp('bumle-bjorn');
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
       <Chapter num="01" label="Hvorfor" title={`Et lite stykke <em>hverdagsmagi</em>.`}>
-        <p class="lede">Bumle Bjørn finnes fordi datteren min skulle ha bedre apper enn de jeg så på App Store.</p>
-        <p class="muted">Foreldrenes egen stemme, ikke en syntetisk amerikansk fortellerstemme. Ingen reklame. Helt greit å slutte etter fem minutter.</p>
+        <p class="lede">Bumle Bjørn finnes fordi datteren min skulle ha bedre apper enn de jeg så på App Store. De fleste barneappene jeg lastet ned ba om noe. Abonnement, oppmerksomhet, stjerner, en konto.</p>
+        <p>Vi ville ha noe annerledes. En bjørn som leser opp ord på kjente stemmer, og som ikke prøver å holde på barnet ett sekund lenger enn det selv vil bli.</p>
+        <p class="muted">Ingen reklame. Ingen profil. Helt greit å slutte etter fem minutter.</p>
       </Chapter>
-      <Chapter num="02" label="Slik føles det" title={`Bygget for <em>de små øyeblikkene</em>.`}>
+      <Chapter num="02" label="Slik føles det" title={`Bygget for de <em>små øyeblikkene</em>.`}>
         <p>På bussen, før leggetid, mens middagen koker. Du henter telefonen, gir den til barnet, og vet at det som dukker opp er trygt og laget for nettopp dette øyeblikket.</p>
+        <p>Bjørnen sier ordene med stemmen til pappa, mamma eller besteforeldre. Barnet kjenner igjen tonefallet. Ikke en syntetisk amerikansk fortellerstemme som har lært seg norsk på halvannen ettermiddag.</p>
         <ChapterShots shots={[
           { src: '/screenshots/bumle-bjorn/01-home.png', alt: 'Hjem-skjerm' },
           { src: '/screenshots/bumle-bjorn/02-game.png', alt: 'Spillmodus' },
@@ -27,11 +29,12 @@ const app = getApp('bumle-bjorn');
           { src: '/screenshots/bumle-bjorn/04-result.png', alt: 'Resultat' },
           { src: '/screenshots/bumle-bjorn/05-bear.png', alt: 'Bumle' },
         ]} />
+        <p class="muted">Datteren min er testpiloten. Hennes «en gang til, pappa!» er det jeg måler etter.</p>
       </Chapter>
       <Chapter num="03" label="Hva den gjør" title={`Tre ting den gjør <em>godt</em>.`}>
-        <p>Egne stemmer. Foreldre, besteforeldre eller pedagoger spiller inn ordene selv. Barnet hører kjente stemmer og dialekter, ikke en syntetisk fortellerstemme.</p>
-        <p>Bilde og lyd-gjenkjennelse. Barnet drar, peker eller velger. Ingen poeng eller stjerner som fjerner fokuset fra mestringen.</p>
-        <p>Foreldremodus med kode. Innstillinger og opptak låst bak en enkel sperre, så barnet ikke kan slette innholdet ved et uhell.</p>
+        <p><strong>Egne stemmer.</strong> Foreldre, besteforeldre eller pedagoger spiller inn ordene selv. Lagres lokalt. Barnet hører kjente dialekter, ikke en ferdig pakke.</p>
+        <p><strong>Bilde og lyd-gjenkjennelse.</strong> Barnet drar, peker eller velger. Riktig svar feirer seg selv stille. Ingen poeng eller stjerner som flytter fokus bort fra mestringen.</p>
+        <p><strong>Foreldremodus med kode.</strong> Innstillinger og opptak er låst bak en enkel sperre. Barnet kan ikke slette innholdet ved et uhell, og du sitter trygt med iPad-en på fanget.</p>
       </Chapter>
       <PrevNextApp slug={app.slug} />
     </div>

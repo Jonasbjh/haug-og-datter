@@ -15,11 +15,13 @@ const app = getApp('plantekn');
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
       <Chapter num="01" label="Why" title={`The tool you <em>should have had</em> at the build meeting.`}>
-        <p class="lede">Plantekn exists because the professional planning apps are too heavy, and pencil and paper are too loose.</p>
-        <p class="muted">A quiet tool that gives you precise measurements, a Nordic furniture library, and a simple electrical-symbol vocabulary, with no learning curve.</p>
+        <p class="lede">Plantekn exists because the professional planning apps are too heavy. You need a weekend to learn them. Pencil and paper are too loose. You draw the sofa and discover it's two centimeters too wide once it's already bought.</p>
+        <p>Between the two stands Plantekn. A quiet tool that gives you precise measurements, a Nordic furniture library and a simple language for electrical symbols, with no learning curve.</p>
+        <p class="muted">Built because I was renovating myself and missed it.</p>
       </Chapter>
       <Chapter num="02" label="How it feels" title={`<em>iPad and pencil</em>, in one.`}>
-        <p>You're standing in the middle of the room you're renovating. The iPad is on, you draw walls with a fingertip, drag in the sofa from the library, and see if everything fits before you call the store.</p>
+        <p>You stand in the room you're renovating. The iPad is on, you draw walls with your fingertip, drag in the sofa from the library, and see if everything fits before you call the store.</p>
+        <p>When you flip to 3D, the sketch becomes a room you can almost stand in. Not an architect's drawing, but enough to see if the kitchen island sits too close to the wall, if the bedroom takes a queen size, if the wardrobe needs sliding doors.</p>
         <ChapterShots shots={[
           { src: '/screenshots/plantekn/01-hero.png', alt: 'Main view' },
           { src: '/screenshots/plantekn/02-furniture.png', alt: 'Furniture library' },
@@ -28,11 +30,13 @@ const app = getApp('plantekn');
           { src: '/screenshots/plantekn/05-pro.png', alt: 'PRO features' },
           { src: '/screenshots/plantekn/06-settings.png', alt: 'Settings' },
         ]} />
+        <p class="muted">Apple Pencil if you have one. Finger works too.</p>
       </Chapter>
       <Chapter num="03" label="What it does" title={`<em>Measurements, furniture</em>, wiring.`}>
-        <p>Room layout in real measurements. Draw walls, each line shows meters and centimeters. Everything stays precise when you zoom or move.</p>
-        <p>Furniture library in Nordic dimensions. Sofa, bed, table, kitchen units. Drag in, rotate, check the fit.</p>
-        <p>Wiring and outlets. Standardized symbols, good enough to talk to an electrician without misunderstandings.</p>
+        <p><strong>Room layout in real measurements.</strong> Draw walls. Each line shows meters and centimeters. Everything stays precise as you zoom or move. Area is calculated per NS 3940 (BRA, P-rom, S-rom).</p>
+        <p><strong>Furniture library in Nordic dimensions.</strong> Sofa, bed, table, kitchen modules. Drag in, rotate, check the fit. PRO unlocks the full library plus AI-based suggestions when you're stuck.</p>
+        <p><strong>Wiring and outlets.</strong> Standardised symbols, good enough to talk to an electrician without misunderstanding.</p>
+        <p><strong>Photo Trace (PRO).</strong> Place a photo of an existing room underneath and trace over it. No more guessing measurements from a photograph.</p>
       </Chapter>
       <PrevNextApp slug={app.slug} />
     </div>

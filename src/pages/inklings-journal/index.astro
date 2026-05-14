@@ -15,17 +15,21 @@ const app = getApp('inklings-journal');
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
       <Chapter num="01" label="Hvorfor" title={`Et stille rom for <em>dagens tanke</em>.`}>
-        <p class="lede">Inklings Journal er bygget rundt én idé: en dagbok skal være liten og rolig. Et stille rom for dagens tanke, ikke en tjeneste å holde liv i.</p>
-        <p class="muted">Daglig prompt eller blank side. Lokalt først, iCloud kun hvis du selv velger det. Face ID hvis du vil. Markdown-eksport når du vil ta innholdet med deg.</p>
+        <p class="lede">Inklings er bygget rundt én idé. En dagbok skal være liten og rolig. Et stille rom for dagens tanke, ikke en tjeneste å holde liv i.</p>
+        <p>Det er ingen rekord å holde, ingen streak å miste, ingen påminnelser som maser. Hopper du over fire dager, er Inklings akkurat like glad å se deg på den femte.</p>
+        <p class="muted">Daglig prompt eller blank side. Lokalt først. iCloud kun hvis du selv velger det.</p>
       </Chapter>
       <Chapter num="02" label="Slik føles det" title={`Skriv først. <em>Resten</em> kan vente.`}>
         <p>Du har ti minutter mellom møtene. Du åpner Inklings, ser dagens prompt («Hva la jeg merke til?»), skriver to setninger. Du lukker igjen. Det føltes ikke som arbeid.</p>
+        <p>Designet er bevisst editorial. Newsreader serif, brass-aksent, drop caps. Det ligner mer på en notatbok enn en app. Mørk, varm bakgrunn. Ingen blinkende elementer.</p>
         <ChapterShots count={6} />
+        <p class="muted">Face ID hvis du vil. Markdown-eksport når du vil ta innholdet med deg.</p>
       </Chapter>
       <Chapter num="03" label="Hva den gjør" title={`Daglig prompt. <em>Søk.</em> Eksport.`}>
-        <p>Daglig prompt eller blank side, du velger selv. Inklings kan vise en setning som starter pennen, eller du kan slå det av og bare skrive.</p>
-        <p>Tidsmaskin og søk. Bla til denne datoen i fjor. Søk på et ord eller et tema gjennom alle entries.</p>
-        <p>Lokalt først. Alt lagres i SwiftData på enheten din. iCloud-sync er valgfri og opt-in.</p>
+        <p><strong>Daglig prompt eller blank side.</strong> Inklings kan vise en setning som starter pennen, eller du kan slå det av og bare skrive.</p>
+        <p><strong>Tidsmaskin og søk.</strong> Bla til denne datoen i fjor. Søk på et ord eller et tema gjennom alle entries. Tag-system for å finne tilbake.</p>
+        <p><strong>Lokalt først.</strong> Alt lagres i SwiftData på enheten din. iCloud-sync er valgfri og opt-in. Eksporter til markdown når som helst.</p>
+        <p><strong>App Intents og Siri Shortcuts.</strong> «Hei Siri, åpne dagens Inklings» fra håndleddet. Liten ting, men det er den slags den er bygd for.</p>
       </Chapter>
       <PrevNextApp slug={app.slug} />
     </div>
