@@ -34,6 +34,7 @@ const locale = resolveLocale(Astro.currentLocale);
           data-idx={i}
           data-num={num}
           data-name={app.name}
+          data-tagline={app.tagline}
           style={`--accent: ${app.accent}; --idx: ${i};`}
           aria-label={`Gå til ${app.name}`}
         >
@@ -69,6 +70,7 @@ const locale = resolveLocale(Astro.currentLocale);
     <span class="atelier__counter">{`01 / ${String(apps.length).padStart(2, '0')}`}</span>
     <span class="atelier__label">{apps[0]?.name ?? ''}</span>
   </div>
+  <p class="atelier__tagline" aria-live="polite"></p>
 </section>
 
 <script>
@@ -77,6 +79,7 @@ const locale = resolveLocale(Astro.currentLocale);
   const stage = document.querySelector<HTMLElement>('.atelier__stage');
   const counter = document.querySelector<HTMLElement>('.atelier__counter');
   const label = document.querySelector<HTMLElement>('.atelier__label');
+  const tagline = document.querySelector<HTMLElement>('.atelier__tagline');
 
   if (stage && counter && label) {
     const total = stage.querySelectorAll('.atelier__phone').length;
@@ -84,14 +87,18 @@ const locale = resolveLocale(Astro.currentLocale);
     const defaultNum = stage.dataset.defaultNum ?? '01';
     const defaultName = stage.dataset.defaultName ?? '';
 
-    const setActive = (num: string, name: string) => {
+    const setActive = (num: string, name: string, tag: string) => {
       counter.textContent = `${num} / ${totalStr}`;
       label.textContent = name;
+      if (tagline) {
+        tagline.textContent = tag;
+        tagline.classList.toggle('is-on', Boolean(tag));
+      }
     };
-    const reset = () => setActive(defaultNum, defaultName);
+    const reset = () => setActive(defaultNum, defaultName, '');
 
     stage.querySelectorAll<HTMLAnchorElement>('.atelier__phone').forEach((p) => {
-      const onIn = () => setActive(p.dataset.num ?? '', p.dataset.name ?? '');
+      const onIn = () => setActive(p.dataset.num ?? '', p.dataset.name ?? '', p.dataset.tagline ?? '');
       p.addEventListener('mouseenter', onIn);
       p.addEventListener('focusin', onIn);
       p.addEventListener('mouseleave', reset);
