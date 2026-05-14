@@ -941,8 +941,15 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   display: grid;
   grid-template-columns: 1fr;
   gap: 64px;
-  margin: 96px 0 0;
+  margin: 96px auto 0;
   max-width: 720px;
+  text-align: center;
+  justify-items: center;
+}
+.block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .block h2 {
   font-size: 14px;
@@ -960,6 +967,8 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   color: var(--ink);
   max-width: 36ch;
   letter-spacing: -0.005em;
+  margin-left: auto;
+  margin-right: auto;
 }
 .block p + p { margin-top: 18px; }
 .block a.tx-link { color: var(--ink); }
