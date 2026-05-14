@@ -354,11 +354,16 @@ body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in okl
 @media (max-width: 720px) {
   .menubar {
     top: 8px;
-    font-size: 9.5px;
-    padding: 4px 6px;
+    font-size: 9px;
+    padding: 4px 4px;
+    /* Fade-maske på høyre side for å antyde at menyen er scrollbar
+       når ikke alt får plass. Forsvinner naturlig når man har scrollet
+       til siste element (EN) er nesten i midten. */
+    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 calc(100% - 22px), transparent 100%);
+    mask-image: linear-gradient(to right, #000 0%, #000 calc(100% - 22px), transparent 100%);
   }
-  .menubar a { padding: 4px 8px; }
-  .menubar .lang-switch { padding: 4px 7px; }
+  .menubar a { padding: 4px 7px; letter-spacing: 0.05em; }
+  .menubar .lang-switch { padding: 4px 6px; margin-left: 2px; }
 }
 
 /* ---------- Type ---------- */
@@ -1763,7 +1768,10 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   }
   .topbar .mark { justify-content: center; }
   .topbar .meter { justify-content: center; flex-wrap: wrap; }
-  .topbar .nav { display: none; }
+  /* Behold Tilbake/Kontakt-nav synlig på mobil app-sider så brukere
+     har en åpenbar vei tilbake til hub. */
+  .topbar .nav { gap: 16px; font-size: 12.5px; }
+  .topbar .nav a { font-size: 12.5px; }
   .topbar .pill { font-size: 9.5px; padding: 5px 10px; }
   .topbar .mark .meta { display: none; }
 

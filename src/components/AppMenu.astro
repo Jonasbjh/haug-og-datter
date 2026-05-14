@@ -49,5 +49,6 @@ const hubHref = localizedPath(locale, '/');
       </a>
     );
   })}
+  <a href={strings.nav.aboutPath} aria-current={isActive(strings.nav.aboutPath) ? 'page' : undefined}>{strings.nav.about}</a>
   <LanguageSwitcher />
 </nav>

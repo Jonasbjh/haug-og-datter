@@ -11,6 +11,8 @@ export const translations = {
   no: {
     nav: {
       hub: 'Hub',
+      about: 'Om',
+      aboutPath: '/om',
     },
     atelier: {
       eyebrow: 'Atelieret',
@@ -55,6 +57,8 @@ export const translations = {
   en: {
     nav: {
       hub: 'Hub',
+      about: 'About',
+      aboutPath: '/en/about',
     },
     atelier: {
       eyebrow: 'The Studio',

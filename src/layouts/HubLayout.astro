@@ -21,6 +21,8 @@ const defaultDescription = locale === 'en'
   ? 'A small app studio from Drammen. Apps built with time, patience, and a little too much coffee.'
   : 'Et lite app-makeri fra Drammen. Apper laget med tid, tålmodighet og litt for mye kaffe.';
 const { title = defaultTitle, description = defaultDescription } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://haugogdatter.no').toString();
+const ogImage = new URL('/logo/haug-datter-skogen-og.png', Astro.site ?? 'https://haugogdatter.no').toString();
 ---
 <!doctype html>
 <html lang={strings.htmlLang}>
@@ -28,6 +30,7 @@ const { title = defaultTitle, description = defaultDescription } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,6 +39,20 @@ const { title = defaultTitle, description = defaultDescription } = Astro.props;
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
     />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Haug & Datter" />
+    <meta property="og:locale" content={locale === 'en' ? 'en_US' : 'nb_NO'} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Haug & Datter — app-makeri fra Drammen" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <title>{title}</title>
   </head>
   <body>

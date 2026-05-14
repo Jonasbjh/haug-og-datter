@@ -1,0 +1,51 @@
+---
+import HubLayout from '../layouts/HubLayout.astro';
+import Topbar from '../components/Topbar.astro';
+import Footer from '../components/Footer.astro';
+---
+<HubLayout
+  title="Om · Haug & Datter"
+  description="Om Jonas, Haug & Datter, og hvorfor jeg lager apper på kveldstid fra Drammen."
+>
+  <Topbar variant="hub" />
+
+  <section class="hero reveal">
+    <h1 class="display">Om</h1>
+    <p class="lede">Et lite app-makeri drevet av én fyr i Drammen.</p>
+    <img class="hero__logo" src="/logo/haug-datter-skogen.svg?v=2" alt="Haug & Datter" width="300" height="300" />
+  </section>
+
+  <section class="blocks reveal">
+    <div class="block">
+      <h2>Hvem</h2>
+      <p>Jonas. iOS-utvikler fra Drammen. Bygger apper på kveldstid etter at datteren har lagt seg, og av og til mens hun klatrer over tastaturet.</p>
+      <p>Haug & Datter er ingen organisasjon. Det er meg, datteren min (to og et halvt og full av meninger), og noen apper vi har bygget sammen. «Vi» er en passende strekk.</p>
+    </div>
+
+    <div class="block">
+      <h2>Hvorfor</h2>
+      <p>Jeg lager apper jeg selv ville brukt, og som datteren min selv ville brukt. Hvis ingen andre vil bruke dem, er det greit også. Hvis noen andre liker dem, er det enda bedre.</p>
+    </div>
+
+    <div class="block">
+      <h2>Hvordan</h2>
+      <p>Alle appene deler noen prinsipper. De er lokale først. Ingen analyse, ingen tracking, ingen reklame. Det du lager er ditt, og synker via Apple-konto om du ønsker det.</p>
+      <p>Engangskjøp, ikke abonnement. Apper skal ikke gnage på lommeboken hver måned for å fortsette å fungere.</p>
+    </div>
+
+    <div class="block">
+      <h2>Stack</h2>
+      <p>SwiftUI. iOS 17 og oppover. Helt vanlig Apple-utvikling, ingen tredjepartsbiblioteker uten god grunn. Nettsiden er Astro, hostet på Cloudflare Pages.</p>
+    </div>
+
+    <div class="block">
+      <h2>Kontakt</h2>
+      <p>
+        <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>
+      </p>
+      <p class="muted" style="font-size: 16px;">Du får svar fra meg, vanligvis innen et døgn.</p>
+    </div>
+  </section>
+
+  <Footer label="Haug & Datter · Drammen" />
+</HubLayout>
