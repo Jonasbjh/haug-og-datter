@@ -1181,8 +1181,12 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   gap: 14px;
 }
 .app-rail__hero {
-  flex: 0 0 auto;
+  /* Safari-fix: eksplisitt flex-basis hindrer at img-ens intrinsic
+     størrelse (512×512) blir brukt som basis i stedet for 64px. */
+  flex: 0 0 64px;
   width: 64px; height: 64px;
+  min-width: 64px; min-height: 64px;
+  max-width: 64px; max-height: 64px;
   border-radius: 18px;
   overflow: hidden;
   background: var(--card);
@@ -1190,8 +1194,17 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
     0 10px 24px -10px rgba(0,0,0,0.5),
     inset 0 0 0 1px rgba(255,255,255,0.18);
   animation: heroBob 4.8s var(--ease) infinite;
+  /* Safari-fix: tving ny stacking context så overflow:hidden faktisk
+     klipper det transform-animerte innholdet (heroBob). */
+  isolation: isolate;
+  transform: translateZ(0);
 }
-.app-rail__hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.app-rail__hero img {
+  width: 64px; height: 64px;
+  max-width: 100%; max-height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .app-rail__heroLabel {
   font-family: 'Newsreader', Georgia, serif;
   font-style: italic;
