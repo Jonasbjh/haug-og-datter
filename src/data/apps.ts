@@ -125,7 +125,7 @@ export const apps: AppDef[] = [
     },
     /* App Store-URL: bytt til kanonisk app-side når Hyttepermen er live. */
     appStoreUrl: 'https://apps.apple.com/no/search?term=Hyttepermen',
-    iconPath: '/icons/hyttepermen.png',
+    iconPath: '/icons/hyttepermen.png?v=2',
     accent: '#C97B5A',
     glyph: 'cabin',
     hidden: true,
