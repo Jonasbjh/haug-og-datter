@@ -51,6 +51,18 @@ export const apps: AppDef[] = [
     glyph: 'circles',
   },
   {
+    slug: 'naboskap',
+    name: 'Naboskap',
+    tagline: {
+      no: 'For lånegrupper du bygger selv.',
+      en: 'For lending groups you build yourself.',
+    },
+    appStoreUrl: 'https://apps.apple.com/no/app/naboskap/id6768093048',
+    iconPath: '/icons/naboskap.png',
+    accent: '#4A6B58',
+    glyph: 'rings',
+  },
+  {
     slug: 'plantekn',
     name: 'Plantekn',
     tagline: {
@@ -97,18 +109,6 @@ export const apps: AppDef[] = [
     iconPath: '/icons/inklings-journal.png',
     accent: '#1F3528',
     glyph: 'script',
-  },
-  {
-    slug: 'naboskap',
-    name: 'Naboskap',
-    tagline: {
-      no: 'For lånegrupper du bygger selv.',
-      en: 'For lending groups you build yourself.',
-    },
-    appStoreUrl: 'https://apps.apple.com/no/app/naboskap/id6768093048',
-    iconPath: '/icons/naboskap.png',
-    accent: '#4A6B58',
-    glyph: 'rings',
   },
 ];
 
