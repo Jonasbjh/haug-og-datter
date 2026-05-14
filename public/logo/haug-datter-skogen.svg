@@ -17,5 +17,5 @@
   <circle cx="242" cy="140" r="2.4" fill="#E8DCB8"></circle>
   <text x="108" y="170" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-weight="500" font-size="84" letter-spacing="-0.02em" fill="#E8DCB8">H</text>
   <text x="172" y="170" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-weight="500" font-size="84" letter-spacing="-0.02em" fill="#E8DCB8">D</text>
-  <text x="140" y="184" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-style="italic" font-weight="500" font-size="28" letter-spacing="-0.02em" fill="#F4ECD7">&amp;</text>
+  <text x="140" y="170" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-style="italic" font-weight="500" font-size="28" letter-spacing="-0.02em" fill="#F4ECD7">&amp;</text>
 </svg>
