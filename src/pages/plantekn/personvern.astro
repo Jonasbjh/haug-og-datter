@@ -13,38 +13,48 @@ const app = getApp('plantekn');
     <AppRail app={app} current="personvern" />
     <div class="app-flow">
       <Chapter num="01" label="I korte trekk" title={`Personvern, på <em>vanlig norsk</em>.`}>
-        <p class="lede">{app.name} er utviklet av Haug & Datter (Jonas Haug, Drammen). Vi tar personvern på alvor. Denne erklæringen forklarer hvordan appen behandler dataene dine.</p>
-        <p class="muted">Sist oppdatert · mars 2026.</p>
+        <p class="lede">{app.name} er en plantegnings- og interiørdesign-app for iPhone og iPad. Vi har gjort det så enkelt som mulig: appen samler ikke inn personopplysninger om deg. Ingen brukerkonto, ingen server, ingen sporing, ingen reklame.</p>
+        <p class="muted">Sist oppdatert · 14. mai 2026.</p>
       </Chapter>
 
-      <Chapter num="02" label="Data" title={`Hva vi <em>ikke</em> samler inn.`}>
-        <p>{app.name} samler ingen persondata. Appen:</p>
-        <p>· Krever ingen registrering eller innlogging.</p>
-        <p>· Sender ingen data til eksterne servere.</p>
-        <p>· Bruker ingen analyseverktøy eller sporingsløsninger.</p>
-        <p>· Har ingen annonser.</p>
+      <Chapter num="02" label="Data" title={`Hva appen <em>faktisk lagrer</em>.`}>
+        <p>Appen lagrer kun det du selv lager, og noen tekniske innstillinger:</p>
+        <p>· <strong>Plantegningene dine</strong> — rom, møbler, dører, vinduer, trapper, etasjer og notater. Lagres som filer i `.plantekn`-formatet (JSON).</p>
+        <p>· <strong>Bilder du laster opp som sporingsbakgrunn</strong> (Photo Trace, Pro-funksjon). Lagres inne i prosjektfilen din.</p>
+        <p>· <strong>App-innstillinger</strong> — språkvalg, grid- og snap-størrelser, lys/mørk modus, om du har sett innføringen.</p>
+        <p>· <strong>Lokale tellere</strong> — antall ganger appen er åpnet, om du har vurdert appen, antall Pro-kjøpsvisninger.</p>
+        <p>· <strong>Pro-status</strong> — om du har kjøpt {app.name} PRO.</p>
+        <p class="muted">Ingenting av dette sendes til oss eller til en tredjepart. Alt blir liggende på din enhet eller i din iCloud-konto.</p>
       </Chapter>
 
-      <Chapter num="03" label="Lokal lagring" title={`Plantegningene er <em>dine</em>.`}>
-        <p>Alle plantegninger og innstillinger lagres lokalt på enheten din. Ingen data overføres til skyen eller til tredjeparter.</p>
-        <p class="muted">Hvis du har slått på iCloud-sync i iOS-innstillingene, synkroniseres innholdet mellom dine egne enheter via Apples krypterte iCloud. Vi har ingen tilgang til dette.</p>
+      <Chapter num="03" label="Lagring" title={`På enheten din. <em>Eventuelt iCloud.</em>`}>
+        <p>Data lagres på enheten din i appens private mappe, og i din iCloud Drive (`iCloud.com.jonas.Plantekn`) hvis du har iCloud aktivert. Hvis iCloud ikke er tilgjengelig, lagres alt kun lokalt. Du ser hva som er aktivt under Innstillinger → Om → Lagring.</p>
+        <p class="muted">{app.name} har ingen tilgang til iCloud-kontoen din. Apple synker filene mellom dine egne enheter på vegne av deg. <a class="tx-link" href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apples personvernerklæring for iCloud</a>.</p>
       </Chapter>
 
-      <Chapter num="04" label="Kjøp" title={`PRO håndteres av <em>Apple</em>.`}>
-        <p>{app.name} tilbyr en valgfri PRO-oppgradering via Apples App Store. Alle kjøpstransaksjoner håndteres av Apple. Vi har ikke tilgang til betalingsopplysningene dine.</p>
+      <Chapter num="04" label="Kjøp og vurdering" title={`Apple <em>håndterer betaling</em>.`}>
+        <p>Kjøp av {app.name} PRO håndteres i sin helhet av Apple via App Store og StoreKit. Vi mottar kun et signal om at kjøpet er gjennomført — vi ser ikke betalingsdetaljer, kortnummer eller faktureringsadresse.</p>
+        <p>Når appen ber deg vurdere {app.name}, brukes Apples standardfunksjon (`SKStoreReviewController`). Vurderingen håndteres av Apple. Vi vet kun om du har valgt «ja, jeg vil vurdere» — vi ser ikke selve vurderingen eller stjerneantallet.</p>
       </Chapter>
 
-      <Chapter num="05" label="Tredjepart" title={`Ingen sporing. <em>Ingen analyse.</em>`}>
-        <p>Appen deler ingen data med tredjeparter. Den eneste eksterne tjenesten som benyttes er Apples StoreKit for kjøp i appen.</p>
+      <Chapter num="05" label="Photo Trace" title={`Bildet du velger, <em>blir hos deg</em>.`}>
+        <p>Hvis du bruker Photo Trace (Pro), velger du et bilde fra fotobiblioteket via Apples Photos Picker. Bildet behandles kun på enheten din og lagres inne i prosjektfilen som en del av den. {app.name} ber ikke om tilgang til hele fotobiblioteket — bare det enkelte bildet du velger.</p>
+        <p class="muted">Apple Pencil og haptisk tilbakemelding bruker standard iOS-API-er. Ingen data samles inn.</p>
       </Chapter>
 
-      <Chapter num="06" label="Barn" title={`Ingen data fra <em>noen</em> brukere.`}>
-        <p>Appen samler ingen data fra noen brukere, inkludert barn. Det er ingen aldersgrense for bruk av appen.</p>
+      <Chapter num="06" label="Tredjepart" title={`Ingen sporing. <em>Ingen analyse.</em>`}>
+        <p>Det finnes ingen analyse- eller sporingsteknologi i {app.name}. Vi bruker ikke Google Analytics, Firebase, Crashlytics, AppsFlyer, Adjust, TelemetryDeck eller andre liknende tjenester. Ingen IDFA, ingen reklame-ID brukes.</p>
+        <p class="muted">Den eneste tredjeparten som er involvert, er Apple (App Store, iCloud, StoreKit, system-vurderingsdialog). Apples vilkår og personvernerklæring gjelder for disse tjenestene.</p>
       </Chapter>
 
-      <Chapter num="07" label="Kontakt" title={`Spørsmål? <em>Skriv til oss.</em>`}>
+      <Chapter num="07" label="Barn og rettigheter" title={`Trygt for <em>alle aldre</em>.`}>
+        <p>{app.name} er ikke rettet mot barn under 13 år, men kan trygt brukes av alle aldre fordi appen ikke samler inn personopplysninger.</p>
+        <p>Siden vi ikke har dine personopplysninger, har vi ingenting å levere ut eller slette på din forespørsel. Du har full kontroll over dine egne filer — slett appen eller fjern prosjektene dine fra iCloud Drive når du måtte ønske det.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Kontakt" title={`Spørsmål? <em>Skriv til oss.</em>`}>
         <p>Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Du får svar fra Jonas selv, vanligvis innen et døgn.</p>
-        <p class="muted">Vi kan oppdatere denne erklæringen ved behov. Eventuelle endringer publiseres på denne siden med oppdatert dato.</p>
+        <p class="muted">Denne erklæringen kan oppdateres når funksjoner i appen endrer seg. Endringer publiseres på denne siden med ny «Sist oppdatert»-dato.</p>
       </Chapter>
     </div>
   </div>
