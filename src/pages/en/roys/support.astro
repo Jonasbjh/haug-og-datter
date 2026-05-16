@@ -1,0 +1,38 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('roys');
+---
+<AppLayout app={app} title={`Support · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="support" />
+    <div class="app-flow">
+      <Chapter num="01" label="Contact" title={`Send <em>email</em>.`}>
+        <p class="lede">Need help with {app.name}? Send an email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. You'll get a reply from Jonas himself, usually within a day.</p>
+      </Chapter>
+
+      <Chapter num="02" label="FAQ" title={`What people <em>ask about</em>.`}>
+        <p><strong>How do I start playing?</strong></p>
+        <p class="muted">Open the app and tap the cairn in the middle of the mountain. You'll land in Endless mode with four columns. Tap a column to drop a stone. Matching stones that come to rest next to each other merge.</p>
+        <p><strong>What is Røys+?</strong></p>
+        <p class="muted">A one-time purchase of 49 NOK that unlocks the Sprint, Zen and Skred modes, the statistics screen, alternative stone packs and ambient background sound. Valid for the lifetime of your Apple ID.</p>
+        <p><strong>I changed my iPhone, where's my mountain?</strong></p>
+        <p class="muted">Røys stores everything locally on the device and doesn't sync to iCloud. The mountain on the new phone starts from zero. Røys+ can be restored via "Restore purchases" in settings.</p>
+        <p><strong>How do I turn off Game Center?</strong></p>
+        <p class="muted">Go to Settings in the app and turn off "Game Center". This stops scores and achievements from being submitted. You can also sign out of Game Center in iOS settings if you want it off everywhere.</p>
+        <p><strong>How do I unlock more elements on the mountain?</strong></p>
+        <p class="muted">Play. Every merge yields grain. Grain drives the milestones, and each milestone adds a new element. It is slow on purpose.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Feedback" title={`Ideas, <em>bugs</em>, tips.`}>
+        <p>Features you miss? Bugs that bother you? Send them to the same address. I read everything and prioritise based on what actually makes the app calmer and finer to return to.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Support`} />
+</AppLayout>

@@ -1,0 +1,36 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('roys');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Hvorfor" title={`Et lite, stille <em>fjell du eier</em>.`}>
+        <p class="lede">Røys finnes fordi de fleste spill vil ha noe av deg. Tid, oppmerksomhet, et abonnement, et varsel. Røys er en stille app som vokser sakte, eies for alltid, og deler ikke fjellet ditt med noen.</p>
+        <p>Estetisk nordstjerne er Harald Sohlbergs «Vinternatt i Rondane». Klart, blått, rolig, monumentalt, ikke menneskelig, men med en hytte som glimter varmt i den nedre delen av lerretet. Det er stemningen jeg ville fange.</p>
+        <p class="muted">Bygd fordi togturer og senkvelder trenger en vane som ikke roper på deg.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Slik føles det" title={`Slipp en stein. <em>La den smelte.</em>`}>
+        <p>Du åpner Røys og lander rett på fjellet ditt. Et tre du har låst opp står der det stod sist. En sti, en fjellrev som krysser i utkanten. Midt på fjellet står en varde. Du tapper på varden, og runden begynner.</p>
+        <p>Like steiner som havner inntil hverandre smelter sammen til større. Hver smelting gir korn. Korn brukes aldri opp, de er en monotont voksende teller som over uker og måneder bygger fjellet ditt. Du eier hver fugl, hver kongle, hver liten varde, men du deler ikke noe.</p>
+        <p class="muted">Ingen badges, ingen rød knapp, ingen daglig påminnelse. Tar du en pause, står fjellet der du forlot det.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Hva den gjør" title={`Fire moduser, <em>ett fjell</em>.`}>
+        <p><strong>Endless</strong> er gratis-modusen. Du slipper steiner i fire kolonner, smelter dem sammen, bygger til alt er fullt og runden er over. Kjernen er bevisst enkel.</p>
+        <p><strong>Sprint</strong> er seksti sekunder med høyere tempo. <strong>Zen</strong> har ingen game over, fylte kolonner resetter rolig, det er for kvelden før sovn. <strong>Skred</strong> legger til to forhåndsvisninger og sjeldne Galder-steiner for spilleren som vil ha taktisk dybde uten å miste roen.</p>
+        <p>Korn opptjent låser opp milepæler. «Den første furua», «Lyngen finner feste», «Stillheten setter seg». Fjellet vokser visuelt for hver milepæl. Game Center er valgfritt for leaderboards og achievements, ellers ligger alt lokalt.</p>
+        <p><strong>Røys+ (engangskjøp, 49 kr).</strong> Låser opp Sprint, Zen og Skred, statistikk, alternative steinpakker og ambient bakgrunnslyd. Kjøp én gang, har for alltid. Ingen abonnement, ingen reklame, ingen analyse.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
+</AppLayout>

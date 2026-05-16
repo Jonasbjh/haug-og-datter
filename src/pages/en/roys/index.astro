@@ -1,0 +1,36 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('roys');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Why" title={`A small, quiet <em>mountain you own</em>.`}>
+        <p class="lede">Røys exists because most games want something from you. Time, attention, a subscription, a notification. Røys is a quiet app that grows slowly, is owned for good, and doesn't share your mountain with anyone.</p>
+        <p>The aesthetic north star is Harald Sohlberg's «Winter Night in the Mountains» (1914). Clear, blue, calm, monumental, not human, but with a cabin glowing warm at the lower edge of the canvas. That is the mood I wanted to catch.</p>
+        <p class="muted">Built because train rides and late evenings need a habit that doesn't shout at you.</p>
+      </Chapter>
+
+      <Chapter num="02" label="How it feels" title={`Drop a stone. <em>Let it merge.</em>`}>
+        <p>You open Røys and land directly on your mountain. A tree you've unlocked stands where it stood last. A path, a fox crossing in the distance. In the middle of the mountain, a cairn. You tap the cairn, and the round begins.</p>
+        <p>Matching stones that come to rest next to each other merge into bigger ones. Each merge yields grain. Grain is never spent, it's a monotonically growing counter that builds your mountain over weeks and months. You own every bird, every cone, every small cairn, but you don't share any of it.</p>
+        <p class="muted">No badges, no red button, no daily reminder. Take a break, and the mountain stays where you left it.</p>
+      </Chapter>
+
+      <Chapter num="03" label="What it does" title={`Four modes, <em>one mountain</em>.`}>
+        <p><strong>Endless</strong> is the free mode. You drop stones into four columns, merge them together, and build until the board is full and the round is over. The core is deliberately simple.</p>
+        <p><strong>Sprint</strong> is sixty seconds at a faster pace. <strong>Zen</strong> has no game over, full columns quietly reset, made for the hour before sleep. <strong>Skred</strong> adds two previews and rare Galder stones for the player who wants tactical depth without losing the calm.</p>
+        <p>Grain earned unlocks milestones. «The first pine», «Heather takes hold», «The silence settles». The mountain grows visually with each milestone. Game Center is optional for leaderboards and achievements, otherwise everything stays local.</p>
+        <p><strong>Røys+ (one-time purchase, 49 NOK).</strong> Unlocks Sprint, Zen and Skred, statistics, alternative stone packs and ambient background sound. Buy once, keep forever. No subscription, no ads, no analytics.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
+</AppLayout>

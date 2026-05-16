@@ -20,7 +20,8 @@ export type GlyphKind =
   | 'lines'     // kvitteringsvakt
   | 'script'    // inklings-journal
   | 'rings'     // naboskap
-  | 'cabin';    // hytteliv
+  | 'cabin'     // hytteliv
+  | 'cairn';    // roys
 
 export interface AppDef {
   slug: string;
@@ -128,6 +129,20 @@ export const apps: AppDef[] = [
     iconPath: '/icons/hyttepermen.png?v=2',
     accent: '#C97B5A',
     glyph: 'cabin',
+    hidden: true,
+  },
+  {
+    slug: 'roys',
+    name: 'Røys',
+    tagline: {
+      no: 'Et lite, stille fjell du eier.',
+      en: 'A small, quiet mountain you own.',
+    },
+    /* App Store-URL: bytt til kanonisk app-side når Røys er live. */
+    appStoreUrl: 'https://apps.apple.com/no/search?term=Røys',
+    iconPath: '/icons/roys.png',
+    accent: '#4A5D75',
+    glyph: 'cairn',
     hidden: true,
   },
 ];

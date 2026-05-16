@@ -1,0 +1,63 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('roys');
+---
+<AppLayout app={app} title={`Terms · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="vilkar" />
+    <div class="app-flow">
+      <Chapter num="01" label="License" title={`Distributed via <em>App Store</em>.`}>
+        <p class="lede">{app.name} is developed and published by Haug og Datter, and distributed through the Apple App Store. You receive a personal, non-transferable license to use the app under <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apple's Standard End User License Agreement</a>.</p>
+        <p class="muted">Last updated · 16 May 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Use" title={`A quiet game <em>for you alone</em>.`}>
+        <p>{app.name} is intended for personal use. You play alone against your own mountain. There is no co-op or multiplayer mode, no shared board, no social feed.</p>
+        <p>You can use the app as often or as rarely as you want. The mountain stays where you left it.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Free and Røys+" title={`A one-time purchase, <em>not a subscription</em>.`}>
+        <p>The app is free to download. The free version lets you play Endless mode as much as you want, unlock milestones, and watch the mountain grow.</p>
+        <p>Røys+ is a one-time purchase of 49 NOK. After purchase you get:</p>
+        <p>· Sprint mode (sixty-second countdown)</p>
+        <p>· Zen mode (no game over)</p>
+        <p>· Skred mode (two previews and Galder stones)</p>
+        <p>· Statistics screen with history and milestones</p>
+        <p>· Alternative stone packs (Coast, High Mountain, Forest)</p>
+        <p>· Ambient background sound and adjustable haptic intensity</p>
+        <p class="muted">Price and local currency are shown in the App Store purchase dialog. Røys+ follows your Apple ID and can be restored on new devices via "Restore purchases".</p>
+      </Chapter>
+
+      <Chapter num="04" label="Refunds" title={`Refunds are handled by <em>Apple</em>.`}>
+        <p>Refunds for Røys+ are handled by Apple. Request a refund via the App Store at <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
+        <p class="muted">{app.name} cannot itself refund purchases made through the App Store.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Ownership" title={`Your mountain <em>belongs to you</em>.`}>
+        <p>What you've built in the app is yours. It is stored in SwiftData on your device. If you delete the app, the mountain is gone too. We do not collect personal data. See the <a class="tx-link" href="/en/roys/personvern/">privacy policy</a> for details.</p>
+        <p class="muted">The app itself, code, design, icons and name, is owned by Haug og Datter. Røys+ grants you a personal, non-exclusive licence in accordance with Apple's Standard EULA. You may not copy, distribute, modify or reverse-engineer the app.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Liability" title={`A game, <em>not a guarantee</em>.`}>
+        <p>{app.name} is provided "as is". We give no warranty that the app is bug-free or that it meets your specific needs. To the extent permitted by Norwegian law, {app.name} cannot be held liable for loss of game state, lost milestones or other consequences arising from use of the app.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Changes" title={`Significant changes are <em>announced</em>.`}>
+        <p>We may update, change or remove features in the app. Significant changes are communicated through App Store release notes or a message in the app.</p>
+        <p>These terms may change. Updates are posted on this page with a new "Last updated" date. Continued use of the app after changes constitutes acceptance of the new terms.</p>
+        <p class="muted">These terms are governed by Norwegian law. Disputes shall first be attempted resolved amicably. If that fails, the proper venue is the Norwegian Consumer Authority (Forbrukertilsynet) and then Norwegian courts.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Contact" title={`Questions? <em>Write to us.</em>`}>
+        <p>Send email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. The <a class="tx-link" href="/en/roys/personvern/">privacy policy</a> for the app is here.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Terms`} />
+</AppLayout>
