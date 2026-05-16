@@ -28,6 +28,7 @@ export const translations = {
       appStoreCta: 'LAST NED I',
       appStoreName: 'App Store',
       appStoreAria: (name: string) => `Last ned ${name} i App Store`,
+      inDevelopment: 'Under utvikling. Ikke i App Store ennå.',
     },
     topbar: {
       back: 'Tilbake',
@@ -74,6 +75,7 @@ export const translations = {
       appStoreCta: 'Download on the',
       appStoreName: 'App Store',
       appStoreAria: (name: string) => `Download ${name} on the App Store`,
+      inDevelopment: 'In development. Not on the App Store yet.',
     },
     topbar: {
       back: 'Back',

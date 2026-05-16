@@ -1373,6 +1373,16 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   .app-rail__cta:hover { transform: none; }
 }
 
+.app-rail__status {
+  margin-top: 10px;
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-mute);
+  max-width: 200px;
+}
+
 .app-rail__sub {
   margin-top: 8px;
   display: flex;
