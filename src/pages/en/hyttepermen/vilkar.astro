@@ -12,19 +12,36 @@ const app = getApp('hyttepermen');
   <div class="app-page">
     <AppRail app={app} current="vilkar" />
     <div class="app-flow">
-      <Chapter num="01" label="License" title={`Distributed via <em>App Store</em>.`}>
-        <p class="lede">{app.name} is developed and published by Haug og Datter, and distributed through the Apple App Store. You receive a personal, non-transferable license to use the app under <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apple's Standard End User License Agreement</a>.</p>
-        <p class="muted">Last updated · 15 May 2026.</p>
+      <Chapter num="01" label="About the service" title={`For the cabin <em>you share</em>.`}>
+        <p class="lede">{app.name} is an iOS app for shared cabin management. The app lets you collect checklists, shopping lists, the cabin log, maintenance and practical info in one place, and share it with family members via Apple's iCloud services.</p>
+        <p><strong>Service provider:</strong></p>
+        <p>Jonas Haug</p>
+        <p>Konvallveien 20</p>
+        <p>3047 Drammen, Norway</p>
+        <p>Email: <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a></p>
+        <p class="muted">Last updated · 17 May 2026.</p>
       </Chapter>
 
-      <Chapter num="02" label="Use" title={`For the cabin <em>you share</em>.`}>
-        <p>{app.name} is meant for shared cabin management. You create a cabin, invite the family (or whoever you want to share with), and use the app for trips, checklists, shopping lists, maintenance, cabin log and conversations.</p>
-        <p>You may use the app for personal and family use. Professional rental management at commercial scale is not what the app is built for, but there is no limit on the number of cabins with Plus.</p>
+      <Chapter num="02" label="Acceptance and App Store" title={`Distributed via <em>App Store</em>.`}>
+        <p>By installing and using {app.name} you accept these terms. If you do not agree, you should not use the app.</p>
+        <p>The app is distributed via the Apple App Store. In addition to these terms, <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener">Apple's App Store Terms of Service</a> and <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/us/terms.html" target="_blank" rel="noopener">Apple Media Services Terms</a> also apply. The licence follows <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apple's Standard End User License Agreement</a>.</p>
+        <p class="muted">Apple is not a party to the agreement between you and us, and is not responsible for the app or its contents.</p>
       </Chapter>
 
-      <Chapter num="03" label="Free and Plus" title={`A one-time purchase, <em>not a subscription</em>.`}>
+      <Chapter num="03" label="Licence and your duties" title={`A personal <em>licence</em>.`}>
+        <p>You receive a personal, non-exclusive and non-transferable licence to use the app for as long as you comply with these terms. You may use the app for personal and family use. Professional rental management at commercial scale is not what the app is built for.</p>
+        <p>You are responsible for:</p>
+        <p>· Having the lawful right to information and photos you enter</p>
+        <p>· Not using the app for unlawful purposes or harassment</p>
+        <p>· Not sharing cabin access with people who should not have it</p>
+        <p>· Securing your iCloud account and device with passcode/Face ID</p>
+        <p>· Keeping backups of important data (export is in the Shed → Settings)</p>
+        <p class="muted">You shall not attempt to bypass security mechanisms, reverse-engineer, decompile or modify the app.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Free and Plus" title={`A one-time purchase, <em>not a subscription</em>.`}>
         <p>The app is free to download. The free version lets you own or be in one cabin and use the core features (trips, checklists, shopping lists, cabin log, calendar, the Hearth).</p>
-        <p>Hyttepermen Plus is a one-time purchase of 99 NOK. After purchase you get:</p>
+        <p>{app.name} Plus is a one-time purchase of 99 NOK. After purchase you get:</p>
         <p>· Maintenance log</p>
         <p>· Cabin binder (digital documents)</p>
         <p>· Multiple cabins (more than 1)</p>
@@ -37,29 +54,38 @@ const app = getApp('hyttepermen');
         <p class="muted">Price and local currency are shown in the App Store purchase dialog. Plus access follows your Apple ID and can be restored on new devices via "Restore purchases".</p>
       </Chapter>
 
-      <Chapter num="04" label="Refunds" title={`Refunds are handled by <em>Apple</em>.`}>
-        <p>Refunds for Hyttepermen Plus are handled by Apple. Request a refund via the App Store at <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
+      <Chapter num="05" label="Refunds" title={`Refunds are handled by <em>Apple</em>.`}>
+        <p>Refunds for {app.name} Plus are handled by Apple. Request a refund via the App Store at <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>. Any in-app purchases are handled by Apple, and refunds follow Apple's policies.</p>
         <p class="muted">{app.name} cannot itself refund purchases made through the App Store.</p>
       </Chapter>
 
-      <Chapter num="05" label="Ownership" title={`Cabin content <em>belongs to you</em>.`}>
-        <p>What you put into the app is yours. It's stored in Core Data on your device and synced via your iCloud account. You can export everything as JSON via "Backup" in the Shed, and delete the app or remove cabins whenever. We do not collect personal data. See the <a class="tx-link" href="/en/hyttepermen/personvern/">privacy policy</a> for details.</p>
-        <p class="muted">The app itself, code, design, icons and name, is owned by Haug og Datter. Plus grants you a personal, non-exclusive licence in accordance with Apple's Standard EULA. You may not copy, distribute, modify or reverse-engineer the app.</p>
+      <Chapter num="06" label="Ownership" title={`Cabin content <em>belongs to you</em>.`}>
+        <p>You keep all rights to content you enter (text, photos, audio, drawings). The content is stored in Core Data on your device and synced via your iCloud account. We have no access to the content and we get no rights to it.</p>
+        <p class="muted">The app itself — code, design, icons and name — is owned by Haug og Datter. Plus grants you a personal, non-exclusive licence in accordance with Apple's Standard EULA. You may not copy, distribute, modify or reverse-engineer the app. See the <a class="tx-link" href="/en/hyttepermen/personvern/">privacy policy</a> for how data is processed.</p>
       </Chapter>
 
-      <Chapter num="06" label="Liability" title={`A tool, <em>not a guarantee</em>.`}>
-        <p>{app.name} is provided "as is". We give no warranty that the app is bug-free or that it meets your specific needs. Checklists, maintenance reminders and expense logs are aids, not a replacement for insurance, professionals or accounting.</p>
-        <p>AI-generated suggestions (smart checklist, area guide, expense insights) are indicative. They can be wrong. Use them as inspiration, not as truth. To the extent permitted by Norwegian law, {app.name} cannot be held liable for financial losses or other consequences arising from use of the app.</p>
+      <Chapter num="07" label="Shared cabin" title={`Roles and <em>membership</em>.`}>
+        <p>When you create or join a shared cabin, the cabin data is available to all members via Apple's CloudKit Sharing. You decide who is invited.</p>
+        <p>· As <strong>admin</strong> you can remove members from the cabin.</p>
+        <p>· As <strong>member</strong> you can leave a shared cabin at any time.</p>
+        <p class="muted">Content shared with other members is not automatically deleted when you leave the cabin. The cabin owner (admin) controls this.</p>
       </Chapter>
 
-      <Chapter num="07" label="Changes" title={`Significant changes are <em>announced</em>.`}>
-        <p>We may update, change or remove features in the app. Significant changes are communicated through App Store release notes or a message in the app.</p>
-        <p>These terms may change. Updates are posted on this page with a new "Last updated" date. Continued use of the app after changes constitutes acceptance of the new terms.</p>
-        <p class="muted">These terms are governed by Norwegian law. Disputes shall first be attempted resolved amicably. If that fails, the proper venue is the Norwegian Consumer Authority (Forbrukertilsynet) and then Norwegian courts.</p>
+      <Chapter num="08" label="Availability and liability" title={`"As is", <em>not a guarantee</em>.`}>
+        <p>The app is provided "as is", with no warranties. We do our best to make the app work, but cannot guarantee that it is always bug-free, that iCloud sync always works (depends on Apple's services), or that the app is compatible with future iOS versions.</p>
+        <p>Checklists, maintenance reminders and expense logs are aids, not a replacement for insurance, professionals or accounting. AI-generated suggestions (smart checklist, area guide, expense insights) are indicative — use them as inspiration, not as truth.</p>
+        <p class="muted">We are not responsible for data loss caused by iCloud, your equipment or your internet connection, or for indirect losses, consequential damages or unauthorised access to your iCloud account. Our total liability is limited to the amount you have paid for the app in the past 12 months. Nothing in these terms limits your statutory consumer rights under mandatory law.</p>
       </Chapter>
 
-      <Chapter num="08" label="Contact" title={`Questions? <em>Write to us.</em>`}>
-        <p>Send email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. The <a class="tx-link" href="/en/hyttepermen/personvern/">privacy policy</a> for the app is here.</p>
+      <Chapter num="09" label="Changes and termination" title={`Significant changes are <em>announced</em>.`}>
+        <p>We may update, change or discontinue features in the app. Significant changes are announced through App Store release notes or in the app. These terms may also change — updates are posted on this page with a new "Last updated" date. Continued use constitutes acceptance of the new terms.</p>
+        <p>You can stop using the app at any time by uninstalling it. We may suspend or terminate your access if you materially breach these terms.</p>
+        <p class="muted">If you delete all data via the Shed → Settings → Delete all my data, all local data, all data in your private iCloud, and all active invitation codes are removed. You may also delete the app from your device — data in your private iCloud remains until you actively delete it or turn off iCloud sync for {app.name}.</p>
+      </Chapter>
+
+      <Chapter num="10" label="Governing law and contact" title={`<em>Norwegian law</em>, Drammen District Court.`}>
+        <p>These terms are governed by Norwegian law. Disputes shall first be sought resolved amicably. If agreement is not reached, the dispute may be brought before the Norwegian courts, with Drammen District Court as the venue. For consumers, mandatory rules on venue and choice of law under consumer legislation apply.</p>
+        <p>Questions about the terms: <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. See also the <a class="tx-link" href="/en/hyttepermen/personvern/">privacy policy</a> for processing of personal data.</p>
       </Chapter>
     </div>
   </div>
