@@ -4,6 +4,7 @@ import Topbar from '../../../components/Topbar.astro';
 import Footer from '../../../components/Footer.astro';
 import AppRail from '../../../components/AppRail.astro';
 import Chapter from '../../../components/Chapter.astro';
+import ChapterShots from '../../../components/ChapterShots.astro';
 import { getApp } from '../../../data/apps';
 const app = getApp('hyttepermen');
 ---
@@ -20,6 +21,14 @@ const app = getApp('hyttepermen');
       <Chapter num="02" label="How it feels" title={`The cabin in <em>one app</em>, not ten.`}>
         <p>You're driving to the cabin. You open Hyttepermen. The «Winter prep» checklist is there. Your sister has already ticked off «Check the water», your dad has added «Oil the door». The shopping list has milk, bread, and a bag of firewood from last weekend. You know it all before you reach the tunnel.</p>
         <p>The design is «cosy premium, forest at dusk». Dark forest green base, warm ember accent, generous whitespace. It should feel like the cabin itself. No flashing, no badges, no red button asking for something.</p>
+        <ChapterShots shots={[
+          { src: '/screenshots/hyttepermen/01-hjem.png', alt: 'Home screen with cabin photo, weather and quick access' },
+          { src: '/screenshots/hyttepermen/02-aktiv-tur.png', alt: 'Active trip with day view, weather and participant timeline' },
+          { src: '/screenshots/hyttepermen/03-sjekkliste.png', alt: 'Arrival checklist, four of six done' },
+          { src: '/screenshots/hyttepermen/04-peisen.png', alt: 'The Hearth: cabin chat between trips' },
+          { src: '/screenshots/hyttepermen/05-hytteboka.png', alt: 'Cabin log with entries from last year' },
+          { src: '/screenshots/hyttepermen/06-permen.png', alt: 'The Binder: contacts, equipment and routines' },
+        ]} />
         <p class="muted">Asynchronous, not chat (you already have one of those). Request, notification, reply, done.</p>
       </Chapter>
       <Chapter num="03" label="What it does" title={`<em>Home, the Hearth</em>, Active trip, the Shed.`}>

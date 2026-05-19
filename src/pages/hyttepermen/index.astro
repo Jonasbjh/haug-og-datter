@@ -4,6 +4,7 @@ import Topbar from '../../components/Topbar.astro';
 import Footer from '../../components/Footer.astro';
 import AppRail from '../../components/AppRail.astro';
 import Chapter from '../../components/Chapter.astro';
+import ChapterShots from '../../components/ChapterShots.astro';
 import { getApp } from '../../data/apps';
 const app = getApp('hyttepermen');
 ---
@@ -20,6 +21,14 @@ const app = getApp('hyttepermen');
       <Chapter num="02" label="Slik føles det" title={`Hytta i <em>en app</em>, ikke i ti.`}>
         <p>Du er på vei til hytta. Du åpner Hyttepermen. Sjekklista for «Klargjøring vinter» ligger der. Lillesøster har allerede haket av «Sjekk vannet», far har lagt til «Smør døra». Handlelista har melk, brød og en pose ved fra forrige besøk. Du vet alt før bilen er i Drammenstunnelen.</p>
         <p>Designet er «koselig premium, skog ved kveld». Mørk skog-grønn base, varm ember-aksent, generøs whitespace. Det skal føles som hytta selv. Ingen blink, ingen badges, ingen rød knapp som vil ha noe.</p>
+        <ChapterShots shots={[
+          { src: '/screenshots/hyttepermen/01-hjem.png', alt: 'Hjem-skjerm med hytta, vær og hurtigtilgang' },
+          { src: '/screenshots/hyttepermen/02-aktiv-tur.png', alt: 'Aktiv tur med dagvising, vær og deltaker-tidslinje' },
+          { src: '/screenshots/hyttepermen/03-sjekkliste.png', alt: 'Ankomst-sjekkliste, fire av seks gjort' },
+          { src: '/screenshots/hyttepermen/04-peisen.png', alt: 'Peisen: hyttas chat mellom turer' },
+          { src: '/screenshots/hyttepermen/05-hytteboka.png', alt: 'Hytteboka med innlegg fra fjoråret' },
+          { src: '/screenshots/hyttepermen/06-permen.png', alt: 'Permen: kontakter, utstyr og rutiner' },
+        ]} />
         <p class="muted">Asynkront, ikke chat (det har dere allerede). Forespørsel, varsel, svar, ferdig.</p>
       </Chapter>
       <Chapter num="03" label="Hva den gjør" title={`<em>Hjem, Peisen</em>, Aktiv tur, Boden.`}>
