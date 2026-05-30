@@ -1,0 +1,33 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('stoneward');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Hva" title={`Et lite <em>steinspill</em>.`}>
+        <p class="lede">{app.name} er et lite steinspill for iPhone og iPad. Korte runder, en poengsum å slå, og nivåer som sakte bygger seg opp mens du holder streaken i gang.</p>
+        <p class="muted">Appen er fortsatt under utvikling, så denne siden vokser etter hvert. Inntil videre ligger <a class="tx-link" href="/stoneward/personvern/">personvern</a> og <a class="tx-link" href="/stoneward/vilkar/">vilkår</a> klare her.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Toppliste" title={`Klatre, <em>anonymt</em>.`}>
+        <p>Er du logget på iCloud, kan poengsummen din sendes til en global toppliste. Den er anonym: andre ser bare en maskert etikett som «Climber A8F2K», aldri navnet ditt.</p>
+        <p class="muted">Du velger selv om du vil være med, og kan be om å bli fjernet når som helst.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Gratis og Stoneward+" title={`Spill gratis, eller <em>fjern reklamen</em>.`}>
+        <p>{app.name} er gratis å spille, med reklame. Underveis tjener du Dust som du bruker på oppgraderinger.</p>
+        <p>{app.name}+ er et engangskjøp som fjerner reklamen og låser opp ekstrafunksjoner. Vil du ha mer Dust, kan du kjøpe Dust-pakker.</p>
+        <p class="muted">Ingen abonnement. Kjøp følger Apple-ID-en din og kan gjenopprettes på nye enheter.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
+</AppLayout>

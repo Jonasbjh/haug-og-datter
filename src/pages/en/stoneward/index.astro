@@ -1,0 +1,33 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('stoneward');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="What" title={`A small <em>stone game</em>.`}>
+        <p class="lede">{app.name} is a small stone game for iPhone and iPad. Short rounds, a score to beat, and tiers that slowly build as you keep your streak going.</p>
+        <p class="muted">The app is still in development, so this page will grow over time. For now, the <a class="tx-link" href="/en/stoneward/personvern/">privacy policy</a> and <a class="tx-link" href="/en/stoneward/vilkar/">terms</a> are ready here.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Leaderboard" title={`Climb, <em>anonymously</em>.`}>
+        <p>When you're signed in to iCloud, your score can be submitted to a global leaderboard. It is anonymous: others see only a masked label like "Climber A8F2K", never your name.</p>
+        <p class="muted">It's up to you whether to take part, and you can ask to be removed at any time.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Free and Stoneward+" title={`Play free, or <em>remove the ads</em>.`}>
+        <p>{app.name} is free to play, with ads. As you play you earn Dust, which you spend on upgrades.</p>
+        <p>{app.name}+ is a one-time purchase that removes the ads and unlocks extra features. Want more Dust? You can buy Dust packs.</p>
+        <p class="muted">No subscription. Purchases follow your Apple ID and can be restored on new devices.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
+</AppLayout>

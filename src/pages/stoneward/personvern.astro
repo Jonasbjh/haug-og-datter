@@ -1,0 +1,114 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('stoneward');
+---
+<AppLayout app={app} title={`Personvern · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="I korte trekk" title={`Personvern, på <em>vanlig norsk</em>.`}>
+        <p class="lede">Denne personvernerklæringen forklarer hvordan Jonas Haug («vi», «oss», «utvikleren») håndterer informasjon i forbindelse med mobilspillet {app.name} («appen»). Vi har utviklet {app.name} for å samle inn så lite personopplysninger som mulig. Ved å bruke {app.name} godtar du praksisen som beskrives her.</p>
+        <p>· Spilldataene dine (statistikk, streaks, innstillinger, valuta i appen og oppgraderinger) lagres på enheten din.</p>
+        <p>· Vi tilbyr en global toppliste via Apple CloudKit. Når du fullfører en runde, sendes poengsummen din og høyeste nivå sammen med en anonym identifikator, aldri navn, e-post eller Apple-ID.</p>
+        <p>· Vi bruker Apple App Store til kjøp.</p>
+        <p>· Vi viser annonser via Google AdMob. AdMob kan samle inn visse enhets- og bruksdata for å vise annonser. Du kan kjøpe {app.name}+ for å fjerne annonser.</p>
+        <p>· Vi selger ikke personopplysningene dine.</p>
+        <p class="muted">Sist oppdatert · 31. mai 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="På enheten" title={`Informasjon lagret <em>på enheten din</em>.`}>
+        <p>{app.name} lagrer følgende lokalt på enheten din, ved hjelp av Apples lagring på enheten:</p>
+        <p>· Spillfremgang, poengsummer, statistikk og streaks</p>
+        <p>· Innstillinger og preferanser</p>
+        <p>· Saldo av valutaen i appen («Dust») og oppgraderinger du har låst opp</p>
+        <p>· Om du har kjøpt {app.name}+</p>
+        <p class="muted">Denne informasjonen blir værende på enheten din, og vi har ingen tilgang til den, bortsett fra poengdataene du sender til topplista som beskrevet i avsnitt 3. Sletter du appen, fjernes dataene på enheten.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Toppliste" title={`Global toppliste via <em>Apple CloudKit</em>.`}>
+        <p>Appen har en valgfri global toppliste drevet av Apple CloudKit (en tjeneste fra Apple, lagret i vår CloudKit-database). Når du fullfører en runde mens du er logget på iCloud, sender appen:</p>
+        <p>· Poengsummen din og det høyeste nivået du nådde</p>
+        <p>· En anonym identifikator som iCloud genererer for appen. Dette er ikke navnet ditt, e-postadressen din eller Apple-ID-en din, og den identifiserer deg ikke for andre spillere.</p>
+        <p>Andre spillere ser kun en maskert etikett (for eksempel «Climber A8F2K») ved siden av en poengsum, aldri din virkelige identitet. Vi mottar ikke navn eller kontaktopplysninger gjennom topplista. Hvis du ikke er logget på iCloud, sendes ingen poengsummer. For å be om at toppliste-oppføringen din fjernes, kontakt oss på <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. CloudKit-data håndteres under <a class="tx-link" href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apples personvernerklæring</a>.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Kjøp" title={`Betaling håndteres av <em>Apple</em>.`}>
+        <p>{app.name} tilbyr kjøp i appen ({app.name}+ og «Dust»-pakker). Alle kjøp behandles av Apple gjennom App Store. Vi ser eller mottar aldri kortopplysningene dine. Apples behandling av kjøpsdata reguleres av Apples personvernerklæring.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Reklame" title={`Annonser via <em>Google AdMob</em>.`}>
+        <p>Vi bruker Google AdMob til å vise annonser. For å vise annonser kan Google og partnerne deres samle inn og behandle:</p>
+        <p>· Enhetsinformasjon (som enhetsmodell og operativsystemversjon)</p>
+        <p>· IP-adresse og omtrentlig (grov) posisjon utledet fra den</p>
+        <p>· En mobil annonseidentifikator (på iOS, IDFA, brukt kun hvis du gir tillatelse via Apples App Tracking Transparency-forespørsel)</p>
+        <p>· Data om annonseinteraksjon (som annonser som vises og trykkes på)</p>
+        <p>Google bruker disse dataene til å levere og måle annonser, forhindre svindel, og, der det er tillatt, vise persontilpassede annonser. Googles bruk av data er beskrevet i <a class="tx-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener">Googles personvernerklæring</a> og i <a class="tx-link" href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">«Hvordan Google bruker informasjon fra nettsteder eller apper som bruker tjenestene våre»</a>. En liste over Googles annonseteknologi-leverandører er tilgjengelig <a class="tx-link" href="https://support.google.com/admob/answer/9012903" target="_blank" rel="noopener">her</a>.</p>
+        <p><strong>App Tracking Transparency:</strong> Før persontilpassede annonser vises, spør iOS om du tillater sporing. Hvis du avslår, blir annonsene ikke-persontilpassede, og annonseidentifikatoren din brukes ikke til sporing.</p>
+        <p><strong>Samtykke i EØS/Storbritannia/Sveits:</strong> Hvis du befinner deg i Det europeiske økonomiske samarbeidsområdet (EØS), Storbritannia eller Sveits, bruker vi Googles plattform for samtykkehåndtering for å be om samtykke før vi viser persontilpassede annonser. Du kan endre eller trekke tilbake samtykket ditt når som helst inne i appen («Personvernvalg» / «Administrer samtykke»).</p>
+        <p><strong>Fjerne annonser:</strong> Kjøp av {app.name}+ deaktiverer annonser. Avhengig av plattforminnstillinger kan begrensede data som beskrevet over fortsatt behandles til ikke-annonseformål, som svindelforebygging, men annonsevisning stopper.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Slik bruker vi det" title={`Slik <em>bruker vi informasjon</em>.`}>
+        <p>Dataene beskrevet over brukes til å:</p>
+        <p>· Kjøre spillet på enheten din (lokale data)</p>
+        <p>· Tilby den globale topplista (Apple CloudKit)</p>
+        <p>· Behandle kjøp (Apple)</p>
+        <p>· Vise og måle annonser, og tilby muligheten til å fjerne dem (Google AdMob)</p>
+      </Chapter>
+
+      <Chapter num="07" label="Rettslig grunnlag" title={`Rettslig grunnlag <em>(GDPR)</em>.`}>
+        <p>Der GDPR gjelder, bygger vi og partnerne våre på:</p>
+        <p>· <strong>Samtykket ditt</strong> for persontilpasset annonsering og for bruk av annonseidentifikatoren</p>
+        <p>· <strong>Berettiget interesse</strong> for å tilby den anonyme topplista, vise ikke-persontilpassede annonser, måle dem og forhindre svindel</p>
+        <p>· <strong>Oppfyllelse av en avtale</strong> for å gjennomføre kjøp du ber om</p>
+      </Chapter>
+
+      <Chapter num="08" label="Deling" title={`<em>Deling av data.</em>`}>
+        <p>Vi selger ikke personopplysningene dine. Data deles kun med Apple (driver av App Store og CloudKit) og Google (vår annonseleverandør). Hver av dem opptrer under sin egen personvernerklæring, lenket over.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Dine valg" title={`Dine <em>rettigheter og valg</em>.`}>
+        <p>· <strong>App Tracking Transparency:</strong> Endre sporingstillatelsen når som helst i iOS under Innstillinger → Personvern og sikkerhet → Sporing.</p>
+        <p>· <strong>Annonsesamtykke (EØS/Storbritannia/Sveits):</strong> Gjennomgå eller trekk tilbake annonsesamtykke inne i appen.</p>
+        <p>· <strong>Fjerne annonser:</strong> Kjøp {app.name}+.</p>
+        <p>· <strong>Toppliste:</strong> Poengsummer sendes kun mens du er logget på iCloud. For å fjerne toppliste-oppføringen din, kontakt oss på <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>.</p>
+        <p>· <strong>Slette dataene dine:</strong> Data på enheten fjernes når du sletter appen. Du kan også nullstille fremgang inne i appen der det er mulig.</p>
+        <p>· <strong>GDPR-rettigheter:</strong> Hvis du befinner deg i EØS/Storbritannia, har du rett til innsyn, retting, sletting, begrensning eller å protestere mot behandling av personopplysninger, samt dataportabilitet. Du kan kontakte oss på <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>; forespørsler om data som oppbevares av leverandørene våre kan også rettes til Apple eller Google.</p>
+        <p>· <strong>California (CCPA/CPRA):</strong> Vi selger eller «deler» ikke personopplysninger for kontekstoverskridende atferdsbasert annonsering mot betaling. Du kan utøve gjeldende rettigheter ved å kontakte oss.</p>
+      </Chapter>
+
+      <Chapter num="10" label="Lagring" title={`<em>Lagringstid.</em>`}>
+        <p>Data på enheten lagres til du sletter dem eller avinstallerer appen. Toppliste-oppføringen din (anonym identifikator, poengsum og nivå) oppbevares i vår CloudKit-database til du ber oss slette den eller vi fjerner den under normal drift. Data som behandles av Apple og Google, oppbevares i henhold til deres respektive retningslinjer.</p>
+      </Chapter>
+
+      <Chapter num="11" label="Barn" title={`<em>Barns personvern.</em>`}>
+        <p>{app.name} er ikke rettet mot barn under 13 år (eller tilsvarende minstealder i landet ditt), og vi samler ikke bevisst inn personopplysninger fra barn. Hvis du tror et barn har oppgitt personopplysninger, kontakt oss, så vi kan håndtere det.</p>
+      </Chapter>
+
+      <Chapter num="12" label="Overføringer" title={`Internasjonale <em>overføringer</em>.`}>
+        <p>Apple og Google kan behandle data i andre land enn ditt eget, inkludert USA. Disse leverandørene innfører beskyttelsestiltak (som standard personvernbestemmelser, «Standard Contractual Clauses») slik det er beskrevet i personvernerklæringene deres.</p>
+      </Chapter>
+
+      <Chapter num="13" label="Sikkerhet" title={`<em>Sikkerhet.</em>`}>
+        <p>Vi baserer oss på sikkerheten som leveres av Apples plattform for data på enheten og CloudKit, og av Apple og Google for tjenestene de drifter. Ingen metode for elektronisk lagring eller overføring er fullstendig sikker.</p>
+      </Chapter>
+
+      <Chapter num="14" label="Endringer" title={`Endringer i <em>denne erklæringen</em>.`}>
+        <p>Vi kan oppdatere denne personvernerklæringen fra tid til annen. Vi oppdaterer «Sist oppdatert»-datoen over, og gir der det passer beskjed i appen. Fortsatt bruk etter endringer betyr at du godtar den oppdaterte erklæringen.</p>
+      </Chapter>
+
+      <Chapter num="15" label="Kontakt" title={`<em>Kontakt.</em>`}>
+        <p><strong>Jonas Haug</strong></p>
+        <p><a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a></p>
+        <p><a class="tx-link" href="https://haugogdatter.no" target="_blank" rel="noopener">haugogdatter.no</a></p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Personvern`} />
+</AppLayout>

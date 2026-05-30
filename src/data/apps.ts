@@ -21,7 +21,7 @@ export type GlyphKind =
   | 'script'    // inklings-journal
   | 'rings'     // naboskap
   | 'cabin'     // hytteliv
-  | 'cairn';    // roys
+  | 'cairn';    // stoneward
 
 export interface AppDef {
   slug: string;
@@ -132,15 +132,15 @@ export const apps: AppDef[] = [
     hidden: true,
   },
   {
-    slug: 'roys',
-    name: 'Røys',
+    slug: 'stoneward',
+    name: 'Stoneward',
     tagline: {
-      no: 'Et lite, stille fjell du eier.',
-      en: 'A small, quiet mountain you own.',
+      no: 'Et lite steinspill.',
+      en: 'A small stone game.',
     },
-    /* App Store-URL: bytt til kanonisk app-side når Røys er live. */
-    appStoreUrl: 'https://apps.apple.com/no/search?term=Røys',
-    iconPath: '/icons/roys.png',
+    /* App Store-URL: bytt til kanonisk app-side når Stoneward er live. */
+    appStoreUrl: 'https://apps.apple.com/no/search?term=Stoneward',
+    iconPath: '/icons/stoneward.png',
     accent: '#4A5D75',
     glyph: 'cairn',
     hidden: true,

@@ -1,0 +1,80 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('stoneward');
+---
+<AppLayout app={app} title={`Vilkår · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="vilkar" />
+    <div class="app-flow">
+      <Chapter num="01" label="Lisens" title={`Distribueres via <em>App Store</em>.`}>
+        <p class="lede">Disse vilkårene for bruk («vilkårene») regulerer din bruk av mobilspillet {app.name} («appen»), levert av Jonas Haug («vi», «oss»). Ved å laste ned eller bruke appen godtar du disse vilkårene. Hvis du ikke godtar dem, må du ikke bruke appen.</p>
+        <p>Vi gir deg en personlig, begrenset, ikke-eksklusiv, ikke-overførbar og gjenkallelig lisens til å laste ned og bruke appen til din egen ikke-kommersielle underholdning på Apple-enheter du eier eller kontrollerer, i samsvar med Apple Media Services-vilkårene og den standard <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">lisensavtalen for app-sluttbrukere (EULA)</a>. Ved eventuell konflikt om lisensen går Apples EULA foran, og disse vilkårene dekker resten.</p>
+        <p class="muted">Sist oppdatert · 31. mai 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Kjøp" title={`Kjøp <em>i appen</em>.`}>
+        <p>Appen tilbyr kjøp i appen:</p>
+        <p>· <strong>{app.name}+</strong>, et engangskjøp som fjerner annonser og låser opp nåværende og fremtidige premiumfunksjoner.</p>
+        <p>· <strong>Dust-pakker</strong>, forbruksvaluta i appen som brukes til oppgraderinger inne i appen.</p>
+        <p>Alle kjøp behandles av Apple gjennom App Store. Priser vises før kjøp og kan variere etter region og over tid. Betaling, avgifter og refusjoner håndteres av Apple under <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener">Apple Media Services-vilkårene</a>. Refusjonsforespørsler skal rettes til Apple.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Virtuelle gjenstander" title={`«Dust» har <em>ingen pengeverdi</em>.`}>
+        <p>«Dust» og andre gjenstander i appen har ingen pengeverdi, kan ikke veksles inn i kontanter eller overføres utenfor appen, og lisensieres til deg, de selges ikke. Forbruksvarer forbrukes når de brukes, og refunderes ikke når de først er tildelt, med mindre loven krever det. Virtuelle gjenstander kan gå tapt hvis du sletter appen eller dataene dens.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Akseptabel bruk" title={`Spill <em>rent</em>.`}>
+        <p>Du samtykker i å ikke:</p>
+        <p>· baklengsutvikle (reverse engineering), dekompilere eller endre appen, utover det loven tillater;</p>
+        <p>· jukse, utnytte feil, manipulere poengsummer eller topplister, eller forstyrre andre spilleres opplevelse;</p>
+        <p>· bruke appen til ulovlige formål.</p>
+        <p class="muted">Vi kan begrense eller fjerne tilgang (inkludert toppliste-oppføringer) hvis du bryter disse vilkårene.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Reklame" title={`Annonser fra <em>tredjeparter</em>.`}>
+        <p>Appen viser annonser levert av tredjeparter (se <a class="tx-link" href="/stoneward/personvern/">personvernerklæringen</a>). Vi er ikke ansvarlige for innholdet i tredjepartsannonser eller for nettsteder eller produkter de lenker til. Du kan fjerne annonser ved å kjøpe {app.name}+.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Toppliste" title={`Global <em>toppliste</em>.`}>
+        <p>Appen har en global toppliste levert via Apple CloudKit. Poengsummer sendes med en anonym identifikator (se <a class="tx-link" href="/stoneward/personvern/">personvernerklæringen</a>). Vi kan moderere, nullstille eller fjerne toppliste-oppføringer for å opprettholde rettferdig spill og normal drift.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Oppdateringer" title={`Tilgjengelighet og <em>oppdateringer</em>.`}>
+        <p>Vi kan oppdatere, endre eller avvikle appen eller funksjoner i den når som helst. Vi garanterer ikke at appen er tilgjengelig uten avbrudd eller fri for feil.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Garantier" title={`Leveres <em>«som den er»</em>.`}>
+        <p>Appen leveres «som den er» og «som tilgjengelig», uten garantier av noe slag, uttrykte eller underforståtte, så langt loven tillater, inkludert garantier om salgbarhet, egnethet for et bestemt formål og at den ikke krenker andres rettigheter.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Ansvar" title={`Begrensning av <em>ansvar</em>.`}>
+        <p>Så langt loven tillater, er vi ikke ansvarlige for indirekte, tilfeldige, spesielle eller følgemessige tap, eller pønal erstatning, eller for tap av data, fortjeneste eller goodwill, som følge av din bruk av appen. Ingenting i disse vilkårene begrenser ansvar som ikke kan begrenses etter gjeldende lov, inkludert visse forbrukerrettigheter.</p>
+      </Chapter>
+
+      <Chapter num="10" label="Endringer" title={`Endringer i <em>disse vilkårene</em>.`}>
+        <p>Vi kan oppdatere disse vilkårene fra tid til annen. Vi oppdaterer «Sist oppdatert»-datoen og gir der det passer beskjed i appen. Fortsatt bruk etter endringer betyr at du godtar de oppdaterte vilkårene.</p>
+      </Chapter>
+
+      <Chapter num="11" label="Lovvalg" title={`Underlagt <em>norsk lov</em>.`}>
+        <p>Disse vilkårene reguleres av norsk lov, uten hensyn til lovvalgsregler, og med forbehold om eventuelle ufravikelige forbrukervern i landet der du bor.</p>
+      </Chapter>
+
+      <Chapter num="12" label="Apple" title={`Apple er <em>tredjepartsberettiget</em>.`}>
+        <p>Disse vilkårene er mellom deg og oss, ikke Apple. Apple er ikke ansvarlig for appen eller innholdet i den. Apple er en tredjepartsberettiget under disse vilkårene og kan håndheve dem. Vedlikehold og support for appen leveres av oss, ikke Apple.</p>
+      </Chapter>
+
+      <Chapter num="13" label="Kontakt" title={`<em>Kontakt.</em>`}>
+        <p><strong>Jonas Haug</strong></p>
+        <p><a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a></p>
+        <p><a class="tx-link" href="https://haugogdatter.no" target="_blank" rel="noopener">haugogdatter.no</a></p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Vilkår`} />
+</AppLayout>
