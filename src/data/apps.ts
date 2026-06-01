@@ -143,7 +143,6 @@ export const apps: AppDef[] = [
     iconPath: '/icons/stoneward.png',
     accent: '#4A5D75',
     glyph: 'cairn',
-    hidden: true,
   },
 ];
 

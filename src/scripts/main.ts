@@ -5,17 +5,21 @@
  * hvis et element ikke finnes på den aktuelle siden.
  */
 
-// ---- App-katalog (mirror av src/data/apps.ts, brukt av palett + sweep) ----
+// ---- App-katalog ----
+// Avledet fra den sentrale kilden (src/data/apps.ts) så palett, sweep og
+// tastatur-nav aldri går ut av sync med vifta og menyen. Vite bundler dette
+// inn i klient-scriptet. Hidden-apper er allerede filtrert ut av visibleApps.
+import { visibleApps, getTagline } from '../data/apps';
+
 type App = { slug: string; name: string; tagline: string; accent: string };
 
-const APPS: Record<string, App> = {
-  'bumle-bjorn':      { slug: 'bumle-bjorn',      name: 'Bumle Bjørn',      tagline: 'Pedagogisk app for barn 1 til 8 år.',                 accent: '#A85436' },
-  'plantekn':         { slug: 'plantekn',         name: 'Plantekn',         tagline: 'Tegn romplaner, møbler og ledningsføring.',           accent: '#2C4A3A' },
-  'tenkt':            { slug: 'tenkt',            name: 'Tenkt',            tagline: 'Daglige logikkpuslespill.',                           accent: '#8B6F47' },
-  'kvitteringsvakt':  { slug: 'kvitteringsvakt',  name: 'Kvitteringsvakt',  tagline: 'Kvittering- og garantitracker for det norske markedet.', accent: '#7A3A22' },
-  'inklings-journal': { slug: 'inklings-journal', name: 'Inklings Journal', tagline: 'En journalapp.',                                       accent: '#1F3528' },
-};
-const ORDER: string[] = ['bumle-bjorn', 'plantekn', 'tenkt', 'kvitteringsvakt', 'inklings-journal'];
+const APPS: Record<string, App> = Object.fromEntries(
+  visibleApps.map((a) => [
+    a.slug,
+    { slug: a.slug, name: a.name, tagline: getTagline(a, 'no'), accent: a.accent },
+  ])
+);
+const ORDER: string[] = visibleApps.map((a) => a.slug);
 
 function reduce(): boolean {
   return matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -178,7 +182,7 @@ function startKeys() {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     const tag = (e.target as HTMLElement | null)?.tagName ?? '';
     if (/INPUT|TEXTAREA|SELECT/.test(tag)) return;
-    if (e.key >= '1' && e.key <= '5') {
+    if (e.key >= '1' && e.key <= '9') {
       const slug = ORDER[parseInt(e.key, 10) - 1];
       if (slug) navWithSweep(`/${slug}`, APPS[slug].accent);
     } else if (e.key === 'Escape') {

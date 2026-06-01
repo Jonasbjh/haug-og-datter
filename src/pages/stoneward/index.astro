@@ -4,6 +4,8 @@ import Topbar from '../../components/Topbar.astro';
 import Footer from '../../components/Footer.astro';
 import AppRail from '../../components/AppRail.astro';
 import Chapter from '../../components/Chapter.astro';
+import ChapterShots from '../../components/ChapterShots.astro';
+import PrevNextApp from '../../components/PrevNextApp.astro';
 import { getApp } from '../../data/apps';
 const app = getApp('stoneward');
 ---
@@ -13,20 +15,35 @@ const app = getApp('stoneward');
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
       <Chapter num="01" label="Hva" title={`Et lite <em>steinspill</em>.`}>
-        <p class="lede">{app.name} er et lite steinspill for iPhone og iPad. Korte runder, en poengsum å slå, og nivåer som sakte bygger seg opp mens du holder streaken i gang.</p>
-        <p class="muted">Appen er fortsatt under utvikling, så denne siden vokser etter hvert. Inntil videre ligger <a class="tx-link" href="/stoneward/personvern/">personvern</a> og <a class="tx-link" href="/stoneward/vilkar/">vilkår</a> klare her.</p>
+        <p class="lede">{app.name} er et lite steinspill for iPhone og iPad. Slipp steiner, la like smelte sammen til større, og bygg poengsummen din rolig oppover. Korte runder, en score å slå, og nivåer som vokser mens du holder det gående.</p>
+        <p class="muted">Lay every stone with weight.</p>
       </Chapter>
 
-      <Chapter num="02" label="Toppliste" title={`Klatre, <em>anonymt</em>.`}>
+      <Chapter num="02" label="Slik føles det" title={`Slipp en stein. <em>La den smelte.</em>`}>
+        <p>Du åpner Stoneward og lander rett på brettet. Like steiner som havner inntil hverandre smelter sammen til større. Hver smelting gir Dust, og brettet bygger seg sakte oppover mot nye nivåer.</p>
+        <p>Iblant dukker det opp spesielle steiner du kan spare på og bruke taktisk. Tonene er dempet, bevegelsene rolige. Det er et spill du kan komme tilbake til uten at det maser.</p>
+        <ChapterShots shots={[
+          { src: '/screenshots/stoneward/06-home.png', alt: 'Hjem-skjerm' },
+          { src: '/screenshots/stoneward/01-board.png', alt: 'Brettet under spill' },
+          { src: '/screenshots/stoneward/02-tiers.png', alt: 'Samlingen av steiner' },
+          { src: '/screenshots/stoneward/03-specials.png', alt: 'Spesielle steiner' },
+          { src: '/screenshots/stoneward/04-compete.png', alt: 'Toppliste' },
+          { src: '/screenshots/stoneward/05-depth.png', alt: 'Verksted og oppgraderinger' },
+        ]} />
+        <p class="muted">Smelt, samle Dust, lås opp nye nivåer. Kjernen er bevisst enkel.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Toppliste" title={`Klatre, <em>anonymt</em>.`}>
         <p>Er du logget på iCloud, kan poengsummen din sendes til globale, ukentlige og daglige topplister. De er anonyme: andre ser bare en maskert etikett som «Climber A8F2K», aldri navnet ditt.</p>
         <p class="muted">Du velger selv om du vil være med, og kan be om å bli fjernet når som helst.</p>
       </Chapter>
 
-      <Chapter num="03" label="Gratis og Stoneward+" title={`Spill gratis, eller <em>fjern reklamen</em>.`}>
-        <p>{app.name} er gratis å spille, med reklame. Underveis tjener du Dust som du bruker på oppgraderinger.</p>
+      <Chapter num="04" label="Gratis og Stoneward+" title={`Spill gratis, eller <em>fjern reklamen</em>.`}>
+        <p>{app.name} er gratis å spille, med reklame. Underveis tjener du Dust som du bruker på oppgraderinger og Cores som former hvordan neste runde spilles.</p>
         <p>{app.name}+ er et engangskjøp som fjerner reklamen og låser opp ekstrafunksjoner. Vil du ha mer Dust, kan du kjøpe Dust-pakker.</p>
         <p class="muted">Ingen abonnement. Kjøp følger Apple-ID-en din og kan gjenopprettes på nye enheter.</p>
       </Chapter>
+      <PrevNextApp slug={app.slug} />
     </div>
   </div>
   <Footer label={`${app.name} · Haug & Datter`} />
