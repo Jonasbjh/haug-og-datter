@@ -15,7 +15,7 @@ const app = getApp('stoneward');
       <Chapter num="01" label="I korte trekk" title={`Personvern, på <em>vanlig norsk</em>.`}>
         <p class="lede">Denne personvernerklæringen forklarer hvordan Jonas Haug («vi», «oss», «utvikleren») håndterer informasjon i forbindelse med mobilspillet {app.name} («appen»). Vi har utviklet {app.name} for å samle inn så lite personopplysninger som mulig. Ved å bruke {app.name} godtar du praksisen som beskrives her.</p>
         <p>· Spilldataene dine (statistikk, streaks, innstillinger, valuta i appen og oppgraderinger) lagres på enheten din.</p>
-        <p>· Vi tilbyr en global toppliste via Apple CloudKit. Når du fullfører en runde, sendes poengsummen din og høyeste nivå sammen med en anonym identifikator, aldri navn, e-post eller Apple-ID.</p>
+        <p>· Vi tilbyr globale, ukentlige og daglige topplister via Apple CloudKit. Når du fullfører en runde, sendes poengsummen din og høyeste nivå sammen med en anonymisert identifikator, aldri navn, e-post eller Apple-ID.</p>
         <p>· Vi bruker Apple App Store til kjøp.</p>
         <p>· Vi viser annonser via Google AdMob. AdMob kan samle inn visse enhets- og bruksdata for å vise annonser. Du kan kjøpe {app.name}+ for å fjerne annonser.</p>
         <p>· Vi selger ikke personopplysningene dine.</p>
@@ -28,14 +28,14 @@ const app = getApp('stoneward');
         <p>· Innstillinger og preferanser</p>
         <p>· Saldo av valutaen i appen («Dust») og oppgraderinger du har låst opp</p>
         <p>· Om du har kjøpt {app.name}+</p>
-        <p class="muted">Denne informasjonen blir værende på enheten din, og vi har ingen tilgang til den, bortsett fra poengdataene du sender til topplista som beskrevet i avsnitt 3. Sletter du appen, fjernes dataene på enheten.</p>
+        <p class="muted">Denne informasjonen blir værende på enheten din, og vi har ingen tilgang til den, bortsett fra poengdataene du sender til topplistene som beskrevet i avsnitt 3. Sletter du appen, fjernes dataene på enheten.</p>
       </Chapter>
 
-      <Chapter num="03" label="Toppliste" title={`Global toppliste via <em>Apple CloudKit</em>.`}>
-        <p>Appen har en valgfri global toppliste drevet av Apple CloudKit (en tjeneste fra Apple, lagret i vår CloudKit-database). Når du fullfører en runde mens du er logget på iCloud, sender appen:</p>
+      <Chapter num="03" label="Topplister" title={`Globale, ukentlige og daglige <em>topplister</em>.`}>
+        <p>Appen har valgfrie globale, ukentlige og daglige topplister drevet av Apple CloudKit (en tjeneste fra Apple, lagret i vår CloudKit-database). Når du fullfører en runde mens du er logget på iCloud, sender appen følgende via Apples iCloud (CloudKit):</p>
         <p>· Poengsummen din og det høyeste nivået du nådde</p>
-        <p>· En anonym identifikator som iCloud genererer for appen. Dette er ikke navnet ditt, e-postadressen din eller Apple-ID-en din, og den identifiserer deg ikke for andre spillere.</p>
-        <p>Andre spillere ser kun en maskert etikett (for eksempel «Climber A8F2K») ved siden av en poengsum, aldri din virkelige identitet. Vi mottar ikke navn eller kontaktopplysninger gjennom topplista. Hvis du ikke er logget på iCloud, sendes ingen poengsummer. For å be om at toppliste-oppføringen din fjernes, kontakt oss på <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. CloudKit-data håndteres under <a class="tx-link" href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apples personvernerklæring</a>.</p>
+        <p>· En anonymisert spilleridentifikator som iCloud genererer for appen. Dette er ikke navnet ditt, e-postadressen din eller Apple-ID-en din, og den identifiserer deg ikke for andre spillere.</p>
+        <p>Andre spillere ser kun en maskert etikett (for eksempel «Climber A8F2K») ved siden av en poengsum, aldri din virkelige identitet. Verken navn, e-post eller kontaktopplysninger lagres eller deles noensinne gjennom topplistene. Hvis du ikke er logget på iCloud, sendes ingen poengsummer. For å be om at toppliste-oppføringene dine fjernes, kontakt oss på <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. CloudKit-data håndteres under <a class="tx-link" href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apples personvernerklæring</a>.</p>
       </Chapter>
 
       <Chapter num="04" label="Kjøp" title={`Betaling håndteres av <em>Apple</em>.`}>
@@ -57,7 +57,7 @@ const app = getApp('stoneward');
       <Chapter num="06" label="Slik bruker vi det" title={`Slik <em>bruker vi informasjon</em>.`}>
         <p>Dataene beskrevet over brukes til å:</p>
         <p>· Kjøre spillet på enheten din (lokale data)</p>
-        <p>· Tilby den globale topplista (Apple CloudKit)</p>
+        <p>· Tilby de globale, ukentlige og daglige topplistene (Apple CloudKit)</p>
         <p>· Behandle kjøp (Apple)</p>
         <p>· Vise og måle annonser, og tilby muligheten til å fjerne dem (Google AdMob)</p>
       </Chapter>
@@ -65,7 +65,7 @@ const app = getApp('stoneward');
       <Chapter num="07" label="Rettslig grunnlag" title={`Rettslig grunnlag <em>(GDPR)</em>.`}>
         <p>Der GDPR gjelder, bygger vi og partnerne våre på:</p>
         <p>· <strong>Samtykket ditt</strong> for persontilpasset annonsering og for bruk av annonseidentifikatoren</p>
-        <p>· <strong>Berettiget interesse</strong> for å tilby den anonyme topplista, vise ikke-persontilpassede annonser, måle dem og forhindre svindel</p>
+        <p>· <strong>Berettiget interesse</strong> for å tilby de anonymiserte topplistene, vise ikke-persontilpassede annonser, måle dem og forhindre svindel</p>
         <p>· <strong>Oppfyllelse av en avtale</strong> for å gjennomføre kjøp du ber om</p>
       </Chapter>
 
@@ -77,14 +77,15 @@ const app = getApp('stoneward');
         <p>· <strong>App Tracking Transparency:</strong> Endre sporingstillatelsen når som helst i iOS under Innstillinger → Personvern og sikkerhet → Sporing.</p>
         <p>· <strong>Annonsesamtykke (EØS/Storbritannia/Sveits):</strong> Gjennomgå eller trekk tilbake annonsesamtykke inne i appen.</p>
         <p>· <strong>Fjerne annonser:</strong> Kjøp {app.name}+.</p>
-        <p>· <strong>Toppliste:</strong> Poengsummer sendes kun mens du er logget på iCloud. For å fjerne toppliste-oppføringen din, kontakt oss på <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>.</p>
+        <p>· <strong>Topplister:</strong> Poengsummer sendes kun mens du er logget på iCloud. For å fjerne toppliste-oppføringene dine, kontakt oss på <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>.</p>
         <p>· <strong>Slette dataene dine:</strong> Data på enheten fjernes når du sletter appen. Du kan også nullstille fremgang inne i appen der det er mulig.</p>
         <p>· <strong>GDPR-rettigheter:</strong> Hvis du befinner deg i EØS/Storbritannia, har du rett til innsyn, retting, sletting, begrensning eller å protestere mot behandling av personopplysninger, samt dataportabilitet. Du kan kontakte oss på <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>; forespørsler om data som oppbevares av leverandørene våre kan også rettes til Apple eller Google.</p>
+        <p>· <strong>Klagerett:</strong> Du har rett til å klage til en tilsynsmyndighet for personvern om hvordan personopplysningene dine håndteres. I Norge er tilsynsmyndigheten Datatilsynet, <a class="tx-link" href="https://www.datatilsynet.no" target="_blank" rel="noopener">www.datatilsynet.no</a>. Bor du et annet sted i EU/EØS, kan du kontakte din lokale tilsynsmyndighet.</p>
         <p>· <strong>California (CCPA/CPRA):</strong> Vi selger eller «deler» ikke personopplysninger for kontekstoverskridende atferdsbasert annonsering mot betaling. Du kan utøve gjeldende rettigheter ved å kontakte oss.</p>
       </Chapter>
 
       <Chapter num="10" label="Lagring" title={`<em>Lagringstid.</em>`}>
-        <p>Data på enheten lagres til du sletter dem eller avinstallerer appen. Toppliste-oppføringen din (anonym identifikator, poengsum og nivå) oppbevares i vår CloudKit-database til du ber oss slette den eller vi fjerner den under normal drift. Data som behandles av Apple og Google, oppbevares i henhold til deres respektive retningslinjer.</p>
+        <p>Data på enheten lagres til du sletter dem eller avinstallerer appen. Toppliste-oppføringene dine (anonymisert identifikator, poengsum og nivå) oppbevares i vår CloudKit-database til du ber oss slette dem eller vi fjerner dem under normal drift. Data som behandles av Apple og Google, oppbevares i henhold til deres respektive retningslinjer.</p>
       </Chapter>
 
       <Chapter num="11" label="Barn" title={`<em>Barns personvern.</em>`}>
