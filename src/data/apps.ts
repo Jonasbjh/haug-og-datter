@@ -140,7 +140,7 @@ export const apps: AppDef[] = [
     },
     /* App Store-URL: bytt til kanonisk app-side når Stoneward er live. */
     appStoreUrl: 'https://apps.apple.com/no/search?term=Stoneward',
-    iconPath: '/icons/stoneward.png',
+    iconPath: '/icons/stoneward.png?v=2',
     accent: '#4A5D75',
     glyph: 'cairn',
   },
