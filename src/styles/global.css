@@ -427,6 +427,11 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
 }
 @media (min-width: 720px) { .stage { padding: 40px 56px 56px; } }
 @media (min-width: 1000px) { .stage { padding: 48px 80px 64px; } }
+/* Hub-forsiden er kompakt, men trenger litt luft på toppen så
+   tittel/logo ikke klistrer seg til den flytende meny-pilla (fixed,
+   top:12px, ~30px høy). */
+[data-spotlight] .stage { padding-top: 56px; }
+@media (min-width: 1000px) { [data-spotlight] .stage { padding-top: 72px; } }
 
 /* ---------- Topbar ---------- */
 .topbar {
@@ -505,6 +510,16 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   row-gap: 0;
   align-items: center;
 }
+/* Kompakt hub-forside: tittel/logo og vifte trekkes høyere opp når
+   topbar og blokker er fjernet. Kun forsiden (/, /en) bruker denne. */
+.hero--home {
+  padding: 0 0 24px;
+}
+/* Vifte-scenen er 600px høy med telefonene forankret nederst, så det
+   ligger ~100px tom luft over telefonene. Negativ topp-margin trekker
+   telefonene opp så det synlige gapet over vifta matcher gapet mellom
+   hub-pilla og tittelen (~77px). */
+.hero--home + .atelier { margin-top: -46px; }
 .hero .display { grid-area: title; }
 .hero .lede   { grid-area: lede; }
 .hero__logo {
@@ -941,12 +956,6 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
 
 /* Mobil — vifte stables vertikalt; ingen horisontal scroll */
 @media (max-width: 720px) {
-  .atelier__head {
-    margin-bottom: 16px;
-    justify-content: center;
-    gap: 14px;
-    text-align: center;
-  }
   .atelier__stage {
     height: auto;
     perspective: none;

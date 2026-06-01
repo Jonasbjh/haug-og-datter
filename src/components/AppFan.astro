@@ -14,11 +14,6 @@ const locale = resolveLocale(Astro.currentLocale);
 const strings = t(locale);
 ---
 <section class="atelier reveal" aria-label="Apper">
-  <div class="atelier__head">
-    <span class="atelier__eyebrow l">{strings.atelier.eyebrow}</span>
-    <span class="atelier__eyebrow r">{strings.atelier.hint}</span>
-  </div>
-
   <div
     class="atelier__stage"
     role="list"

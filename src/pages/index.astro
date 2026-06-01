@@ -1,13 +1,10 @@
 ---
 import HubLayout from '../layouts/HubLayout.astro';
-import Topbar from '../components/Topbar.astro';
 import Footer from '../components/Footer.astro';
 import AppFan from '../components/AppFan.astro';
 ---
 <HubLayout>
-  <Topbar variant="hub" />
-
-  <section class="hero reveal">
+  <section class="hero hero--home reveal">
     <h1 class="display" data-parallax-title>
       <span class="word">{[...'Haug'].map((ch) => <span class="ltr">{ch}</span>)}</span>
       {' '}
@@ -20,19 +17,6 @@ import AppFan from '../components/AppFan.astro';
   </section>
 
   <AppFan />
-
-  <section class="blocks reveal">
-    <div class="block">
-      <h2>Om</h2>
-      <p>Haug & Datter drives av Jonas fra Drammen. På kveldstid lager han apper og ting han liker. Datteren er to og et halvt og har, som barn i den alderen, sterke meninger om absolutt alt. Hun tester barneappene før de slippes, og «en gang til, pappa!» er den beste tilbakemeldingen vi kan få.</p>
-    </div>
-    <div class="block">
-      <h2>Kontakt</h2>
-      <p>
-        <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>
-      </p>
-    </div>
-  </section>
 
   <Footer label="Haug & Datter · Drammen" />
 </HubLayout>
