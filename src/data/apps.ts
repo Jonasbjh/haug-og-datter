@@ -128,7 +128,9 @@ export const apps: AppDef[] = [
     },
     /* App Store-URL: bytt til kanonisk app-side når Hyttepermen er live. */
     appStoreUrl: 'https://apps.apple.com/no/search?term=Hyttepermen',
-    iconPath: '/icons/hyttepermen.png?v=2',
+    /* ?v=3: nytt «skog ved kveld»-ikon (hytte, gran og måne) juni 2026 —
+       query-bump omgår Cloudflares 24t-cache på /icons/*. */
+    iconPath: '/icons/hyttepermen.png?v=3',
     accent: '#C97B5A',
     glyph: 'cabin',
     hidden: true,
