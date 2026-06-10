@@ -13,7 +13,7 @@ import { resolveLocale, t, localizedPath } from '../i18n/translations';
 const locale = resolveLocale(Astro.currentLocale);
 const strings = t(locale);
 ---
-<section class="atelier reveal" aria-label="Apper">
+<section id="atelieret" class="atelier reveal" aria-label="Apper">
   <div
     class="atelier__stage"
     role="list"
@@ -68,6 +68,17 @@ const strings = t(locale);
     <span class="atelier__counter">{`01 / ${String(visibleApps.length).padStart(2, '0')}`}</span>
     <span class="atelier__label">{visibleApps[0]?.name ?? ''}</span>
   </div>
+
+  <!-- Skodda over viftekronene på forsiden. Kun stilet når AppFan står
+       rett etter NaturHero (.naturhero + .atelier .vifte-taake), ellers
+       er den en tom, usynlig div. Musa tynner tåka, scroll løser den opp. -->
+  <div class="vifte-taake" aria-hidden="true">
+    <div class="vifte-taake__dott vifte-taake__dott--1"></div>
+    <div class="vifte-taake__dott vifte-taake__dott--2"></div>
+    <div class="vifte-taake__dott vifte-taake__dott--3"></div>
+    <div class="vifte-taake__dott vifte-taake__dott--4"></div>
+    <div class="vifte-taake__dott vifte-taake__dott--5"></div>
+  </div>
 </section>
 
 <script>
@@ -96,5 +107,44 @@ const strings = t(locale);
       p.addEventListener('mouseleave', reset);
       p.addEventListener('focusout', reset);
     });
+  }
+
+  // Skodda: musa brenner et mykt hull i tåka (mask-posisjon følger
+  // pekeren), og scroll løser opp hele laget — engangs per sidelasting.
+  // Berøringsskjermer har ingen peker, der gjør scrollen hele jobben.
+  const taake = document.querySelector<HTMLElement>('.vifte-taake');
+  if (taake) {
+    if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      let raf = 0;
+      let mx = 0;
+      let my = 0;
+      document.addEventListener(
+        'mousemove',
+        (e) => {
+          mx = e.clientX;
+          my = e.clientY;
+          if (!raf) {
+            raf = requestAnimationFrame(() => {
+              raf = 0;
+              const r = taake.getBoundingClientRect();
+              taake.style.setProperty('--fx', `${mx - r.left}px`);
+              taake.style.setProperty('--fy', `${my - r.top}px`);
+            });
+          }
+        },
+        { passive: true }
+      );
+    }
+
+    const onScroll = () => {
+      const p = Math.min(1, window.scrollY / (window.innerHeight * 0.55));
+      taake.style.opacity = String(1 - p);
+      if (p >= 1) {
+        taake.classList.add('er-borte');
+        window.removeEventListener('scroll', onScroll);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
 </script>

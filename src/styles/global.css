@@ -11,9 +11,10 @@ ul, ol { list-style: none; }
 img, svg { display: block; max-width: 100%; height: auto; }
 
 :root {
-  --paper: #DDD8CC;
-  --paper-warm: #E3DED3;
-  --card: #E9E4D9;
+  /* Nordisk tåkelys: kjølig grågrønn i stedet for varm stein. */
+  --paper: #E2E5DE;
+  --paper-warm: #EAECE5;
+  --card: #EFF1EB;
   --ink: #14181A;
   --ink-soft: #4A5054;
   --ink-mute: #7B8186;
@@ -97,11 +98,11 @@ body > * { position: relative; z-index: 2; }
   background: color-mix(in oklab, var(--paper) 90%, var(--accent) 10%);
   transition: background 380ms var(--ease);
 }
-body:has(.theme-root[data-app="bumle-bjorn"])     { background: color-mix(in oklab, #DDD8CC 90%, #A85436 10%); }
-body:has(.theme-root[data-app="plantekn"])        { background: color-mix(in oklab, #DDD8CC 90%, #2C4A3A 10%); }
-body:has(.theme-root[data-app="tenkt"])           { background: color-mix(in oklab, #DDD8CC 90%, #8B6F47 10%); }
-body:has(.theme-root[data-app="kvitteringsvakt"]) { background: color-mix(in oklab, #DDD8CC 90%, #7A3A22 10%); }
-body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in oklab, #DDD8CC 90%, #1F3528 10%); }
+body:has(.theme-root[data-app="bumle-bjorn"])     { background: color-mix(in oklab, var(--paper) 90%, #A85436 10%); }
+body:has(.theme-root[data-app="plantekn"])        { background: color-mix(in oklab, var(--paper) 90%, #2C4A3A 10%); }
+body:has(.theme-root[data-app="tenkt"])           { background: color-mix(in oklab, var(--paper) 90%, #8B6F47 10%); }
+body:has(.theme-root[data-app="kvitteringsvakt"]) { background: color-mix(in oklab, var(--paper) 90%, #7A3A22 10%); }
+body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in oklab, var(--paper) 90%, #1F3528 10%); }
 
 /* App-backdrop — unik tekstur per app */
 .app-backdrop {
@@ -319,7 +320,7 @@ body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in okl
   box-shadow: 0 10px 32px rgba(0,0,0,0.18);
   backdrop-filter: blur(10px) saturate(120%);
   -webkit-backdrop-filter: blur(10px) saturate(120%);
-  border: 1px solid rgba(244,236,215,0.08);
+  border: 1px solid rgba(240,244,236,0.08);
   max-width: calc(100vw - 16px);
   overflow-x: auto;
   scrollbar-width: none;
@@ -334,7 +335,7 @@ body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in okl
   text-transform: uppercase;
   white-space: nowrap;
 }
-.menubar a:hover { background: rgba(244,236,215,0.08); }
+.menubar a:hover { background: rgba(240,244,236,0.08); }
 .menubar a[aria-current="page"] {
   background: var(--menu-accent, var(--accent));
   color: var(--paper-warm);
@@ -344,13 +345,13 @@ body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in okl
 .menubar .lang-switch {
   margin-left: 4px;
   padding: 4px 9px;
-  border-left: 1px solid rgba(244,236,215,0.15);
+  border-left: 1px solid rgba(240,244,236,0.15);
   border-radius: 0 999px 999px 0;
   font-weight: 500;
   opacity: 0.82;
   letter-spacing: 0.08em;
 }
-.menubar .lang-switch:hover { opacity: 1; background: rgba(244,236,215,0.10); }
+.menubar .lang-switch:hover { opacity: 1; background: rgba(240,244,236,0.10); }
 @media (max-width: 720px) {
   .menubar {
     top: 8px;
@@ -510,16 +511,6 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   row-gap: 0;
   align-items: center;
 }
-/* Kompakt hub-forside: tittel/logo og vifte trekkes høyere opp når
-   topbar og blokker er fjernet. Kun forsiden (/, /en) bruker denne. */
-.hero--home {
-  padding: 0 0 24px;
-}
-/* Vifte-scenen er 600px høy med telefonene forankret nederst, så det
-   ligger ~100px tom luft over telefonene. Negativ topp-margin trekker
-   telefonene opp så det synlige gapet over vifta matcher gapet mellom
-   hub-pilla og tittelen (~77px). */
-.hero--home + .atelier { margin-top: -46px; }
 .hero .display { grid-area: title; }
 .hero .lede   { grid-area: lede; }
 .hero__logo {
@@ -585,6 +576,298 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   font-size: clamp(20px, 2.2vw, 26px);
   line-height: 1.4;
   color: var(--ink-soft);
+}
+
+/* ---------- NaturHero (forsiden) ---------- */
+/* Fullskjerms natur-video bak tittelen. theme-root--immersiv fjerner
+   toppluften på body og stage slik at videoen når helt opp bak den
+   flytende meny-pillen. */
+body:has(.theme-root--immersiv) { padding-top: 0; }
+.theme-root--immersiv[data-spotlight] .stage { padding-top: 0; }
+
+.naturhero {
+  --fjell-lys: #EFF2EC;
+  --fjell-dim: rgba(239, 242, 236, 0.8);
+  --fjell-hairline: rgba(239, 242, 236, 0.2);
+
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-bottom: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  /* Bunn-padding holder innholdet høyere i bildet og frigjør den nedre
+     delen av videoen til viftekronene som titter opp. */
+  padding: 88px 24px 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+.naturhero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #182019; /* bak videoen før første frame er dekodet */
+}
+.naturhero__media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* To lag mørke: lineær (lesbarhet oppe/nede) + radial (vignett bak
+   tittelen). Kjølig grønnsvart, ikke nøytral svart. */
+.naturhero__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(13, 19, 16, 0.55) 0%,
+    rgba(13, 19, 16, 0.18) 28%,
+    rgba(13, 19, 16, 0.14) 54%,
+    rgba(10, 15, 12, 0.58) 82%,
+    rgba(8, 13, 10, 0.84) 100%);
+}
+/* Vignetten bak tittelen som eget lag — ett lag per flate, se NB over. */
+.naturhero__shade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 90vw 65vh at 50% 44%, rgba(10, 15, 12, 0.22), transparent 70%);
+}
+/* Samme papirkorn som resten av siden — gir videoen filmatisk grain og
+   binder den til materialiteten ellers. */
+.naturhero__korn {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08  0 0 0 0 0.09  0 0 0 0 0.10  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 220px 220px;
+}
+.naturhero__inner {
+  position: relative;
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 760px;
+}
+.naturhero__segl {
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.42));
+}
+.naturhero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fjell-dim);
+  background: rgba(14, 21, 17, 0.34);
+  border: 1px solid var(--fjell-hairline);
+  border-radius: 999px;
+  padding: 9px 18px;
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  margin-bottom: 36px;
+}
+.naturhero__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #A9C29A;
+  animation: pulsLys 2.4s var(--ease) infinite;
+}
+@keyframes pulsLys {
+  0%   { box-shadow: 0 0 0 0 rgba(169, 194, 154, 0.45); }
+  70%  { box-shadow: 0 0 0 7px rgba(169, 194, 154, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(169, 194, 154, 0); }
+}
+.naturhero__display {
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(56px, 9.5vw, 128px);
+  line-height: 0.96;
+  letter-spacing: -0.038em;
+  color: var(--fjell-lys);
+  text-shadow: 0 2px 28px rgba(8, 12, 10, 0.5), 0 1px 0 rgba(8, 12, 10, 0.25);
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+.naturhero__display .word { display: inline-block; white-space: nowrap; }
+.naturhero__display .ltr,
+.naturhero__display .amp {
+  display: inline-block;
+  transition: transform 480ms var(--ease-out);
+  will-change: transform;
+}
+.naturhero__display .amp {
+  font-style: italic;
+  font-weight: 500;
+  color: #D9E3CF;
+  padding: 0 0.06em;
+}
+.naturhero__lede {
+  margin-top: 28px;
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: clamp(19px, 2.1vw, 23px);
+  line-height: 1.5;
+  color: var(--fjell-dim);
+  max-width: 42ch;
+  text-shadow: 0 1px 14px rgba(8, 12, 10, 0.45);
+}
+/* Ankerscroll til vifta skal ikke gjemme den bak meny-pillen. */
+#atelieret { scroll-margin-top: 72px; }
+
+/* Vifta titter opp i selve videoen: hele formasjonen trekkes opp med
+   negativ margin, slik at kronene på telefonene stiger opp av det mørke
+   fjordvannet nederst i hero-en — du ser at noe venter uten å scrolle.
+   Sømmen (mørke som renner ned i papiret) starter ved den gamle
+   seksjonsgrensen, og en pustende månetåke lyser svakt bak kronene. */
+.naturhero + .atelier {
+  --vifte-lopp: 270px;
+  position: relative;
+  margin: calc(-1 * var(--vifte-lopp)) 0 72px;
+}
+.naturhero + .atelier::before {
+  content: "";
+  position: absolute;
+  top: var(--vifte-lopp);
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  height: 260px;
+  background: linear-gradient(to bottom,
+    rgba(10, 15, 12, 0.86) 0%,
+    rgba(11, 16, 13, 0.4) 46%,
+    transparent 100%);
+  pointer-events: none;
+}
+/* Månetåka bak kronene — to myke lyskilder som puster langsomt. */
+.naturhero + .atelier::after {
+  content: "";
+  position: absolute;
+  top: -36px;
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  height: 420px;
+  pointer-events: none;
+  background: radial-gradient(ellipse 52vw 220px at 50% 36%, rgba(219, 228, 209, 0.22), transparent 72%);
+  animation: taakePuls 16s ease-in-out infinite alternate;
+}
+@keyframes taakePuls {
+  from { opacity: 0.5; }
+  to   { opacity: 1; }
+}
+/* Telefonene og captionen skal ligge over søm og tåke. Stage-flaten
+   selv skal ikke spise klikk/hover i hero-en der den overlapper —
+   bare telefonene er interaktive. */
+.naturhero + .atelier .atelier__stage,
+.naturhero + .atelier .atelier__caption {
+  position: relative;
+  z-index: 1;
+}
+.naturhero + .atelier .atelier__stage { pointer-events: none; }
+.naturhero + .atelier .atelier__phone { pointer-events: auto; }
+
+/* Skodda: et levende tåkelag som ligger over viftekronene og nedre del
+   av skjermen ved første besøk. Musa brenner et mykt hull i tåka der
+   den er (mask med radial-gradient som følger --fx/--fy), og når man
+   scroller løser hele laget seg opp — engangs, styrt fra AppFan-
+   scriptet. Lyse tåkedotter over mørkt fjordvann. */
+.naturhero + .atelier .vifte-taake {
+  position: absolute;
+  top: calc(var(--vifte-lopp) - 46vh);
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  height: calc(46vh + 340px);
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  transition: opacity 500ms var(--ease);
+  mask-image: radial-gradient(circle 210px at var(--fx, 50%) var(--fy, 160%),
+    transparent 0%, rgba(0, 0, 0, 0.6) 55%, #000 100%);
+  -webkit-mask-image: radial-gradient(circle 210px at var(--fx, 50%) var(--fy, 160%),
+    transparent 0%, rgba(0, 0, 0, 0.6) 55%, #000 100%);
+}
+/* NB: ÉN radial per dott-div, med lengde-baserte radier (vw/vh), ikke
+   prosent — flerlags radial-lister og prosent-ellipser rendres ikke i
+   alle rasterizere. Fem dotter gir dybde med to drivhastigheter. */
+.vifte-taake__dott {
+  position: absolute;
+  inset: -12% -22%;
+}
+.vifte-taake__dott--1 {
+  background: radial-gradient(ellipse 46vw 34vh at 18% 78%, rgba(228, 233, 226, 0.78), transparent 70%);
+  filter: blur(7px);
+  animation: taakeDrivA 60s ease-in-out infinite alternate;
+}
+.vifte-taake__dott--2 {
+  background: radial-gradient(ellipse 52vw 38vh at 62% 88%, rgba(221, 227, 220, 0.85), transparent 72%);
+  filter: blur(7px);
+  animation: taakeDrivA 74s ease-in-out infinite alternate-reverse;
+}
+.vifte-taake__dott--3 {
+  background: radial-gradient(ellipse 40vw 30vh at 90% 74%, rgba(228, 233, 226, 0.66), transparent 70%);
+  filter: blur(7px);
+  animation: taakeDrivA 66s ease-in-out infinite alternate;
+}
+.vifte-taake__dott--4 {
+  background: radial-gradient(ellipse 58vw 38vh at 35% 96%, rgba(234, 238, 232, 0.9), transparent 74%);
+  filter: blur(11px);
+  animation: taakeDrivB 85s ease-in-out infinite alternate;
+}
+.vifte-taake__dott--5 {
+  background: radial-gradient(ellipse 46vw 32vh at 82% 92%, rgba(226, 231, 224, 0.78), transparent 70%);
+  filter: blur(11px);
+  animation: taakeDrivB 95s ease-in-out infinite alternate-reverse;
+}
+@keyframes taakeDrivA {
+  from { transform: translateX(-2.5%); }
+  to   { transform: translateX(2.5%); }
+}
+@keyframes taakeDrivB {
+  from { transform: translateX(2%); }
+  to   { transform: translateX(-2%); }
+}
+/* Når brukeren har scrollet tåka bort, blir den borte for godt. */
+.naturhero + .atelier .vifte-taake.er-borte {
+  opacity: 0 !important;
+  visibility: hidden;
+  transition: opacity 1.2s var(--ease), visibility 0s 1.2s;
+}
+/* Strammere footer på forsiden — vifta er siste innholdsblokk. */
+.theme-root--immersiv .footer { margin-top: 48px; }
+
+@media (max-width: 720px) {
+  .naturhero { padding: 76px 18px 185px; margin-bottom: 0; }
+  .naturhero + .atelier { --vifte-lopp: 170px; }
+  .naturhero + .atelier::before { height: 190px; }
+  .naturhero + .atelier::after { height: 300px; top: -20px; }
+  .naturhero + .atelier .vifte-taake {
+    top: calc(var(--vifte-lopp) - 34vh);
+    height: calc(34vh + 280px);
+  }
+  .naturhero__segl { width: 112px; height: 112px; margin-bottom: 24px; }
+  .naturhero__eyebrow { font-size: 9px; letter-spacing: 0.18em; padding: 8px 14px; margin-bottom: 28px; }
+  .naturhero__display { font-size: clamp(48px, 15vw, 80px); }
+  .naturhero__lede { font-size: 18px; margin-top: 22px; max-width: 30ch; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .naturhero__dot { animation: none; }
+  .naturhero__display .ltr,
+  .naturhero__display .amp { transition: none; }
+  .naturhero + .atelier::after { animation: none; }
+  .vifte-taake__dott { animation: none; }
 }
 
 /* ---------- Verket ---------- */
@@ -1104,7 +1387,7 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   overflow: hidden;
   background: var(--card);
   box-shadow:
-    0 1px 0 rgba(255,248,224,0.6),
+    0 1px 0 rgba(248,251,245,0.65),
     0 24px 48px -28px rgba(26,22,16,0.32),
     inset 0 0 0 1px var(--line);
 }
@@ -1155,7 +1438,7 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   border-radius: 32px;
   position: relative;
   box-shadow:
-    0 1px 0 rgba(255,248,224,0.6),
+    0 1px 0 rgba(248,251,245,0.65),
     0 28px 56px -32px rgba(26,22,16,0.32),
     inset 0 0 0 1px var(--line);
   scroll-snap-align: start;

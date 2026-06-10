@@ -132,3 +132,12 @@ Hub-en plukker opp den nye appen automatisk fra `apps.ts`.
 - Engangskjøp framfor abonnement der det går.
 - Lokale data framfor sky der det går.
 - JavaScript kun der det gir innholdet en taktil eller funksjonell verdi.
+
+## Natur-hero på forsiden
+
+Forsiden bruker en fullskjerms naturvideo bak tittelen (`src/components/NaturHero.astro`).
+
+- **Fil:** `public/video/hero-fjord.mp4` (720p, ~5,5 MB, 14 sekunder loop) + `hero-fjord-poster.jpg` som vises før videoen starter.
+- **Kilde:** Pexels, «Serene Fjord Landscape in Misty Norway» av Dominik Gryzbon. Pexels-lisens: gratis bruk, ingen kreditering nødvendig.
+- **Bytte video:** legg ny mp4 + poster-jpg i `public/video/` og oppdater stiene i `NaturHero.astro`. Hold filen under ~8 MB og foretrekk rolige, mørke motiver så den lyse teksten er lesbar.
+- Videoen pauses automatisk utenfor viewport og ved `prefers-reduced-motion`.

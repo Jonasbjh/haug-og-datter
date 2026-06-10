@@ -89,7 +89,9 @@ export const apps: AppDef[] = [
       en: 'Daily logic puzzles.',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/tenkt/id6766308807',
-    iconPath: '/icons/tenkt.png',
+    /* ?v=2: nytt gull-T-ikon juni 2026 — query-bump omgår Cloudflares
+       24t-cache på /icons/* (samme grep som stoneward/hyttepermen). */
+    iconPath: '/icons/tenkt.png?v=2',
     accent: '#8B6F47',
     glyph: 'dots',
   },

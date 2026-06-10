@@ -1,0 +1,100 @@
+---
+/**
+ * NaturHero — levende natur-hero på forsiden. Fullskjerms video av en
+ * tåkete norsk fjord bak segl, tittel, lede, knapper og en stille
+ * tall-rad nederst. Videoen pauses når den er utenfor viewport og ved
+ * prefers-reduced-motion; poster-bildet står da stille i stedet.
+ *
+ * Video: Pexels (Dominik Gryzbon), fri lisens uten kreditering.
+ * Fil: public/video/hero-fjord.mp4 (720p, ~5,5 MB, 14 s loop).
+ * Bytt video: legg ny mp4 + jpg i public/video/ og oppdater stiene her.
+ */
+import { resolveLocale } from '../i18n/translations';
+
+const locale = resolveLocale(Astro.currentLocale);
+
+const strings = {
+  no: {
+    eyebrow: 'Et lite app-makeri',
+    lede: 'Apper laget med tid, tålmodighet og litt for mye kaffe.',
+    logo: '/logo/haug-datter-skogen.svg?v=2',
+    logoAlt: 'Haug & Datter — Drammen, Norge',
+  },
+  en: {
+    eyebrow: 'A small app studio',
+    lede: 'Apps built with time, patience, and a little too much coffee.',
+    logo: '/logo/haug-datter-skogen-en.svg',
+    logoAlt: 'Haug & Datter — Drammen, Norway',
+  },
+}[locale];
+---
+<section class="naturhero">
+  <div class="naturhero__media" aria-hidden="true">
+    <video
+      data-naturhero-video
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="/video/hero-fjord-poster.jpg"
+    >
+      <source src="/video/hero-fjord.mp4" type="video/mp4" />
+    </video>
+    <div class="naturhero__shade"></div>
+    <div class="naturhero__korn"></div>
+  </div>
+
+  <div class="naturhero__inner">
+    <img
+      class="naturhero__segl"
+      src={strings.logo}
+      alt={strings.logoAlt}
+      width="148"
+      height="148"
+      loading="eager"
+      decoding="async"
+    />
+    <p class="naturhero__eyebrow">
+      <span class="naturhero__dot" aria-hidden="true"></span>
+      {strings.eyebrow}
+    </p>
+    <h1 class="naturhero__display" data-parallax-title>
+      <span class="word">{[...'Haug'].map((ch) => <span class="ltr">{ch}</span>)}</span>
+      {' '}
+      <span class="amp">&amp;</span>
+      {' '}
+      <span class="word">{[...'Datter'].map((ch) => <span class="ltr">{ch}</span>)}</span>
+    </h1>
+    <p class="naturhero__lede">{strings.lede}</p>
+  </div>
+
+</section>
+
+<script>
+  // Pause videoen utenfor viewport og ved prefers-reduced-motion.
+  // Autoplay-attributtet starter den; vi stopper bare når det trengs.
+  const video = document.querySelector<HTMLVideoElement>('[data-naturhero-video]');
+  if (video) {
+    const mq = matchMedia('(prefers-reduced-motion: reduce)');
+    const still = () => {
+      video.pause();
+      video.removeAttribute('autoplay');
+    };
+    if (mq.matches) still();
+    mq.addEventListener?.('change', () => {
+      if (mq.matches) still();
+      else video.play().catch(() => {});
+    });
+
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (mq.matches) return;
+        if (e.isIntersecting) video.play().catch(() => {});
+        else video.pause();
+      },
+      { threshold: 0.05 }
+    );
+    io.observe(video);
+  }
+</script>

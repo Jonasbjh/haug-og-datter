@@ -12,6 +12,9 @@ import { resolveLocale, t } from '../i18n/translations';
 interface Props {
   title?: string;
   description?: string;
+  /** Fullskjerms hero (NaturHero) øverst: fjerner toppluft på body og
+   *  stage slik at videoen når helt opp bak den flytende menypillen. */
+  immersive?: boolean;
 }
 const locale = resolveLocale(Astro.currentLocale);
 const strings = t(locale);
@@ -20,7 +23,7 @@ const defaultTitle = 'Haug & Datter';
 const defaultDescription = locale === 'en'
   ? 'A small app studio from Drammen. Apps built with time, patience, and a little too much coffee.'
   : 'Et lite app-makeri fra Drammen. Apper laget med tid, tålmodighet og litt for mye kaffe.';
-const { title = defaultTitle, description = defaultDescription } = Astro.props;
+const { title = defaultTitle, description = defaultDescription, immersive = false } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://haugogdatter.no').toString();
 const ogImage = new URL('/logo/haug-datter-skogen-og.png', Astro.site ?? 'https://haugogdatter.no').toString();
 ---
@@ -62,7 +65,7 @@ const ogImage = new URL('/logo/haug-datter-skogen-og.png', Astro.site ?? 'https:
 
     <AppMenu />
 
-    <div class="theme-root" data-spotlight>
+    <div class={`theme-root${immersive ? ' theme-root--immersiv' : ''}`} data-spotlight>
       <div class="stage">
         <slot />
       </div>
