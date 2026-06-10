@@ -15,13 +15,11 @@ const locale = resolveLocale(Astro.currentLocale);
 
 const strings = {
   no: {
-    eyebrow: 'Et lite app-makeri',
     lede: 'Apper laget med tid, tålmodighet og litt for mye kaffe.',
     logo: '/logo/haug-datter-skogen.svg?v=2',
     logoAlt: 'Haug & Datter — Drammen, Norge',
   },
   en: {
-    eyebrow: 'A small app studio',
     lede: 'Apps built with time, patience, and a little too much coffee.',
     logo: '/logo/haug-datter-skogen-en.svg',
     logoAlt: 'Haug & Datter — Drammen, Norway',
@@ -55,10 +53,6 @@ const strings = {
       loading="eager"
       decoding="async"
     />
-    <p class="naturhero__eyebrow">
-      <span class="naturhero__dot" aria-hidden="true"></span>
-      {strings.eyebrow}
-    </p>
     <h1 class="naturhero__display" data-parallax-title>
       <span class="word">{[...'Haug'].map((ch) => <span class="ltr">{ch}</span>)}</span>
       {' '}
