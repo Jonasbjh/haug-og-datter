@@ -17,6 +17,13 @@
 /icons/*
   Cache-Control: public, max-age=86400, must-revalidate
 
+# Apple App Site Association — universal links for Hyttepermen-appen.
+# Apple krever application/json på fila (som ikke har filendelse) og
+# at den serveres uten redirect. Test etter deploy:
+#   curl -i https://haugogdatter.no/.well-known/apple-app-site-association
+/.well-known/apple-app-site-association
+  Content-Type: application/json
+
 # Sikkerhets-headers på alt
 /*
   X-Content-Type-Options: nosniff

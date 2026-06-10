@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["JV2ZXR9U93.com.jonas.Hyttetavla"],
+        "components": [
+          {
+            "/": "/hyttepermen/invite*",
+            "comment": "Invitasjonslenker åpner Hyttepermen-appen direkte"
+          }
+        ]
+      }
+    ]
+  }
+}
