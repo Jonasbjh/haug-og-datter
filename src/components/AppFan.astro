@@ -12,15 +12,35 @@ import { resolveLocale, t, localizedPath } from '../i18n/translations';
 
 const locale = resolveLocale(Astro.currentLocale);
 const strings = t(locale);
+
+/** Fargesymmetrisk visningsrekkefølge for vifta: Plantekn (grønn) i
+ *  midten, rust-tonene innerst rundt den, grønntonene utenfor, og
+ *  Tenkt/Stoneward (gyllen og skiferblå) ytterst på hver side.
+ *  Gjelder KUN vifta — meny, tastatur og ⌘K følger apps.ts-rekkefølgen.
+ *  NB: nye apper må plasseres manuelt her for å bevare symmetrien
+ *  (ukjente slugs havner bakerst). */
+const FAN_ORDER = [
+  'tenkt',
+  'naboskap',
+  'bumle-bjorn',
+  'plantekn',
+  'kvitteringsvakt',
+  'inklings-journal',
+  'stoneward',
+];
+const fanApps = [
+  ...FAN_ORDER.flatMap((slug) => visibleApps.filter((a) => a.slug === slug)),
+  ...visibleApps.filter((a) => !FAN_ORDER.includes(a.slug)),
+];
 ---
 <section id="atelieret" class="atelier reveal" aria-label="Apper">
   <div
     class="atelier__stage"
     role="list"
     data-default-num="01"
-    data-default-name={visibleApps[0]?.name ?? ''}
+    data-default-name={fanApps[0]?.name ?? ''}
   >
-    {visibleApps.map((app, i) => {
+    {fanApps.map((app, i) => {
       const num = String(i + 1).padStart(2, '0');
       return (
         <a
@@ -65,8 +85,8 @@ const strings = t(locale);
   </div>
 
   <div class="atelier__caption" aria-live="polite">
-    <span class="atelier__counter">{`01 / ${String(visibleApps.length).padStart(2, '0')}`}</span>
-    <span class="atelier__label">{visibleApps[0]?.name ?? ''}</span>
+    <span class="atelier__counter">{`01 / ${String(fanApps.length).padStart(2, '0')}`}</span>
+    <span class="atelier__label">{fanApps[0]?.name ?? ''}</span>
   </div>
 
   <!-- Skodda over viftekronene på forsiden. Kun stilet når AppFan står
