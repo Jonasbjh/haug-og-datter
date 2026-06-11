@@ -13,79 +13,72 @@ const app = getApp('hyttepermen');
     <AppRail app={app} current="vilkar" />
     <div class="app-flow">
       <Chapter num="01" label="About the service" title={`For the cabin <em>you share</em>.`}>
-        <p class="lede">{app.name} is an iOS app for shared cabin management. The app lets you collect checklists, shopping lists, the cabin log, maintenance and practical info in one place, and share it with family members via Apple's iCloud services.</p>
+        <p class="lede">{app.name} is an iOS application for shared cabin management. The app lets you collect checklists, shopping lists, the cabin log, maintenance and practical info in one place, and share it with family members via Apple's iCloud services. These terms apply when you use the app.</p>
         <p><strong>Service provider:</strong></p>
         <p>Jonas Haug</p>
         <p>Konvallveien 20</p>
         <p>3047 Drammen, Norway</p>
         <p>Email: <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a></p>
-        <p class="muted">Last updated · 17 May 2026.</p>
+        <p class="muted">Last updated · 11 June 2026.</p>
       </Chapter>
 
       <Chapter num="02" label="Acceptance and App Store" title={`Distributed via <em>App Store</em>.`}>
-        <p>By installing and using {app.name} you accept these terms. If you do not agree, you should not use the app.</p>
-        <p>The app is distributed via the Apple App Store. In addition to these terms, <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener">Apple's App Store Terms of Service</a> and <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/us/terms.html" target="_blank" rel="noopener">Apple Media Services Terms</a> also apply. The licence follows <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apple's Standard End User License Agreement</a>.</p>
+        <p>By installing and using {app.name} you accept these terms. If you do not agree with the terms, you should not use the app.</p>
+        <p>The app is distributed via the Apple App Store. In addition to these terms, <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener">Apple's App Store Terms of Service</a> and <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/us/terms.html" target="_blank" rel="noopener">Apple Media Services Terms</a> also apply.</p>
         <p class="muted">Apple is not a party to the agreement between you and us, and is not responsible for the app or its contents.</p>
       </Chapter>
 
       <Chapter num="03" label="Licence and your duties" title={`A personal <em>licence</em>.`}>
-        <p>You receive a personal, non-exclusive and non-transferable licence to use the app for as long as you comply with these terms. You may use the app for personal and family use. Professional rental management at commercial scale is not what the app is built for.</p>
+        <p>You receive a personal, non-exclusive and non-transferable licence to use the app for as long as you comply with these terms.</p>
         <p>You are responsible for:</p>
-        <p>· Having the lawful right to information and photos you enter</p>
-        <p>· Not using the app for unlawful purposes or harassment</p>
+        <p>· Having the lawful right to use the information and photos you enter</p>
+        <p>· Not using the app for unlawful purposes</p>
         <p>· Not sharing cabin access with people who should not have it</p>
-        <p>· Securing your iCloud account and device with passcode/Face ID</p>
-        <p>· Keeping backups of important data (export is in the Shed → Settings)</p>
-        <p class="muted">You shall not attempt to bypass security mechanisms, reverse-engineer, decompile or modify the app.</p>
+        <p>· Securing your iCloud account and device with a passcode/Face ID</p>
+        <p>· Keeping backups of important data (an export function is in the Shed → Settings)</p>
+        <p class="muted">You shall not attempt to bypass security mechanisms, use the app for harassment, infringement of others' rights or anything else unlawful, or reverse-engineer, decompile or modify the app.</p>
       </Chapter>
 
       <Chapter num="04" label="Free and Plus" title={`A one-time purchase, <em>not a subscription</em>.`}>
-        <p>The app is free to download. The free version lets you own or be in one cabin and use the core features (trips, checklists, shopping lists, cabin log, calendar, the Hearth).</p>
-        <p>{app.name} Plus is a one-time purchase of 99 NOK. After purchase you get:</p>
-        <p>· Maintenance log</p>
-        <p>· Cabin binder (digital documents)</p>
-        <p>· Multiple cabins (more than 1)</p>
-        <p>· More participants on the same trip</p>
-        <p>· Smart checklist (AI-suggested items)</p>
-        <p>· Photos on checklist items</p>
-        <p>· Area guide auto-fill (POI from MapKit)</p>
-        <p>· AI expense insights</p>
-        <p>· Smart shopping list (natural language to items via AI)</p>
-        <p class="muted">Price and local currency are shown in the App Store purchase dialog. Plus access follows your Apple ID and can be restored on new devices via "Restore purchases".</p>
+        <p>The app offers one optional one-time purchase: <strong>{app.name} Plus</strong>, which unlocks owning multiple cabins and more participants per trip.</p>
+        <p>There are no subscriptions. All core features are available without purchase, and joining someone else's cabin is always free.</p>
+        <p class="muted">The price in your local currency is shown in the App Store purchase dialog. Plus follows your Apple ID and can be restored on new devices via "Restore purchases".</p>
       </Chapter>
 
       <Chapter num="05" label="Refunds" title={`Refunds are handled by <em>Apple</em>.`}>
-        <p>Refunds for {app.name} Plus are handled by Apple. Request a refund via the App Store at <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>. Any in-app purchases are handled by Apple, and refunds follow Apple's policies.</p>
+        <p>Purchases are handled by Apple via the App Store, and refunds follow Apple's policies. Request a refund via <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
         <p class="muted">{app.name} cannot itself refund purchases made through the App Store.</p>
       </Chapter>
 
-      <Chapter num="06" label="Ownership" title={`Cabin content <em>belongs to you</em>.`}>
-        <p>You keep all rights to content you enter (text, photos, audio, drawings). The content is stored in Core Data on your device and synced via your iCloud account. We have no access to the content and we get no rights to it.</p>
-        <p class="muted">The app itself — code, design, icons and name — is owned by Haug og Datter. Plus grants you a personal, non-exclusive licence in accordance with Apple's Standard EULA. You may not copy, distribute, modify or reverse-engineer the app. See the <a class="tx-link" href="/en/hyttepermen/personvern/">privacy policy</a> for how data is processed.</p>
+      <Chapter num="06" label="Your content" title={`The cabin content <em>belongs to you</em>.`}>
+        <p>You keep all rights to the content you enter (text, photos, audio, drawings). We receive no rights to your content.</p>
+        <p>The content is stored on your device and in your private iCloud account. We have no access to it.</p>
+        <p class="muted">See the <a class="tx-link" href="/en/hyttepermen/personvern/">privacy policy</a> for how data is processed.</p>
       </Chapter>
 
-      <Chapter num="07" label="Shared cabin" title={`Roles and <em>membership</em>.`}>
-        <p>When you create or join a shared cabin, the cabin data is available to all members via Apple's CloudKit Sharing. You decide who is invited.</p>
-        <p>· As <strong>admin</strong> you can remove members from the cabin.</p>
-        <p>· As <strong>member</strong> you can leave a shared cabin at any time.</p>
-        <p class="muted">Content shared with other members is not automatically deleted when you leave the cabin. The cabin owner (admin) controls this.</p>
+      <Chapter num="07" label="Shared cabins" title={`Roles and <em>membership</em>.`}>
+        <p>When you create or join a shared cabin, the cabin data is available to all members via Apple's CloudKit Sharing. You decide who you invite.</p>
+        <p>· As the <strong>cabin owner</strong> you can change roles and remove members from the cabin.</p>
+        <p>· As <strong>family</strong> or a <strong>guest</strong> you can leave a shared cabin at any time.</p>
+        <p class="muted">Content shared with other members is not automatically deleted when you leave the cabin. The cabin owner controls this.</p>
       </Chapter>
 
       <Chapter num="08" label="Availability and liability" title={`"As is", <em>not a guarantee</em>.`}>
-        <p>The app is provided "as is", with no warranties. We do our best to make the app work, but cannot guarantee that it is always bug-free, that iCloud sync always works (depends on Apple's services), or that the app is compatible with future iOS versions.</p>
-        <p>Checklists, maintenance reminders and expense logs are aids, not a replacement for insurance, professionals or accounting. AI-generated suggestions (smart checklist, area guide, expense insights) are indicative — use them as inspiration, not as truth.</p>
-        <p class="muted">We are not responsible for data loss caused by iCloud, your equipment or your internet connection, or for indirect losses, consequential damages or unauthorised access to your iCloud account. Our total liability is limited to the amount you have paid for the app in the past 12 months. Nothing in these terms limits your statutory consumer rights under mandatory law.</p>
+        <p>We provide the app "as is", without warranties. We do our best to keep the app working, but cannot guarantee that it is always error-free, that iCloud sync always works (it depends on Apple's services), or that the app is compatible with future iOS versions.</p>
+        <p>The iCloud services are provided by Apple Inc. Outages or errors in iCloud are Apple's responsibility.</p>
+        <p class="muted">We are not liable for loss of data caused by errors in iCloud, your equipment or your internet connection, for indirect or consequential losses, or for unauthorised access to your iCloud account. Our total liability towards you is limited to the amount you may have paid for the app in the last 12 months. Nothing in these terms limits your statutory consumer rights under mandatory law.</p>
       </Chapter>
 
-      <Chapter num="09" label="Changes and termination" title={`Significant changes are <em>announced</em>.`}>
-        <p>We may update, change or discontinue features in the app. Significant changes are announced through App Store release notes or in the app. These terms may also change — updates are posted on this page with a new "Last updated" date. Continued use constitutes acceptance of the new terms.</p>
-        <p>You can stop using the app at any time by uninstalling it. We may suspend or terminate your access if you materially breach these terms.</p>
-        <p class="muted">If you delete all data via the Shed → Settings → Delete all my data, all local data, all data in your private iCloud, and all active invitation codes are removed. You may also delete the app from your device — data in your private iCloud remains until you actively delete it or turn off iCloud sync for {app.name}.</p>
+      <Chapter num="09" label="Changes, termination and deletion" title={`Material changes are <em>announced</em>.`}>
+        <p>We may update, change or discontinue features in the app. Material changes are announced via the App Store update or in the app. These terms may also be updated. Material changes to the terms are announced in the app, and the current version is always available in the app and on this page.</p>
+        <p>You can stop using the app at any time by uninstalling it. We may suspend or terminate your access if you materially breach the terms.</p>
+        <p>You can delete all your data from the app at any time via <strong>the Shed → Settings → Delete all my data</strong>. This deletes all data from the device, from your iCloud account and from any invite codes. The action cannot be undone.</p>
+        <p class="muted">You can also delete the app from your device. Data in your private iCloud remains there until you actively delete it or turn off iCloud sync for {app.name}.</p>
       </Chapter>
 
       <Chapter num="10" label="Governing law and contact" title={`<em>Norwegian law</em>, Drammen District Court.`}>
-        <p>These terms are governed by Norwegian law. Disputes shall first be sought resolved amicably. If agreement is not reached, the dispute may be brought before the Norwegian courts, with Drammen District Court as the venue. For consumers, mandatory rules on venue and choice of law under consumer legislation apply.</p>
-        <p>Questions about the terms: <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. See also the <a class="tx-link" href="/en/hyttepermen/personvern/">privacy policy</a> for processing of personal data.</p>
+        <p>These terms are governed by Norwegian law. Disputes are sought resolved amicably. If no agreement is reached, the dispute may be brought before the Norwegian courts with Drammen District Court (Drammen tingrett) as the legal venue. For consumers, mandatory rules on venue and choice of law under consumer legislation apply.</p>
+        <p>Questions about the terms: <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. See also the <a class="tx-link" href="/en/hyttepermen/personvern/">privacy policy</a> for how personal data is processed.</p>
       </Chapter>
     </div>
   </div>

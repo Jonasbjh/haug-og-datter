@@ -13,9 +13,12 @@ const app = getApp('hyttepermen');
     <AppRail app={app} current="personvern" />
     <div class="app-flow">
       <Chapter num="01" label="I korte trekk" title={`Personvern, på <em>vanlig norsk</em>.`}>
-        <p class="lede">{app.name} er en iOS-app for delt hytteadministrasjon. Vi har ingen egne servere. Alle data lagres lokalt på enheten din og synkroniseres via din egen iCloud-konto. Vi har ingen tilgang til hytte-, opphold-, sjekkliste-, chat- eller bildedata.</p>
-        <p>Vi bruker ingen sporing, ingen reklame og ingen analyseverktøy. Du kan slette alle dine data når som helst fra appen (Boden → Innstillinger → Slett alle mine data).</p>
-        <p class="muted">Sist oppdatert · 17. mai 2026.</p>
+        <p class="lede">{app.name} er en iOS-app for delt hytteadministrasjon. Denne erklæringen forklarer hvordan personopplysninger behandles når du bruker appen.</p>
+        <p>· Vi har <strong>ingen egne servere</strong>. Alle data lagres lokalt på enheten din og synkroniseres via <strong>din egen iCloud-konto</strong>.</p>
+        <p>· Vi har <strong>ingen tilgang</strong> til hytte-, opphold-, sjekkliste-, chat- eller bildedata.</p>
+        <p>· Vi bruker <strong>ingen sporing</strong>, <strong>ingen reklame</strong> og <strong>ingen analyseverktøy</strong>.</p>
+        <p>· Du kan <strong>slette alle dine data</strong> når som helst fra appen (Boden → Innstillinger → Slett alle mine data).</p>
+        <p class="muted">Sist oppdatert · 11. juni 2026.</p>
       </Chapter>
 
       <Chapter num="02" label="Behandlingsansvarlig" title={`Hvem som <em>står bak</em>.`}>
@@ -27,70 +30,62 @@ const app = getApp('hyttepermen');
       </Chapter>
 
       <Chapter num="03" label="Data du legger inn" title={`Hva du <em>selv registrerer</em>.`}>
-        <p>Du kan registrere informasjon i appen. Du velger selv hva som legges inn:</p>
-        <p>· <strong>Navn</strong> og rolle i hytta</p>
+        <p>Du velger selv hva du legger inn i appen:</p>
+        <p>· <strong>Navn</strong></p>
         <p>· <strong>Hytteinformasjon</strong> (navn, adresse, bilder)</p>
         <p>· <strong>Sjekklister</strong> og <strong>handlelister</strong></p>
         <p>· <strong>Hyttebok-innlegg</strong> (inkludert bilder og tegninger)</p>
-        <p>· <strong>Vedlikeholdsoppføringer</strong> og <strong>måleravlesninger</strong> (vann, strøm, ved)</p>
-        <p>· <strong>Chat-meldinger</strong> på Peisen og under aktive turer</p>
-        <p>· <strong>Praktisk info</strong> (Permen-kort: wifi, koder, alarmkoder, leverandører)</p>
+        <p>· <strong>Vedlikeholdsoppføringer</strong> og <strong>måleravlesninger</strong></p>
+        <p>· <strong>Chat-meldinger</strong></p>
+        <p>· <strong>Praktisk info</strong> (Permen-kort, inkludert eventuelle talenotater og PDF-vedlegg du legger til)</p>
       </Chapter>
 
       <Chapter num="04" label="Tekniske opplysninger" title={`Det <em>appen vet</em>.`}>
-        <p>· <strong>Enhet- og OS-versjon</strong> brukes kun lokalt for kompatibilitetssjekk. Hvis du sender tilbakemelding via e-post fra appen, vedlegges denne informasjonen automatisk.</p>
+        <p>· <strong>Enhets- og OS-versjon</strong> brukes kun lokalt for kompatibilitetssjekk og legges automatisk ved i e-post hvis du sender tilbakemelding.</p>
         <p>· <strong>iCloud-konto-ID</strong> brukes som identifikator for synkronisering. Den håndteres av Apple, vi ser den ikke.</p>
-        <p class="muted">Innstillinger og preferanser lagres lokalt på enheten (UserDefaults).</p>
       </Chapter>
 
       <Chapter num="05" label="Det vi ikke samler" title={`<em>Ingen sporing.</em> Ingen reklame.`}>
-        <p>{app.name} samler ikke:</p>
-        <p>· Posisjonsdata, kontakter eller kalenderinnhold</p>
-        <p>· IDFA, reklame-ID eller annen identifikator for sporing</p>
-        <p>· Crash-rapporter eller bruksstatistikk</p>
-        <p>Vi bruker ikke Google Analytics, Firebase, Crashlytics, TelemetryDeck eller liknende. Det finnes ingen annonser i appen.</p>
+        <p>Vi samler ikke posisjonsdata, kontakter, kalenderinnhold eller andre data utover det du eksplisitt registrerer i appen.</p>
+        <p>Vi bruker ikke analyseverktøy, sporings-SDK-er eller annonser.</p>
       </Chapter>
 
       <Chapter num="06" label="Hvor det lagres" title={`<em>Lokalt</em>, iCloud, met.no.`}>
-        <p>· <strong>Hytte-, opphold-, sjekkliste-, chat-, bilde- og kortdata</strong> lagres lokalt på enheten din og i din private iCloud-konto via Apples NSPersistentCloudKitContainer.</p>
-        <p>· <strong>Invitasjonskoder for delt hytte</strong> ligger i CloudKit Public Database (Apples servere). Det er kun selve koden og hytte-tilhørighet, ingen personlige data.</p>
+        <p>· <strong>Alle hytte-, opphold-, sjekkliste-, chat-, bilde- og kortdata</strong> lagres lokalt på enheten din og i din private iCloud-konto (Apples servere).</p>
+        <p>· <strong>Invitasjonskoder for delt hytte</strong> ligger i CloudKit Public Database (Apples servere). Oppføringen inneholder koden, hyttenavn, adresse og område, navnet på den som inviterer, valgt rolle, og hyttas wifi-navn og wifi-passord, slik at nye medlemmer får praktisk info straks de blir med. Oppføringen kan bare slås opp med selve koden, utløper automatisk, og slettes når koden deaktiveres eller du sletter dataene dine.</p>
         <p>· <strong>Innstillinger og preferanser</strong> ligger lokalt på enheten (UserDefaults).</p>
-        <p>· <strong>Værdata</strong> hentes fra <a class="tx-link" href="https://www.met.no/om-oss/personvern" target="_blank" rel="noopener">met.no</a> ved behov. Forespørselen inneholder kun geografisk område for hytta, ingen brukerinformasjon.</p>
+        <p>· <strong>Værdata</strong> hentes fra <a class="tx-link" href="https://www.met.no/om-oss/personvern" target="_blank" rel="noopener">met.no</a> (Meteorologisk institutt) ved behov. Forespørselen inneholder kun geografisk område for din hytte, ingen brukerinformasjon.</p>
+        <p>· <strong>Kalender-eksport</strong> (valgfritt): Hvis du velger å legge en tur i kalenderen, opprettes hendelsen i din iOS-kalender. Appen endrer kun hendelser den selv har opprettet, og leser eller lagrer ingen andre kalenderhendelser.</p>
         <p class="muted">Apple Inc. er databehandler for iCloud-tjenestene. Apples personvernerklæring gjelder for denne behandlingen: <a class="tx-link" href="https://www.apple.com/no/legal/privacy/" target="_blank" rel="noopener">apple.com/no/legal/privacy</a>.</p>
       </Chapter>
 
-      <Chapter num="07" label="Deling og AI" title={`CloudKit, <em>Apple og OpenAI</em>.`}>
-        <p>Når du oppretter en delt hytte og inviterer familiemedlemmer, synkroniseres hyttedataene til deres iCloud-kontoer via Apples CloudKit Sharing. Du bestemmer selv hvem som inviteres og hvilken rolle de får. Vi ser ikke hvem som er med eller hva som deles.</p>
-        <p>Plus-funksjoner som smart sjekkliste, områdeguide-autofyll, AI-utgiftsinnsikt og naturlig-språk handlelister sender en kort tekstforespørsel til OpenAIs API (gpt-4o-mini) når du aktivt bruker funksjonen. Forespørselen inneholder konteksten du selv har lagt inn, ikke navn på folk eller bilder.</p>
-        <p class="muted">Bruker du ikke disse funksjonene, kontaktes ikke OpenAI. AI-funksjonene kan slås av i innstillingene. Se <a class="tx-link" href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener">OpenAIs personvernerklæring</a> (gpt-4o-mini brukes ikke til å trene modellene).</p>
-        <p>Vi deler ingen personopplysninger med tredjeparter utover dette. Vi har ingen avtaler med annonsenettverk, analyseleverandører eller dataforhandlere.</p>
+      <Chapter num="07" label="Deling" title={`Du bestemmer <em>hvem som er med</em>.`}>
+        <p>Når du oppretter en delt hytte og inviterer familiemedlemmer, synkroniseres hyttedataene til deres iCloud-kontoer via Apples CloudKit Sharing. Du bestemmer selv hvem som inviteres og hvilken rolle de får.</p>
+        <p>Vi deler <strong>ingen</strong> personopplysninger med tredjeparter. Vi har ingen avtaler med annonsenettverk, analyseleverandører eller dataforhandlere.</p>
+        <p class="muted">Eventuelle innkjøp i appen håndteres av Apple via App Store. Apple behandler betalingsinformasjonen. Vi mottar kun beskjed om at kjøpet er gjennomført, ikke betalingsdetaljer.</p>
       </Chapter>
 
-      <Chapter num="08" label="Kjøp" title={`Plus håndteres av <em>Apple</em>.`}>
-        <p>{app.name} Plus er et engangskjøp på 99 kr som håndteres i sin helhet av Apple via App Store og StoreKit. Apple behandler betalingsinformasjonen. Vi mottar kun beskjed om at kjøpet er gjennomført, og ser ikke kortnummer eller faktureringsadresse.</p>
-      </Chapter>
-
-      <Chapter num="09" label="Lovgrunnlag og lagringstid" title={`<em>GDPR</em> art. 6.`}>
+      <Chapter num="08" label="Lovgrunnlag og lagringstid" title={`<em>GDPR</em> art. 6.`}>
         <p>Behandlingen skjer på følgende grunnlag:</p>
-        <p>· <strong>Nødvendig for å levere tjenesten</strong> (GDPR art. 6 nr. 1 bokstav b) — for at appen skal fungere må vi lagre dataene du registrerer.</p>
-        <p>· <strong>Berettiget interesse</strong> (GDPR art. 6 nr. 1 bokstav f) — for tilbakemeldinger via e-post.</p>
-        <p>Opplysningene lagres så lenge du bruker appen. Når du sletter en hytte eller en oppføring, slettes den umiddelbart fra din enhet og iCloud. Når du sletter alle data (Boden → Innstillinger → Slett alle mine data), fjernes all lokal data, alle data i din private iCloud og alle aktive invitasjonskoder fra CloudKit Public Database. Sletting kan ikke angres.</p>
+        <p>· <strong>Nødvendig for å levere tjenesten du har bestilt</strong> (GDPR art. 6 nr. 1 bokstav b): for at appen skal fungere må vi lagre dataene du registrerer.</p>
+        <p>· <strong>Berettiget interesse</strong> (GDPR art. 6 nr. 1 bokstav f): for tilbakemeldinger via e-post.</p>
+        <p>Opplysningene lagres så lenge du bruker appen. Når du sletter en hytte eller en oppføring, slettes den umiddelbart fra din enhet og iCloud. Når du sletter alle data (Boden → Innstillinger → Slett alle mine data), fjernes alle lokale data, alle data i din private iCloud og alle aktive invitasjonskoder fra CloudKit Public Database. Sletting kan ikke angres.</p>
       </Chapter>
 
-      <Chapter num="10" label="Dine rettigheter" title={`<em>Innsyn</em>, retting, sletting.`}>
-        <p>Etter personvernforordningen (GDPR) har du rett til innsyn, retting, sletting, dataportabilitet, begrensning og innsigelse. Du kan utøve de fleste rettighetene direkte i appen:</p>
+      <Chapter num="09" label="Dine rettigheter" title={`<em>Innsyn</em>, retting, sletting.`}>
+        <p>Etter personvernforordningen (GDPR) har du rett til <strong>innsyn</strong>, <strong>retting</strong>, <strong>sletting</strong>, <strong>dataportabilitet</strong>, <strong>begrensning</strong> og <strong>innsigelse</strong>. Du kan utøve de fleste rettighetene direkte i appen:</p>
         <p>· <strong>Innsyn og portabilitet:</strong> Boden → Innstillinger → Eksporter hyttedata (lager en JSON-fil med alle dataene dine)</p>
         <p>· <strong>Sletting:</strong> Boden → Innstillinger → Slett alle mine data</p>
         <p>· <strong>Retting:</strong> Endre direkte i appen</p>
         <p>For andre forespørsler, kontakt <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Du har også rett til å klage til <a class="tx-link" href="https://www.datatilsynet.no" target="_blank" rel="noopener">Datatilsynet</a> dersom du mener behandlingen er i strid med personvernreglene.</p>
       </Chapter>
 
-      <Chapter num="11" label="Sikkerhet, barn og endringer" title={`Beskyttelse og <em>kontakt</em>.`}>
+      <Chapter num="10" label="Sikkerhet, barn og endringer" title={`Beskyttelse og <em>kontakt</em>.`}>
         <p>· Data overføres via Apples krypterte CloudKit-tjeneste (TLS/HTTPS).</p>
-        <p>· iCloud-data er beskyttet av ditt Apple ID og din enhetspassord/Face ID.</p>
-        <p>· Sensitive felt (wifi-passord, koder, alarmkoder) skjules som standard og krever tap for å vises.</p>
-        <p>{app.name} er ikke rettet mot barn under 13 år. Dersom du som forelder eller foresatt blir oppmerksom på at et barn under 13 år har registrert opplysninger uten samtykke, kontakt oss for å få dataene slettet.</p>
-        <p>Vi kan oppdatere denne erklæringen ved behov. Vesentlige endringer varsles i appen. Gjeldende versjon ligger alltid tilgjengelig her med ny «Sist oppdatert»-dato.</p>
+        <p>· iCloud-data er beskyttet av din Apple-ID og enhetens kode/Face ID.</p>
+        <p>· Sensitive felt (wifi-passord, koder, alarmkoder) skjules som standard i appen og krever tap for å vises.</p>
+        <p>{app.name} er ikke rettet mot barn under 13 år. Dersom du som forelder eller foresatt blir oppmerksom på at et barn under 13 år har registrert opplysninger uten samtykke, kan du kontakte oss for å få dataene slettet.</p>
+        <p>Vi kan oppdatere personvernerklæringen ved behov. Vesentlige endringer varsles i appen eller via App Store-oppdateringer. Gjeldende versjon ligger alltid tilgjengelig i appen og på denne siden.</p>
         <p class="muted">Spørsmål om personvern: <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Se også <a class="tx-link" href="/hyttepermen/vilkar/">brukervilkårene</a>.</p>
       </Chapter>
     </div>

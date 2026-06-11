@@ -13,74 +13,67 @@ const app = getApp('hyttepermen');
     <AppRail app={app} current="vilkar" />
     <div class="app-flow">
       <Chapter num="01" label="Om tjenesten" title={`For hytta <em>dere eier sammen</em>.`}>
-        <p class="lede">{app.name} er en iOS-app for delt hytteadministrasjon. Appen lar deg samle sjekklister, handlelister, hyttebok, vedlikehold og praktisk info på ett sted, og dele det med familiemedlemmer via Apples iCloud-tjenester.</p>
+        <p class="lede">{app.name} er en iOS-applikasjon for delt hytteadministrasjon. Appen lar deg samle sjekklister, handlelister, hyttebok, vedlikehold og praktisk info på ett sted, og dele det med familiemedlemmer via Apples iCloud-tjenester. Disse vilkårene gjelder når du bruker appen.</p>
         <p><strong>Tjenesteleverandør:</strong></p>
         <p>Jonas Haug</p>
         <p>Konvallveien 20</p>
         <p>3047 Drammen</p>
         <p>E-post: <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a></p>
-        <p class="muted">Sist oppdatert · 17. mai 2026.</p>
+        <p class="muted">Sist oppdatert · 11. juni 2026.</p>
       </Chapter>
 
       <Chapter num="02" label="Aksept og App Store" title={`Distribueres via <em>App Store</em>.`}>
-        <p>Ved å installere og bruke {app.name} aksepterer du disse vilkårene. Er du ikke enig, skal du ikke bruke appen.</p>
-        <p>Appen distribueres via Apple App Store. I tillegg til disse vilkårene gjelder også <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener">Apples App Store Terms of Service</a> og <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/no/terms.html" target="_blank" rel="noopener">Apple Media Services Terms</a>. Bruksretten følger <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apples standard sluttbruker-lisensavtale</a>.</p>
+        <p>Ved å installere og bruke {app.name} aksepterer du disse vilkårene. Hvis du ikke er enig i vilkårene, skal du ikke bruke appen.</p>
+        <p>Appen distribueres via Apple App Store. I tillegg til disse vilkårene gjelder også <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener">Apples App Store Terms of Service</a> og <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/no/terms.html" target="_blank" rel="noopener">Apple Media Services Terms</a>.</p>
         <p class="muted">Apple er ikke part i avtalen mellom deg og oss, og har ikke ansvar for appen eller dens innhold.</p>
       </Chapter>
 
       <Chapter num="03" label="Bruksrett og ansvar" title={`Personlig <em>bruksrett</em>.`}>
-        <p>Du får en personlig, ikke-eksklusiv og ikke-overførbar bruksrett til appen så lenge du oppfyller vilkårene. Du kan bruke appen til personlig og familiemessig bruk. Profesjonell utleieadministrasjon i kommersiell skala er ikke det appen er bygd for.</p>
+        <p>Du får en personlig, ikke-eksklusiv og ikke-overførbar bruksrett til appen så lenge du oppfyller vilkårene.</p>
         <p>Du er ansvarlig for:</p>
-        <p>· At du har lovlig rett til informasjonen og bildene du legger inn</p>
-        <p>· At du ikke bruker appen til ulovlig formål eller trakassering</p>
+        <p>· At du har lovlig rett til å bruke informasjonen og bildene du legger inn</p>
+        <p>· At du ikke bruker appen til ulovlig formål</p>
         <p>· At du ikke deler tilgang til hytta med personer som ikke skal ha tilgang</p>
         <p>· At din iCloud-konto og enhet er sikret med passord/Face ID</p>
-        <p>· Å holde sikkerhetskopi av viktige data (eksport finnes i Boden → Innstillinger)</p>
-        <p class="muted">Du skal ikke forsøke å omgå sikkerhetsmekanismer, reverse-engineere, dekompilere eller modifisere appen.</p>
+        <p>· Å holde sikkerhetskopi av viktige data (eksportfunksjon finnes i Boden → Innstillinger)</p>
+        <p class="muted">Du skal ikke forsøke å omgå sikkerhetsmekanismer, bruke appen til trakassering, krenking av andres rettigheter eller annet ulovlig, eller reverse-engineere, dekompilere eller modifisere appen.</p>
       </Chapter>
 
       <Chapter num="04" label="Gratis og Plus" title={`Engangskjøp, <em>ikke abonnement</em>.`}>
-        <p>Appen er gratis å laste ned. Gratis-versjonen lar deg eie eller være med i én hytte og bruke kjernefunksjonene (turer, sjekklister, handlelister, hyttebok, kalender, Peisen).</p>
-        <p>{app.name} Plus er et engangskjøp på 99 kr. Etter kjøp får du:</p>
-        <p>· Vedlikeholdslogg</p>
-        <p>· Hyttepermen (digitale dokumenter)</p>
-        <p>· Flere hytter (mer enn 1)</p>
-        <p>· Flere deltakere på samme tur</p>
-        <p>· Smart sjekkliste (AI-foreslåtte punkter)</p>
-        <p>· Bilder på sjekkliste-punkter</p>
-        <p>· Auto-fyll av områdeguide (POI fra MapKit)</p>
-        <p>· AI-utgiftsinnsikt</p>
-        <p>· Smart handleliste (naturlig språk til varer via AI)</p>
+        <p>Appen tilbyr ett valgfritt engangskjøp: <strong>{app.name} Plus</strong>, som låser opp flere egne hytter og flere deltakere per tur.</p>
+        <p>Det finnes ingen abonnementer. Alle kjernefunksjoner er tilgjengelige uten kjøp, og å bli med i en annens hytte er alltid gratis.</p>
         <p class="muted">Pris og lokal valuta vises i App Store-kjøpsdialogen. Plus-tilgangen følger Apple-ID-en din og kan gjenopprettes på nye enheter via «Gjenopprett kjøp».</p>
       </Chapter>
 
       <Chapter num="05" label="Refusjon" title={`Refusjon håndteres av <em>Apple</em>.`}>
-        <p>Refusjon av {app.name} Plus håndteres av Apple. Be om refusjon via App Store på <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>. Eventuelle innkjøp i appen håndteres av Apple, og refusjoner følger Apples retningslinjer.</p>
+        <p>Kjøp håndteres av Apple via App Store, og refusjoner følger Apples retningslinjer. Be om refusjon via <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
         <p class="muted">{app.name} kan ikke selv refundere kjøp gjort gjennom App Store.</p>
       </Chapter>
 
-      <Chapter num="06" label="Eierskap" title={`Hytteinnholdet <em>tilhører deg</em>.`}>
-        <p>Du beholder alle rettigheter til innhold du legger inn (tekst, bilder, lyd, tegninger). Innholdet lagres i Core Data på enheten din og synkes via din iCloud-konto. Vi har ingen tilgang til innholdet og vi får ingen rettigheter til det.</p>
-        <p class="muted">Selve appen — kode, design, ikoner og navn — eies av Haug og Datter. Plus gir deg en personlig, ikke-eksklusiv lisens i samsvar med Apples standardlisens. Du kan ikke kopiere, distribuere, modifisere eller reverse-engineere appen. Se <a class="tx-link" href="/hyttepermen/personvern/">personvernerklæringen</a> for hvordan data behandles.</p>
+      <Chapter num="06" label="Innhold du legger inn" title={`Hytteinnholdet <em>tilhører deg</em>.`}>
+        <p>Du beholder alle rettigheter til innhold du legger inn (tekst, bilder, lyd, tegninger). Vi får ingen rettigheter til ditt innhold.</p>
+        <p>Innholdet lagres på din enhet og din private iCloud-konto. Vi har ingen tilgang til innholdet.</p>
+        <p class="muted">Se <a class="tx-link" href="/hyttepermen/personvern/">personvernerklæringen</a> for hvordan data behandles.</p>
       </Chapter>
 
       <Chapter num="07" label="Delt hytte" title={`Roller og <em>medlemskap</em>.`}>
         <p>Når du oppretter eller blir med i en delt hytte, vil hyttedataene være tilgjengelige for alle medlemmene via Apples CloudKit Sharing. Du bestemmer selv hvem du inviterer.</p>
-        <p>· Som <strong>admin</strong> kan du fjerne medlemmer fra hytta.</p>
-        <p>· Som <strong>medlem</strong> kan du forlate en delt hytte når som helst.</p>
-        <p class="muted">Innhold som er delt med andre medlemmer slettes ikke automatisk når du forlater hytta. Det er hyttas eier (admin) som har kontroll over dette.</p>
+        <p>· Som <strong>hytteeier</strong> kan du endre roller og fjerne medlemmer fra hytta.</p>
+        <p>· Som <strong>familie</strong> eller <strong>gjest</strong> kan du forlate en delt hytte når som helst.</p>
+        <p class="muted">Innhold som er delt med andre medlemmer slettes ikke automatisk når du forlater hytta. Det er hytteeieren som har kontroll over dette.</p>
       </Chapter>
 
       <Chapter num="08" label="Tilgjengelighet og ansvar" title={`«Som den er», <em>ikke en garanti</em>.`}>
         <p>Vi leverer appen «som den er», uten garantier. Vi gjør vårt beste for at appen skal fungere, men kan ikke garantere at den alltid er feilfri, at iCloud-synkronisering alltid fungerer (avhenger av Apples tjenester), eller at appen er kompatibel med fremtidige iOS-versjoner.</p>
-        <p>Sjekklister, vedlikeholdspåminnelser og utgiftslogg er hjelpemidler, ikke en erstatning for forsikring, fagperson eller regnskap. AI-genererte forslag (smart sjekkliste, områdeguide, utgiftsinnsikt) er antydende — bruk dem som inspirasjon, ikke som fasit.</p>
-        <p class="muted">Vi er ikke ansvarlig for tap av data som skyldes feil i iCloud, ditt utstyr eller din internettforbindelse, eller for indirekte tap, følgeskader eller uautorisert tilgang til din iCloud-konto. Vårt totale erstatningsansvar overfor deg begrenses til det beløp du eventuelt har betalt for appen de siste 12 månedene. Ingenting i disse vilkårene begrenser ditt forbrukerrettslige vern etter ufravikelig lov.</p>
+        <p>iCloud-tjenestene leveres av Apple Inc. Avbrudd eller feil i iCloud er Apples ansvar.</p>
+        <p class="muted">Vi er ikke ansvarlig for tap av data som skyldes feil i iCloud, ditt utstyr eller din internettforbindelse, for indirekte tap eller følgeskader, eller for uautorisert tilgang til din iCloud-konto. Vårt totale erstatningsansvar overfor deg begrenses til det beløp du eventuelt har betalt for appen de siste 12 månedene. Ingenting i disse vilkårene begrenser ditt forbrukerrettslige vern etter ufravikelig lov.</p>
       </Chapter>
 
-      <Chapter num="09" label="Endringer og oppsigelse" title={`Vesentlige endringer <em>varsles</em>.`}>
-        <p>Vi kan oppdatere, endre eller avvikle funksjoner i appen. Vesentlige endringer varsles via App Store-oppdateringen eller i appen. Disse vilkårene kan også endres — endringer publiseres på denne siden med ny «Sist oppdatert»-dato. Fortsatt bruk regnes som aksept av de nye vilkårene.</p>
+      <Chapter num="09" label="Endringer, oppsigelse og sletting" title={`Vesentlige endringer <em>varsles</em>.`}>
+        <p>Vi kan oppdatere, endre eller avvikle funksjoner i appen. Vesentlige endringer varsles via App Store-oppdateringen eller i appen. Disse vilkårene kan også oppdateres. Vesentlige endringer i vilkårene varsles i appen, og gjeldende versjon ligger alltid tilgjengelig i appen og på denne siden.</p>
         <p>Du kan slutte å bruke appen når som helst ved å avinstallere den. Vi kan suspendere eller avslutte din tilgang dersom du bryter vilkårene vesentlig.</p>
-        <p class="muted">Sletter du alle data via Boden → Innstillinger → Slett alle mine data, fjernes alle lokale data, alle data i din private iCloud og alle aktive invitasjonskoder. Du kan også slette appen fra enheten din — da forblir data i din private iCloud inntil du sletter dem aktivt eller slår av iCloud-synkronisering for {app.name}.</p>
+        <p>Du kan når som helst slette alle dine data fra appen via <strong>Boden → Innstillinger → Slett alle mine data</strong>. Dette sletter alle data fra enheten, fra din iCloud-konto og fra eventuelle invitasjonskoder. Handlingen kan ikke angres.</p>
+        <p class="muted">Du kan også slette appen fra enheten din. Data i din private iCloud forblir der inntil du sletter dem aktivt eller slår av iCloud-synkronisering for {app.name}.</p>
       </Chapter>
 
       <Chapter num="10" label="Lovvalg og kontakt" title={`<em>Norsk rett</em>, Drammen tingrett.`}>

@@ -13,9 +13,12 @@ const app = getApp('hyttepermen');
     <AppRail app={app} current="personvern" />
     <div class="app-flow">
       <Chapter num="01" label="Overview" title={`Privacy, in <em>plain English</em>.`}>
-        <p class="lede">{app.name} is an iOS app for shared cabin management. We run no servers of our own. All data is stored locally on your device and synced via your own iCloud account. We have no access to cabin, stay, checklist, chat or photo data.</p>
-        <p>We use no tracking, no ads and no analytics. You can delete all your data from the app at any time (the Shed → Settings → Delete all my data).</p>
-        <p class="muted">Last updated · 17 May 2026.</p>
+        <p class="lede">{app.name} is an iOS app for shared cabin management. This policy explains how personal data is processed when you use the app.</p>
+        <p>· We run <strong>no servers of our own</strong>. All data is stored locally on your device and synced via <strong>your own iCloud account</strong>.</p>
+        <p>· We have <strong>no access</strong> to cabin, stay, checklist, chat or photo data.</p>
+        <p>· We use <strong>no tracking</strong>, <strong>no ads</strong> and <strong>no analytics</strong>.</p>
+        <p>· You can <strong>delete all your data</strong> at any time from the app (the Shed → Settings → Delete all my data).</p>
+        <p class="muted">Last updated · 11 June 2026.</p>
       </Chapter>
 
       <Chapter num="02" label="Data controller" title={`Who's <em>behind it</em>.`}>
@@ -27,71 +30,63 @@ const app = getApp('hyttepermen');
       </Chapter>
 
       <Chapter num="03" label="Data you enter" title={`What you <em>put in yourself</em>.`}>
-        <p>You can enter information into the app. You choose what to add:</p>
-        <p>· <strong>Name</strong> and role at the cabin</p>
+        <p>You choose what to enter into the app:</p>
+        <p>· <strong>Your name</strong></p>
         <p>· <strong>Cabin information</strong> (name, address, photos)</p>
         <p>· <strong>Checklists</strong> and <strong>shopping lists</strong></p>
         <p>· <strong>Cabin log entries</strong> (including photos and drawings)</p>
-        <p>· <strong>Maintenance records</strong> and <strong>meter readings</strong> (water, power, firewood)</p>
-        <p>· <strong>Chat messages</strong> on the Hearth and during active trips</p>
-        <p>· <strong>Practical info</strong> (Binder cards: wifi, codes, alarm codes, suppliers)</p>
+        <p>· <strong>Maintenance records</strong> and <strong>meter readings</strong></p>
+        <p>· <strong>Chat messages</strong></p>
+        <p>· <strong>Practical info</strong> (Binder cards, including any voice notes and PDF attachments you add)</p>
       </Chapter>
 
       <Chapter num="04" label="Technical data" title={`What the <em>app knows</em>.`}>
-        <p>· <strong>Device and OS version</strong> is used only locally for compatibility checks. If you send feedback by email from the app, this information is attached automatically.</p>
-        <p>· <strong>iCloud account ID</strong> is used as an identifier for sync. It is handled by Apple, we do not see it.</p>
-        <p class="muted">Settings and preferences are stored locally on the device (UserDefaults).</p>
+        <p>· <strong>Device and OS version</strong> is used locally for compatibility checks only, and is automatically attached to the email if you send feedback.</p>
+        <p>· <strong>Your iCloud account ID</strong> is used as the identifier for syncing. It is handled by Apple, we never see it.</p>
       </Chapter>
 
       <Chapter num="05" label="What we don't collect" title={`<em>No tracking.</em> No ads.`}>
-        <p>{app.name} does not collect:</p>
-        <p>· Location data, contacts or calendar contents</p>
-        <p>· IDFA, advertising ID or any tracking identifier</p>
-        <p>· Crash reports or usage statistics</p>
-        <p>We do not use Google Analytics, Firebase, Crashlytics, TelemetryDeck or similar. There are no ads in the app.</p>
+        <p>We do not collect location data, contacts, calendar contents or any data beyond what you explicitly enter into the app.</p>
+        <p>We use no analytics tools, no tracking SDKs and no ads.</p>
       </Chapter>
 
-      <Chapter num="06" label="Where it lives" title={`<em>Locally</em>, iCloud, met.no.`}>
-        <p>· <strong>Cabin, stay, checklist, chat, photo and card data</strong> is stored locally on your device and in your private iCloud account via Apple's NSPersistentCloudKitContainer.</p>
-        <p>· <strong>Invitation codes for shared cabins</strong> live in CloudKit Public Database (Apple's servers). Only the code itself and cabin affiliation, no personal data.</p>
+      <Chapter num="06" label="Where it's stored" title={`<em>Locally</em>, iCloud, met.no.`}>
+        <p>· <strong>All cabin, stay, checklist, chat, photo and card data</strong> is stored locally on your device and in your private iCloud account (Apple's servers).</p>
+        <p>· <strong>Invite codes for shared cabins</strong> live in the CloudKit Public Database (Apple's servers). The record contains the code, the cabin's name, address and area, the inviter's name, the chosen role, and the cabin's wifi name and wifi password, so new members get the practical info as soon as they join. The record can only be looked up with the code itself, expires automatically, and is deleted when the code is deactivated or you delete your data.</p>
         <p>· <strong>Settings and preferences</strong> are stored locally on the device (UserDefaults).</p>
-        <p>· <strong>Weather data</strong> is fetched from <a class="tx-link" href="https://www.met.no/om-oss/personvern" target="_blank" rel="noopener">met.no</a> when needed. The request contains only the geographic area of the cabin, no user information.</p>
-        <p class="muted">Apple Inc. is the processor for iCloud services. Apple's privacy policy applies to that processing: <a class="tx-link" href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>
+        <p>· <strong>Weather data</strong> is fetched from <a class="tx-link" href="https://www.met.no/en/About-MET-Norway/privacy" target="_blank" rel="noopener">met.no</a> (the Norwegian Meteorological Institute) when needed. The request contains only the geographic area of your cabin, no user information.</p>
+        <p>· <strong>Calendar export</strong> (optional): If you choose to add a trip to your calendar, the event is created in your iOS calendar. The app only modifies events it created itself, and never reads or stores any other calendar events.</p>
+        <p class="muted">Apple Inc. is the data processor for the iCloud services. Apple's privacy policy applies to this processing: <a class="tx-link" href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>
       </Chapter>
 
-      <Chapter num="07" label="Sharing and AI" title={`CloudKit, <em>Apple and OpenAI</em>.`}>
-        <p>When you create a shared cabin and invite family members, cabin data is synced to their iCloud accounts via Apple's CloudKit Sharing. You decide who is invited and what role they have. We do not see who is a member or what is shared.</p>
-        <p>Plus features such as smart checklist, area guide auto-fill, AI expense insights and natural-language shopping lists send a short text request to OpenAI's API (gpt-4o-mini) when you actively use the feature. The request contains the context you've entered, not names of people or photos.</p>
-        <p class="muted">If you don't use these features, OpenAI is not contacted. AI features can be turned off in settings. See <a class="tx-link" href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener">OpenAI's privacy policy</a> (gpt-4o-mini is not used to train their models).</p>
-        <p>We do not share personal data with third parties beyond this. We have no agreements with ad networks, analytics providers or data brokers.</p>
+      <Chapter num="07" label="Sharing" title={`You decide <em>who's in</em>.`}>
+        <p>When you create a shared cabin and invite family members, the cabin data syncs to their iCloud accounts via Apple's CloudKit Sharing. You decide who is invited and which role they get.</p>
+        <p>We share <strong>no</strong> personal data with third parties. We have no agreements with ad networks, analytics providers or data brokers.</p>
+        <p class="muted">Any in-app purchases are handled by Apple via the App Store. Apple processes the payment information. We only receive confirmation that the purchase was completed, never any payment details.</p>
       </Chapter>
 
-      <Chapter num="08" label="Purchases" title={`Plus is handled by <em>Apple</em>.`}>
-        <p>{app.name} Plus is a one-time purchase of 99 NOK handled entirely by Apple via the App Store and StoreKit. Apple processes payment information. We only receive a signal that the purchase is complete, and do not see card numbers or billing addresses.</p>
+      <Chapter num="08" label="Legal basis and retention" title={`<em>GDPR</em> art. 6.`}>
+        <p>Processing takes place on the following grounds:</p>
+        <p>· <strong>Necessary to deliver the service you requested</strong> (GDPR art. 6(1)(b)): for the app to work, we must store the data you enter.</p>
+        <p>· <strong>Legitimate interest</strong> (GDPR art. 6(1)(f)): for feedback via email.</p>
+        <p>Data is stored for as long as you use the app. When you delete a cabin or an entry, it is removed immediately from your device and iCloud. When you delete all data (the Shed → Settings → Delete all my data), all local data, all data in your private iCloud and all active invite codes in the CloudKit Public Database are removed. Deletion cannot be undone.</p>
       </Chapter>
 
-      <Chapter num="09" label="Legal basis and retention" title={`<em>GDPR</em> Art. 6.`}>
-        <p>Processing is based on the following:</p>
-        <p>· <strong>Necessary for performance of the service</strong> (GDPR Art. 6(1)(b)) — for the app to function we must store the data you enter.</p>
-        <p>· <strong>Legitimate interest</strong> (GDPR Art. 6(1)(f)) — for feedback by email.</p>
-        <p>Data is retained for as long as you use the app. When you delete a cabin or entry, it is removed immediately from your device and iCloud. When you delete all data (the Shed → Settings → Delete all my data), all local data, all data in your private iCloud, and all active invitation codes in CloudKit Public Database are removed. Deletion cannot be undone.</p>
-      </Chapter>
-
-      <Chapter num="10" label="Your rights" title={`<em>Access</em>, rectification, deletion.`}>
-        <p>Under the GDPR you have the right to access, rectification, deletion, data portability, restriction and objection. You can exercise most of these rights directly in the app:</p>
+      <Chapter num="09" label="Your rights" title={`<em>Access</em>, rectification, erasure.`}>
+        <p>Under the GDPR you have the right to <strong>access</strong>, <strong>rectification</strong>, <strong>erasure</strong>, <strong>data portability</strong>, <strong>restriction</strong> and <strong>objection</strong>. You can exercise most of these rights directly in the app:</p>
         <p>· <strong>Access and portability:</strong> the Shed → Settings → Export cabin data (creates a JSON file with all your data)</p>
-        <p>· <strong>Deletion:</strong> the Shed → Settings → Delete all my data</p>
+        <p>· <strong>Erasure:</strong> the Shed → Settings → Delete all my data</p>
         <p>· <strong>Rectification:</strong> edit directly in the app</p>
-        <p>For other requests, contact <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. You also have the right to lodge a complaint with <a class="tx-link" href="https://www.datatilsynet.no" target="_blank" rel="noopener">Datatilsynet</a> (the Norwegian Data Protection Authority) if you believe the processing is unlawful.</p>
+        <p>For other requests, contact <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. You also have the right to lodge a complaint with the Norwegian Data Protection Authority, <a class="tx-link" href="https://www.datatilsynet.no/en/" target="_blank" rel="noopener">Datatilsynet</a>, if you believe the processing violates data protection law.</p>
       </Chapter>
 
-      <Chapter num="11" label="Security, children and changes" title={`Protection and <em>contact</em>.`}>
+      <Chapter num="10" label="Security, children and changes" title={`Protection and <em>contact</em>.`}>
         <p>· Data is transferred via Apple's encrypted CloudKit service (TLS/HTTPS).</p>
         <p>· iCloud data is protected by your Apple ID and your device passcode/Face ID.</p>
-        <p>· Sensitive fields (wifi passwords, codes, alarm codes) are hidden by default and require a tap to reveal.</p>
-        <p>{app.name} is not directed to children under 13. If you as a parent or guardian become aware that a child under 13 has entered data without consent, contact us to have the data deleted.</p>
-        <p>We may update this policy when needed. Significant changes are announced in the app. The current version is always available here with a new "Last updated" date.</p>
-        <p class="muted">Questions about privacy: <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. See also the <a class="tx-link" href="/en/hyttepermen/vilkar/">terms of service</a>.</p>
+        <p>· Sensitive fields (wifi passwords, codes, alarm codes) are hidden by default in the app and require a tap to reveal.</p>
+        <p>{app.name} is not directed at children under 13. If you as a parent or guardian become aware that a child under 13 has entered personal data without consent, you can contact us to have the data deleted.</p>
+        <p>We may update this privacy policy when needed. Material changes are announced in the app or via App Store updates. The current version is always available in the app and on this page.</p>
+        <p class="muted">Privacy questions: <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. See also the <a class="tx-link" href="/en/hyttepermen/vilkar/">terms of use</a>.</p>
       </Chapter>
     </div>
   </div>
