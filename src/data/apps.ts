@@ -73,8 +73,8 @@ export const apps: AppDef[] = [
     slug: 'plantekn',
     name: 'Plantekn',
     tagline: {
-      no: 'Tegn romplaner og møbler.',
-      en: 'Draw floor plans and furniture.',
+      no: 'En enkel romplanlegger med ekte mål.',
+      en: 'A simple floor planner with real measurements.',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/plantekn/id6760789999',
     iconPath: '/icons/plantekn.png',
