@@ -13,9 +13,9 @@ import { resolveLocale, t, localizedPath } from '../i18n/translations';
 const locale = resolveLocale(Astro.currentLocale);
 const strings = t(locale);
 
-/** Fargesymmetrisk visningsrekkefølge for vifta: Plantekn (grønn) i
- *  midten, rust-tonene innerst rundt den, grønntonene utenfor, og
- *  Tenkt/Stoneward (gyllen og skiferblå) ytterst på hver side.
+/** Fargesymmetrisk visningsrekkefølge for vifta (8 apper): Tenkt
+ *  (gyllen) og Stoneward (skiferblå) ytterst, og grønt/rust i jevn
+ *  veksling mellom dem — grønn, rust, grønn || rust, grønn, rust.
  *  Gjelder KUN vifta — meny, tastatur og ⌘K følger apps.ts-rekkefølgen.
  *  NB: nye apper må plasseres manuelt her for å bevare symmetrien
  *  (ukjente slugs havner bakerst). */
@@ -24,8 +24,9 @@ const FAN_ORDER = [
   'naboskap',
   'bumle-bjorn',
   'plantekn',
-  'kvitteringsvakt',
+  'hyttepermen',
   'inklings-journal',
+  'kvitteringsvakt',
   'stoneward',
 ];
 const fanApps = [

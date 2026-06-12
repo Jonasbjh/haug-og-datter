@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import AppRail from '../../components/AppRail.astro';
 import Chapter from '../../components/Chapter.astro';
 import ChapterShots from '../../components/ChapterShots.astro';
+import PrevNextApp from '../../components/PrevNextApp.astro';
 import { getApp } from '../../data/apps';
 const app = getApp('hyttepermen');
 ---
@@ -37,6 +38,8 @@ const app = getApp('hyttepermen');
         <p><strong>Synker via Apples iCloud.</strong> Ingen server hos meg, ingen analyse, ingen identifikatorer. Hytta deles via 6-tegns invitasjonskode. Det er det.</p>
         <p><strong>Hyttepermen Plus (engangskjøp, 99 kr).</strong> Låser opp vedlikeholdslogg, digitale dokumenter, flere hytter, smart sjekkliste (AI-fyll), bilder på sjekklister, områdeguide, utgiftsinnsikt og naturlig-språk handlelister. Kjøp én gang, har for alltid.</p>
       </Chapter>
+
+      <PrevNextApp slug={app.slug} />
     </div>
   </div>
   <Footer label={`${app.name} · Haug & Datter`} />

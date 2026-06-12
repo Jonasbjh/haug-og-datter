@@ -5,6 +5,7 @@ import Footer from '../../../components/Footer.astro';
 import AppRail from '../../../components/AppRail.astro';
 import Chapter from '../../../components/Chapter.astro';
 import ChapterShots from '../../../components/ChapterShots.astro';
+import PrevNextApp from '../../../components/PrevNextApp.astro';
 import { getApp } from '../../../data/apps';
 const app = getApp('hyttepermen');
 ---
@@ -37,6 +38,8 @@ const app = getApp('hyttepermen');
         <p><strong>Syncs via your own iCloud.</strong> No server on my end, no analytics, no identifiers. The cabin is shared via a six-character invitation code. That's it.</p>
         <p><strong>Hyttepermen Plus (one-time purchase, 99 NOK).</strong> Unlocks maintenance log, cabin binder, multiple cabins, smart checklist (AI fill), photos on checklists, area guide, expense insights, and natural-language shopping lists. Buy once, keep forever.</p>
       </Chapter>
+
+      <PrevNextApp slug={app.slug} />
     </div>
   </div>
   <Footer label={`${app.name} · Haug & Datter`} />

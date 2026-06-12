@@ -126,14 +126,12 @@ export const apps: AppDef[] = [
       no: 'For hytta dere eier sammen.',
       en: 'For the cabin you share.',
     },
-    /* App Store-URL: bytt til kanonisk app-side når Hyttepermen er live. */
-    appStoreUrl: 'https://apps.apple.com/no/search?term=Hyttepermen',
+    appStoreUrl: 'https://apps.apple.com/no/app/hyttepermen/id6769565395',
     /* ?v=3: nytt «skog ved kveld»-ikon (hytte, gran og måne) juni 2026 —
        query-bump omgår Cloudflares 24t-cache på /icons/*. */
     iconPath: '/icons/hyttepermen.png?v=3',
     accent: '#C97B5A',
     glyph: 'cabin',
-    hidden: true,
   },
   {
     slug: 'stoneward',

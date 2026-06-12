@@ -1003,14 +1003,15 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
 
 /* Vifte-rotasjoner. translateX gir spredning, translateY gir
    bue-følelsen, rotate gir vifte-vinkelen. transformene blir
-   overstyrt på hover. Symmetrisk 7-app-layout (sentrum + 3 par). */
-.atelier__phone[data-idx="0"] { transform: translateX(calc(-50% - 360px)) translateY(90px)  rotate(-21deg); z-index: 1; }
-.atelier__phone[data-idx="1"] { transform: translateX(calc(-50% - 240px)) translateY(48px)  rotate(-14deg); z-index: 2; }
-.atelier__phone[data-idx="2"] { transform: translateX(calc(-50% - 120px)) translateY(14px)  rotate(-7deg);  z-index: 3; }
-.atelier__phone[data-idx="3"] { transform: translateX(-50%)               translateY(0)     rotate(0deg);   z-index: 4; }
-.atelier__phone[data-idx="4"] { transform: translateX(calc(-50% + 120px)) translateY(14px)  rotate(7deg);   z-index: 3; }
-.atelier__phone[data-idx="5"] { transform: translateX(calc(-50% + 240px)) translateY(48px)  rotate(14deg);  z-index: 2; }
-.atelier__phone[data-idx="6"] { transform: translateX(calc(-50% + 360px)) translateY(90px)  rotate(21deg);  z-index: 1; }
+   overstyrt på hover. Symmetrisk 8-app-layout (4 speilpar). */
+.atelier__phone[data-idx="0"] { transform: translateX(calc(-50% - 406px)) translateY(100px) rotate(-22deg);  z-index: 1; }
+.atelier__phone[data-idx="1"] { transform: translateX(calc(-50% - 290px)) translateY(58px)  rotate(-15deg);  z-index: 2; }
+.atelier__phone[data-idx="2"] { transform: translateX(calc(-50% - 174px)) translateY(24px)  rotate(-8deg);   z-index: 3; }
+.atelier__phone[data-idx="3"] { transform: translateX(calc(-50% - 58px))  translateY(4px)   rotate(-2.5deg); z-index: 4; }
+.atelier__phone[data-idx="4"] { transform: translateX(calc(-50% + 58px))  translateY(4px)   rotate(2.5deg);  z-index: 4; }
+.atelier__phone[data-idx="5"] { transform: translateX(calc(-50% + 174px)) translateY(24px)  rotate(8deg);    z-index: 3; }
+.atelier__phone[data-idx="6"] { transform: translateX(calc(-50% + 290px)) translateY(58px)  rotate(15deg);   z-index: 2; }
+.atelier__phone[data-idx="7"] { transform: translateX(calc(-50% + 406px)) translateY(100px) rotate(22deg);   z-index: 1; }
 
 /* Demp resten når vifta er hovret over */
 .atelier__stage:hover .atelier__phone,
@@ -1027,19 +1028,21 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
 }
 /* Aktiv tilstand: rett opp og løft */
 .atelier__phone[data-idx="0"]:hover,
-.atelier__phone[data-idx="0"]:focus-visible { transform: translateX(calc(-50% - 360px)) translateY(-30px) rotate(-11deg) scale(1.06); }
+.atelier__phone[data-idx="0"]:focus-visible { transform: translateX(calc(-50% - 406px)) translateY(-26px) rotate(-12deg) scale(1.06); }
 .atelier__phone[data-idx="1"]:hover,
-.atelier__phone[data-idx="1"]:focus-visible { transform: translateX(calc(-50% - 240px)) translateY(-42px) rotate(-5deg)  scale(1.06); }
+.atelier__phone[data-idx="1"]:focus-visible { transform: translateX(calc(-50% - 290px)) translateY(-36px) rotate(-7deg)  scale(1.06); }
 .atelier__phone[data-idx="2"]:hover,
-.atelier__phone[data-idx="2"]:focus-visible { transform: translateX(calc(-50% - 120px)) translateY(-50px) rotate(-2deg)  scale(1.06); }
+.atelier__phone[data-idx="2"]:focus-visible { transform: translateX(calc(-50% - 174px)) translateY(-44px) rotate(-4deg)  scale(1.06); }
 .atelier__phone[data-idx="3"]:hover,
-.atelier__phone[data-idx="3"]:focus-visible { transform: translateX(-50%)               translateY(-54px) rotate(0deg)   scale(1.06); }
+.atelier__phone[data-idx="3"]:focus-visible { transform: translateX(calc(-50% - 58px))  translateY(-50px) rotate(-1deg)  scale(1.06); }
 .atelier__phone[data-idx="4"]:hover,
-.atelier__phone[data-idx="4"]:focus-visible { transform: translateX(calc(-50% + 120px)) translateY(-50px) rotate(2deg)   scale(1.06); }
+.atelier__phone[data-idx="4"]:focus-visible { transform: translateX(calc(-50% + 58px))  translateY(-50px) rotate(1deg)   scale(1.06); }
 .atelier__phone[data-idx="5"]:hover,
-.atelier__phone[data-idx="5"]:focus-visible { transform: translateX(calc(-50% + 240px)) translateY(-42px) rotate(5deg)   scale(1.06); }
+.atelier__phone[data-idx="5"]:focus-visible { transform: translateX(calc(-50% + 174px)) translateY(-44px) rotate(4deg)   scale(1.06); }
 .atelier__phone[data-idx="6"]:hover,
-.atelier__phone[data-idx="6"]:focus-visible { transform: translateX(calc(-50% + 360px)) translateY(-30px) rotate(11deg)  scale(1.06); }
+.atelier__phone[data-idx="6"]:focus-visible { transform: translateX(calc(-50% + 290px)) translateY(-36px) rotate(7deg)   scale(1.06); }
+.atelier__phone[data-idx="7"]:hover,
+.atelier__phone[data-idx="7"]:focus-visible { transform: translateX(calc(-50% + 406px)) translateY(-26px) rotate(12deg)  scale(1.06); }
 
 .atelier__screen {
   width: 100%; height: 100%;
@@ -1183,27 +1186,30 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
 @media (max-width: 1100px) {
   .atelier__stage { height: 540px; }
   .atelier__phone { width: 192px; }
-  .atelier__phone[data-idx="0"] { transform: translateX(calc(-50% - 282px)) translateY(66px) rotate(-18deg); }
-  .atelier__phone[data-idx="1"] { transform: translateX(calc(-50% - 188px)) translateY(34px) rotate(-11deg); }
-  .atelier__phone[data-idx="2"] { transform: translateX(calc(-50% - 94px))  translateY(10px) rotate(-5deg);  }
-  .atelier__phone[data-idx="3"] { transform: translateX(-50%)               translateY(0)    rotate(0deg);   }
-  .atelier__phone[data-idx="4"] { transform: translateX(calc(-50% + 94px))  translateY(10px) rotate(5deg);   }
-  .atelier__phone[data-idx="5"] { transform: translateX(calc(-50% + 188px)) translateY(34px) rotate(11deg);  }
-  .atelier__phone[data-idx="6"] { transform: translateX(calc(-50% + 282px)) translateY(66px) rotate(18deg);  }
+  .atelier__phone[data-idx="0"] { transform: translateX(calc(-50% - 316px)) translateY(76px) rotate(-19deg); }
+  .atelier__phone[data-idx="1"] { transform: translateX(calc(-50% - 226px)) translateY(44px) rotate(-13deg); }
+  .atelier__phone[data-idx="2"] { transform: translateX(calc(-50% - 136px)) translateY(18px) rotate(-7deg);  }
+  .atelier__phone[data-idx="3"] { transform: translateX(calc(-50% - 46px))  translateY(3px)  rotate(-2deg);  }
+  .atelier__phone[data-idx="4"] { transform: translateX(calc(-50% + 46px))  translateY(3px)  rotate(2deg);   }
+  .atelier__phone[data-idx="5"] { transform: translateX(calc(-50% + 136px)) translateY(18px) rotate(7deg);   }
+  .atelier__phone[data-idx="6"] { transform: translateX(calc(-50% + 226px)) translateY(44px) rotate(13deg);  }
+  .atelier__phone[data-idx="7"] { transform: translateX(calc(-50% + 316px)) translateY(76px) rotate(19deg);  }
   .atelier__phone[data-idx="0"]:hover,
-  .atelier__phone[data-idx="0"]:focus-visible { transform: translateX(calc(-50% - 282px)) translateY(-26px) rotate(-8deg) scale(1.06); }
+  .atelier__phone[data-idx="0"]:focus-visible { transform: translateX(calc(-50% - 316px)) translateY(-22px) rotate(-10deg) scale(1.06); }
   .atelier__phone[data-idx="1"]:hover,
-  .atelier__phone[data-idx="1"]:focus-visible { transform: translateX(calc(-50% - 188px)) translateY(-36px) rotate(-4deg) scale(1.06); }
+  .atelier__phone[data-idx="1"]:focus-visible { transform: translateX(calc(-50% - 226px)) translateY(-32px) rotate(-6deg)  scale(1.06); }
   .atelier__phone[data-idx="2"]:hover,
-  .atelier__phone[data-idx="2"]:focus-visible { transform: translateX(calc(-50% - 94px))  translateY(-42px) rotate(-1deg) scale(1.06); }
+  .atelier__phone[data-idx="2"]:focus-visible { transform: translateX(calc(-50% - 136px)) translateY(-40px) rotate(-3deg)  scale(1.06); }
   .atelier__phone[data-idx="3"]:hover,
-  .atelier__phone[data-idx="3"]:focus-visible { transform: translateX(-50%)               translateY(-46px) rotate(0deg)  scale(1.06); }
+  .atelier__phone[data-idx="3"]:focus-visible { transform: translateX(calc(-50% - 46px))  translateY(-44px) rotate(-1deg)  scale(1.06); }
   .atelier__phone[data-idx="4"]:hover,
-  .atelier__phone[data-idx="4"]:focus-visible { transform: translateX(calc(-50% + 94px))  translateY(-42px) rotate(1deg)  scale(1.06); }
+  .atelier__phone[data-idx="4"]:focus-visible { transform: translateX(calc(-50% + 46px))  translateY(-44px) rotate(1deg)   scale(1.06); }
   .atelier__phone[data-idx="5"]:hover,
-  .atelier__phone[data-idx="5"]:focus-visible { transform: translateX(calc(-50% + 188px)) translateY(-36px) rotate(4deg)  scale(1.06); }
+  .atelier__phone[data-idx="5"]:focus-visible { transform: translateX(calc(-50% + 136px)) translateY(-40px) rotate(3deg)   scale(1.06); }
   .atelier__phone[data-idx="6"]:hover,
-  .atelier__phone[data-idx="6"]:focus-visible { transform: translateX(calc(-50% + 282px)) translateY(-26px) rotate(8deg)  scale(1.06); }
+  .atelier__phone[data-idx="6"]:focus-visible { transform: translateX(calc(-50% + 226px)) translateY(-32px) rotate(6deg)   scale(1.06); }
+  .atelier__phone[data-idx="7"]:hover,
+  .atelier__phone[data-idx="7"]:focus-visible { transform: translateX(calc(-50% + 316px)) translateY(-22px) rotate(10deg)  scale(1.06); }
 }
 
 /* Mobil — vifte stables vertikalt; ingen horisontal scroll */
