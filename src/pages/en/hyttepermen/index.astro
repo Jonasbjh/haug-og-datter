@@ -14,29 +14,44 @@ const app = getApp('hyttepermen');
   <div class="app-page">
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
-      <Chapter num="01" label="Why" title={`For the cabin <em>you share</em>.`}>
-        <p class="lede">Hyttepermen exists because a shared cabin is one of the most well-meaning ways to create chaos. Three families, one group chat, four checklists, and nobody knows who took out the trash last or where the electricity bill ended up.</p>
-        <p>Hyttepermen is one place for the whole cabin. Who's there now, what needs buying, what's been fixed, what got left behind. Synced via the family's own Apple accounts. No server on my end.</p>
-        <p class="muted">Built because my own family actually shares a cabin, and the group chat wasn't up to the job.</p>
+      <Chapter num="01" label="Why" title={`Everything about the cabin. In <em>one binder</em>.`}>
+        <p class="lede">Hyttepermen is the app for families who share a cabin. The trips, the checklists, the shopping list, the memories and all the practical information that used to live in a worn ring binder in a drawer, now lives in one place. And everyone at the cabin sees the same thing.</p>
+        <p class="muted">For iPhone and iPad.</p>
       </Chapter>
-      <Chapter num="02" label="How it feels" title={`The cabin in <em>one app</em>, not ten.`}>
-        <p>You're driving to the cabin. You open Hyttepermen. The «Winter prep» checklist is there. Your sister has already ticked off «Check the water», your dad has added «Oil the door». The shopping list has milk, bread, and a bag of firewood from last weekend. You know it all before you reach the tunnel.</p>
-        <p>The design is «cosy premium, forest at dusk». Dark forest green base, warm ember accent, generous whitespace. It should feel like the cabin itself. No flashing, no badges, no red button asking for something.</p>
+
+      <Chapter num="02" label="Trips and lists" title={`Plan trips <em>together</em>.`}>
+        <p><strong>Plan trips together.</strong> Create a trip, invite the people coming along, and see who's in. Everyone replies with one tap, and you see who arrives when. Trips are private to the invited, while the calendar shows everyone when the cabin is taken. No double bookings at Easter.</p>
+        <p><strong>Checklists that remember for you.</strong> Arrival and departure each have their own list, and critical items like the main water valve and power are flagged. Everyone sees what's done and who did it. The app reminds you of the departure checklist before you head home.</p>
+        <p><strong>A shopping list for the whole cabin.</strong> Write down what's missing, and everyone sees it. Whoever is at the shop ticks things off, and prices can be noted so settling up is easy.</p>
         <ChapterShots shots={[
           { src: '/screenshots/hyttepermen/01-hjem.png', alt: 'Home screen with cabin photo, weather and quick access' },
           { src: '/screenshots/hyttepermen/02-aktiv-tur.png', alt: 'Active trip with day view, weather and participant timeline' },
           { src: '/screenshots/hyttepermen/03-sjekkliste.png', alt: 'Arrival checklist, four of six done' },
           { src: '/screenshots/hyttepermen/04-peisen.png', alt: 'The Hearth: cabin chat between trips' },
-          { src: '/screenshots/hyttepermen/05-hytteboka.png', alt: 'Cabin log with entries from last year' },
+          { src: '/screenshots/hyttepermen/05-hytteboka.png', alt: 'The cabin log with entries from last year' },
           { src: '/screenshots/hyttepermen/06-permen.png', alt: 'The Binder: contacts, equipment and routines' },
         ]} />
-        <p class="muted">Asynchronous, not chat (you already have one of those). Request, notification, reply, done.</p>
       </Chapter>
-      <Chapter num="03" label="What it does" title={`<em>Home, the Hearth</em>, Active trip, the Shed.`}>
-        <p><strong>Four tabs.</strong> <em>Home</em> is the dashboard with the next trip, status, quick access. <em>The Hearth</em> is the cabin's chat between trips. <em>Active trip</em> appears when someone's at the cabin, with its own trip feed. <em>The Shed</em> is the settings hub for people, rooms, rules and key info.</p>
-        <p><strong>Checklists, shopping lists, calendar, cabin log, maintenance.</strong> All the practical stuff in one place, searchable and shared with whoever you've invited. Roles (admin, family, guest, child, tenant) give the right access to the right person.</p>
-        <p><strong>Syncs via your own iCloud.</strong> No server on my end, no analytics, no identifiers. The cabin is shared via a six-character invitation code. That's it.</p>
-        <p><strong>Hyttepermen Plus (one-time purchase, 99 NOK).</strong> Unlocks maintenance log, cabin binder, multiple cabins, smart checklist (AI fill), photos on checklists, area guide, expense insights, and natural-language shopping lists. Buy once, keep forever.</p>
+
+      <Chapter num="03" label="Memories and chat" title={`<em>The cabin log</em>, the Binder and the Hearth.`}>
+        <p><strong>The cabin log.</strong> The family's digital guest book. Write about the weekend, attach photos, and let the rest of the family react. The memories from the cabin deserve better than being forgotten.</p>
+        <p><strong>The Binder.</strong> The wifi password, the door code, the heat pump manual and the caretaker's number. All the practical stuff, always available, including voice notes and PDF attachments. Sensitive fields stay hidden until you tap them.</p>
+        <p><strong>The Hearth.</strong> The cabin's own chat. Messages about the water being shut off, who's bringing firewood, and photos from the last trip. Between trips, the conversation gathers here.</p>
+      </Chapter>
+
+      <Chapter num="04" label="For the owner" title={`Full <em>control</em>, three roles.`}>
+        <p>Maintenance log, meter readings for power and water, and full control over who has access. Three roles keep things tidy: cabin owner, family and guest each see what's theirs.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Privacy" title={`Your privacy is <em>not the product</em>.`}>
+        <p>Hyttepermen has no servers, no accounts, no tracking and no ads. Everything is stored on your device and synced through your own iCloud. We cannot read your data, and we never should be able to. You can export everything to a file or delete everything, at any time.</p>
+        <p class="muted">Read the <a class="tx-link" href="/en/hyttepermen/personvern/">privacy policy</a> and the <a class="tx-link" href="/en/hyttepermen/vilkar/">terms of use</a>.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Price" title={`Free, with <em>Plus</em> at 69 NOK.`}>
+        <p>Hyttepermen is free, with all core features included. The free version gives you one cabin of your own and up to five participants per trip. Joining someone else's cabin is always free, no matter what.</p>
+        <p><strong>Hyttepermen Plus</strong> is a one-time purchase of 69 NOK that gives you an unlimited number of your own cabins and unlimited participants per trip. One purchase covers the whole cabin. No subscriptions, no hidden costs.</p>
+        <p class="muted">Questions, ideas or something not working? Send an email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. I read everything.</p>
       </Chapter>
 
       <PrevNextApp slug={app.slug} />

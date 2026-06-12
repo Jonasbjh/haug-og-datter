@@ -14,14 +14,15 @@ const app = getApp('hyttepermen');
   <div class="app-page">
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
-      <Chapter num="01" label="Hvorfor" title={`For hytta <em>dere eier sammen</em>.`}>
-        <p class="lede">Hyttepermen finnes fordi delt hytte er en av de mest velmenende måtene å lage rot på. Tre familier, en gruppechat, fire sjekklister, ingen vet hvem som tok ut søpla sist eller hvor strømregningen havnet.</p>
-        <p>Hyttepermen er ett sted for hele hytta. Hvem er der nå, hva skal kjøpes, hva er fikset, hva er gjenglemt. Synkes via familiens egne Apple-kontoer, ingen server hos meg.</p>
-        <p class="muted">Bygd fordi familien min faktisk eier hytte sammen, og fordi gruppechatten ikke holdt til oppgaven.</p>
+      <Chapter num="01" label="Hvorfor" title={`Alt om hytta. Samlet i <em>én perm</em>.`}>
+        <p class="lede">Hyttepermen er appen for familier som deler hytte. Turene, sjekklistene, handlelisten, minnene og all den praktiske informasjonen som før lå i en slitt ringperm i skuffen, bor nå på ett sted. Og alle på hytta ser det samme.</p>
+        <p class="muted">For iPhone og iPad.</p>
       </Chapter>
-      <Chapter num="02" label="Slik føles det" title={`Hytta i <em>en app</em>, ikke i ti.`}>
-        <p>Du er på vei til hytta. Du åpner Hyttepermen. Sjekklista for «Klargjøring vinter» ligger der. Lillesøster har allerede haket av «Sjekk vannet», far har lagt til «Smør døra». Handlelista har melk, brød og en pose ved fra forrige besøk. Du vet alt før bilen er i Drammenstunnelen.</p>
-        <p>Designet er «koselig premium, skog ved kveld». Mørk skog-grønn base, varm ember-aksent, generøs whitespace. Det skal føles som hytta selv. Ingen blink, ingen badges, ingen rød knapp som vil ha noe.</p>
+
+      <Chapter num="02" label="Turer og lister" title={`Planlegg turer <em>sammen</em>.`}>
+        <p><strong>Planlegg turer sammen.</strong> Opprett en tur, inviter de som skal være med, og se hvem som kommer. Alle svarer med ett trykk, og du ser hvem som ankommer når. Turer er private for de inviterte, mens kalenderen viser alle når hytta er opptatt. Da blir det ingen dobbeltbookinger i påsken.</p>
+        <p><strong>Sjekklister som husker for deg.</strong> Ankomst og avreise har hver sin liste, og kritiske punkt som hovedkran og strøm er merket. Alle ser hva som er gjort og hvem som gjorde det. Appen minner deg på avreisesjekklisten før du drar hjem.</p>
+        <p><strong>Handleliste for hele hytta.</strong> Skriv inn det som mangler, så ser alle det. Den som står på butikken haker av, og prisene kan noteres så oppgjøret blir enkelt.</p>
         <ChapterShots shots={[
           { src: '/screenshots/hyttepermen/01-hjem.png', alt: 'Hjem-skjerm med hytta, vær og hurtigtilgang' },
           { src: '/screenshots/hyttepermen/02-aktiv-tur.png', alt: 'Aktiv tur med dagvising, vær og deltaker-tidslinje' },
@@ -30,13 +31,27 @@ const app = getApp('hyttepermen');
           { src: '/screenshots/hyttepermen/05-hytteboka.png', alt: 'Hytteboka med innlegg fra fjoråret' },
           { src: '/screenshots/hyttepermen/06-permen.png', alt: 'Permen: kontakter, utstyr og rutiner' },
         ]} />
-        <p class="muted">Asynkront, ikke chat (det har dere allerede). Forespørsel, varsel, svar, ferdig.</p>
       </Chapter>
-      <Chapter num="03" label="Hva den gjør" title={`<em>Hjem, Peisen</em>, Aktiv tur, Boden.`}>
-        <p><strong>Fire faner.</strong> <em>Hjem</em> er dashbordet med neste tur, status, hurtigtilgang. <em>Peisen</em> er hyttas chat mellom turer. <em>Aktiv tur</em> dukker opp når noen er på hytta, med egen tur-feed. <em>Boden</em> er settings-huben for folk, rom, regler og nøkkelinfo.</p>
-        <p><strong>Sjekklister, handlelister, kalender, hyttebok, vedlikehold.</strong> Alt det praktiske på ett sted, søkbart og delt med dem dere har invitert. Roller (admin, familie, gjest, barn, leietaker) gir rett tilgang til rett person.</p>
-        <p><strong>Synker via Apples iCloud.</strong> Ingen server hos meg, ingen analyse, ingen identifikatorer. Hytta deles via 6-tegns invitasjonskode. Det er det.</p>
-        <p><strong>Hyttepermen Plus (engangskjøp, 99 kr).</strong> Låser opp vedlikeholdslogg, digitale dokumenter, flere hytter, smart sjekkliste (AI-fyll), bilder på sjekklister, områdeguide, utgiftsinnsikt og naturlig-språk handlelister. Kjøp én gang, har for alltid.</p>
+
+      <Chapter num="03" label="Minner og praten" title={`<em>Hytteboka</em>, Permen og Peisen.`}>
+        <p><strong>Hytteboka.</strong> Familiens digitale gjestebok. Skriv om helgen, legg ved bilder, og la resten av familien reagere. Minnene fra hytta fortjener bedre enn å bli glemt.</p>
+        <p><strong>Permen.</strong> Wifi-passordet, dørkoden, bruksanvisningen til varmepumpa og nummeret til vaktmesteren. Alt det praktiske, alltid tilgjengelig, også med talenotater og PDF-vedlegg. Sensitive felt er skjult til du trykker på dem.</p>
+        <p><strong>Peisen.</strong> Hyttas egen chat. Beskjeder om stengt vann, hvem som tar med ved, og bilder fra sist tur. Mellom turene samles praten her.</p>
+      </Chapter>
+
+      <Chapter num="04" label="For eieren" title={`Full <em>kontroll</em>, tre roller.`}>
+        <p>Vedlikeholdslogg, måleravlesninger for strøm og vann, og full kontroll på hvem som har tilgang. Tre roller holder orden: hytteeier, familie og gjest ser hver sitt.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Personvern" title={`Ditt privatliv er <em>ikke produktet</em>.`}>
+        <p>Hyttepermen har ingen servere, ingen kontoer, ingen sporing og ingen reklame. Alt lagres på din enhet og synkroniseres gjennom din egen iCloud. Vi kan ikke lese dataene dine, og det skal vi heller aldri kunne. Du kan eksportere alt til fil eller slette alt, når som helst.</p>
+        <p class="muted">Les <a class="tx-link" href="/hyttepermen/personvern/">personvernerklæringen</a> og <a class="tx-link" href="/hyttepermen/vilkar/">brukervilkårene</a>.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Pris" title={`Gratis, med <em>Plus</em> til 69 kr.`}>
+        <p>Hyttepermen er gratis, med alle kjernefunksjoner inkludert. Gratis-versjonen gir én egen hytte og inntil fem deltakere per tur. Å bli med i en annens hytte er alltid gratis, uansett.</p>
+        <p><strong>Hyttepermen Plus</strong> er et engangskjøp til 69 kroner som gir ubegrenset antall egne hytter og ubegrenset antall deltakere per tur. Ett kjøp gjelder hele hytta. Ingen abonnement, ingen skjulte kostnader.</p>
+        <p class="muted">Spørsmål, idéer eller noe som ikke virker? Send en e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Jeg leser alt.</p>
       </Chapter>
 
       <PrevNextApp slug={app.slug} />
