@@ -22,7 +22,13 @@ const app = getApp('inklings-journal');
       <Chapter num="02" label="How it feels" title={`Write first. <em>The rest</em> can wait.`}>
         <p>You have ten minutes between meetings. You open Inklings, see today's prompt («What did I notice?»), write two sentences. You close it again. It didn't feel like work.</p>
         <p>The design is deliberately editorial. Newsreader serif, brass accent, drop caps. It looks more like a notebook than an app. Dark, warm background. No flashing elements.</p>
-        <ChapterShots count={6} />
+        <ChapterShots shots={[
+          { src: '/screenshots/inklings-journal/01-skriv.png', alt: 'The daily prompt and writing screen' },
+          { src: '/screenshots/inklings-journal/02-kalender.png', alt: 'Calendar with moods and time capsules' },
+          { src: '/screenshots/inklings-journal/03-innsikt.png', alt: 'Insights: mood and themes over time' },
+          { src: '/screenshots/inklings-journal/04-refleksjon.png', alt: 'Your story, written for you' },
+          { src: '/screenshots/inklings-journal/05-tidskapsel.png', alt: 'Write a time capsule to your future self' },
+        ]} />
         <p class="muted">Face ID if you want. Markdown export when you want to take the content with you.</p>
       </Chapter>
       <Chapter num="03" label="What it does" title={`Daily prompt. <em>Search.</em> Export.`}>

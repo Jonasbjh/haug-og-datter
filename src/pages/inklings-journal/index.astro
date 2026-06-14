@@ -22,7 +22,13 @@ const app = getApp('inklings-journal');
       <Chapter num="02" label="Slik føles det" title={`Skriv først. <em>Resten</em> kan vente.`}>
         <p>Du har ti minutter mellom møtene. Du åpner Inklings, ser dagens prompt («Hva la jeg merke til?»), skriver to setninger. Du lukker igjen. Det føltes ikke som arbeid.</p>
         <p>Designet er bevisst editorial. Newsreader serif, brass-aksent, drop caps. Det ligner mer på en notatbok enn en app. Mørk, varm bakgrunn. Ingen blinkende elementer.</p>
-        <ChapterShots count={6} />
+        <ChapterShots shots={[
+          { src: '/screenshots/inklings-journal/01-skriv.png', alt: 'Dagens spørsmål og skriveflaten' },
+          { src: '/screenshots/inklings-journal/02-kalender.png', alt: 'Kalender med stemninger og tidskapsler' },
+          { src: '/screenshots/inklings-journal/03-innsikt.png', alt: 'Innsikt: stemning og temaer over tid' },
+          { src: '/screenshots/inklings-journal/04-refleksjon.png', alt: 'Din historie, skrevet av appen' },
+          { src: '/screenshots/inklings-journal/05-tidskapsel.png', alt: 'Skriv en tidskapsel til deg selv' },
+        ]} />
         <p class="muted">Face ID hvis du vil. Markdown-eksport når du vil ta innholdet med deg.</p>
       </Chapter>
       <Chapter num="03" label="Hva den gjør" title={`Daglig prompt. <em>Søk.</em> Eksport.`}>
