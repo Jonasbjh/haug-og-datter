@@ -13,7 +13,7 @@ const app = getApp('bumle-bjorn');
     <AppRail app={app} current="personvern" />
     <div class="app-flow">
       <Chapter num="01" label="I korte trekk" title={`Personvern, på <em>vanlig norsk</em>.`}>
-        <p class="lede">{app.name} er utviklet av Haug & Datter (Jonas Haug, Drammen). Denne erklæringen forklarer hvordan appen håndterer data. Vi tar personvern på alvor, spesielt fordi appen er laget for barn.</p>
+        <p class="lede">{app.name} er utviklet av Haug & Datter (Jonas Haug, Drammen, Norge). Denne erklæringen forklarer hvordan appen håndterer data. Vi tar personvern på alvor, spesielt fordi appen er laget for barn.</p>
         <p class="muted">Sist oppdatert · 25. april 2026.</p>
       </Chapter>
 
@@ -65,6 +65,7 @@ const app = getApp('bumle-bjorn');
       </Chapter>
 
       <Chapter num="09" label="Kontakt" title={`Spørsmål? <em>Skriv til oss.</em>`}>
+        <p><strong>Behandlingsansvarlig:</strong> Jonas Haug (Haug & Datter), Drammen, Norge.</p>
         <p>Send e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Du får svar fra Jonas selv, vanligvis innen et døgn.</p>
         <p class="muted">Vi kan oppdatere denne erklæringen ved behov. Endringer publiseres på denne siden med oppdatert dato.</p>
       </Chapter>
