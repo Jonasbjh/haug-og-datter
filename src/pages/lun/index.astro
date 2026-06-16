@@ -1,0 +1,55 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import ChapterShots from '../../components/ChapterShots.astro';
+import PrevNextApp from '../../components/PrevNextApp.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('lun');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Hvorfor" title={`Et lunt sted <em>i et anfall</em>.`}>
+        <p class="lede">{app.name} er en migrenedagbok bygget rundt én erkjennelse: du klarer ikke å fylle ut et skjema mens du har migrene. De fleste migreneapper ber deg om mye, akkurat når du orker minst. {app.name} snur på det.</p>
+        <p>Ute er været hardt: trykket faller, og stormen bygger seg opp. Inne er det lunt. {app.name} er det skjermede, varme stedet der presset slipper taket, og det er derfor appen heter nettopp det.</p>
+        <p class="muted">Den første helseappen fra Haug & Datter. Bygget for et øye i smerte: mørk, lavlys, rolig.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Slik føles det" title={`Hold inne. <em>Anfallet er logget.</em>`}>
+        <p>Hjemskjermen er en pustende tussmørkehimmel med én orb. Du holder inne, og anfallet er logget. Vil du legge til intensitet, smertested, symptomer eller triggere, gjør du det når du er på beina igjen. Detaljene kan alltid vente.</p>
+        <p>Appen maser ikke. Ingen streaks, ingen badges, ingen røde prikker. Tonene er dempet og bevegelsene rolige, fordi den er ment å brukes når lys og bevegelse er det siste du tåler.</p>
+        <ChapterShots count={6} />
+        <p class="muted">Hold inne for å handle er signaturgesten i hele familien.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Hva den gjør" title={`Loggen blir til <em>mønstre</em>.`}>
+        <p>Når dagene blir til uker, viser {app.name} deg det loggen ikke kan si på egen hånd:</p>
+        <p>· Hvor ofte anfallene kommer, og om det går opp eller ned.</p>
+        <p>· Hvor sterke de er, og når på uken og døgnet de oftest slår til.</p>
+        <p>· Hvilke triggere som går igjen.</p>
+        <p>· Hvordan søvn, menstruasjon og fallende lufttrykk henger sammen med anfallene dine.</p>
+        <p>· Om akuttmedisinen virker, og en rolig beskjed hvis du nærmer deg grensen der medisin tatt for ofte selv kan gi hodepine.</p>
+        <p class="muted">Når du skal til legen, samler {app.name} alt til en ryddig rapport du kan ta med.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Personvern" title={`Helsedataene dine er <em>dine alene</em>.`}>
+        <p>Alt du logger ligger lokalt på enheten, og synkroniseres bare gjennom din egen private iCloud. Det finnes ingen server, ingen reklame og ingen sporing. Vi kan ikke se det du registrerer.</p>
+        <p>Det eneste som forlater enheten, er en grov, avrundet posisjon når du vil se lufttrykk, fordi trykkfall er en kjent migrenetrigger. Den inneholder aldri helsedata.</p>
+        <p class="muted">Les hele <a class="tx-link" href="/lun/personvern/">personvernerklæringen</a>.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Gratis og Lun+" title={`Logging er <em>alltid gratis</em>.`}>
+        <p>Logging er alltid gratis, og det samme er historikk, kalender, grunnmønstre, triggere, rytme og styrke.</p>
+        <p>{app.name}+ låser opp de tyngre sammenhengene (lufttrykk, søvn og syklus), grensevarselet for akuttmedisin, og legerapporten. {app.name}+ koster kr 249 per år med én uke gratis, eller kr 39 per måned.</p>
+        <p class="muted">Abonnement via App Store. Ingen reklame i noen versjon. {app.name} er ikke medisinsk utstyr og gir ikke behandlingsråd.</p>
+      </Chapter>
+      <PrevNextApp slug={app.slug} />
+    </div>
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
+</AppLayout>

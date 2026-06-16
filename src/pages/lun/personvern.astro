@@ -1,0 +1,82 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('lun');
+---
+<AppLayout app={app} title={`Personvern · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="I korte trekk" title={`Helsedataene dine er <em>dine alene</em>.`}>
+        <p class="lede">{app.name} er bygget rundt ett løfte: helsedataene dine er dine alene. Vi har ingen server, og vi har ingen tilgang til det du logger. Denne erklæringen forklarer hva det betyr i praksis.</p>
+        <p>· Alt du registrerer i {app.name} lagres lokalt på enheten din.</p>
+        <p>· Bruker du iCloud, synkroniseres dataene gjennom din egen private iCloud. Vi kan ikke se dem.</p>
+        <p>· Vi samler ikke inn personopplysninger om deg på noen server. Det finnes ingen.</p>
+        <p>· Det eneste som forlater enheten, er en grov, avrundet posisjon til en værtjeneste når du velger å se lufttrykk. Aldri helsedata.</p>
+        <p>· Ingen reklame, ingen analyseverktøy, ingen sporing.</p>
+        <p class="muted">Sist oppdatert · 16. juni 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Ansvarlig" title={`Hvem som er <em>ansvarlig</em>.`}>
+        <p>Behandlingsansvarlig for {app.name} er Jonas Haug (Haug & Datter), Drammen, Norge. Har du spørsmål om personvern, kan du ta kontakt på <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>.</p>
+      </Chapter>
+
+      <Chapter num="03" label="På enheten" title={`Hva du registrerer, og <em>hvor det ligger</em>.`}>
+        <p>I {app.name} kan du registrere migreneanfall med tidspunkt, varighet, intensitet, smertested, aura, symptomer, mulige triggere, notater og eventuelle røde flagg. Du kan også legge inn medisiner og doser, søvn, menstruasjon og lufttrykk.</p>
+        <p>Dette er sensitive helseopplysninger, og derfor behandler vi dem deretter: de lagres lokalt på enheten din, og synkroniseres kun til din egen private iCloud dersom du bruker det. De sendes aldri til oss, og de deles aldri med en tredjepart.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Lufttrykk" title={`Lufttrykk og <em>posisjon</em>.`}>
+        <p>{app.name} kan vise lufttrykket der du er, fordi trykkfall er en kjent migrenetrigger. For å hente trykket sender appen en grov, avrundet posisjon (rundet til omtrent én tidels grad, i størrelsesorden ti kilometer) til værtjenesten Open-Meteo.</p>
+        <p>Forespørselen inneholder kun denne omtrentlige posisjonen. Den inneholder aldri helsedata, og aldri noe som identifiserer deg eller enheten din. Du styrer posisjonstilgangen selv i Innstillinger, og funksjonen virker bare når du har slått den på.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Apple Helse" title={`Utveksling med <em>Apple Helse</em>.`}>
+        <p>Slår du det på, kan {app.name} lese søvn fra Apple Helse og skrive anfallene dine tilbake som hodepinehendelser, slik at de lever sammen med resten av helsedataene dine. Denne utvekslingen skjer på enheten, mellom {app.name} og Apple Helse, og styres av Apple. Du gir og trekker tilgangen selv i Helse, når som helst.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Varsler" title={`<em>Varsler.</em>`}>
+        <p>Velger du påminnelser, lages de som lokale varsler på enheten. Det sendes ingen data til oss for å vise dem, og ingen server er involvert.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Kjøp" title={`Kjøp av <em>${app.name}+</em>.`}>
+        <p>{app.name}+ kjøpes som et abonnement i App Store. Selve betalingen håndteres av Apple. Vi mottar aldri kortnummer, navn eller andre betalingsdetaljer. Appen får kun en bekreftelse fra Apple på om et abonnement er aktivt, uten at det knyttes til hvem du er.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Ingen sporing" title={`<em>Ingen sporing.</em>`}>
+        <p>Det finnes ingen reklame i {app.name}, ingen analyseverktøy, ingen informasjonskapsler og ingen sporing av noe slag. Vi har bevisst ingen tredjepartskode som samler data. Den eneste nettforbindelsen appen gjør, er kallet til værtjenesten som er beskrevet over.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Rettighetene dine" title={`<em>Rettighetene dine</em>.`}>
+        <p>Personvernreglene gir deg rett til innsyn i, retting av og sletting av personopplysninger en virksomhet har om deg. Siden vi ikke oppbevarer noen opplysninger om deg på vår side, finnes det ingenting hos oss å hente ut eller slette.</p>
+        <p>Du har full kontroll selv: alle data ligger på enheten din og i din egen iCloud, og du kan se, endre og slette dem der.</p>
+      </Chapter>
+
+      <Chapter num="10" label="Sletting" title={`Slik <em>sletter du data</em>.`}>
+        <p>· I appen kan du slette enkeltoppføringer, eller bruke «Slett alle data» i Innstillinger for å fjerne alt på én gang.</p>
+        <p>· Vil du fjerne alt helt, sletter du appen. Data som er synkronisert til iCloud, kan du slette fra iCloud.</p>
+      </Chapter>
+
+      <Chapter num="11" label="Barn" title={`<em>Barn.</em>`}>
+        <p>{app.name} er en helsedagbok ment for voksne, og er ikke rettet mot barn. Vi anbefaler at appen brukes av personer over 16 år.</p>
+      </Chapter>
+
+      <Chapter num="12" label="Endringer" title={`Endringer i <em>denne erklæringen</em>.`}>
+        <p>Vi kan oppdatere denne erklæringen. Skjer det vesentlige endringer, gjør vi dem tydelige, og vi oppdaterer datoen øverst.</p>
+      </Chapter>
+
+      <Chapter num="13" label="Kontakt" title={`<em>Kontakt.</em>`}>
+        <p>Lurer du på noe om personvern i {app.name}, ta kontakt med Haug & Datter.</p>
+        <p><strong>Jonas Haug</strong></p>
+        <p><a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a></p>
+        <p><a class="tx-link" href="https://haugogdatter.no" target="_blank" rel="noopener">haugogdatter.no</a></p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Personvern`} />
+</AppLayout>

@@ -21,7 +21,8 @@ export type GlyphKind =
   | 'script'    // inklings-journal
   | 'rings'     // naboskap
   | 'cabin'     // hytteliv
-  | 'cairn';    // stoneward
+  | 'cairn'     // stoneward
+  | 'orb';      // lun
 
 export interface AppDef {
   slug: string;
@@ -145,6 +146,21 @@ export const apps: AppDef[] = [
     iconPath: '/icons/stoneward.png?v=2',
     accent: '#4A5D75',
     glyph: 'cairn',
+  },
+  {
+    slug: 'lun',
+    name: 'Lun',
+    tagline: {
+      no: 'Migrenedagboken som ber om mindre.',
+      en: 'The migraine diary that asks less.',
+    },
+    /* Skjult til lansering. App Store-URL: bytt til kanonisk app-side
+       (`/app/lun/id<n>`) når Lun er live. Søk-URL er fallback inntil da. */
+    appStoreUrl: 'https://apps.apple.com/no/search?term=Lun+migrene',
+    iconPath: '/icons/lun.png',
+    accent: '#474C78',
+    glyph: 'orb',
+    hidden: true,
   },
 ];
 

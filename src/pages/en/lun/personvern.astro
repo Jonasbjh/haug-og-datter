@@ -1,0 +1,82 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('lun');
+---
+<AppLayout app={app} title={`Privacy · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="In short" title={`Your health data is <em>yours alone</em>.`}>
+        <p class="lede">{app.name} is built around one promise: your health data is yours alone. We have no server, and we have no access to what you log. This statement explains what that means in practice.</p>
+        <p>· Everything you record in {app.name} is stored locally on your device.</p>
+        <p>· If you use iCloud, your data syncs through your own private iCloud. We cannot see it.</p>
+        <p>· We do not collect personal data about you on any server. There is none.</p>
+        <p>· The only thing that leaves the device is a coarse, rounded location sent to a weather service when you choose to see air pressure. Never health data.</p>
+        <p>· No ads, no analytics tools, no tracking.</p>
+        <p class="muted">Last updated · 16 June 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Who is responsible" title={`Who is <em>responsible</em>.`}>
+        <p>The data controller for {app.name} is Jonas Haug (Haug & Datter), Drammen, Norway. If you have questions about privacy, you can get in touch at <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>.</p>
+      </Chapter>
+
+      <Chapter num="03" label="On the device" title={`What you record, and <em>where it lives</em>.`}>
+        <p>In {app.name} you can record migraine attacks with time, duration, intensity, pain location, aura, symptoms, possible triggers, notes and any red flags. You can also enter medications and doses, sleep, menstruation and air pressure.</p>
+        <p>This is sensitive health information, and so we treat it accordingly: it is stored locally on your device, and synced only to your own private iCloud if you use it. It is never sent to us, and never shared with a third party.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Air pressure" title={`Air pressure and <em>location</em>.`}>
+        <p>{app.name} can show the air pressure where you are, because falling pressure is a known migraine trigger. To fetch the pressure, the app sends a coarse, rounded location (rounded to about a tenth of a degree, on the order of ten kilometers) to the weather service Open-Meteo.</p>
+        <p>The request contains only this approximate location. It never contains health data, and never anything that identifies you or your device. You control location access yourself in Settings, and the feature only works when you have turned it on.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Apple Health" title={`Exchange with <em>Apple Health</em>.`}>
+        <p>If you turn it on, {app.name} can read sleep from Apple Health and write your attacks back as headache events, so they live alongside the rest of your health data. This exchange happens on the device, between {app.name} and Apple Health, and is governed by Apple. You grant and withdraw access yourself in Health, at any time.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Notifications" title={`<em>Notifications.</em>`}>
+        <p>If you choose reminders, they are created as local notifications on the device. No data is sent to us to show them, and no server is involved.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Purchases" title={`Buying <em>${app.name}+</em>.`}>
+        <p>{app.name}+ is bought as a subscription in the App Store. The payment itself is handled by Apple. We never receive card numbers, names or other payment details. The app only gets a confirmation from Apple of whether a subscription is active, without it being tied to who you are.</p>
+      </Chapter>
+
+      <Chapter num="08" label="No tracking" title={`<em>No tracking.</em>`}>
+        <p>There are no ads in {app.name}, no analytics tools, no cookies and no tracking of any kind. We deliberately have no third-party code that collects data. The only network connection the app makes is the call to the weather service described above.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Your rights" title={`<em>Your rights</em>.`}>
+        <p>Privacy law gives you the right to access, correct and delete personal data a business holds about you. Since we hold no information about you on our side, there is nothing on our end to retrieve or delete.</p>
+        <p>You are in full control yourself: all data lives on your device and in your own iCloud, and you can view, change and delete it there.</p>
+      </Chapter>
+
+      <Chapter num="10" label="Deletion" title={`How to <em>delete data</em>.`}>
+        <p>· In the app you can delete individual entries, or use "Delete all data" in Settings to remove everything at once.</p>
+        <p>· To remove everything entirely, delete the app. Data synced to iCloud can be deleted from iCloud.</p>
+      </Chapter>
+
+      <Chapter num="11" label="Children" title={`<em>Children.</em>`}>
+        <p>{app.name} is a health diary intended for adults, and is not directed at children. We recommend the app be used by people over 16.</p>
+      </Chapter>
+
+      <Chapter num="12" label="Changes" title={`Changes to <em>this statement</em>.`}>
+        <p>We may update this statement. If material changes happen, we make them clear, and we update the date at the top.</p>
+      </Chapter>
+
+      <Chapter num="13" label="Contact" title={`<em>Contact.</em>`}>
+        <p>If you're wondering about anything regarding privacy in {app.name}, get in touch with Haug & Datter.</p>
+        <p><strong>Jonas Haug</strong></p>
+        <p><a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a></p>
+        <p><a class="tx-link" href="https://haugogdatter.no" target="_blank" rel="noopener">haugogdatter.no</a></p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Privacy`} />
+</AppLayout>

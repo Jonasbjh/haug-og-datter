@@ -1,0 +1,42 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('lun');
+---
+<AppLayout app={app} title={`Support · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="support" />
+    <div class="app-flow">
+      <Chapter num="01" label="Contact" title={`Questions? <em>Write to us.</em>`}>
+        <p class="lede">Need help with {app.name}, or want to give feedback? Send an email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. You'll hear back from Jonas himself, usually within a day.</p>
+      </Chapter>
+
+      <Chapter num="02" label="FAQ" title={`What people <em>ask</em>.`}>
+        <p><strong>How do I log an attack?</strong></p>
+        <p class="muted">Hold down the orb on the home screen. That's enough. Intensity, pain location, symptoms and triggers can be added afterward, once you're back on your feet. You can also log attacks backdated in time.</p>
+        <p><strong>What is {app.name}+?</strong></p>
+        <p class="muted">A voluntary subscription that unlocks the heavier connections (air pressure, sleep and cycle), the acute-medication threshold alert and the doctor's report. It costs NOK 249 per year with one week free, or NOK 39 per month. Logging is always free.</p>
+        <p><strong>How do I cancel {app.name}+?</strong></p>
+        <p class="muted">The subscription is managed in the App Store, not in the app. Go to your App Store account settings, choose Subscriptions, and cancel {app.name}+ there. If you cancel during the free period, you are not charged.</p>
+        <p><strong>Why does the app want my location?</strong></p>
+        <p class="muted">Only to fetch the air pressure where you are, since falling pressure is a known migraine trigger. The app sends a coarse, rounded location to the weather service Open-Meteo, never health data. You control access yourself, and the feature only works when you have turned it on.</p>
+        <p><strong>What is the doctor's report?</strong></p>
+        <p class="muted">A tidy summary of your log, gathered so you can bring it to your doctor. It is created on your device from the data you have already recorded.</p>
+        <p><strong>Is my data private?</strong></p>
+        <p class="muted">Yes. Everything you log stays locally on the device, and syncs only through your own private iCloud. There is no server, no ads and no tracking. See the <a class="tx-link" href="/en/lun/personvern/">privacy policy</a>.</p>
+        <p><strong>Does {app.name} replace a doctor?</strong></p>
+        <p class="muted">No. {app.name} is a tool for seeing patterns, not a medical device or health care. If you are worried or have new, serious symptoms, contact a doctor. See the <a class="tx-link" href="/en/lun/vilkar/">terms</a>.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Feedback" title={`Ideas, <em>bugs</em>, tips.`}>
+        <p>Features you miss? Bugs that annoy you? Send them to the same address. I read everything and prioritize based on what actually makes the app better.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Support`} />
+</AppLayout>

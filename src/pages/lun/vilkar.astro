@@ -1,0 +1,67 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('lun');
+---
+<AppLayout app={app} title={`Vilkår · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="vilkar" />
+    <div class="app-flow">
+      <Chapter num="01" label="Hva det er" title={`Et verktøy, <em>ikke helsehjelp</em>.`}>
+        <p class="lede">Disse vilkårene gjelder når du bruker appen {app.name}. De er ment å være korte og tydelige. {app.name} leveres av Jonas Haug (Haug & Datter), Drammen.</p>
+        <p>{app.name} er et verktøy for å registrere migrene og se mønstre over tid. Det er ikke medisinsk utstyr, og det er ikke helsehjelp.</p>
+        <p class="muted">Sist oppdatert · 16. juni 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Ikke medisinske råd" title={`Ikke <em>medisinske råd</em>.`}>
+        <p>{app.name} stiller ikke diagnoser og gir ikke behandlingsråd. Mønstre, tall og innsikt i appen er kun til informasjon. Ved bekymring, eller ved nye og alvorlige symptomer, anbefaler vi at du tar kontakt med lege eller annet helsepersonell.</p>
+        <p>Appen kan vise en rolig oppfordring om å kontakte lege ved enkelte symptomer, men det erstatter aldri din egen eller en faglig vurdering.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Ditt ansvar" title={`<em>Ditt ansvar.</em>`}>
+        <p>{app.name} leveres som det er. Du bruker appen på eget ansvar, og Haug & Datter tar ikke ansvar for beslutninger du tar på grunnlag av innholdet i appen.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Abonnement" title={`<em>${app.name}+</em>.`}>
+        <p>Logging i {app.name} er alltid gratis. {app.name}+ er et frivillig abonnement som låser opp utvidet innsikt, full historikk, lufttrykk, sammenhenger og legerapport.</p>
+        <p>· {app.name}+ Årlig koster kr 249 per år, og starter med én uke gratis.</p>
+        <p>· {app.name}+ Månedlig koster kr 39 per måned.</p>
+        <p>Abonnementet kjøpes i App Store, og betalingen belastes kontoen din i App Store ved bekreftet kjøp. Det fornyes automatisk for samme periode, med mindre du sier det opp minst ett døgn før perioden er omme. Du administrerer og avslutter abonnementet selv i kontoinnstillingene dine i App Store. Starter du med gratisperiode og sier opp før den er over, blir du ikke belastet.</p>
+        <p class="muted">Prisene kan variere etter region og kan bli justert. Eventuelle endringer varsles i tråd med reglene til App Store.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Apples vilkår" title={`Lastes ned fra <em>App Store</em>.`}>
+        <p>{app.name} lastes ned fra App Store, og Apples standardvilkår for lisensiering av apper gjelder i tillegg til disse vilkårene.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Rettigheter" title={`Immaterielle <em>rettigheter</em>.`}>
+        <p>Appen {app.name}, navnet og designet Lyng tilhører Haug & Datter. Du får en personlig og begrenset rett til å bruke appen. Du kan ikke kopiere, selge eller bygge videre på den uten avtale.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Ansvar" title={`Begrensning av <em>ansvar</em>.`}>
+        <p>Så langt loven tillater, er Haug & Datter ikke ansvarlig for indirekte tap, tapte data eller følgeskader som måtte oppstå ved bruk av appen. Appen kan ha avbrudd eller feil, og vi gir ingen garanti for at den alltid er tilgjengelig eller feilfri.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Endringer" title={`Endringer i <em>vilkårene</em>.`}>
+        <p>Vi kan oppdatere disse vilkårene. Vesentlige endringer gjør vi tydelige i appen, og vi oppdaterer datoen øverst.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Lovvalg" title={`Underlagt <em>norsk rett</em>.`}>
+        <p>Vilkårene reguleres av norsk rett. Tvister søkes løst i minnelighet før de eventuelt bringes inn for norske domstoler.</p>
+      </Chapter>
+
+      <Chapter num="10" label="Kontakt" title={`<em>Kontakt.</em>`}>
+        <p>Har du spørsmål om vilkårene, ta kontakt med Haug & Datter.</p>
+        <p><strong>Jonas Haug</strong></p>
+        <p><a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a></p>
+        <p><a class="tx-link" href="https://haugogdatter.no" target="_blank" rel="noopener">haugogdatter.no</a></p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Vilkår`} />
+</AppLayout>

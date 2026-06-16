@@ -1,0 +1,42 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
+import AppRail from '../../components/AppRail.astro';
+import Chapter from '../../components/Chapter.astro';
+import { getApp } from '../../data/apps';
+const app = getApp('lun');
+---
+<AppLayout app={app} title={`Support · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="support" />
+    <div class="app-flow">
+      <Chapter num="01" label="Kontakt" title={`Spørsmål? <em>Skriv til oss.</em>`}>
+        <p class="lede">Trenger du hjelp med {app.name}, eller vil gi tilbakemelding? Send en e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Du får svar fra Jonas selv, vanligvis innen et døgn.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Vanlige spørsmål" title={`Det folk <em>lurer på</em>.`}>
+        <p><strong>Hvordan logger jeg et anfall?</strong></p>
+        <p class="muted">Hold inne orben på hjemskjermen. Det er nok. Intensitet, smertested, symptomer og triggere kan du legge til etterpå, når du er på beina igjen. Du kan også føre inn anfall bakover i tid.</p>
+        <p><strong>Hva er {app.name}+?</strong></p>
+        <p class="muted">Et frivillig abonnement som låser opp de tyngre sammenhengene (lufttrykk, søvn og syklus), grensevarselet for akuttmedisin og legerapporten. Det koster kr 249 per år med én uke gratis, eller kr 39 per måned. Logging er alltid gratis.</p>
+        <p><strong>Hvordan sier jeg opp {app.name}+?</strong></p>
+        <p class="muted">Abonnementet administreres i App Store, ikke i appen. Gå til kontoinnstillingene dine i App Store, velg Abonnementer, og avslutt {app.name}+ der. Sier du opp i gratisperioden, blir du ikke belastet.</p>
+        <p><strong>Hvorfor vil appen ha posisjon?</strong></p>
+        <p class="muted">Kun for å hente lufttrykket der du er, siden trykkfall er en kjent migrenetrigger. Appen sender en grov, avrundet posisjon til værtjenesten Open-Meteo, aldri helsedata. Du styrer tilgangen selv, og funksjonen virker bare når du har slått den på.</p>
+        <p><strong>Hva er legerapporten?</strong></p>
+        <p class="muted">En ryddig oppsummering av loggen din, samlet slik at du kan ta den med til legen. Den lages på enheten din av dataene du allerede har registrert.</p>
+        <p><strong>Er dataene mine private?</strong></p>
+        <p class="muted">Ja. Alt du logger ligger lokalt på enheten, og synkroniseres bare gjennom din egen private iCloud. Det finnes ingen server, ingen reklame og ingen sporing. Se <a class="tx-link" href="/lun/personvern/">personvernerklæringen</a>.</p>
+        <p><strong>Erstatter {app.name} legen?</strong></p>
+        <p class="muted">Nei. {app.name} er et verktøy for å se mønstre, ikke medisinsk utstyr eller helsehjelp. Ved bekymring eller nye, alvorlige symptomer, kontakt lege. Se <a class="tx-link" href="/lun/vilkar/">vilkårene</a>.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Tilbakemelding" title={`Idéer, <em>bugs</em>, tips.`}>
+        <p>Funksjoner du savner? Bugs som irriterer? Send dem til samme adresse. Jeg leser alt og prioriterer ut fra hva som faktisk gjør appen bedre.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Support`} />
+</AppLayout>

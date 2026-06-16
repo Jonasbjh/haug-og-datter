@@ -1,0 +1,55 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import ChapterShots from '../../../components/ChapterShots.astro';
+import PrevNextApp from '../../../components/PrevNextApp.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('lun');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Why" title={`A sheltered place <em>in an attack</em>.`}>
+        <p class="lede">{app.name} is a migraine diary built around one realization: you can't fill out a form while you have a migraine. Most migraine apps ask a lot of you, exactly when you have the least to give. {app.name} turns that around.</p>
+        <p>Outside the weather is harsh: the pressure drops and the storm builds. Inside it is sheltered. {app.name} (Norwegian for snug, warm, sheltered) is the protected place where the pressure lets go, and that is why the app is named what it is.</p>
+        <p class="muted">The first health app from Haug & Datter. Built for an eye in pain: dark, low-light, calm.</p>
+      </Chapter>
+
+      <Chapter num="02" label="How it feels" title={`Hold down. <em>The attack is logged.</em>`}>
+        <p>The home screen is a breathing dusk sky with a single orb. You hold it down, and the attack is logged. Want to add intensity, pain location, symptoms or triggers? You do that once you're back on your feet. The details can always wait.</p>
+        <p>The app doesn't nag. No streaks, no badges, no red dots. The tones are muted and the motion calm, because it's meant to be used when light and movement are the last things you can take.</p>
+        <ChapterShots count={6} />
+        <p class="muted">Hold to act is the signature gesture across the family.</p>
+      </Chapter>
+
+      <Chapter num="03" label="What it does" title={`The log becomes <em>patterns</em>.`}>
+        <p>When days turn into weeks, {app.name} shows you what the log can't say on its own:</p>
+        <p>· How often attacks come, and whether the trend is up or down.</p>
+        <p>· How strong they are, and when in the week and day they most often strike.</p>
+        <p>· Which triggers recur.</p>
+        <p>· How sleep, menstruation and falling air pressure relate to your attacks.</p>
+        <p>· Whether your acute medication is working, and a calm note if you approach the threshold where medication taken too often can itself cause headache.</p>
+        <p class="muted">When you see the doctor, {app.name} gathers everything into a tidy report you can bring.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Privacy" title={`Your health data is <em>yours alone</em>.`}>
+        <p>Everything you log stays locally on the device, and syncs only through your own private iCloud. There is no server, no ads and no tracking. We cannot see what you record.</p>
+        <p>The only thing that leaves the device is a coarse, rounded location when you want to see air pressure, because falling pressure is a known migraine trigger. It never contains health data.</p>
+        <p class="muted">Read the full <a class="tx-link" href="/en/lun/personvern/">privacy policy</a>.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Free and Lun+" title={`Logging is <em>always free</em>.`}>
+        <p>Logging is always free, and so are history, calendar, base patterns, triggers, rhythm and strength.</p>
+        <p>{app.name}+ unlocks the heavier connections (air pressure, sleep and cycle), the acute-medication threshold alert, and the doctor's report. {app.name}+ costs NOK 249 per year with one week free, or NOK 39 per month.</p>
+        <p class="muted">Subscription via the App Store. No ads in any version. {app.name} is not a medical device and gives no treatment advice.</p>
+      </Chapter>
+      <PrevNextApp slug={app.slug} />
+    </div>
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
+</AppLayout>
