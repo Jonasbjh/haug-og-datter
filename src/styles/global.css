@@ -978,6 +978,17 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
     filter 360ms var(--ease),
     box-shadow 700ms var(--ease-out);
   will-change: transform;
+  /* Vifte-geometri er indeks-drevet: per-telefon-variabler (--o, --o2,
+     --oa, --z) settes i AppFan.astro, så layouten funker for vilkårlig
+     antall apper. Konstantene under styrer spredning/bue/vinkel. */
+  --fan-step: 100px;
+  --fan-tyk: 6.5px;
+  --fan-rot: 5.5deg;
+  transform:
+    translateX(calc(-50% + var(--o, 0) * var(--fan-step)))
+    translateY(calc(var(--o2, 0) * var(--fan-tyk)))
+    rotate(calc(var(--o, 0) * var(--fan-rot)));
+  z-index: var(--z, 1);
 }
 .atelier__notch {
   position: absolute;
@@ -1001,17 +1012,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   pointer-events: none;
 }
 
-/* Vifte-rotasjoner. translateX gir spredning, translateY gir
-   bue-følelsen, rotate gir vifte-vinkelen. transformene blir
-   overstyrt på hover. Symmetrisk 8-app-layout (4 speilpar). */
-.atelier__phone[data-idx="0"] { transform: translateX(calc(-50% - 406px)) translateY(100px) rotate(-22deg);  z-index: 1; }
-.atelier__phone[data-idx="1"] { transform: translateX(calc(-50% - 290px)) translateY(58px)  rotate(-15deg);  z-index: 2; }
-.atelier__phone[data-idx="2"] { transform: translateX(calc(-50% - 174px)) translateY(24px)  rotate(-8deg);   z-index: 3; }
-.atelier__phone[data-idx="3"] { transform: translateX(calc(-50% - 58px))  translateY(4px)   rotate(-2.5deg); z-index: 4; }
-.atelier__phone[data-idx="4"] { transform: translateX(calc(-50% + 58px))  translateY(4px)   rotate(2.5deg);  z-index: 4; }
-.atelier__phone[data-idx="5"] { transform: translateX(calc(-50% + 174px)) translateY(24px)  rotate(8deg);    z-index: 3; }
-.atelier__phone[data-idx="6"] { transform: translateX(calc(-50% + 290px)) translateY(58px)  rotate(15deg);   z-index: 2; }
-.atelier__phone[data-idx="7"] { transform: translateX(calc(-50% + 406px)) translateY(100px) rotate(22deg);   z-index: 1; }
+/* (Vifte-spredningen settes nå formel-basert på .atelier__phone over.) */
 
 /* Demp resten når vifta er hovret over */
 .atelier__stage:hover .atelier__phone,
@@ -1026,23 +1027,16 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   z-index: 10 !important;
   outline: none;
 }
-/* Aktiv tilstand: rett opp og løft */
-.atelier__phone[data-idx="0"]:hover,
-.atelier__phone[data-idx="0"]:focus-visible { transform: translateX(calc(-50% - 406px)) translateY(-26px) rotate(-12deg) scale(1.06); }
-.atelier__phone[data-idx="1"]:hover,
-.atelier__phone[data-idx="1"]:focus-visible { transform: translateX(calc(-50% - 290px)) translateY(-36px) rotate(-7deg)  scale(1.06); }
-.atelier__phone[data-idx="2"]:hover,
-.atelier__phone[data-idx="2"]:focus-visible { transform: translateX(calc(-50% - 174px)) translateY(-44px) rotate(-4deg)  scale(1.06); }
-.atelier__phone[data-idx="3"]:hover,
-.atelier__phone[data-idx="3"]:focus-visible { transform: translateX(calc(-50% - 58px))  translateY(-50px) rotate(-1deg)  scale(1.06); }
-.atelier__phone[data-idx="4"]:hover,
-.atelier__phone[data-idx="4"]:focus-visible { transform: translateX(calc(-50% + 58px))  translateY(-50px) rotate(1deg)   scale(1.06); }
-.atelier__phone[data-idx="5"]:hover,
-.atelier__phone[data-idx="5"]:focus-visible { transform: translateX(calc(-50% + 174px)) translateY(-44px) rotate(4deg)   scale(1.06); }
-.atelier__phone[data-idx="6"]:hover,
-.atelier__phone[data-idx="6"]:focus-visible { transform: translateX(calc(-50% + 290px)) translateY(-36px) rotate(7deg)   scale(1.06); }
-.atelier__phone[data-idx="7"]:hover,
-.atelier__phone[data-idx="7"]:focus-visible { transform: translateX(calc(-50% + 406px)) translateY(-26px) rotate(12deg)  scale(1.06); }
+/* Aktiv tilstand: løft og rett opp den hovrede telefonen (formel-basert,
+   bruker samme --o/--oa/--fan-* som hvilestillingen). */
+.atelier__phone:hover,
+.atelier__phone:focus-visible {
+  transform:
+    translateX(calc(-50% + var(--o, 0) * var(--fan-step)))
+    translateY(calc(var(--oa, 0) * 6px - 50px))
+    rotate(calc(var(--o, 0) * var(--fan-rot) * 0.5))
+    scale(1.06);
+}
 
 .atelier__screen {
   width: 100%; height: 100%;
@@ -1185,31 +1179,8 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
 /* Mindre canvas — strammere vifte */
 @media (max-width: 1100px) {
   .atelier__stage { height: 540px; }
-  .atelier__phone { width: 192px; }
-  .atelier__phone[data-idx="0"] { transform: translateX(calc(-50% - 316px)) translateY(76px) rotate(-19deg); }
-  .atelier__phone[data-idx="1"] { transform: translateX(calc(-50% - 226px)) translateY(44px) rotate(-13deg); }
-  .atelier__phone[data-idx="2"] { transform: translateX(calc(-50% - 136px)) translateY(18px) rotate(-7deg);  }
-  .atelier__phone[data-idx="3"] { transform: translateX(calc(-50% - 46px))  translateY(3px)  rotate(-2deg);  }
-  .atelier__phone[data-idx="4"] { transform: translateX(calc(-50% + 46px))  translateY(3px)  rotate(2deg);   }
-  .atelier__phone[data-idx="5"] { transform: translateX(calc(-50% + 136px)) translateY(18px) rotate(7deg);   }
-  .atelier__phone[data-idx="6"] { transform: translateX(calc(-50% + 226px)) translateY(44px) rotate(13deg);  }
-  .atelier__phone[data-idx="7"] { transform: translateX(calc(-50% + 316px)) translateY(76px) rotate(19deg);  }
-  .atelier__phone[data-idx="0"]:hover,
-  .atelier__phone[data-idx="0"]:focus-visible { transform: translateX(calc(-50% - 316px)) translateY(-22px) rotate(-10deg) scale(1.06); }
-  .atelier__phone[data-idx="1"]:hover,
-  .atelier__phone[data-idx="1"]:focus-visible { transform: translateX(calc(-50% - 226px)) translateY(-32px) rotate(-6deg)  scale(1.06); }
-  .atelier__phone[data-idx="2"]:hover,
-  .atelier__phone[data-idx="2"]:focus-visible { transform: translateX(calc(-50% - 136px)) translateY(-40px) rotate(-3deg)  scale(1.06); }
-  .atelier__phone[data-idx="3"]:hover,
-  .atelier__phone[data-idx="3"]:focus-visible { transform: translateX(calc(-50% - 46px))  translateY(-44px) rotate(-1deg)  scale(1.06); }
-  .atelier__phone[data-idx="4"]:hover,
-  .atelier__phone[data-idx="4"]:focus-visible { transform: translateX(calc(-50% + 46px))  translateY(-44px) rotate(1deg)   scale(1.06); }
-  .atelier__phone[data-idx="5"]:hover,
-  .atelier__phone[data-idx="5"]:focus-visible { transform: translateX(calc(-50% + 136px)) translateY(-40px) rotate(3deg)   scale(1.06); }
-  .atelier__phone[data-idx="6"]:hover,
-  .atelier__phone[data-idx="6"]:focus-visible { transform: translateX(calc(-50% + 226px)) translateY(-32px) rotate(6deg)   scale(1.06); }
-  .atelier__phone[data-idx="7"]:hover,
-  .atelier__phone[data-idx="7"]:focus-visible { transform: translateX(calc(-50% + 316px)) translateY(-22px) rotate(10deg)  scale(1.06); }
+  /* Strammere vifte: bare juster konstantene, formelen gjør resten. */
+  .atelier__phone { width: 192px; --fan-step: 80px; --fan-tyk: 5.5px; }
 }
 
 /* Mobil — vifte stables vertikalt; ingen horisontal scroll */

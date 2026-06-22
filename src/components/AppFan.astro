@@ -13,17 +13,21 @@ import { resolveLocale, t, localizedPath } from '../i18n/translations';
 const locale = resolveLocale(Astro.currentLocale);
 const strings = t(locale);
 
-/** Fargesymmetrisk visningsrekkefølge for vifta (8 apper): Tenkt
- *  (gyllen) og Stoneward (skiferblå) ytterst, og grønt/rust i jevn
- *  veksling mellom dem — grønn, rust, grønn || rust, grønn, rust.
+/** Fargesymmetrisk visningsrekkefølge for vifta (9 apper): Tenkt
+ *  (gyllen) og Stoneward (skiferblå) ytterst, Lun (dusk-indigo) i
+ *  midten, og grønt/rust speilet mellom dem — grønn, rust, grønn ||
+ *  Lun || rust, grønn, rust.
  *  Gjelder KUN vifta — meny, tastatur og ⌘K følger apps.ts-rekkefølgen.
  *  NB: nye apper må plasseres manuelt her for å bevare symmetrien
- *  (ukjente slugs havner bakerst). */
+ *  (ukjente slugs havner bakerst). Selve vifte-geometrien er
+ *  indeks-drevet (se fanMid + --o/--z under), så den tåler hvilket
+ *  som helst antall. */
 const FAN_ORDER = [
   'tenkt',
   'naboskap',
   'bumle-bjorn',
   'plantekn',
+  'lun',
   'hyttepermen',
   'inklings-journal',
   'kvitteringsvakt',
@@ -33,6 +37,9 @@ const fanApps = [
   ...FAN_ORDER.flatMap((slug) => visibleApps.filter((a) => a.slug === slug)),
   ...visibleApps.filter((a) => !FAN_ORDER.includes(a.slug)),
 ];
+/** Midtindeks for vifta. Hver telefon får fortegnsoffset o = i - fanMid,
+ *  og CSS-en utleder spredning/bue/vinkel/z fra o. Funker for n apper. */
+const fanMid = (fanApps.length - 1) / 2;
 ---
 <section id="atelieret" class="atelier reveal" aria-label="Apper">
   <div
@@ -43,6 +50,9 @@ const fanApps = [
   >
     {fanApps.map((app, i) => {
       const num = String(i + 1).padStart(2, '0');
+      const o = i - fanMid;
+      const oa = Math.abs(o);
+      const z = Math.round(fanMid - oa) + 1;
       return (
         <a
           class="atelier__phone"
@@ -51,7 +61,7 @@ const fanApps = [
           data-idx={i}
           data-num={num}
           data-name={app.name}
-          style={`--accent: ${app.accent}; --idx: ${i};`}
+          style={`--accent: ${app.accent}; --idx: ${i}; --o: ${o}; --o2: ${Math.round(o * o * 1000) / 1000}; --oa: ${oa}; --z: ${z};`}
           aria-label={strings.atelier.goTo(app.name)}
         >
           <span class="atelier__notch" aria-hidden="true"></span>
