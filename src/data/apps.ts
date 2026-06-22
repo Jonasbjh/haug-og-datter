@@ -154,13 +154,10 @@ export const apps: AppDef[] = [
       no: 'Migrenedagboken som ber om mindre.',
       en: 'The migraine diary that asks less.',
     },
-    /* Skjult til lansering. App Store-URL: bytt til kanonisk app-side
-       (`/app/lun/id<n>`) når Lun er live. Søk-URL er fallback inntil da. */
-    appStoreUrl: 'https://apps.apple.com/no/search?term=Lun+migrene',
+    appStoreUrl: 'https://apps.apple.com/no/app/lun-migraine-diary/id6781422332',
     iconPath: '/icons/lun.png',
     accent: '#474C78',
     glyph: 'orb',
-    hidden: true,
   },
 ];
 

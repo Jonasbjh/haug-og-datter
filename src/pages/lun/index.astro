@@ -23,7 +23,14 @@ const app = getApp('lun');
       <Chapter num="02" label="Slik føles det" title={`Hold inne. <em>Anfallet er logget.</em>`}>
         <p>Hjemskjermen er en pustende tussmørkehimmel med én orb. Du holder inne, og anfallet er logget. Vil du legge til intensitet, smertested, symptomer eller triggere, gjør du det når du er på beina igjen. Detaljene kan alltid vente.</p>
         <p>Appen maser ikke. Ingen streaks, ingen badges, ingen røde prikker. Tonene er dempet og bevegelsene rolige, fordi den er ment å brukes når lys og bevegelse er det siste du tåler.</p>
-        <ChapterShots count={6} />
+        <ChapterShots shots={[
+          { src: '/screenshots/lun/01-hjem.png', alt: 'Hjem-skjerm med pustende orb for å logge anfall' },
+          { src: '/screenshots/lun/02-logg.png', alt: 'Anfall pågår, med timer og intensitetsvalg' },
+          { src: '/screenshots/lun/03-monstre.png', alt: 'Innsikt: mønstre i anfallene over tid' },
+          { src: '/screenshots/lun/04-historikk.png', alt: 'Kalender med historikk dag for dag' },
+          { src: '/screenshots/lun/05-detalj.png', alt: 'Detaljer for et anfall' },
+          { src: '/screenshots/lun/06-rapport.png', alt: 'Ryddig legerapport til eksport' },
+        ]} />
         <p class="muted">Hold inne for å handle er signaturgesten i hele familien.</p>
       </Chapter>
 
@@ -45,7 +52,7 @@ const app = getApp('lun');
 
       <Chapter num="05" label="Gratis og Lun+" title={`Logging er <em>alltid gratis</em>.`}>
         <p>Logging er alltid gratis, og det samme er historikk, kalender, grunnmønstre, triggere, rytme og styrke.</p>
-        <p>{app.name}+ låser opp de tyngre sammenhengene (lufttrykk, søvn og syklus), grensevarselet for akuttmedisin, og legerapporten. {app.name}+ koster kr 249 per år med én uke gratis, eller kr 39 per måned.</p>
+        <p>{app.name}+ låser opp de tyngre sammenhengene (lufttrykk, søvn og syklus), grensevarselet for akuttmedisin, og legerapporten. {app.name}+ koster kr 249 per år med to uker gratis, eller kr 39 per måned.</p>
         <p class="muted">Abonnement via App Store. Ingen reklame i noen versjon. {app.name} er ikke medisinsk utstyr og gir ikke behandlingsråd.</p>
       </Chapter>
       <PrevNextApp slug={app.slug} />
