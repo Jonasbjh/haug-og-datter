@@ -151,8 +151,8 @@ export const apps: AppDef[] = [
     slug: 'lun',
     name: 'Lun',
     tagline: {
-      no: 'Migrenedagboken som ber om mindre.',
-      en: 'The migraine diary that asks less.',
+      no: 'Loggfør migreneanfall, oppdag mønstrene.',
+      en: 'Log migraine attacks, discover the patterns.',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/lun-migraine-diary/id6781422332',
     iconPath: '/icons/lun.png',
