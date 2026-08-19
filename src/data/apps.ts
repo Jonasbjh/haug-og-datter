@@ -78,9 +78,10 @@ export const apps: AppDef[] = [
       en: 'A simple floor planner with real measurements.',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/plantekn/id6760789999',
-    /* ?v=2: nytt appikon i v1.7.0 (aug 2026) — query-bump omgår
-       Cloudflares 24t-cache på /icons/*. */
-    iconPath: '/icons/plantekn.png?v=2',
+    /* ?v=3: nytt appikon i v1.7.0 (aug 2026). Query-bump omgår Cloudflares
+       24t-cache på /icons/*. v=2 ble brent: den URL-en ble hentet før
+       deployen var ute, så Cloudflare cachet det gamle ikonet på nøkkelen. */
+    iconPath: '/icons/plantekn.png?v=3',
     accent: '#2C4A3A',
     glyph: 'grid',
   },
