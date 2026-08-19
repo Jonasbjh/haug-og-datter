@@ -1,15 +1,23 @@
 ---
 /**
- * ChapterShots — 3-kolonners grid med iPhone-formede placeholder-
- * skjermbilder. Erstatter ScreenshotStrip på app-sider med
- * editorial chapter-layout. Klar for ekte bilder via `shots`-prop.
+ * ChapterShots — grid med iPhone-formede skjermbilder.
+ * Erstatter ScreenshotStrip på app-sider med editorial chapter-layout.
+ *
+ * `variant="landscape"` for apper som er landscape-låst på iPhone: da
+ * stables bildene i full bredde med liggende ramme. Standardvarianten er
+ * tre portrettrammer på rad.
  */
 interface Shot { src?: string; alt?: string; }
-interface Props { shots?: Shot[]; count?: number; }
-const { shots = [], count = 4 } = Astro.props;
+interface Props {
+  shots?: Shot[];
+  count?: number;
+  variant?: 'portrait' | 'landscape';
+}
+const { shots = [], count = 4, variant = 'portrait' } = Astro.props;
 const items: Shot[] = shots.length ? shots : Array.from({ length: count }, () => ({}));
+const cls = variant === 'landscape' ? 'chapter__shots chapter__shots--landscape' : 'chapter__shots';
 ---
-<div class="chapter__shots" role="list">
+<div class={cls} role="list">
   {items.map((s) => (
     <figure class="shot" role="listitem">
       {s.src && <img src={s.src} alt={s.alt ?? ''} />}

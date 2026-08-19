@@ -14,6 +14,7 @@ const app = getApp('plantekn');
     <div class="app-flow">
       <Chapter num="01" label="Kontakt" title={`Send <em>e-post</em>.`}>
         <p class="lede">Trenger du hjelp med {app.name}? Send en e-post til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Du får svar fra Jonas selv, vanligvis innen et døgn.</p>
+        <p class="muted">Skriv gjerne hvilken enhet du bruker og hvilken versjon av appen du har. Versjonsnummeret står under Innstillinger → Om.</p>
       </Chapter>
 
       <Chapter num="02" label="Om appen" title={`Hva ${app.name} <em>er</em>.`}>
@@ -23,69 +24,137 @@ const app = getApp('plantekn');
         <p class="muted">Begge deler. {app.name} er én app som virker på både iPhone og iPad (iOS 18 eller nyere). På iPhone tegner du i liggende format, på iPad kan du bruke alle retninger. iPad gir mer plass å tegne på, men alt fungerer på iPhone.</p>
         <p><strong>Trenger jeg Apple Pencil, eller kan jeg tegne med fingeren?</strong></p>
         <p class="muted">Fingeren holder helt fint. Apple Pencil støttes fullt ut på iPad hvis du har en og vil ha ekstra presisjon, men den er ikke nødvendig.</p>
-        <p><strong>Finnes {app.name} til Android?</strong></p>
-        <p class="muted">Nei, foreløpig kun til iPhone og iPad. Det finnes ingen Android-versjon.</p>
+        <p><strong>Finnes {app.name} til Android eller Mac?</strong></p>
+        <p class="muted">Nei, foreløpig kun til iPhone og iPad. Det finnes ingen Android-versjon og ingen egen Mac-app.</p>
         <p><strong>Krever appen internett, eller virker den offline?</strong></p>
         <p class="muted">Den virker offline. Å tegne rom, plassere møbler, se planen i 3D og eksportere skjer alt lokalt på enheten, så du kan planlegge like godt på hytta uten dekning som hjemme. Slår du på iCloud-synk, trengs nett bare for selve synkingen.</p>
       </Chapter>
 
-      <Chapter num="03" label="Mål og presisjon" title={`Mål og <em>presisjon</em>.`}>
+      <Chapter num="03" label="Kom i gang" title={`De første <em>ti minuttene</em>.`}>
+        <p><strong>Hvor begynner jeg?</strong></p>
+        <p class="muted">Første gang du åpner appen, får du en kort veiviser som tar deg gjennom ditt første rom. Etter det er rekkefølgen som regel: tegn rommene, sett inn dører og vinduer, dra inn møbler, snu til 3D. Du trenger ikke gjøre det i den rekkefølgen, men det er den som gir minst omtegning.</p>
+        <p><strong>Hvordan tegner jeg et rom?</strong></p>
+        <p class="muted">Velg romtype fra sidepanelet og trykk på tegnearket. Rommet kommer inn med fornuftige standardmål, og du drar i hjørnehåndtakene til det stemmer med virkeligheten. Målene står på hver vegg mens du drar. Dobbelttrykk på rommet for å endre navnet.</p>
+        <p><strong>Rommet mitt er ikke firkantet. Hva gjør jeg?</strong></p>
+        <p class="muted">Tegn det som polygon i stedet. Da setter du punkter langs veggene og kan flytte hvert punkt for seg, legge til nye punkter eller fjerne dem. Vinkelformede rom, skrå vegger og karnapper løses slik.</p>
+        <p><strong>Hvordan setter jeg inn dører og vinduer?</strong></p>
+        <p class="muted">Velg dør- eller vindusverktøyet og trykk på veggen der elementet skal stå. Det fester seg til veggen og kan dras langs den etterpå. Det finnes seks dørstiler og syv vindustyper, og du kan overstyre bredden hvis du har en dør som ikke er standard.</p>
+        <p><strong>Hvordan legger jeg til en etasje eller kjeller?</strong></p>
+        <p class="muted">Trykk «+ Etasje» eller «+ Kjeller» i sidepanelet. Etasjevelgeren viser et lite riss av hver etasje, så du ser hvilken du bytter til. Flere etasjer krever Pro.</p>
+        <p><strong>Jeg gjorde noe feil. Kan jeg angre?</strong></p>
+        <p class="muted">Ja. Angre-knappen står i verktøylinja, og appen holder på de siste 30 stegene. Bruker du Photo Trace, kuttes historikken til ti steg for å spare minne.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Mål og areal" title={`Mål, areal og <em>presisjon</em>.`}>
         <p><strong>Hvor nøyaktige er målene i {app.name}?</strong></p>
-        <p class="muted">Så nøyaktige som du tegner dem. Hver vegg viser meter og centimeter mens du tegner, og målene holder seg presise når du zoomer eller flytter. Har du iPhone Pro eller iPad Pro med LiDAR, kan du måle rom direkte med kameraet (AR-måling) og få eksakte mål før du tegner. {app.name} er et planleggingsverktøy, ikke et oppmålingsinstrument, men presist nok til å avgjøre om sofaen passer.</p>
-        <p><strong>Hvordan beregnes areal (BRA, P-rom, S-rom), følger dere NS 3940?</strong></p>
-        <p class="muted">Ja. Areal beregnes etter NS 3940, med bruksareal (BRA) og skillet mellom primærrom (P-rom) og sekundærrom (S-rom). Totalt bruksareal vises i verktøylinja på tvers av alle etasjer, og du kan lage en areal-PDF klar for megler eller takstmann.</p>
-        <p><strong>Kan jeg tegne i både meter og centimeter?</strong></p>
-        <p class="muted">Ja. Hver linje viser meter og centimeter samtidig, så du slipper å regne om. Appen velger metrisk eller imperisk måleenhet automatisk ut fra region, og du kan overstyre det selv.</p>
+        <p class="muted">Så nøyaktige som du tegner dem. Hver vegg viser meter og centimeter mens du tegner, og målene holder seg presise når du zoomer eller flytter. Du kan justere hvor grovt appen fester seg til rutenettet, fra 10 til 100 cm. Har du iPhone Pro eller iPad Pro med LiDAR, kan du måle rom direkte med kameraet (AR-måling) og få eksakte mål før du tegner. {app.name} er et planleggingsverktøy, ikke et oppmålingsinstrument, men presist nok til å avgjøre om sofaen passer.</p>
+        <p><strong>Hvordan beregnes areal, og følger dere NS 3940?</strong></p>
+        <p class="muted">Ja. Areal beregnes etter NS 3940, med bruksareal og skillet mellom primærrom (P-rom) og sekundærrom (S-rom). Appen avgjør hvilken kategori et rom havner i ut fra romtypen du har valgt. Totalt bruksareal vises i verktøylinja på tvers av alle etasjer, og du kan lage en areal-PDF klar for megler eller takstmann.</p>
+        <p><strong>Jeg har loft med skråtak. Blir arealet riktig da?</strong></p>
+        <p class="muted">Ja, hvis du slår på skråtak for etasjen. Da setter du høyden på kneveggen og takvinkelen, og appen teller bare arealet der takhøyden er 1,9 meter eller mer. Mens du justerer, viser arket både hvor mye som teller med og hvor mye som faller utenfor. Dette er prosjektdata og lagres i fila, i motsetning til takformen i 3D, som bare er visning.</p>
+        <p><strong>Hvorfor ser jeg ikke P-rom og S-rom?</strong></p>
+        <p class="muted">Fordi oppdelingen ikke finnes i alle land. Appen bruker den målestandarden som gjelder der du er: Norge, Sverige, Danmark, Tyskland, Nederland og Frankrike får arealet delt i to, hver med sine egne begreper. Andre markeder får ett samlet areal i stedet, fordi det er det boligannonsene der oppgir. Du kan velge marked manuelt i innstillingene hvis appen gjetter feil.</p>
+        <p><strong>Kan jeg tegne i både meter og centimeter, eller i fot og tommer?</strong></p>
+        <p class="muted">Hver linje viser meter og centimeter samtidig, så du slipper å regne om. Appen velger metrisk eller imperisk måleenhet automatisk ut fra region, og du kan overstyre det selv i innstillingene.</p>
         <p><strong>Kan jeg skrive ut plantegningen i riktig målestokk (1:50 / 1:100)?</strong></p>
         <p class="muted">Ja, med {app.name} Pro. Du kan skrive ut plantegningen på A4 i eksakt 1:50 eller 1:100 og måle rett på papiret med en linjal.</p>
       </Chapter>
 
-      <Chapter num="04" label="Møbler" title={`Møbler og <em>funksjoner</em>.`}>
+      <Chapter num="05" label="Møbler" title={`Møbler og <em>innredning</em>.`}>
         <p><strong>Hva slags møbler finnes i biblioteket, og er målene tilpasset nordiske standarder?</strong></p>
-        <p class="muted">Over 55 møbeltyper: sofa, seng, bord, kjøkkenelementer, og til og med utendørs strukturer som pergola, terrasse og takutstikk. Målene følger nordiske standarddimensjoner, så det du drar inn stemmer med virkeligheten. Hele biblioteket låses opp med Pro. Du kan også lage egne møbler med eksakte mål og lagre dem i biblioteket ditt.</p>
-        <p><strong>Hva er Photo Trace, og hvordan fungerer det?</strong></p>
-        <p class="muted">Photo Trace lar deg legge et bilde av et eksisterende rom eller en gammel plantegning under tegnearket, og tegne rett over det. Da slipper du å gjette mål fra et fotografi. Photo Trace er en Pro-funksjon.</p>
+        <p class="muted">72 møbeltyper fordelt på ti kategorier: kjøkken, soverom, bad, stue, kontor, vaskerom, utendørs, elektrisk, rør og diverse. Der finner du alt fra sofa, seng og kjøkkenelementer til utendørs strukturer som pergola, terrassedekke og takutstikk. Målene følger nordiske standarddimensjoner, så det du drar inn stemmer med virkeligheten. 18 typer er gratis, resten låses opp med Pro.</p>
+        <p><strong>Møbelet mitt finnes ikke i biblioteket. Hva gjør jeg?</strong></p>
+        <p class="muted">Lag det selv. Du kan definere et møbel med eksakte mål og lagre det i ditt eget bibliotek, så du kan bruke det igjen i andre prosjekter. Det er ofte raskeste vei når det gjelder arvede møbler eller spesialbygde skap.</p>
         <p><strong>Hva gjør AI-forslagene for møblering?</strong></p>
-        <p class="muted">Når du står fast, kan {app.name} foreslå hvordan møblene kan plasseres i rommet. Det er ment som et utgangspunkt du justerer selv, ikke en fasit. AI-forslag er en Pro-funksjon.</p>
-        <p><strong>Kan jeg se rommet i 3D, og hvordan fungerer «walkthrough»-modusen?</strong></p>
-        <p class="muted">Ja. Sanntids-3D er gratis for alle: vipp tegningen til 3D og se rommet ta form, med justerbar vegghøyde. I walkthrough-modus går du rundt inne i planen i førsteperson, med virtuelle styrespaker og et lite kart i hjørnet. Veggene stopper deg, og øyehøyden kan justeres fra barn til voksen, fint for å sjekke takhøyde eller kjenne på hvordan rommet føles. Walkthrough er gratis så lenge den er i beta.</p>
+        <p class="muted">Når du står fast, kan {app.name} foreslå hvordan møblene kan plasseres i rommet, ut fra romtypen og formen på rommet. Det er ment som et utgangspunkt du justerer selv, ikke en fasit. AI-forslag er en Pro-funksjon, og alt regnes ut på enheten.</p>
+        <p><strong>Hva er Photo Trace, og hvordan fungerer det?</strong></p>
+        <p class="muted">Photo Trace lar deg legge et bilde av et eksisterende rom eller en gammel plantegning under tegnearket, og tegne rett over det. Da slipper du å gjette mål fra et fotografi. Bildet kan skaleres, gjøres gjennomsiktig og låses så det ikke flytter seg mens du tegner. Photo Trace er en Pro-funksjon.</p>
       </Chapter>
 
-      <Chapter num="05" label="Pris" title={`Pris og <em>versjoner</em>.`}>
+      <Chapter num="06" label="3D" title={`3D og <em>walkthrough</em>.`}>
+        <p><strong>Kan jeg se rommet i 3D, og koster det noe?</strong></p>
+        <p class="muted">3D er gratis for alle. Vipp tegningen til 3D og se planen som et dukkehus ovenfra, med vegghøyde du kan justere fra 1,0 til 2,7 meter. Møblene kan slås av hvis du bare vil se romfordelingen.</p>
+        <p><strong>Kan jeg se huset utenfra?</strong></p>
+        <p class="muted">Ja. Huset får tak, og du velger form selv: saltak, valmet tak, pulttak eller flatt. Utvendig kommer liggende kledning, grunnmur, trapp opp til inngangsdøra og beplantning rundt. Takformen er en visningsinnstilling, den lagres ikke i prosjektet og påvirker ikke arealet.</p>
+        <p><strong>Hvordan fungerer walkthrough-modusen?</strong></p>
+        <p class="muted">I walkthrough går du rundt inne i planen i førsteperson, med virtuelle styrespaker for bevegelse og kamera og et lite kart i hjørnet. Veggene stopper deg, og appen setter deg som regel i gangen eller det største rommet. Øyehøyden kan justeres fra barn til voksen, fint for å sjekke takhøyde eller kjenne på hvordan rommet føles. Walkthrough er gratis så lenge den er i beta.</p>
+        <p><strong>Kan jeg velge farger på vegger og gulv?</strong></p>
+        <p class="muted">Ja. Materialpaletten lar deg velge vegg-, gulv- og dørfarger fra ferdige paletter i 3D-visningen. Lar du den stå på automatisk, velger appen fornuftige farger per romtype.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Kalkulator" title={`<em>Oppussingskalkulator</em>.`}>
+        <p><strong>Hva regner oppussingskalkulatoren ut?</strong></p>
+        <p class="muted">Den estimerer kostnader per rom for gulv, maling, elektrisk arbeid og rørlegger, ut fra arealene du allerede har tegnet. Du velger gulvtype per rom, og kan eksportere budsjettet som PDF.</p>
+        <p><strong>Hvor kommer prisene fra, og gjelder de i Norge?</strong></p>
+        <p class="muted">Kalkulatoren har referansepriser for fjorten markeder, blant dem Norge, Sverige, Danmark, Tyskland, Frankrike, Spania, Italia, Nederland, Storbritannia, USA og Japan. Bor du et annet sted enn språket på enheten tilsier, velger du marked manuelt i innstillingene. Alle tallene kan du overstyre selv, og det bør du gjøre hvis du har fått tilbud fra en håndverker.</p>
+        <p class="muted">Estimatet er et utgangspunkt for å sammenligne alternativer, ikke et anbud. Kalkulatoren er en Pro-funksjon.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Pris" title={`Pris og <em>versjoner</em>.`}>
         <p><strong>Er {app.name} gratis, eller må jeg betale?</strong></p>
-        <p class="muted">{app.name} er gratis å laste ned og bruke. Du kan tegne rom, plassere møbler og se planen i 3D uten å betale. {app.name} Pro er et valgfritt engangskjøp på kr 59 som låser opp de mer avanserte funksjonene.</p>
+        <p class="muted">{app.name} er gratis å laste ned og bruke. Gratisversjonen gir deg ett prosjekt med én etasje, alle tegneverktøyene, 18 møbeltyper, 3D, walkthrough og eksport til bilde. {app.name} Pro er et valgfritt engangskjøp på kr 49.</p>
         <p><strong>Hva er forskjellen på gratisversjonen og {app.name} Pro?</strong></p>
-        <p class="muted">Gratis får du tegning, møbler, sanntids-3D og walkthrough. Pro låser opp ubegrenset antall prosjekter og etasjer, hele møbelbiblioteket, AI-forslag, oppussingskalkulator med PDF, areal-PDF for annonse, utskrift i 1:50 / 1:100, AR-måling, Photo Trace, og PDF-eksport uten vannmerke.</p>
+        <p class="muted">Pro låser opp ubegrenset antall prosjekter, flere etasjer og kjeller, hele møbelbiblioteket, AI-forslag, Photo Trace, Apple Pencil-tegning, AR-måling, oppussingskalkulator med PDF, areal-PDF for annonse, utskrift i 1:50 og 1:100, og PDF-eksport uten vannmerke.</p>
         <p><strong>Er det et abonnement, eller engangskjøp?</strong></p>
-        <p class="muted">Engangskjøp, kr 59. {app.name} Pro kjøper du én gang og eier for alltid. Ingen abonnement, ingen løpende kostnad. Kjøpet følger Apple-ID-en din og kan gjenopprettes på nye enheter.</p>
+        <p class="muted">Engangskjøp, kr 49. {app.name} Pro kjøper du én gang og eier for alltid. Ingen abonnement, ingen løpende kostnad.</p>
+        <p><strong>Jeg har byttet telefon. Må jeg kjøpe Pro på nytt?</strong></p>
+        <p class="muted">Nei. Kjøpet følger Apple-ID-en din. Trykk «Gjenopprett kjøp» nederst på Pro-skjermen, så kommer det tilbake. Er du logget inn med en annen Apple-ID enn den du kjøpte med, finner ikke appen kjøpet.</p>
+        <p><strong>Kan jeg få refusjon?</strong></p>
+        <p class="muted">Refusjon håndteres av Apple, ikke av oss. Be om det på <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
       </Chapter>
 
-      <Chapter num="06" label="Deling" title={`Deling og <em>eksport</em>.`}>
+      <Chapter num="09" label="Deling" title={`Deling og <em>eksport</em>.`}>
         <p><strong>Kan jeg dele plantegningen med arkitekt, megler eller familie?</strong></p>
-        <p class="muted">Ja. Du kan sende planen som en fil til andre som bruker appen, eller eksportere den til et format alle kan åpne. Trykk del-ikonet øverst på tegnearket for å velge.</p>
-        <p><strong>Hvilke filformater kan jeg eksportere til (PDF, bilde, interaktiv HTML)?</strong></p>
-        <p class="muted">Du kan eksportere som bilde (PNG), som PDF med romoppsummering, eller som interaktiv HTML. I tillegg kan du dele selve prosjektfilen (.plantekn) via e-post eller AirDrop. På gratisversjonen har PDF-en et lite vannmerke, Pro fjerner det.</p>
+        <p class="muted">Ja. Trykk del-ikonet øverst på tegnearket og velg format. Du kan sende planen som fil til andre som bruker appen, eller eksportere den til noe alle kan åpne.</p>
+        <p><strong>Hvilke filformater kan jeg eksportere til?</strong></p>
+        <p class="muted">Bilde (PNG), PDF med romsammendrag, eller interaktiv HTML der mottakeren kan bla mellom etasjene i nettleseren. I tillegg kan du dele selve prosjektfilen (.plantekn) via e-post eller AirDrop. På gratisversjonen har PDF og HTML et lite vannmerke, Pro fjerner det.</p>
         <p><strong>Kan mottakeren se plantegningen uten å ha appen selv?</strong></p>
         <p class="muted">Ja. PDF, bilde og den interaktive HTML-eksporten åpnes i en hvilken som helst nettleser eller PDF-leser, helt uten {app.name}. Det er bare .plantekn-filen, som kan redigeres videre, som krever appen.</p>
+        <p><strong>Noen har sendt meg en .plantekn-fil. Hvordan åpner jeg den?</strong></p>
+        <p class="muted">Trykk på fila i Mail, Meldinger eller Filer, og velg {app.name}. Den legger seg som et nytt prosjekt i lista. Import av prosjekter krever Pro, siden gratisversjonen holder på ett prosjekt om gangen.</p>
       </Chapter>
 
-      <Chapter num="07" label="Personvern" title={`<em>Personvern</em>.`}>
+      <Chapter num="10" label="Filer og iCloud" title={`Hvor <em>ligger</em> prosjektene?`}>
         <p><strong>Lagres dataene mine i skyen, eller kun lokalt på enheten?</strong></p>
         <p class="muted">Alt lagres lokalt på enheten din som standard. Det finnes ingen server, og ingen data forlater enheten. Slår du på iCloud-synk, lagres prosjektene i din egen private iCloud, ikke hos oss.</p>
+        <p><strong>Synkroniseres prosjektene mine mellom iPhone og iPad?</strong></p>
+        <p class="muted">Ja, hvis du vil. iCloud-synk er valgfritt. Synker det ikke, sjekk at iCloud Drive er på i iOS-innstillingene, at begge enhetene er logget inn på samme Apple-ID, og at de har vært på nett en stund. Du ser hva som er aktivt under Innstillinger → Om → Lagring.</p>
+        <p><strong>Hva skjer med prosjektene mine hvis jeg sletter appen?</strong></p>
+        <p class="muted">Ligger de i iCloud, blir de liggende der og kommer tilbake når du installerer appen på nytt. Ligger de bare lokalt, forsvinner de med appen. Har du prosjekter du ikke vil miste, eksporter dem som .plantekn-fil først.</p>
+        <p><strong>Kan jeg åpne gamle prosjekter i nye versjoner av appen?</strong></p>
+        <p class="muted">Ja. Filformatet er bakoverkompatibelt, og prosjekter fra tidligere versjoner åpnes som før. Prosjekter fra den aller første versjonen ble tegnet i en annen målestokk, og de regnes automatisk om når de lastes.</p>
+      </Chapter>
+
+      <Chapter num="11" label="Personvern" title={`<em>Personvern</em>.`}>
         <p><strong>Trenger jeg en konto for å bruke appen?</strong></p>
-        <p class="muted">Nei. Ingen konto, ingen innlogging og ingen e-postadresse. Du åpner appen og begynner å tegne. Ingen sporing, ingen reklame.</p>
-        <p><strong>Synkroniseres prosjektene mine mellom enheter (iCloud)?</strong></p>
-        <p class="muted">Ja, hvis du vil. iCloud-synk er valgfritt, og slår du det på, holdes prosjektene i takt mellom iPhone og iPad. Synker det ikke, sjekk at iCloud Drive er på i iOS-innstillingene og at begge enhetene er logget inn på samme Apple-ID.</p>
+        <p class="muted">Nei. Ingen konto, ingen innlogging og ingen e-postadresse. Du åpner appen og begynner å tegne.</p>
+        <p><strong>Samler appen inn data om meg?</strong></p>
+        <p class="muted">Nei. Det finnes ingen analyseverktøy, ingen sporing, ingen reklame og ingen tredjeparts-SDK-er i appen. Kameraet brukes bare til AR-måling, og Photo Trace bruker Apples egen bildevelger, så appen ber ikke om tilgang til hele fotobiblioteket. Detaljene står i <a class="tx-link" href="/plantekn/personvern/">personvernerklæringen</a>.</p>
       </Chapter>
 
-      <Chapter num="08" label="Språk" title={`Språk og <em>tilgjengelighet</em>.`}>
+      <Chapter num="12" label="Språk" title={`Språk og <em>tilgjengelighet</em>.`}>
         <p><strong>Hvilke språk støtter appen?</strong></p>
-        <p class="muted">Ti språk: norsk, engelsk, svensk, dansk, tysk, fransk, spansk, italiensk, nederlandsk og japansk. Appen følger språket enheten din er satt til.</p>
+        <p class="muted">Fjorten språk: norsk, engelsk, svensk, dansk, tysk, fransk, spansk, italiensk, nederlandsk, japansk, kinesisk (forenklet), arabisk, russisk og portugisisk (Brasil). Appen følger språket enheten din er satt til, og du kan bytte språk inne i appen uten å starte den på nytt.</p>
+        <p><strong>Fungerer appen på arabisk, som skrives fra høyre mot venstre?</strong></p>
+        <p class="muted">Ja. Grensesnittet speilvendes: sidepanel, verktøylinje og alle ark. Selve plantegningen, 3D-visningen og eksportene står som før, fordi en speilvendt plantegning ville vært en annen bolig.</p>
+        <p><strong>Kan jeg gjøre teksten større?</strong></p>
+        <p class="muted">Ja. Appen følger tekststørrelsen du har satt i iOS, også de store innstillingene. Mørk modus støttes også.</p>
         <p><strong>Er appen tilgjengelig utenfor Norge?</strong></p>
-        <p class="muted">Ja. {app.name} finnes i App Store internasjonalt, med ti språk og automatisk metrisk eller imperisk måleenhet etter region. Oppussingskalkulatoren har referansepriser for ti markeder.</p>
+        <p class="muted">Ja. {app.name} finnes i App Store internasjonalt, med automatisk metrisk eller imperisk måleenhet etter region og arealbegreper som følger standarden i hvert marked.</p>
       </Chapter>
 
-      <Chapter num="09" label="Tilbakemelding" title={`Idéer, <em>bugs</em>, tips.`}>
+      <Chapter num="13" label="Feilsøking" title={`Når noe <em>ikke stemmer</em>.`}>
+        <p><strong>Jeg får ikke flyttet et møbel eller et rom.</strong></p>
+        <p class="muted">Sjekk at du står i utvalgsverktøyet og ikke i et tegneverktøy. Bruker du Photo Trace, kan bakgrunnsbildet være låst, og da må du låse det opp før du flytter på det.</p>
+        <p><strong>Arealet stemmer ikke med det jeg forventet.</strong></p>
+        <p class="muted">To vanlige årsaker: rommet er satt til feil romtype, så det havner i feil arealkategori, eller etasjen har skråtak som gjør at deler av gulvet ikke teller med. Begge deler endrer du på rommet eller på etasjen.</p>
+        <p><strong>Appen ser annerledes ut enn på skjermbildene her.</strong></p>
+        <p class="muted">Sidene her viser siste versjon. Sjekk om det ligger en oppdatering i App Store, og se «Hva er nytt» i appen for hva som er endret.</p>
+        <p><strong>Noe krasjer eller oppfører seg rart.</strong></p>
+        <p class="muted">Send en e-post med hva du gjorde rett før det skjedde, hvilken enhet du har og hvilken versjon som står under Innstillinger → Om. Det er som regel nok til å finne feilen.</p>
+      </Chapter>
+
+      <Chapter num="14" label="Tilbakemelding" title={`Idéer, <em>bugs</em>, tips.`}>
         <p>Funksjoner du savner? Bugs som irriterer? Send dem til samme adresse. Jeg leser alt og prioriterer ut fra hva som faktisk gjør appen bedre.</p>
       </Chapter>
     </div>

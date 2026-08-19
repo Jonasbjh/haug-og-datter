@@ -14,29 +14,86 @@ const app = getApp('plantekn');
   <div class="app-page">
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
-      <Chapter num="01" label="Why" title={`The tool you <em>should have had</em> at the build meeting.`}>
-        <p class="lede">Plantekn exists because the professional planning apps are too heavy. You need a weekend to learn them. Pencil and paper are too loose. You draw the sofa and discover it's two centimeters too wide once it's already bought.</p>
-        <p>Between the two stands Plantekn. A quiet tool that gives you precise measurements and a Nordic furniture library, with no learning curve.</p>
-        <p class="muted">Built because I was renovating myself and missed it.</p>
+      <Chapter num="01" label="What it is" title={`A <em>floor plan</em> you draw yourself.`}>
+        <p class="lede">Plantekn is an app for iPhone and iPad where you draw rooms in real measurements, place furniture and see the result in 3D. It is made for people renovating, moving, or just wondering whether the sofa will fit. Not for architects with a CAD licence.</p>
+        <p>You need no account. There is no sign in, no email address, and everything you draw stays on your own device. The app requires iOS 18 or later, and it is the same app on iPhone and iPad.</p>
+        <p class="muted">Built by one person, because I was renovating myself and missed it.</p>
       </Chapter>
-      <Chapter num="02" label="How it feels" title={`<em>iPad and pencil</em>, in one.`}>
-        <p>You stand in the room you're renovating. The iPad is on, you draw walls with your fingertip, drag in the sofa from the library, and see if everything fits before you call the store.</p>
-        <p>When you flip to 3D, the sketch becomes a room you can almost stand in. Not an architect's drawing, but enough to see if the kitchen island sits too close to the wall, if the bedroom takes a queen size, if the wardrobe needs sliding doors.</p>
-        <ChapterShots shots={[
-          { src: '/screenshots/plantekn/01-hero.png', alt: 'Main view' },
-          { src: '/screenshots/plantekn/02-furniture.png', alt: 'Furniture library' },
-          { src: '/screenshots/plantekn/03-freeform.png', alt: 'Freeform drawing' },
-          { src: '/screenshots/plantekn/04-3d.png', alt: '3D view' },
-          { src: '/screenshots/plantekn/05-pro.png', alt: 'PRO features' },
-          { src: '/screenshots/plantekn/06-settings.png', alt: 'Settings' },
+
+      <Chapter num="02" label="How you work" title={`Draw, <em>furnish</em>, flip to 3D.`}>
+        <p>You start with a room. Either pick a room type with ready-made dimensions and drag it to size, or draw the shape freely as a polygon if the room is not rectangular. Then you add doors and windows by tapping the wall where they belong.</p>
+        <p>Furniture comes next. Drag it in from the library, rotate it in 90 degree steps and move it until it looks right. The measurements stay on screen the whole time, so you see immediately if it gets too tight.</p>
+        <p>When the plan is done, flip it to 3D and walk through the rooms. That is often where you notice the door swings the wrong way, or that the kitchen island sits too close to the counter.</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/en/01-hero.jpg', alt: 'A finished plan with room names and the area of each room' },
+          { src: '/screenshots/plantekn/en/02-furniture.jpg', alt: 'The furniture library open in the sidebar, sorted into categories' },
         ]} />
-        <p class="muted">Apple Pencil if you have one. Finger works too.</p>
+        <p class="muted">Apple Pencil if you have one. A finger works just as well.</p>
       </Chapter>
-      <Chapter num="03" label="What it does" title={`<em>Measurements, furniture</em>, Photo Trace.`}>
-        <p><strong>Room layout in real measurements.</strong> Draw walls. Each line shows meters and centimeters. Everything stays precise as you zoom or move. Area is calculated per NS 3940 (BRA, P-rom, S-rom).</p>
-        <p><strong>Furniture library in Nordic dimensions.</strong> Sofa, bed, table, kitchen modules. Drag in, rotate, check the fit. PRO unlocks the full library plus AI-based suggestions when you're stuck.</p>
-        <p><strong>Photo Trace (PRO).</strong> Place a photo of an existing room underneath and trace over it. No more guessing measurements from a photograph.</p>
+
+      <Chapter num="03" label="Drawing" title={`Rooms, doors, <em>floors</em>.`}>
+        <p><strong>28 room types.</strong> Living room, bedroom, kitchen, bathroom, hallway, office, laundry, balcony and the rest. Each type has its own colour and sensible default dimensions, so you do not start from nothing. The name can be overwritten with whatever you like.</p>
+        <p><strong>Rectangles or free shapes.</strong> Most rooms are square, and then you just drag the corners. If the room is L shaped or has a slanted wall, draw it as a polygon and move the points one by one.</p>
+        <p><strong>Six door styles and seven window types.</strong> Hinged, sliding, double, pocket, folding and garage doors. Windows cover standard, French, skylight, bay, arched, fixed and sliding. Four stair types: straight, L shaped, U shaped and spiral.</p>
+        <p><strong>Several floors in one project.</strong> Add floors and a basement, and switch between them in the floor picker, which shows a small thumbnail of each level. Floor area is summed across every floor.</p>
+        <p><strong>Notes on top of the drawing.</strong> Text annotations, arrows and a freehand layer in six colours, if you want to write "wall comes out here" straight onto the plan.</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/en/03-freeform.jpg', alt: 'An apartment with a slanted outer wall, drawn as a polygon' },
+          { src: '/screenshots/plantekn/en/06-multifloor.jpg', alt: 'The floor picker open, with a thumbnail and area for each level' },
+        ]} />
+        <p class="muted">Undo keeps the last 30 steps.</p>
       </Chapter>
+
+      <Chapter num="04" label="Measurements" title={`The measurements are <em>the point</em>.`}>
+        <p><strong>Every wall shows its length.</strong> Metres and centimetres at once, while you drag. The numbers stay correct as you zoom, move or resize, and you can set snapping from 10 to 100 cm depending on how precise you want to be. Imperial units are used automatically in regions that expect them, and you can override the choice yourself.</p>
+        <p><strong>Area calculated automatically.</strong> The app works out the floor area and splits it into primary and secondary space based on the room types you have chosen. The total sits in the toolbar at all times.</p>
+        <p><strong>Lofts and sloped ceilings.</strong> A loft is always bigger on the drawing than in the listing. Turn on a sloped ceiling for the floor, set the knee wall height and the roof pitch, and the app counts only the area where the ceiling reaches 1.9 metres, showing how many square metres fall outside as you adjust.</p>
+        <p><strong>Area terms follow your market.</strong> Norway, Sweden, Denmark, Germany, the Netherlands and France split the area in two, each with their own national terms, and the app uses them. Markets without that concept see a single total instead, because that is what property listings there actually quote.</p>
+        <p><strong>Measuring with the camera.</strong> On an iPhone Pro or iPad Pro with LiDAR you can measure the room point to point with the camera and skip the tape measure. This is a Pro feature.</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/en/05-areas.jpg', alt: 'Floor area totalled at the top of the toolbar' },
+        ]} />
+        <p class="muted">Plantekn is a planning tool, not a surveying instrument. Accuracy depends on you drawing it right.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Furniture" title={`72 types, in <em>real sizes</em>.`}>
+        <p>The furniture library holds 72 types across ten categories: kitchen, bedroom, bathroom, living room, office, laundry, outdoor, electrical, plumbing and miscellaneous. Dimensions follow Nordic standard sizes, so a double bed in the app is as wide as a double bed in the shop.</p>
+        <p>If the piece you own is not there, build it yourself with exact measurements and save it to your library. That is often the fastest route for an inherited dining table or a sideboard that has to fit to the centimetre.</p>
+        <p><strong>AI suggestions when you are stuck.</strong> The app can propose a layout based on the room type and its shape. It is a starting point you move around, not a verdict. Pro feature.</p>
+        <p><strong>Photo Trace.</strong> Put a photo of an old floor plan or a room underneath the canvas and draw straight over it. No guessing measurements from a photograph. Pro feature.</p>
+        <p class="muted">18 of the furniture types are free. The rest come with Pro.</p>
+      </Chapter>
+
+      <Chapter num="06" label="3D" title={`See the room <em>from inside</em>.`}>
+        <p><strong>3D is free for everyone.</strong> Flip the plan and view it as a dollhouse from above, with wall height adjustable from 1.0 to 2.7 metres. Furniture can be switched off if you only want the layout.</p>
+        <p><strong>The house from outside.</strong> You choose the roof shape: gable, hip, mono pitch or flat. Outside there is horizontal cladding, a foundation, steps up to the front door and planting around it. Roof shape is display only, it does not affect the area in your project.</p>
+        <p><strong>Walkthrough.</strong> Move around inside the plan in first person, with virtual sticks for movement and camera and a small map in the corner. Walls stop you. Eye height can be set from child to adult, which is a good way to feel ceiling height and the sense of the room. Walkthrough is free while it is in beta.</p>
+        <p><strong>Material palette.</strong> Pick colours for walls, floors and doors from curated palettes, or let the app choose automatically per room type.</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/en/04-3d.jpg', alt: 'The 3D view from above, with a slider for wall height' },
+        ]} />
+        <p class="muted">3D costs nothing. It has been free for everyone since version 1.3.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Sharing" title={`Send it to <em>anyone</em>.`}>
+        <p>The plan can leave as an image (PNG), as a PDF with a room summary, or as interactive HTML where the recipient can page between floors in a browser. All three open without the app.</p>
+        <p>If someone needs to keep editing, share the project file (.plantekn) by email or AirDrop. That one needs the app, but it is an open JSON format, so you are not locked in.</p>
+        <p><strong>Printing to scale.</strong> With Pro you print on A4 at exactly 1:50 or 1:100 and measure straight off the paper with a ruler. Useful when the plan has to lie on a table in a meeting.</p>
+        <p class="muted">PDFs from the free version carry a small watermark. Pro removes it.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Price" title={`Free to use, <em>NOK 49</em> for the rest.`}>
+        <p>The free version is a whole app, not a demo: one project with one floor, 18 furniture types, all the drawing tools, 3D, walkthrough and PNG export.</p>
+        <p>Plantekn PRO costs NOK 49 once. It unlocks unlimited projects, multiple floors and a basement, the full furniture library, AI suggestions, Photo Trace, Apple Pencil, AR measuring, the renovation calculator, printing to scale and PDF without a watermark.</p>
+        <p class="muted">A one-time purchase, not a subscription. It follows your Apple ID and can be restored on new devices. The details are on the <a class="tx-link" href="/en/plantekn/support/">support page</a>.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Privacy" title={`No server, <em>no tracking</em>.`}>
+        <p>There is no backend behind Plantekn. No account, no analytics, no advertising and no third party SDKs. Everything you draw lives on your device, and in your own iCloud if you turn on sync.</p>
+        <p>The app is available in 14 languages and follows the language your device is set to, or whichever you pick in settings.</p>
+        <p class="muted">The full <a class="tx-link" href="/en/plantekn/personvern/">privacy policy</a> and <a class="tx-link" href="/en/plantekn/vilkar/">terms</a> are here. Questions go to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>.</p>
+      </Chapter>
+
       <PrevNextApp slug={app.slug} />
     </div>
   </div>

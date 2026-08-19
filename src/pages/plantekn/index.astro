@@ -14,29 +14,86 @@ const app = getApp('plantekn');
   <div class="app-page">
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
-      <Chapter num="01" label="Hvorfor" title={`Verktøyet du <em>skulle hatt</em> i byggemøtet.`}>
-        <p class="lede">Plantekn finnes fordi de profesjonelle planleggings-appene er for tunge. Du må bruke en helg på å lære dem. Papir og blyant er for løse. Du tegner sofaen og oppdager at den er to centimeter for bred når den allerede er kjøpt.</p>
-        <p>Mellom de to står Plantekn. Et stille verktøy som gir deg presise mål og et nordisk møbelbibliotek, uten lærekurve.</p>
-        <p class="muted">Bygd fordi jeg selv pusset opp og savnet det.</p>
+      <Chapter num="01" label="Hva det er" title={`En <em>plantegning</em> du tegner selv.`}>
+        <p class="lede">Plantekn er en app for iPhone og iPad der du tegner rom med ekte mål, plasserer møbler og ser resultatet i 3D. Den er laget for folk som pusser opp, skal flytte, eller bare vil vite om sofaen får plass. Ikke for arkitekter med CAD-lisens.</p>
+        <p>Du trenger ingen konto. Du logger ikke inn, oppgir ingen e-postadresse, og alt du tegner blir liggende på din egen enhet. Appen krever iOS 18 eller nyere, og er den samme appen på iPhone og iPad.</p>
+        <p class="muted">Bygd av én person, fordi jeg selv pusset opp og savnet den.</p>
       </Chapter>
-      <Chapter num="02" label="Slik føles det" title={`<em>iPad og blyant</em>, samlet i ett.`}>
-        <p>Du står midt i rommet du skal pusse opp. iPad-en er på, du tegner inn vegger med fingertuppen, drar inn sofaen fra biblioteket, og ser om alt får plass før du ringer butikken.</p>
-        <p>Når du vipper til 3D, blir skissen til et rom du nesten kan stå i. Ikke et arkitekttegnings-rom, men nok til at du ser om kjøkkenøya er for nær veggen, om soverommet tåler en queen size, om garderoben må ha skyvedører.</p>
-        <ChapterShots shots={[
-          { src: '/screenshots/plantekn/01-hero.png', alt: 'Hovedvisning' },
-          { src: '/screenshots/plantekn/02-furniture.png', alt: 'Møbel-bibliotek' },
-          { src: '/screenshots/plantekn/03-freeform.png', alt: 'Frihåndstegning' },
-          { src: '/screenshots/plantekn/04-3d.png', alt: '3D-visning' },
-          { src: '/screenshots/plantekn/05-pro.png', alt: 'PRO-funksjoner' },
-          { src: '/screenshots/plantekn/06-settings.png', alt: 'Innstillinger' },
+
+      <Chapter num="02" label="Slik jobber du" title={`Tegn, <em>møbler</em>, snu til 3D.`}>
+        <p>Du starter med et rom. Enten velger du en romtype med ferdige mål og drar den til riktig størrelse, eller du tegner formen fritt som en polygon hvis rommet ikke er rektangulært. Så setter du inn dører og vinduer ved å trykke på veggen der de skal stå.</p>
+        <p>Etter det kommer møblene. Du drar dem inn fra biblioteket, roterer dem i 90 graders steg og flytter dem til det ser riktig ut. Målene står på skjermen hele veien, så du ser med en gang om det blir for trangt.</p>
+        <p>Når planen er ferdig, snur du den til 3D og går gjennom rommene. Det er ofte der du oppdager at døra slår feil vei eller at kjøkkenøya står for nær benken.</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/01-hero.jpg', alt: 'Ferdig plantegning med romnavn og areal på hvert rom' },
+          { src: '/screenshots/plantekn/02-furniture.jpg', alt: 'Møbelbiblioteket åpent i sidepanelet, sortert i kategorier' },
         ]} />
-        <p class="muted">Apple Pencil hvis du har den. Finger funker også.</p>
+        <p class="muted">Apple Pencil hvis du har den. Fingeren funker like godt.</p>
       </Chapter>
-      <Chapter num="03" label="Hva den gjør" title={`<em>Mål, møbler</em>, Photo Trace.`}>
-        <p><strong>Romlayout med ekte mål.</strong> Tegn vegger. Hver linje viser meter og centimeter. Alt holder seg presist når du forstørrer eller flytter. Areal beregnes etter NS 3940 (BRA, P-rom, S-rom).</p>
-        <p><strong>Møbelbibliotek i nordiske mål.</strong> Sofa, seng, bord, kjøkkenelementer. Dra inn, roter, sjekk om det passer. PRO låser opp hele biblioteket pluss AI-baserte forslag når du står fast.</p>
-        <p><strong>Photo Trace (PRO).</strong> Legg et bilde av et eksisterende rom under og tegn over det. Slipper å gjette mål fra fotografi.</p>
+
+      <Chapter num="03" label="Tegning" title={`Rom, dører, <em>etasjer</em>.`}>
+        <p><strong>28 romtyper.</strong> Stue, soverom, kjøkken, bad, gang, kontor, vaskerom, balkong og resten. Hver type har egen farge og fornuftige standardmål, så du slipper å begynne på null. Navnet kan du overskrive med hva du vil.</p>
+        <p><strong>Rektangler eller frie former.</strong> De fleste rom er firkantede, og da drar du bare i hjørnene. Er rommet vinkelformet eller har en skrå vegg, tegner du det som polygon og flytter punktene enkeltvis.</p>
+        <p><strong>Seks dørstiler og syv vindustyper.</strong> Slagdør, skyvedør, dobbeltdør, pocket, foldedør og garasjeport. Vinduene dekker vanlig, fransk, takvindu, karnapp, buet, fast og skyvevindu. Fire trappetyper: rett, L-formet, U-formet og spiral.</p>
+        <p><strong>Flere etasjer i samme prosjekt.</strong> Legg til etasjer og kjeller, og bytt mellom dem i etasjevelgeren, som viser et lite riss av hver etasje. Bruksarealet summeres på tvers av alle etasjene.</p>
+        <p><strong>Notater oppå tegningen.</strong> Tekstmerknader, piler og et fritegningslag i seks farger, hvis du vil skrive «her river vi veggen» rett i planen.</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/03-freeform.jpg', alt: 'Leilighet med skrå yttervegg, tegnet som polygon' },
+          { src: '/screenshots/plantekn/06-multifloor.jpg', alt: 'Etasjevelgeren åpen, med riss og areal for hver etasje' },
+        ]} />
+        <p class="muted">Angrefunksjonen holder på de siste 30 stegene.</p>
       </Chapter>
+
+      <Chapter num="04" label="Mål og areal" title={`Målene er <em>poenget</em>.`}>
+        <p><strong>Hver vegg viser lengden sin.</strong> Meter og centimeter samtidig, mens du drar. Målene holder seg riktige når du zoomer, flytter eller endrer størrelse, og du kan sette snap fra 10 til 100 cm etter hvor nøye du vil ha det.</p>
+        <p><strong>Areal etter NS 3940.</strong> Appen regner ut bruksarealet og deler det i primærrom og sekundærrom automatisk, ut fra hvilken romtype du har valgt. Totalen står i verktøylinja hele tiden.</p>
+        <p><strong>Loft og skråtak.</strong> Et loft er alltid større på tegningen enn i prospektet. Slår du på skråtak for etasjen og setter knevegg og takvinkel, teller appen bare arealet der takhøyden er 1,9 meter eller mer, og viser hvor mange kvadratmeter som faller utenfor mens du justerer.</p>
+        <p><strong>Arealbegrepene følger landet du er i.</strong> Norge, Sverige, Danmark, Tyskland, Nederland og Frankrike deler arealet i to, hver med sine egne begreper. Markeder som ikke har den oppdelingen, får ett samlet areal i stedet, fordi det er det boligannonsene der faktisk oppgir.</p>
+        <p><strong>Måling med kameraet.</strong> Har du iPhone Pro eller iPad Pro med LiDAR, kan du måle rommet punkt til punkt med kameraet og slippe målebåndet. Dette er en Pro-funksjon.</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/05-areas.jpg', alt: 'Bruksareal, P-rom og S-rom summert øverst i verktøylinja' },
+        ]} />
+        <p class="muted">Plantekn er et planleggingsverktøy, ikke et oppmålingsinstrument. Nøyaktigheten avhenger av at du tegner riktig.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Møbler" title={`72 typer, i <em>ekte mål</em>.`}>
+        <p>Møbelbiblioteket har 72 typer fordelt på ti kategorier: kjøkken, soverom, bad, stue, kontor, vaskerom, utendørs, elektrisk, rør og diverse. Målene følger nordiske standarddimensjoner, så en dobbeltseng i appen er like bred som en dobbeltseng i butikken.</p>
+        <p>Finner du ikke møbelet du har, lager du det selv med eksakte mål og lagrer det i biblioteket. Det er ofte den raskeste veien når det gjelder et arvet spisebord eller en skjenk som må passe på centimeteren.</p>
+        <p><strong>AI-forslag når du står fast.</strong> Appen kan foreslå en møblering ut fra romtypen og formen på rommet. Det er et utgangspunkt du flytter på, ikke en fasit. Pro-funksjon.</p>
+        <p><strong>Photo Trace.</strong> Legg et bilde av en gammel plantegning eller et rom under tegnearket og tegn rett over det. Da slipper du å gjette mål ut fra et fotografi. Pro-funksjon.</p>
+        <p class="muted">18 av møbeltypene er gratis. Resten følger med Pro.</p>
+      </Chapter>
+
+      <Chapter num="06" label="3D" title={`Se rommet <em>innenfra</em>.`}>
+        <p><strong>3D er gratis for alle.</strong> Snu planen og se den som et dukkehus ovenfra, med vegghøyde du kan justere fra 1,0 til 2,7 meter. Møblene kan slås av hvis du bare vil se romfordelingen.</p>
+        <p><strong>Huset utenfra.</strong> Du velger takform selv: saltak, valmet tak, pulttak eller flatt. Utvendig kommer liggende kledning, grunnmur, trapp opp til inngangsdøra og beplantning rundt. Takformen er bare visning, den påvirker ikke arealet i prosjektet.</p>
+        <p><strong>Walkthrough.</strong> Gå rundt inne i planen i førsteperson, med styrespaker for bevegelse og kamera og et lite kart i hjørnet. Veggene stopper deg. Øyehøyden kan settes fra barnehøyde til voksen, som er en grei måte å kjenne på takhøyde og romfølelse. Walkthrough er gratis så lenge den er i beta.</p>
+        <p><strong>Materialpalett.</strong> Velg farger på vegg, gulv og dører fra ferdige paletter, eller la appen velge automatisk per romtype.</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/04-3d.jpg', alt: '3D-visning ovenfra, med skyvekontroll for vegghøyde' },
+        ]} />
+        <p class="muted">3D koster ingenting. Det har vært gratis for alle siden versjon 1.3.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Del og eksporter" title={`Send den til <em>hvem som helst</em>.`}>
+        <p>Planen kan gå ut som bilde (PNG), som PDF med romsammendrag, eller som interaktiv HTML der mottakeren kan bla mellom etasjene i nettleseren. Alle tre åpnes uten at mottakeren har appen.</p>
+        <p>Skal noen redigere videre, deler du selve prosjektfilen (.plantekn) på e-post eller AirDrop. Den krever appen, men til gjengjeld er den et åpent JSON-format, så du er ikke låst inne.</p>
+        <p><strong>Utskrift i målestokk.</strong> Med Pro skriver du ut på A4 i eksakt 1:50 eller 1:100 og måler rett på papiret med linjal. Nyttig når planen skal på bordet i et møte.</p>
+        <p class="muted">PDF fra gratisversjonen har et lite vannmerke. Pro fjerner det.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Pris" title={`Gratis å bruke, <em>kr 49</em> for resten.`}>
+        <p>Gratisversjonen er en hel app, ikke en demo: ett prosjekt med én etasje, 18 møbeltyper, alle tegneverktøyene, 3D, walkthrough og eksport til PNG.</p>
+        <p>Plantekn PRO koster kr 49 én gang. Det låser opp ubegrenset antall prosjekter, flere etasjer og kjeller, hele møbelbiblioteket, AI-forslag, Photo Trace, Apple Pencil, AR-måling, oppussingskalkulator, utskrift i målestokk og PDF uten vannmerke.</p>
+        <p class="muted">Engangskjøp, ikke abonnement. Kjøpet følger Apple-ID-en din og kan gjenopprettes på nye enheter. Detaljene står under <a class="tx-link" href="/plantekn/support/">support</a>.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Personvern" title={`Ingen server, <em>ingen sporing</em>.`}>
+        <p>Det finnes ingen backend bak Plantekn. Ingen konto, ingen analyseverktøy, ingen reklame og ingen tredjeparts-SDK-er. Alt du tegner ligger på enheten din, og i din egen iCloud hvis du slår på synk.</p>
+        <p>Appen finnes på 14 språk og følger språket enheten er satt til, eller det du selv velger i innstillingene.</p>
+        <p class="muted">Hele <a class="tx-link" href="/plantekn/personvern/">personvernerklæringen</a> og <a class="tx-link" href="/plantekn/vilkar/">vilkårene</a> ligger her. Spørsmål går til <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>.</p>
+      </Chapter>
+
       <PrevNextApp slug={app.slug} />
     </div>
   </div>

@@ -12,54 +12,66 @@ const app = getApp('plantekn');
   <div class="app-page">
     <AppRail app={app} current="vilkar" />
     <div class="app-flow">
-      <Chapter num="01" label="License" title={`Distributed via <em>App Store</em>.`}>
-        <p class="lede">{app.name} is developed and published by Haug og Datter, and distributed through the Apple App Store. You receive a personal, non-transferable license to use the app under <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apple's Standard End User License Agreement</a>.</p>
-        <p class="muted">Last updated · 14 May 2026.</p>
+      <Chapter num="01" label="Licence" title={`Distributed through the <em>App Store</em>.`}>
+        <p class="lede">{app.name} is developed and published by Haug og Datter, and distributed through the Apple App Store. You get a personal, non-transferable licence to use the app under <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apple's standard end user licence agreement</a>.</p>
+        <p class="muted">Last updated · 19 August 2026.</p>
       </Chapter>
 
-      <Chapter num="02" label="Use" title={`All use happens <em>locally</em>.`}>
-        <p>{app.name} lets you create 2D floor plans with furniture, doors, windows and stairs, and visualise them in 3D. All use happens locally on your device. You don't need an account.</p>
-        <p>You may use the app for personal and commercial purposes — planning your own renovation, valuation work, real-estate prospects or architectural sketching. There is no limit on the number of floor plans with {app.name} PRO.</p>
+      <Chapter num="02" label="Use" title={`Everything happens <em>locally</em>.`}>
+        <p>{app.name} lets you make 2D floor plans with furniture, doors, windows and stairs, and visualise them in 3D. All use happens locally on your device. You need no account, and the app does not require an internet connection to work.</p>
+        <p>You may use the app privately and commercially: your own renovation planning, surveying work, property listings or architectural sketching. With {app.name} PRO there is no limit on the number of floor plans.</p>
+        <p class="muted">You are responsible for having the right to use any image you add as a tracing background (Photo Trace), for example an old floor plan drawn by someone else.</p>
       </Chapter>
 
-      <Chapter num="03" label="Free and PRO" title={`A one-time purchase, <em>not a subscription</em>.`}>
-        <p>The app is free to download. The free version includes one project at a time, one floor, a selection of 18 furniture types, 2D drawing tools, 3D visualisation and PNG export.</p>
-        <p>{app.name} PRO is a one-time purchase. After purchase you get:</p>
-        <p>· Unlimited number of projects</p>
-        <p>· Multiple floors and basement</p>
-        <p>· The full furniture library</p>
+      <Chapter num="03" label="Free and PRO" title={`One-time purchase, <em>not a subscription</em>.`}>
+        <p>The app is free to download. The free version includes one project with one floor, all the 2D drawing tools, 28 room types, 18 furniture types, 3D visualisation, walkthrough and image export.</p>
+        <p>{app.name} PRO is a one-time purchase of NOK 49. After buying it you get:</p>
+        <p>· Unlimited projects, and the ability to import projects from others</p>
+        <p>· Multiple floors and a basement</p>
+        <p>· The full furniture library, 72 types</p>
         <p>· AI-based furniture suggestions</p>
-        <p>· PDF export with room summary</p>
-        <p>· Photo Trace (reference-image tracing layer)</p>
+        <p>· Photo Trace, a tracing layer with a reference image</p>
+        <p>· AR measuring with the camera, on devices with LiDAR</p>
+        <p>· Renovation calculator with a PDF budget</p>
+        <p>· PDF export with a room summary, and an area report</p>
+        <p>· Printing to scale at 1:50 and 1:100</p>
         <p>· Apple Pencil support</p>
-        <p>· Export without watermark</p>
-        <p class="muted">Price and local currency are shown in the App Store purchase dialog.</p>
+        <p>· Export without a watermark</p>
+        <p class="muted">The price is shown in your local currency in the App Store purchase dialog. The purchase is tied to your Apple ID and can be restored on new devices with "Restore purchases".</p>
       </Chapter>
 
       <Chapter num="04" label="Refunds" title={`Refunds are handled by <em>Apple</em>.`}>
-        <p>Refunds for {app.name} PRO are handled by Apple. Request a refund via the App Store at <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
-        <p class="muted">{app.name} cannot itself refund purchases made through the App Store.</p>
+        <p>Refunds for {app.name} PRO are handled by Apple. Request one through the App Store at <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
+        <p class="muted">{app.name} cannot refund App Store purchases itself, because we are not party to the payment.</p>
       </Chapter>
 
-      <Chapter num="05" label="Ownership" title={`The drawings <em>belong to you</em>.`}>
-        <p>Your floor plans are yours. They are stored as `.plantekn` files (open JSON format) on your device and in your iCloud Drive if enabled. You can export, share or delete them at any time. We do not collect personal data — see the <a class="tx-link" href="/en/plantekn/personvern/">privacy policy</a> for details.</p>
-        <p class="muted">The app itself — code, design, icons and name — is owned by Haug og Datter. Purchasing {app.name} PRO grants you a personal, non-exclusive licence in accordance with Apple's Standard EULA. You may not copy, distribute, modify or reverse-engineer the app.</p>
+      <Chapter num="05" label="Ownership" title={`The floor plans <em>are yours</em>.`}>
+        <p>Your floor plans are yours. They are stored as .plantekn files in an open JSON format on your device, and in your iCloud Drive if you have enabled it. You can export, share or delete them whenever you want, and use them commercially without paying us anything extra.</p>
+        <p>We do not collect personal data. See the <a class="tx-link" href="/en/plantekn/personvern/">privacy policy</a> for details.</p>
+        <p class="muted">The app itself, meaning code, design, icons, furniture library and name, is owned by Haug og Datter. Buying {app.name} PRO gives you a personal, non-exclusive licence in line with Apple's standard licence. You may not copy, distribute, modify or decompile the app.</p>
       </Chapter>
 
-      <Chapter num="06" label="Liability" title={`A sketch, <em>not a building permit</em>.`}>
-        <p>{app.name} is provided "as is". We give no warranty that the app is bug-free or that it meets your specific needs. Floor plans created in the app are sketches — they do not replace professional architectural drawings, building permits or official property valuations.</p>
-        <p>Area calculations (BRA, P-rom, S-rom under NS 3940) are based on what you draw. Accuracy depends on you drawing correctly. To the extent permitted by Norwegian law, {app.name} cannot be held liable for financial losses or other consequences arising from use of the app.</p>
+      <Chapter num="06" label="Liability" title={`A sketch, <em>not a building application</em>.`}>
+        <p>{app.name} is provided "as is". We give no guarantee that the app is free of errors, or that it meets your specific needs. Floor plans made in the app are sketches. They do not replace professional architectural drawings, a building application, a condition report or an official valuation.</p>
+        <p><strong>Area figures.</strong> Area is calculated from what you draw yourself, following the measurement standard of your market. Accuracy depends on the measurements you enter matching reality. If the area is going into a property listing or a valuation, it has to be verified by a surveyor.</p>
+        <p><strong>Cost estimates.</strong> The renovation calculator uses reference prices per market and gives a rough figure for comparing options. It is not a quote, and the prices can differ substantially from what a contractor actually charges.</p>
+        <p><strong>The 3D view is an illustration.</strong> Roof shape, cladding and exterior are display only, not project data, and say nothing about what is technically possible or permitted to build.</p>
+        <p class="muted">To the extent permitted by Norwegian law, {app.name} cannot be held liable for financial loss or other consequences arising from use of the app. Nothing in these terms limits rights you have as a consumer under mandatory law.</p>
       </Chapter>
 
-      <Chapter num="07" label="Changes" title={`Significant changes are <em>announced</em>.`}>
-        <p>We may update, change or remove features in the app. Significant changes are communicated through App Store release notes or the "What's New" sheet in the app.</p>
-        <p>These terms may change. Updates are posted on this page with a new "Last updated" date. Continued use of the app after changes constitutes acceptance of the new terms.</p>
-        <p class="muted">These terms are governed by Norwegian law. Disputes shall first be attempted resolved amicably. If that fails, the proper venue is the Norwegian Consumer Authority (Forbrukertilsynet) and then Norwegian courts.</p>
+      <Chapter num="07" label="Changes" title={`Significant changes <em>are announced</em>.`}>
+        <p>We may update, change or remove features in the app. Significant changes are communicated through the App Store update notes and the "What's new" sheet in the app. Features marked beta, such as walkthrough, may change or become part of PRO later.</p>
+        <p>The file format is backwards compatible: projects made in older versions open in newer ones.</p>
+        <p class="muted">These terms may change. Changes are published on this page with a new "last updated" date. Continued use of the app after a change counts as acceptance of the new terms.</p>
       </Chapter>
 
-      <Chapter num="08" label="Contact" title={`Questions? <em>Write to us.</em>`}>
+      <Chapter num="08" label="Governing law" title={`Norwegian <em>law</em>.`}>
+        <p>These terms are governed by Norwegian law. Disputes should first be resolved amicably. Failing that, consumers may bring the matter before the Norwegian Consumer Authority, and thereafter the Norwegian courts.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Contact" title={`Questions? <em>Write to us.</em>`}>
         <p><strong>Provider:</strong> Jonas Haug (Haug & Datter), Drammen, Norway.</p>
-        <p>Send email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. The <a class="tx-link" href="/en/plantekn/personvern/">privacy policy</a> for the app is here.</p>
+        <p>Send an email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. The <a class="tx-link" href="/en/plantekn/personvern/">privacy policy</a> for the app is here, and practical questions are collected on the <a class="tx-link" href="/en/plantekn/support/">support page</a>.</p>
       </Chapter>
     </div>
   </div>

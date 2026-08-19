@@ -78,7 +78,9 @@ export const apps: AppDef[] = [
       en: 'A simple floor planner with real measurements.',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/plantekn/id6760789999',
-    iconPath: '/icons/plantekn.png',
+    /* ?v=2: nytt appikon i v1.7.0 (aug 2026) — query-bump omgår
+       Cloudflares 24t-cache på /icons/*. */
+    iconPath: '/icons/plantekn.png?v=2',
     accent: '#2C4A3A',
     glyph: 'grid',
   },
@@ -90,9 +92,9 @@ export const apps: AppDef[] = [
       en: 'Daily logic puzzles.',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/tenkt/id6766308807',
-    /* ?v=2: nytt gull-T-ikon juni 2026 — query-bump omgår Cloudflares
-       24t-cache på /icons/* (samme grep som stoneward/hyttepermen). */
-    iconPath: '/icons/tenkt.png?v=2',
+    /* ?v=3: nytt blokk-ikon fra V1.6 (aug 2026). Query-bumpen omgår
+       Cloudflares 24t-cache på /icons/* (samme grep som stoneward/hyttepermen). */
+    iconPath: '/icons/tenkt.png?v=3',
     accent: '#8B6F47',
     glyph: 'dots',
   },

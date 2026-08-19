@@ -12,50 +12,63 @@ const app = getApp('plantekn');
   <div class="app-page">
     <AppRail app={app} current="personvern" />
     <div class="app-flow">
-      <Chapter num="01" label="Overview" title={`Privacy, in <em>plain English</em>.`}>
-        <p class="lede">{app.name} is a floor-plan and interior design app for iPhone and iPad. We've kept this simple: the app does not collect personal data about you. No user account, no server, no tracking, no advertising.</p>
-        <p class="muted">Last updated · 14 May 2026.</p>
+      <Chapter num="01" label="In short" title={`Privacy, in <em>plain language</em>.`}>
+        <p class="lede">{app.name} is a floor plan and interior design app for iPhone and iPad. The app does not collect personal data about you. No account, no server, no tracking, no advertising.</p>
+        <p>There is no backend behind the app. That is not a policy we chose to follow, it is a technical fact: there is no server to send data to. Everything you make stays on your device, and in your own iCloud if you turn that on.</p>
+        <p class="muted">Last updated · 19 August 2026.</p>
       </Chapter>
 
       <Chapter num="02" label="Data" title={`What the app <em>actually stores</em>.`}>
-        <p>The app stores only what you create, plus some technical preferences:</p>
-        <p>· <strong>Your floor plans</strong> — rooms, furniture, doors, windows, stairs, floors and notes. Stored as `.plantekn` files (JSON).</p>
-        <p>· <strong>Images you upload as a tracing background</strong> (Photo Trace, Pro feature). Stored inside your project file.</p>
-        <p>· <strong>App preferences</strong> — language, grid and snap sizes, light/dark mode, whether you've seen onboarding.</p>
-        <p>· <strong>Local counters</strong> — number of times the app has launched, whether you've rated the app, number of Pro paywall views.</p>
-        <p>· <strong>Pro status</strong> — whether you've purchased {app.name} PRO.</p>
-        <p class="muted">None of this is sent to us or to any third party. Everything stays on your device or in your iCloud account.</p>
+        <p>The app stores only what you make yourself, plus some technical settings:</p>
+        <p>· <strong>Your floor plans:</strong> rooms, furniture, doors, windows, stairs, floors, notes and freehand drawing. Stored as files in the .plantekn format (JSON).</p>
+        <p>· <strong>Images you add as a tracing background</strong> (Photo Trace, a Pro feature). Stored inside your project file.</p>
+        <p>· <strong>App settings:</strong> language, market for area terminology and the calculator, units, grid and snap sizes, light or dark mode, 3D settings, and whether you have seen the introduction.</p>
+        <p>· <strong>Local counters:</strong> how many times the app has been opened, whether you have rated it, how many times the Pro screen has been shown. These decide only when the app should ask you something, and never leave the device.</p>
+        <p>· <strong>Pro status:</strong> whether you have bought {app.name} PRO.</p>
+        <p class="muted">None of this is sent to us or to any third party. We cannot see your floor plans, and we do not know that you use the app.</p>
       </Chapter>
 
       <Chapter num="03" label="Storage" title={`On your device. <em>Optionally iCloud.</em>`}>
-        <p>Data is stored on your device in the app's private folder, and in your iCloud Drive (`iCloud.com.jonas.Plantekn`) if you have iCloud enabled. If iCloud is unavailable, everything is stored locally only. You can see which is active under Settings → About → Storage.</p>
-        <p class="muted">{app.name} has no access to your iCloud account. Apple syncs the files between your own devices on your behalf. <a class="tx-link" href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's privacy policy for iCloud</a>.</p>
+        <p>Data is stored on your device in the app's private folder, and in your iCloud Drive (iCloud.com.jonas.Plantekn) if you have iCloud enabled. If iCloud is unavailable, everything stays local only. You can see what is active under Settings → About → Storage.</p>
+        <p>{app.name} has no access to your iCloud account. Apple syncs the files between your own devices on your behalf, the same way it does with a document in Files. <a class="tx-link" href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's privacy policy for iCloud</a>.</p>
+        <p class="muted">If you share a plan yourself, as a PDF, image, HTML or .plantekn file, it goes wherever you choose to send it. From that point your sharing method, email or AirDrop for instance, decides who can see it.</p>
       </Chapter>
 
-      <Chapter num="04" label="Purchases and ratings" title={`Apple <em>handles payment</em>.`}>
-        <p>{app.name} PRO purchases are handled entirely by Apple via the App Store and StoreKit. We only receive a signal that the purchase is complete — we do not see payment details, card numbers or billing addresses.</p>
-        <p>When the app asks you to rate {app.name}, it uses Apple's standard mechanism (`SKStoreReviewController`). The rating is handled by Apple. We only know whether you chose "yes, I'd like to rate" — we do not see the rating or the star count.</p>
+      <Chapter num="04" label="Camera" title={`The camera is used <em>only for measuring</em>.`}>
+        <p>The app asks for camera access in one place: AR measuring, where you measure rooms and distances by pointing at floors and walls. The measuring happens live on the device. No pictures are recorded, nothing is stored, and nothing is sent anywhere.</p>
+        <p class="muted">If you decline camera access, the rest of the app works as before. You lose only AR measuring.</p>
       </Chapter>
 
       <Chapter num="05" label="Photo Trace" title={`The image you pick <em>stays with you</em>.`}>
-        <p>If you use Photo Trace (Pro), you pick an image from your photo library via Apple's Photos Picker. The image is processed only on your device and stored inside your project file as part of it. {app.name} does not request access to your whole photo library — only the single image you select.</p>
-        <p class="muted">Apple Pencil and haptics use standard iOS APIs. No data is collected.</p>
+        <p>If you use Photo Trace (Pro), you pick an image from your photo library through Apple's own photo picker. The image is handled only on your device and is stored inside the project file as part of it. {app.name} never asks for access to your whole photo library, only the single image you point at.</p>
+        <p class="muted">Apple Pencil and haptic feedback use standard iOS APIs. No data is collected.</p>
       </Chapter>
 
-      <Chapter num="06" label="Third parties" title={`No tracking. <em>No analytics.</em>`}>
-        <p>There is no analytics or tracking technology in {app.name}. We do not use Google Analytics, Firebase, Crashlytics, AppsFlyer, Adjust, TelemetryDeck or any similar service. No IDFA or ad identifier is used.</p>
-        <p class="muted">The only third party involved is Apple (App Store, iCloud, StoreKit, system rating dialog). Apple's terms and privacy policy apply to those services.</p>
+      <Chapter num="06" label="Purchases" title={`Apple <em>handles payment</em>.`}>
+        <p>Buying {app.name} PRO is handled entirely by Apple through the App Store and StoreKit. We receive only a signal that the purchase went through. We do not see payment details, card numbers or billing addresses, and we do not know who bought it.</p>
+        <p>When the app asks you to rate {app.name}, it uses Apple's standard prompt. The rating is handled by Apple. We only know whether you chose to go on to the rating, not what you wrote or how many stars you gave.</p>
       </Chapter>
 
-      <Chapter num="07" label="Children and rights" title={`Safe for <em>any age</em>.`}>
-        <p>{app.name} is not directed at children under 13, but is safe for any age since the app does not collect personal data.</p>
-        <p>Because we hold no personal data about you, we have nothing to deliver or delete on request. You have full control over your own files — delete the app or remove your projects from iCloud Drive whenever you like.</p>
+      <Chapter num="07" label="Third parties" title={`No tracking. <em>No analytics.</em>`}>
+        <p>There is no analytics or tracking technology in {app.name}. We do not use Google Analytics, Firebase, Crashlytics, AppsFlyer, Adjust, TelemetryDeck or anything similar. No IDFA, no advertising identifier, no ad networks. The app contains no third party SDKs at all.</p>
+        <p class="muted">The only third party involved is Apple, through the App Store, iCloud, StoreKit and the system rating dialog. Apple's terms and privacy policy apply to those services.</p>
       </Chapter>
 
-      <Chapter num="08" label="Contact" title={`Questions? <em>Write to us.</em>`}>
+      <Chapter num="08" label="Your rights" title={`Your rights, <em>and why they are simple</em>.`}>
+        <p>The GDPR gives you the right to access, correct, delete and receive a copy of the personal data a business holds about you.</p>
+        <p>Since {app.name} collects no personal data, we have nothing to disclose, correct or delete. That is not a formality: there is no database with you in it.</p>
+        <p>You have full control over your own files. Export them whenever you want, as .plantekn, PDF, image or HTML. To delete everything, remove the projects in the app, remove them from iCloud Drive, or delete the app.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Children" title={`Safe at <em>any age</em>.`}>
+        <p>{app.name} is not aimed at children, but it is safe at any age, because the app collects no personal data, has no sign in, no advertising and no social layer where anyone can get in touch with you.</p>
+        <p class="muted">The only purchase in the app is the one-time purchase of {app.name} PRO, which goes through Apple's normal purchase dialog and can be blocked with Screen Time.</p>
+      </Chapter>
+
+      <Chapter num="10" label="Contact" title={`Questions? <em>Write to us.</em>`}>
         <p><strong>Data controller:</strong> Jonas Haug (Haug & Datter), Drammen, Norway.</p>
-        <p>Send email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. You'll get a reply from Jonas himself, usually within a day.</p>
-        <p class="muted">This policy may be updated when the app's features change. Updates will be posted on this page with a new "Last updated" date.</p>
+        <p>Send an email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. You get a reply from Jonas himself, usually within a day.</p>
+        <p class="muted">This policy may be updated as features in the app change. Changes are published on this page with a new "last updated" date. The <a class="tx-link" href="/en/plantekn/vilkar/">terms</a> for the app are here.</p>
       </Chapter>
     </div>
   </div>

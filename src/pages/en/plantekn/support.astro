@@ -12,81 +12,150 @@ const app = getApp('plantekn');
   <div class="app-page">
     <AppRail app={app} current="support" />
     <div class="app-flow">
-      <Chapter num="01" label="Contact" title={`Send <em>email</em>.`}>
-        <p class="lede">Need help with {app.name}? Send an email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. You'll get a reply from Jonas himself, usually within a day.</p>
+      <Chapter num="01" label="Contact" title={`Send an <em>email</em>.`}>
+        <p class="lede">Need help with {app.name}? Send an email to <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. You get a reply from Jonas himself, usually within a day.</p>
+        <p class="muted">Mention which device you use and which version of the app you have. The version number is under Settings → About.</p>
       </Chapter>
 
-      <Chapter num="02" label="About the app" title={`What ${app.name} <em>is</em>.`}>
+      <Chapter num="02" label="About" title={`What ${app.name} <em>is</em>.`}>
         <p><strong>What is {app.name}, and who is it for?</strong></p>
-        <p class="muted">{app.name} is a floor planner for iPhone and iPad. It's for anyone renovating, planning a move, or just checking whether the sofa fits, without having to learn a heavy CAD tool. You draw rooms with real measurements, place furniture and see the result in 3D. Built for ordinary people, not architects.</p>
+        <p class="muted">{app.name} is a floor plan app for iPhone and iPad. It is for people renovating, planning a move, or simply wondering whether the sofa will fit, without having to learn a heavy CAD tool. You draw rooms in real measurements, place furniture and see the result in 3D. Built for ordinary people, not for architects.</p>
         <p><strong>Do I need an iPad, or does it work on iPhone too?</strong></p>
-        <p class="muted">Both. {app.name} is a single app that runs on both iPhone and iPad (iOS 18 or later). On iPhone you draw in landscape, on iPad you can use any orientation. The iPad gives you more room to draw, but everything works on iPhone.</p>
-        <p><strong>Do I need an Apple Pencil, or can I draw with my finger?</strong></p>
-        <p class="muted">Your finger works fine. Apple Pencil is fully supported on iPad if you have one and want extra precision, but it isn't required.</p>
-        <p><strong>Is {app.name} available for Android?</strong></p>
-        <p class="muted">No, for now iPhone and iPad only. There is no Android version.</p>
-        <p><strong>Does the app need internet, or does it work offline?</strong></p>
-        <p class="muted">It works offline. Drawing rooms, placing furniture, viewing the plan in 3D and exporting all happen locally on the device, so you can plan just as well at a cabin with no signal as at home. If you turn on iCloud sync, a connection is only needed for the syncing itself.</p>
+        <p class="muted">Both. {app.name} is one app that runs on iPhone and iPad (iOS 18 or later). On iPhone you draw in landscape, on iPad you can use any orientation. The iPad gives you more room to draw on, but everything works on iPhone.</p>
+        <p><strong>Do I need an Apple Pencil, or can I draw with a finger?</strong></p>
+        <p class="muted">A finger is fine. Apple Pencil is fully supported on iPad if you have one and want more precision, but it is not required.</p>
+        <p><strong>Is {app.name} available for Android or Mac?</strong></p>
+        <p class="muted">No, currently iPhone and iPad only. There is no Android version and no separate Mac app.</p>
+        <p><strong>Does the app need an internet connection?</strong></p>
+        <p class="muted">It works offline. Drawing rooms, placing furniture, viewing the plan in 3D and exporting all happen locally on the device, so you can plan just as well in a cabin with no signal as at home. If you turn on iCloud sync, a connection is needed only for the syncing itself.</p>
       </Chapter>
 
-      <Chapter num="03" label="Precision" title={`Measurements and <em>precision</em>.`}>
+      <Chapter num="03" label="Getting started" title={`The first <em>ten minutes</em>.`}>
+        <p><strong>Where do I start?</strong></p>
+        <p class="muted">The first time you open the app, a short guide walks you through your first room. After that the usual order is: draw the rooms, add doors and windows, drag in furniture, flip to 3D. You do not have to work in that order, but it is the one that means the least redrawing.</p>
+        <p><strong>How do I draw a room?</strong></p>
+        <p class="muted">Pick a room type from the sidebar and tap the canvas. The room arrives with sensible default dimensions, and you drag the corner handles until it matches reality. Measurements sit on every wall while you drag. Double tap the room to rename it.</p>
+        <p><strong>My room is not rectangular. What do I do?</strong></p>
+        <p class="muted">Draw it as a polygon instead. You place points along the walls and can move each point on its own, add new points or remove them. L shaped rooms, slanted walls and bay windows are handled this way.</p>
+        <p><strong>How do I add doors and windows?</strong></p>
+        <p class="muted">Choose the door or window tool and tap the wall where the element belongs. It snaps to the wall and can be dragged along it afterwards. There are six door styles and seven window types, and you can override the width if you have something non-standard.</p>
+        <p><strong>How do I add a floor or a basement?</strong></p>
+        <p class="muted">Tap "+ Floor" or "+ Basement" in the sidebar. The floor picker shows a small thumbnail of each level, so you can see which one you are switching to. Multiple floors require Pro.</p>
+        <p><strong>I made a mistake. Can I undo?</strong></p>
+        <p class="muted">Yes. Undo sits in the toolbar, and the app keeps the last 30 steps. When you use Photo Trace, the history is trimmed to ten steps to save memory.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Measurements" title={`Measurements, area and <em>precision</em>.`}>
         <p><strong>How accurate are the measurements in {app.name}?</strong></p>
-        <p class="muted">As accurate as you draw them. Every wall shows meters and centimeters as you draw, and the measurements stay precise as you zoom or move. On an iPhone Pro or iPad Pro with LiDAR you can measure rooms directly with the camera (AR measuring) for exact dimensions before you draw. {app.name} is a planning tool, not a surveying instrument, but precise enough to settle whether the sofa fits.</p>
-        <p><strong>How is area calculated (BRA, P-rom, S-rom), do you follow NS 3940?</strong></p>
-        <p class="muted">Yes. Area is calculated per the Norwegian standard NS 3940, with usable area (BRA) and the split between primary rooms (P-rom) and secondary rooms (S-rom). Total usable area is shown in the toolbar across all floors, and you can produce an area PDF ready for an agent or surveyor.</p>
-        <p><strong>Can I draw in both meters and centimeters?</strong></p>
-        <p class="muted">Yes. Every line shows meters and centimeters at once, so you never have to convert. The app picks metric or imperial automatically by region, and you can override it yourself.</p>
-        <p><strong>Can I print the floor plan at true scale (1:50 / 1:100)?</strong></p>
-        <p class="muted">Yes, with {app.name} Pro. You can print the plan on A4 at exact 1:50 or 1:100 and measure directly on the paper with a ruler.</p>
+        <p class="muted">As accurate as you draw them. Every wall shows its length while you draw, and the numbers stay precise as you zoom or move. You can adjust how coarsely the app snaps to the grid, from 10 to 100 cm. On an iPhone Pro or iPad Pro with LiDAR you can measure a room directly with the camera (AR measuring) and get exact numbers before you draw. {app.name} is a planning tool, not a surveying instrument, but precise enough to settle whether the sofa fits.</p>
+        <p><strong>How is floor area calculated?</strong></p>
+        <p class="muted">The app calculates the area of every room from what you have drawn, and totals it across all floors in the toolbar. Where the local measurement standard splits area into primary and secondary space, the app applies that split automatically based on the room types you have chosen, and it can produce an area PDF ready for an estate agent or a surveyor.</p>
+        <p><strong>Why do I not see a split between primary and secondary area?</strong></p>
+        <p class="muted">Because that split does not exist everywhere. The app follows the measurement standard used where you are: Norway, Sweden, Denmark, Germany, the Netherlands and France divide the area in two, each with their own national terms. Other markets see a single total instead, because that is what property listings there quote. You can pick the market manually in settings if the app guesses wrong.</p>
+        <p><strong>I have a loft with a sloped ceiling. Will the area be right?</strong></p>
+        <p class="muted">Yes, if you turn on a sloped ceiling for that floor. You set the knee wall height and the roof pitch, and the app counts only the area where the ceiling reaches 1.9 metres. While you adjust, the sheet shows both what counts and what falls outside. This is project data and is saved in the file, unlike the roof shape in 3D, which is display only.</p>
+        <p><strong>Can I work in feet and inches?</strong></p>
+        <p class="muted">Yes. The app picks metric or imperial units automatically by region, and you can override the choice yourself in settings.</p>
+        <p><strong>Can I print the plan to scale (1:50 / 1:100)?</strong></p>
+        <p class="muted">Yes, with {app.name} Pro. You can print on A4 at exactly 1:50 or 1:100 and measure straight off the paper with a ruler.</p>
       </Chapter>
 
-      <Chapter num="04" label="Furniture" title={`Furniture and <em>features</em>.`}>
-        <p><strong>What furniture is in the library, and are the dimensions matched to Nordic standards?</strong></p>
-        <p class="muted">Over 55 furniture types: sofa, bed, table, kitchen units, even outdoor structures like pergola, deck and eave. Dimensions follow Nordic standard sizes, so what you drag in matches reality. The full library is unlocked with Pro. You can also create your own furniture with exact measurements and save it to your library.</p>
+      <Chapter num="05" label="Furniture" title={`Furniture and <em>fitting out</em>.`}>
+        <p><strong>What furniture is in the library, and what dimensions does it use?</strong></p>
+        <p class="muted">72 furniture types across ten categories: kitchen, bedroom, bathroom, living room, office, laundry, outdoor, electrical, plumbing and miscellaneous. Everything from sofas, beds and kitchen units to outdoor structures like pergolas, decking and eaves. Dimensions follow Nordic standard sizes, so what you drag in matches reality. 18 types are free, the rest unlock with Pro.</p>
+        <p><strong>My furniture is not in the library. What now?</strong></p>
+        <p class="muted">Build it yourself. You can define a piece with exact measurements and save it to your own library, ready to reuse in other projects. That is usually the fastest route for inherited furniture or custom-built cabinets.</p>
+        <p><strong>What do the AI layout suggestions do?</strong></p>
+        <p class="muted">When you are stuck, {app.name} can propose how the furniture might sit in the room, based on the room type and its shape. It is a starting point you adjust, not a verdict. AI suggestions are a Pro feature, and everything is computed on the device.</p>
         <p><strong>What is Photo Trace, and how does it work?</strong></p>
-        <p class="muted">Photo Trace lets you place a photo of an existing room or an old floor plan beneath the drawing and trace over it. No more guessing measurements from a photograph. Photo Trace is a Pro feature.</p>
-        <p><strong>What do the AI furniture suggestions do?</strong></p>
-        <p class="muted">When you're stuck, {app.name} can suggest how to arrange the furniture in a room. It's meant as a starting point you adjust yourself, not a final answer. AI suggestions are a Pro feature.</p>
-        <p><strong>Can I see the room in 3D, and how does walkthrough mode work?</strong></p>
-        <p class="muted">Yes. Real-time 3D is free for everyone: flip the drawing to 3D and watch the room take shape, with adjustable wall height. In walkthrough mode you move around inside the plan in first person, with virtual joysticks and a small minimap in the corner. Walls stop you, and eye height adjusts from child to adult, handy for checking ceiling height or getting a feel for the space. Walkthrough is free while it's in beta.</p>
+        <p class="muted">Photo Trace lets you place a photo of an existing room or an old floor plan underneath the canvas and draw straight over it, so you are not guessing measurements from a photograph. The image can be scaled, made transparent and locked so it does not shift while you draw. Photo Trace is a Pro feature.</p>
       </Chapter>
 
-      <Chapter num="05" label="Pricing" title={`Pricing and <em>versions</em>.`}>
+      <Chapter num="06" label="3D" title={`3D and <em>walkthrough</em>.`}>
+        <p><strong>Can I see the room in 3D, and does it cost anything?</strong></p>
+        <p class="muted">3D is free for everyone. Flip the drawing to 3D and see the plan as a dollhouse from above, with wall height adjustable from 1.0 to 2.7 metres. Furniture can be switched off if you only want the layout.</p>
+        <p><strong>Can I see the house from outside?</strong></p>
+        <p class="muted">Yes. The house gets a roof, and you choose the shape: gable, hip, mono pitch or flat. Outside there is horizontal cladding, a foundation, steps up to the front door and planting around it. Roof shape is a display setting, it is not stored in the project and does not affect the area.</p>
+        <p><strong>How does walkthrough mode work?</strong></p>
+        <p class="muted">In walkthrough you move around inside the plan in first person, with virtual sticks for movement and camera and a small map in the corner. Walls stop you, and the app usually places you in the hallway or the largest room. Eye height can be set from child to adult, which is useful for checking ceiling height or getting a feel for the room. Walkthrough is free while it is in beta.</p>
+        <p><strong>Can I choose colours for walls and floors?</strong></p>
+        <p class="muted">Yes. The material palette lets you pick wall, floor and door colours from curated palettes in the 3D view. Left on automatic, the app picks sensible colours per room type.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Calculator" title={`<em>Renovation calculator</em>.`}>
+        <p><strong>What does the renovation calculator work out?</strong></p>
+        <p class="muted">It estimates costs per room for flooring, paint, electrical work and plumbing, based on the areas you have already drawn. You pick a floor type per room, and can export the budget as a PDF.</p>
+        <p><strong>Where do the prices come from, and do they apply where I live?</strong></p>
+        <p class="muted">The calculator holds reference prices for fourteen markets, among them Norway, Sweden, Denmark, Germany, France, Spain, Italy, the Netherlands, the UK, the US and Japan. If you live somewhere other than your device language suggests, pick the market manually in settings. Every figure can be overridden, and you should override them once you have a quote from a contractor.</p>
+        <p class="muted">The estimate is a way to compare options, not a tender. The calculator is a Pro feature.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Price" title={`Price and <em>versions</em>.`}>
         <p><strong>Is {app.name} free, or do I have to pay?</strong></p>
-        <p class="muted">{app.name} is free to download and use. You can draw rooms, place furniture and view the plan in 3D without paying. {app.name} Pro is an optional one-time purchase of NOK 59 that unlocks the more advanced features.</p>
-        <p><strong>What's the difference between the free version and {app.name} Pro?</strong></p>
-        <p class="muted">Free gives you drawing, furniture, real-time 3D and walkthrough. Pro unlocks unlimited projects and floors, the full furniture library, AI suggestions, the renovation calculator with PDF, the listing area PDF, printing at 1:50 / 1:100, AR measuring, Photo Trace, and PDF export without a watermark.</p>
-        <p><strong>Is it a subscription, or a one-time purchase?</strong></p>
-        <p class="muted">A one-time purchase of NOK 59. You buy {app.name} Pro once and own it for good. No subscription, no recurring cost. The purchase follows your Apple ID and can be restored on new devices.</p>
+        <p class="muted">{app.name} is free to download and use. The free version gives you one project with one floor, all the drawing tools, 18 furniture types, 3D, walkthrough and image export. {app.name} Pro is an optional one-time purchase of NOK 49.</p>
+        <p><strong>What is the difference between the free version and {app.name} Pro?</strong></p>
+        <p class="muted">Pro unlocks unlimited projects, multiple floors and a basement, the full furniture library, AI suggestions, Photo Trace, Apple Pencil drawing, AR measuring, the renovation calculator with PDF, an area PDF for listings, printing at 1:50 and 1:100, and PDF export without a watermark.</p>
+        <p><strong>Is it a subscription or a one-time purchase?</strong></p>
+        <p class="muted">A one-time purchase of NOK 49. You buy {app.name} Pro once and own it for good. No subscription, no recurring cost.</p>
+        <p><strong>I changed phones. Do I have to buy Pro again?</strong></p>
+        <p class="muted">No. The purchase follows your Apple ID. Tap "Restore purchases" at the bottom of the Pro screen and it comes back. If you are signed in with a different Apple ID than the one you bought with, the app will not find it.</p>
+        <p><strong>Can I get a refund?</strong></p>
+        <p class="muted">Refunds are handled by Apple, not by us. Request one at <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
       </Chapter>
 
-      <Chapter num="06" label="Sharing" title={`Sharing and <em>export</em>.`}>
-        <p><strong>Can I share the floor plan with an architect, agent or family?</strong></p>
-        <p class="muted">Yes. You can send the plan as a file to others who use the app, or export it to a format anyone can open. Tap the share icon at the top of the drawing to choose.</p>
-        <p><strong>Which file formats can I export to (PDF, image, interactive HTML)?</strong></p>
-        <p class="muted">You can export as an image (PNG), as a PDF with a room summary, or as interactive HTML. You can also share the project file itself (.plantekn) via email or AirDrop. On the free version the PDF carries a small watermark, Pro removes it.</p>
-        <p><strong>Can the recipient view the plan without having the app themselves?</strong></p>
-        <p class="muted">Yes. The PDF, image and interactive HTML export open in any browser or PDF reader, with no {app.name} needed. Only the .plantekn file, which can be edited further, requires the app.</p>
+      <Chapter num="09" label="Sharing" title={`Sharing and <em>export</em>.`}>
+        <p><strong>Can I share the plan with an architect, an estate agent or family?</strong></p>
+        <p class="muted">Yes. Tap the share icon at the top of the canvas and choose a format. You can send the plan as a file to other people using the app, or export it to something anyone can open.</p>
+        <p><strong>Which file formats can I export to?</strong></p>
+        <p class="muted">Image (PNG), PDF with a room summary, or interactive HTML where the recipient can page between floors in a browser. You can also share the project file (.plantekn) by email or AirDrop. In the free version the PDF and HTML carry a small watermark, Pro removes it.</p>
+        <p><strong>Can the recipient view the plan without the app?</strong></p>
+        <p class="muted">Yes. The PDF, the image and the interactive HTML export open in any browser or PDF reader, with no {app.name} needed. Only the .plantekn file, which can be edited further, requires the app.</p>
+        <p><strong>Someone sent me a .plantekn file. How do I open it?</strong></p>
+        <p class="muted">Tap the file in Mail, Messages or Files and choose {app.name}. It arrives as a new project in your list. Importing projects requires Pro, since the free version holds one project at a time.</p>
       </Chapter>
 
-      <Chapter num="07" label="Privacy" title={`<em>Privacy</em>.`}>
-        <p><strong>Is my data stored in the cloud, or only locally on the device?</strong></p>
+      <Chapter num="10" label="Files and iCloud" title={`Where do the projects <em>live</em>?`}>
+        <p><strong>Is my data stored in the cloud, or only on the device?</strong></p>
         <p class="muted">Everything is stored locally on your device by default. There is no server, and no data leaves the device. If you turn on iCloud sync, projects are stored in your own private iCloud, not with us.</p>
+        <p><strong>Do my projects sync between iPhone and iPad?</strong></p>
+        <p class="muted">Yes, if you want them to. iCloud sync is optional. If it is not syncing, check that iCloud Drive is on in iOS settings, that both devices are signed in to the same Apple ID, and that they have been online for a while. You can see what is active under Settings → About → Storage.</p>
+        <p><strong>What happens to my projects if I delete the app?</strong></p>
+        <p class="muted">If they are in iCloud they stay there and come back when you reinstall. If they were only local, they go with the app. For projects you cannot afford to lose, export them as .plantekn files first.</p>
+        <p><strong>Can I open old projects in new versions of the app?</strong></p>
+        <p class="muted">Yes. The file format is backwards compatible, and projects from earlier versions open as before. Projects from the very first version were drawn at a different scale, and are converted automatically when loaded.</p>
+      </Chapter>
+
+      <Chapter num="11" label="Privacy" title={`<em>Privacy</em>.`}>
         <p><strong>Do I need an account to use the app?</strong></p>
-        <p class="muted">No. No account, no sign-in and no email address. You open the app and start drawing. No tracking, no ads.</p>
-        <p><strong>Do my projects sync between devices (iCloud)?</strong></p>
-        <p class="muted">Yes, if you want. iCloud sync is optional, and when it's on your projects stay in step between iPhone and iPad. If it isn't syncing, check that iCloud Drive is on in iOS settings and that both devices are signed in to the same Apple ID.</p>
+        <p class="muted">No. No account, no sign in and no email address. You open the app and start drawing.</p>
+        <p><strong>Does the app collect data about me?</strong></p>
+        <p class="muted">No. There is no analytics, no tracking, no advertising and no third party SDKs in the app. The camera is used only for AR measuring, and Photo Trace uses Apple's own photo picker, so the app never asks for access to your whole photo library. The details are in the <a class="tx-link" href="/en/plantekn/personvern/">privacy policy</a>.</p>
       </Chapter>
 
-      <Chapter num="08" label="Languages" title={`Languages and <em>availability</em>.`}>
+      <Chapter num="12" label="Languages" title={`Languages and <em>accessibility</em>.`}>
         <p><strong>Which languages does the app support?</strong></p>
-        <p class="muted">Ten languages: Norwegian, English, Swedish, Danish, German, French, Spanish, Italian, Dutch and Japanese. The app follows the language your device is set to.</p>
+        <p class="muted">Fourteen: Norwegian, English, Swedish, Danish, German, French, Spanish, Italian, Dutch, Japanese, Chinese (Simplified), Arabic, Russian and Portuguese (Brazil). The app follows the language your device is set to, and you can switch language inside the app without restarting it.</p>
+        <p><strong>Does the app work in Arabic, which reads right to left?</strong></p>
+        <p class="muted">Yes. The interface mirrors: sidebar, toolbar and every sheet. The floor plan itself, the 3D view and the exports stay as they are, because a mirrored floor plan would be a different building.</p>
+        <p><strong>Can I make the text bigger?</strong></p>
+        <p class="muted">Yes. The app follows the text size you have set in iOS, including the larger accessibility sizes. Dark mode is supported too.</p>
         <p><strong>Is the app available outside Norway?</strong></p>
-        <p class="muted">Yes. {app.name} is on the App Store internationally, with ten languages and automatic metric or imperial units by region. The renovation calculator has reference prices for ten markets.</p>
+        <p class="muted">Yes. {app.name} is on the App Store internationally, with metric or imperial units chosen automatically by region and area terminology that follows the standard in each market.</p>
       </Chapter>
 
-      <Chapter num="09" label="Feedback" title={`Ideas, <em>bugs</em>, tips.`}>
-        <p>Features you miss? Bugs that annoy? Send them to the same address. I read everything and prioritize based on what actually makes the app better.</p>
+      <Chapter num="13" label="Troubleshooting" title={`When something <em>looks wrong</em>.`}>
+        <p><strong>I cannot move a piece of furniture or a room.</strong></p>
+        <p class="muted">Check that you are in the select tool and not in a drawing tool. If you are using Photo Trace, the background image may be locked, and you need to unlock it before moving it.</p>
+        <p><strong>The area is not what I expected.</strong></p>
+        <p class="muted">Two common causes: the room is set to the wrong room type, so it lands in the wrong area category, or the floor has a sloped ceiling that leaves part of the floor out of the count. Both are changed on the room or on the floor.</p>
+        <p><strong>The app looks different from the screenshots here.</strong></p>
+        <p class="muted">These pages show the latest version. Check whether an update is waiting in the App Store, and see "What's new" inside the app for what changed.</p>
+        <p><strong>Something crashes or behaves oddly.</strong></p>
+        <p class="muted">Send an email describing what you did just before it happened, which device you have and which version is listed under Settings → About. That is usually enough to track it down.</p>
+      </Chapter>
+
+      <Chapter num="14" label="Feedback" title={`Ideas, <em>bugs</em>, tips.`}>
+        <p>Features you miss? Bugs that annoy you? Send them to the same address. I read everything and prioritise by what actually makes the app better.</p>
       </Chapter>
     </div>
   </div>

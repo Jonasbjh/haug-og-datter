@@ -15,7 +15,7 @@ const app = getApp('tenkt');
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
       <Chapter num="01" label="Hvorfor" title={`Stille logikk, <em>hver morgen</em>.`}>
-        <p class="lede">Tenkt finnes fordi en pause med ren logikk fortjener å være ren. Ingen reklame som blinker, ingen profil å bygge, ingen knapp som vil ha et abonnement. Fem til ti korte oppgaver hver dag, samme for alle, fornyes ved midnatt.</p>
+        <p class="lede">Tenkt finnes fordi en pause med ren logikk fortjener å være ren. Ingen reklame som blinker, ingen profil å bygge, ingen knapp som vil ha et abonnement. Seks til tolv korte oppgaver hver dag, samme for alle, fornyes ved midnatt.</p>
         <p>Jeg lagde Tenkt til meg selv først. Den er fortsatt det første jeg åpner over morgenkaffen.</p>
         <p class="muted">Norsk er et fint språk å tenke logisk i. Tenkt er på norsk fra første sekund.</p>
       </Chapter>
@@ -23,19 +23,21 @@ const app = getApp('tenkt');
         <p>Du setter deg ned. Tar den første slurken. Åpner Tenkt. Et lite puslespill, kanskje to. Du føler deg våken, ferdig, og dagen kan begynne uten å ha åpnet et eneste varsel.</p>
         <p>Skriften er rolig (Cormorant Garamond italic), tonene er dempet (stein på tre når en brikke faller på plass, en tempelklokke ved fullført sett). Hvis noe glitrer, glitrer det stille.</p>
         <ChapterShots shots={[
-          { src: '/screenshots/tenkt/01-home.png', alt: 'Hjem-skjerm' },
-          { src: '/screenshots/tenkt/02-puzzle-active.png', alt: 'Aktivt puslespill' },
-          { src: '/screenshots/tenkt/03-puzzle-flow.png', alt: 'Stifinner-puslespill' },
-          { src: '/screenshots/tenkt/04-summary.png', alt: 'Oppsummering' },
-          { src: '/screenshots/tenkt/05-settings.png', alt: 'Innstillinger' },
+          { src: '/screenshots/tenkt/01-daily.png', alt: 'Dagens sett som en bane, med neste puslespill klart øverst' },
+          { src: '/screenshots/tenkt/02-grid.png', alt: 'Rutenett: tall som skal være unike per rad, kolonne og boks' },
+          { src: '/screenshots/tenkt/03-placement.png', alt: 'Plassering: én diamant per rad, kolonne og fargesone' },
+          { src: '/screenshots/tenkt/04-marathon.png', alt: 'Marathon: ett puslespill om gangen, mot klokka' },
+          { src: '/screenshots/tenkt/05-store.png', alt: 'Spor-butikken med symbolpakker og temaer' },
+          { src: '/screenshots/tenkt/06-complete.png', alt: 'Dagen fullført, med tid, stripe og spor tjent' },
         ]} />
         <p class="muted">Vanskelighetsgraden bygger seg opp gjennom dagens brett. Du blir gradvis mer våken sammen med settet.</p>
       </Chapter>
       <Chapter num="03" label="Hva den gjør" title={`Et nytt sett <em>hver dag</em>.`}>
         <p><strong>Daglig sett, generert lokalt.</strong> Alle som åpner Tenkt en gitt dag får eksakt det samme settet. Mellom fem og ti oppgaver fordelt på tre vanskelighetsgrader.</p>
-        <p><strong>Fem ulike puslespilltyper.</strong> Rutenett, Stifinner, Plassering, Balanse og Kobling. Hver har egen mekanikk, alle løses med ren logikk uten gjetting.</p>
-        <p><strong>Streaks og statistikk, lokalt.</strong> Antall dager på rad, tider, stjerner. Alt på enheten din. Vil du sammenligne med venner kan du dele en kode. Ingen profil, ingen e-post, bare seks tegn.</p>
-        <p class="muted">Spor (intern valuta) tjenes ved spilling og brukes på ekstra hint, undo eller nye temaer. Aldri kjøpbar.</p>
+        <p><strong>Seks ulike puslespilltyper.</strong> Rutenett, Stifinner, Plassering, Balanse, Kobling og Areal. Hver har egen mekanikk, alle løses med ren logikk uten gjetting.</p>
+        <p><strong>Streaks og statistikk, lokalt.</strong> Antall dager på rad og tidene dine, lagret på enheten. Det er tiden som teller, ikke poeng. Vil du måle deg mot andre, ligger det et anonymt leaderboard der, uten profil og uten e-post.</p>
+        <p><strong>Marathon.</strong> Ett forsøk per dag, ett puslespill om gangen, med klokke som teller ned. Serien varer til timeren går. Egen rangering ved siden av den daglige.</p>
+        <p class="muted">Spor er den interne valutaen. Den tjenes ved å spille, og brukes på ekstra hint, angre, streak-frys eller nye temaer og symboler. Du kan også kjøpe spor hvis du vil, men ingenting i appen krever det.</p>
       </Chapter>
       <PrevNextApp slug={app.slug} />
     </div>

@@ -1758,6 +1758,25 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   object-position: top center;
 }
 
+/* Liggende variant — for apper som er landscape-låst på iPhone (Plantekn).
+   Portrettrammen over ville beskåret et liggende skjermbilde til en smal
+   vertikal stripe, så her får hvert bilde full bredde og eget format. */
+.chapter__shots--landscape {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+.chapter__shots--landscape .shot {
+  aspect-ratio: 19.5 / 9;
+  border-radius: 22px;
+}
+.chapter__shots--landscape .shot img {
+  object-position: center;
+}
+.chapter__shots--landscape .shot::before {
+  top: 50%; left: 10px; transform: translateY(-50%);
+  width: 20px; height: 78px;
+}
+
 /* ---------- Gammel .sect (beholdt for bakoverkompatibilitet) ---------- */
 .sect {
   margin-bottom: 112px;
