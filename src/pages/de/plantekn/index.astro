@@ -1,0 +1,101 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import ChapterShots from '../../../components/ChapterShots.astro';
+import PrevNextApp from '../../../components/PrevNextApp.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('plantekn');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="Was es ist" title={`Ein <em>Grundriss</em>, den du selbst zeichnest.`}>
+        <p class="lede">Plantekn ist eine App für iPhone und iPad, mit der du Räume in echten Maßen zeichnest, Möbel hineinstellst und das Ergebnis in 3D siehst. Gemacht für Menschen, die renovieren, umziehen oder einfach wissen wollen, ob das Sofa passt. Nicht für Architekten mit CAD-Lizenz.</p>
+        <p>Du brauchst kein Konto. Keine Anmeldung, keine E-Mail-Adresse, und alles, was du zeichnest, bleibt auf deinem eigenen Gerät. Die App setzt iOS 18 oder neuer voraus und ist auf iPhone und iPad dieselbe App.</p>
+        <p class="muted">Von einer Person gebaut, weil ich selbst renoviert habe und sie vermisst habe.</p>
+      </Chapter>
+
+      <Chapter num="02" label="So arbeitest du" title={`Zeichnen, <em>möblieren</em>, in 3D drehen.`}>
+        <p>Du fängst mit einem Raum an. Entweder wählst du einen Raumtyp mit fertigen Maßen und ziehst ihn auf die richtige Größe, oder du zeichnest die Form frei als Polygon, wenn der Raum nicht rechteckig ist. Danach setzt du Türen und Fenster ein, indem du auf die Wand tippst, wo sie stehen sollen.</p>
+        <p>Dann kommen die Möbel. Du ziehst sie aus der Bibliothek herein, drehst sie in 90-Grad-Schritten und verschiebst sie, bis es stimmt. Die Maße stehen die ganze Zeit auf dem Bildschirm, du siehst also sofort, wenn es zu eng wird.</p>
+        <p>Ist der Plan fertig, drehst du ihn in 3D und gehst durch die Räume. Dort merkt man oft, dass die Tür falsch herum aufgeht oder die Kücheninsel zu nah an der Arbeitsplatte steht.</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/01-hero.jpg', alt: 'Fertiger Grundriss mit Raumnamen und Fläche für jeden Raum' },
+          { src: '/screenshots/plantekn/02-furniture.jpg', alt: 'Die Möbelbibliothek offen in der Seitenleiste, nach Kategorien sortiert' },
+        ]} />
+        <p class="muted">Apple Pencil, wenn du einen hast. Der Finger geht genauso gut.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Zeichnen" title={`Räume, Türen, <em>Etagen</em>.`}>
+        <p><strong>28 Raumtypen.</strong> Wohnzimmer, Schlafzimmer, Küche, Bad, Flur, Büro, Hauswirtschaftsraum, Balkon und der Rest. Jeder Typ hat eine eigene Farbe und vernünftige Standardmaße, du fängst also nicht bei null an. Den Namen kannst du mit allem überschreiben, was du willst.</p>
+        <p><strong>Rechtecke oder freie Formen.</strong> Die meisten Räume sind viereckig, dann ziehst du einfach an den Ecken. Ist der Raum winkelförmig oder hat eine schräge Wand, zeichnest du ihn als Polygon und verschiebst die Punkte einzeln.</p>
+        <p><strong>Sechs Türstile und sieben Fenstertypen.</strong> Drehtür, Schiebetür, Doppeltür, Pocket-Tür, Falttür und Garagentor. Bei den Fenstern: Standard, französisch, Dachfenster, Erker, Rundbogen, Festverglasung und Schiebefenster. Vier Treppentypen: gerade, L-förmig, U-förmig und Wendeltreppe.</p>
+        <p><strong>Mehrere Etagen im selben Projekt.</strong> Füge Etagen und einen Keller hinzu und wechsle im Etagenwähler zwischen ihnen, der einen kleinen Riss jeder Etage zeigt. Die Fläche wird über alle Etagen summiert.</p>
+        <p><strong>Notizen auf der Zeichnung.</strong> Textanmerkungen, Pfeile und eine Freihandebene in sechs Farben, falls du «hier reißen wir die Wand raus» direkt in den Plan schreiben willst.</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/03-freeform.jpg', alt: 'Wohnung mit schräger Außenwand, als Polygon gezeichnet' },
+          { src: '/screenshots/plantekn/06-multifloor.jpg', alt: 'Der Etagenwähler offen, mit Riss und Fläche je Etage' },
+        ]} />
+        <p class="muted">Die Rückgängig-Funktion behält die letzten 30 Schritte.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Maße und Fläche" title={`Die Maße sind der <em>Punkt</em>.`}>
+        <p><strong>Jede Wand zeigt ihre Länge.</strong> Meter und Zentimeter gleichzeitig, während du ziehst. Die Maße bleiben richtig, wenn du zoomst, verschiebst oder die Größe änderst, und den Fangabstand stellst du von 10 bis 100 cm ein, je nachdem wie genau du es haben willst.</p>
+        <p><strong>Wohnfläche und Nebenflächen getrennt.</strong> Die App rechnet die Fläche aus und teilt sie automatisch auf, abhängig davon, welchen Raumtyp du gewählt hast. Die Summe steht durchgehend in der Werkzeugleiste.</p>
+        <p><strong>Dachboden und Dachschrägen.</strong> Ein Dachboden ist auf der Zeichnung immer größer als im Exposé. Schaltest du die Dachschräge für die Etage ein und setzt Kniestock und Dachneigung, zählt die App nur die Fläche mit ausreichender Höhe — und zeigt beim Justieren, wie viele Quadratmeter herausfallen.</p>
+        <p><strong>Die Flächenbegriffe richten sich nach deinem Land.</strong> Norwegen, Schweden, Dänemark, Deutschland, die Niederlande und Frankreich teilen die Fläche in zwei Kategorien, jeweils mit eigenen Begriffen. Märkte ohne diese Aufteilung bekommen stattdessen eine Gesamtfläche, weil Immobilienanzeigen dort genau das angeben.</p>
+        <p><strong>Messen mit der Kamera.</strong> Hast du ein iPhone Pro oder iPad Pro mit LiDAR, misst du den Raum Punkt für Punkt mit der Kamera und lässt das Maßband liegen. Eine Pro-Funktion.</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/05-areas.jpg', alt: 'Gesamtfläche, Haupt- und Nebenräume oben in der Werkzeugleiste summiert' },
+        ]} />
+        <p class="muted">Plantekn ist ein Planungswerkzeug, kein Messinstrument. Die Genauigkeit hängt davon ab, dass du richtig zeichnest.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Möbel" title={`72 Typen, in <em>echten Maßen</em>.`}>
+        <p>Die Möbelbibliothek hat 72 Typen in zehn Kategorien: Küche, Schlafzimmer, Bad, Wohnzimmer, Büro, Hauswirtschaftsraum, Außenbereich, Elektrik, Sanitär und Sonstiges. Die Maße folgen nordischen Standardmaßen, ein Doppelbett in der App ist also so breit wie ein Doppelbett im Laden.</p>
+        <p>Findest du dein Möbelstück nicht, baust du es selbst mit exakten Maßen und legst es in der Bibliothek ab. Das ist oft der schnellste Weg, wenn es um einen geerbten Esstisch oder eine Anrichte geht, die auf den Zentimeter passen muss.</p>
+        <p><strong>KI-Vorschläge, wenn du feststeckst.</strong> Die App kann eine Möblierung aus Raumtyp und Raumform vorschlagen. Ein Ausgangspunkt zum Verschieben, keine Vorgabe. Pro-Funktion.</p>
+        <p><strong>Photo Trace.</strong> Leg ein Foto eines alten Grundrisses oder eines Raums unter das Zeichenblatt und zeichne direkt darüber. Dann musst du Maße nicht aus einem Foto raten. Pro-Funktion.</p>
+        <p class="muted">18 der Möbeltypen sind kostenlos. Der Rest kommt mit Pro.</p>
+      </Chapter>
+
+      <Chapter num="06" label="3D" title={`Den Raum von <em>innen</em> sehen.`}>
+        <p><strong>3D ist für alle kostenlos.</strong> Dreh den Plan und sieh ihn als Puppenhaus von oben, mit einer Wandhöhe, die du von 1,0 bis 2,7 Meter einstellst. Die Möbel lassen sich ausblenden, wenn du nur die Raumaufteilung sehen willst.</p>
+        <p><strong>Das Haus von außen.</strong> Die Dachform wählst du selbst: Satteldach, Walmdach, Pultdach oder Flachdach. Außen kommen waagerechte Verschalung, Sockel, Treppe zur Haustür und Bepflanzung dazu. Die Dachform ist reine Darstellung, sie verändert die Fläche im Projekt nicht.</p>
+        <p><strong>Walkthrough.</strong> Geh in der Ich-Perspektive durch den Plan, mit Sticks für Bewegung und Kamera und einer kleinen Karte in der Ecke. Die Wände halten dich auf. Die Augenhöhe reicht von Kinder- bis Erwachsenengröße, was eine gute Art ist, Raumhöhe und Raumgefühl zu prüfen. Walkthrough ist kostenlos, solange es in der Beta ist.</p>
+        <p><strong>Materialpalette.</strong> Wähle Farben für Wand, Boden und Türen aus fertigen Paletten, oder lass die App je Raumtyp automatisch wählen.</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/04-3d.jpg', alt: '3D-Ansicht von oben, mit Schieberegler für die Wandhöhe' },
+        ]} />
+        <p class="muted">3D kostet nichts. Es ist seit Version 1.3 für alle kostenlos.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Teilen und exportieren" title={`Schick ihn an <em>wen du willst</em>.`}>
+        <p>Der Plan geht raus als Bild (PNG), als PDF mit Raumübersicht, oder als interaktives HTML, in dem die Empfänger im Browser zwischen den Etagen blättern. Alle drei öffnen sich, ohne dass die Gegenseite die App hat.</p>
+        <p>Soll jemand weiterarbeiten, teilst du die Projektdatei selbst (.plantekn) per E-Mail oder AirDrop. Die braucht die App, ist dafür aber ein offenes JSON-Format — du bist also nicht eingesperrt.</p>
+        <p><strong>Druck im Maßstab.</strong> Mit Pro druckst du auf A4 in exakt 1:50 oder 1:100 und misst mit dem Lineal direkt auf dem Papier. Praktisch, wenn der Plan in einer Besprechung auf den Tisch soll.</p>
+        <p class="muted">PDF aus der kostenlosen Version hat ein kleines Wasserzeichen. Pro entfernt es.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Preis" title={`Kostenlos nutzbar, <em>einmalig</em> für den Rest.`}>
+        <p>Die kostenlose Version ist eine ganze App, keine Demo: ein Projekt mit einer Etage, 18 Möbeltypen, alle Zeichenwerkzeuge, 3D, Walkthrough und Export als PNG.</p>
+        <p>Plantekn PRO ist ein einmaliger Kauf — kein Abo. Er schaltet unbegrenzt viele Projekte frei, mehrere Etagen und einen Keller, die ganze Möbelbibliothek, KI-Vorschläge, Photo Trace, Apple Pencil, AR-Messung, den Renovierungsrechner, Druck im Maßstab und PDF ohne Wasserzeichen.</p>
+        <p class="muted">Den Preis für dein Land zeigt der App Store. Der Kauf hängt an deiner Apple-ID und lässt sich auf neuen Geräten wiederherstellen. Die Details stehen unter <a class="tx-link" href="/de/plantekn/support/">Support</a>.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Datenschutz" title={`Kein Server, <em>kein Tracking</em>.`}>
+        <p>Hinter Plantekn steckt kein Backend. Kein Konto, keine Analyse-Tools, keine Werbung, keine Drittanbieter-SDKs. Alles, was du zeichnest, liegt auf deinem Gerät — und in deiner eigenen iCloud, wenn du die Synchronisierung einschaltest.</p>
+        <p>Die App gibt es in 14 Sprachen und richtet sich nach der Sprache deines Geräts, oder nach der, die du in den Einstellungen wählst.</p>
+        <p class="muted">Die vollständige <a class="tx-link" href="/de/plantekn/personvern/">Datenschutzerklärung</a> und die <a class="tx-link" href="/de/plantekn/vilkar/">Nutzungsbedingungen</a> stehen hier. Fragen gehen an <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>.</p>
+      </Chapter>
+
+      <PrevNextApp slug={app.slug} />
+    </div>
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
+</AppLayout>

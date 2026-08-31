@@ -1,3 +1,4 @@
+import { resolveLocale } from '../i18n/translations';
 /**
  * Sentral app-konfig. preview.html er fasiten — denne filen følger
  * den. Hvis du legger til en ny app: legg til en oppføring her, en
@@ -28,7 +29,7 @@ export interface AppDef {
   slug: string;
   name: string;
   /** Tagline i begge språk. Bruk getTagline(app, locale) for å hente. */
-  tagline: { no: string; en: string };
+  tagline: { no: string; en: string; de?: string; ja?: string };
   /** App Store-URL. Bytt til kanonisk app-side (`/app/<slug>/id<n>`)
    *  så snart appen er live. Søk-URL er fallback inntil da. */
   appStoreUrl: string;
@@ -76,6 +77,8 @@ export const apps: AppDef[] = [
     tagline: {
       no: 'En enkel romplanlegger med ekte mål.',
       en: 'A simple floor planner with real measurements.',
+      de: 'Ein einfacher Raumplaner mit echten Maßen.',
+      ja: '実寸で描ける、シンプルな間取りアプリ。',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/plantekn/id6760789999',
     /* ?v=3: nytt appikon i v1.7.0 (aug 2026). Query-bump omgår Cloudflares
@@ -170,7 +173,10 @@ export const visibleApps: AppDef[] = apps.filter((a) => !a.hidden);
 
 /** Hent tagline i riktig locale med no som fallback. */
 export function getTagline(app: AppDef, locale: string | undefined): string {
-  return locale === 'en' ? app.tagline.en : app.tagline.no;
+  const l = resolveLocale(locale);
+  // Ikke alle apper er oversatt til alle språk. Engelsk er nærmeste
+  // fallback — den finnes for hver app.
+  return app.tagline[l] ?? app.tagline.en;
 }
 
 export function getApp(slug: string): AppDef {

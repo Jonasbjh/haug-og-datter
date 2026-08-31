@@ -1,0 +1,79 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('plantekn');
+---
+<AppLayout app={app} title={`利用規約 · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="vilkar" />
+    <div class="app-flow">
+      <Chapter num="01" label="ライセンス" title={`<em>App Store</em>を通じた配布。`}>
+        <p class="lede">{app.name}はHaug og Datterが開発・提供し、Apple App Storeを通じて配布しています。<a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Appleの標準エンドユーザー使用許諾契約</a>に基づき、譲渡できない個人向けの使用許諾が与えられます。</p>
+        <p class="muted">最終更新 · 2026年8月19日。</p>
+      </Chapter>
+
+      <Chapter num="02" label="利用" title={`すべて<em>端末上</em>で完結。`}>
+        <p>{app.name}では、家具・ドア・窓・階段を含む2Dの間取り図を作成し、3Dで表示できます。処理はすべて端末上で行われます。ユーザーアカウントは不要で、動作にインターネット接続も必要ありません。</p>
+        <p>個人利用でも商用利用でも構いません。自宅のリフォーム計画、査定業務、販売用資料、建築のスケッチなど。{app.name} PROでは間取り図の数に制限はありません。</p>
+        <p class="muted">Photo Traceの下敷きとして取り込む画像について、利用する権利があるかどうかはご自身の責任でご確認ください。たとえば、他人が作成した古い間取り図などです。</p>
+      </Chapter>
+
+      <Chapter num="03" label="無料版とPRO" title={`買い切り、<em>サブスクではありません</em>。`}>
+        <p>アプリのダウンロードは無料です。無料版には、1階建てのプロジェクト1件、2Dの作図ツールすべて、部屋タイプ28種類、家具18種類、3D表示、ウォークスルー、画像への書き出しが含まれます。</p>
+        <p>{app.name} PROは買い切りです。購入すると次が使えるようになります。</p>
+        <p>· プロジェクト数の制限解除と、ほかの人が作ったプロジェクトの読み込み</p>
+        <p>· 複数階と地下</p>
+        <p>· 家具ライブラリ全72種類</p>
+        <p>· AIによる家具配置の提案</p>
+        <p>· Photo Trace（参照画像を敷く下書きレイヤー）</p>
+        <p>· カメラでのAR計測（LiDAR搭載端末）</p>
+        <p>· リフォーム費用計算とPDFの予算表</p>
+        <p>· 部屋一覧と面積レポート付きのPDF書き出し</p>
+        <p>· 縮尺1:50および1:100での印刷</p>
+        <p>· Apple Pencil対応</p>
+        <p>· 透かしなしの書き出し</p>
+        <p class="muted">価格はApp Storeの購入画面に、お住まいの国の通貨で表示されます。購入はApple IDに紐づき、新しい端末でも「購入を復元」で戻せます。</p>
+      </Chapter>
+
+      <Chapter num="04" label="返金" title={`返金は<em>Appleが</em>扱います。`}>
+        <p>{app.name} PROの返金はAppleが扱います。App Store経由で<a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>からお申し込みください。</p>
+        <p class="muted">App Storeを通じた購入について、{app.name}側で返金することはできません。私たちが支払いの当事者ではないためです。</p>
+      </Chapter>
+
+      <Chapter num="05" label="権利の所在" title={`間取り図は<em>あなたのもの</em>。`}>
+        <p>作成した間取り図はあなたのものです。開かれたJSON形式の.planteknファイルとして端末に保存され、有効にしていればiCloud Driveにも保存されます。いつでも書き出し、共有、削除ができ、私たちに追加の支払いをすることなく商用に使えます。</p>
+        <p>私たちは個人データを収集しません。詳しくは<a class="tx-link" href="/ja/plantekn/personvern/">プライバシーポリシー</a>をご覧ください。</p>
+        <p class="muted">アプリ自体——コード、デザイン、アイコン、家具ライブラリ、名称——はHaug og Datterに帰属します。{app.name} PROの購入により、Appleの標準ライセンスに沿った非独占的な個人向け使用許諾が与えられます。アプリの複製、配布、改変、逆コンパイルはできません。</p>
+      </Chapter>
+
+      <Chapter num="06" label="免責" title={`スケッチであって、<em>確認申請ではありません</em>。`}>
+        <p>{app.name}は現状のまま提供されます。不具合がないことや、個別の要件を満たすことを保証するものではありません。このアプリで作った間取り図はスケッチです。専門家による設計図、建築確認申請、建物状況調査、正式な査定に代わるものではありません。</p>
+        <p><strong>面積の表示について。</strong>面積はあなたが描いたものから計算され、その区分を用いる市場ではその市場の慣習に従います。精度は、入力した寸法が実際と合っているかどうかで決まります。不動産広告や査定に使う場合は、専門家の確認が必要です。</p>
+        <p><strong>費用の見積もりについて。</strong>リフォーム費用計算は市場ごとの参考価格を使い、選択肢を比べるための概算を出します。見積書ではなく、実際に施工業者が提示する金額とは大きく異なることがあります。</p>
+        <p><strong>3D表示はイラストです。</strong>屋根の形、外壁、外観は見た目であってプロジェクトのデータではなく、技術的に可能かどうか、建築上許されるかどうかについては何も示しません。</p>
+        <p class="muted">ノルウェー法で認められる範囲において、{app.name}はアプリの利用から生じる経済的損失その他の結果について責任を負いません。本規約のいかなる部分も、強行法規により消費者に認められた権利を制限するものではありません。</p>
+      </Chapter>
+
+      <Chapter num="07" label="変更" title={`重要な変更は<em>お知らせします</em>。`}>
+        <p>アプリの機能は更新、変更、削除されることがあります。重要な変更は、App Storeの更新内容とアプリ内の「新着」画面でお伝えします。ウォークスルーのようにベータと表示された機能は、変更されたり、のちにPROの一部になったりすることがあります。</p>
+        <p>ファイル形式には下位互換性があります。古いバージョンで作ったプロジェクトは、新しいバージョンでも開けます。</p>
+        <p class="muted">本規約は変更されることがあります。変更はこのページに、新しい「最終更新」の日付とともに掲載します。変更後もアプリを使い続けた場合、新しい規約に同意したものとみなします。</p>
+      </Chapter>
+
+      <Chapter num="08" label="準拠法" title={`<em>ノルウェー法</em>。`}>
+        <p>本規約はノルウェー法に準拠します。紛争はまず話し合いによる解決を目指します。それで解決しない場合、消費者はノルウェー消費者庁（Forbrukertilsynet）に、その後ノルウェーの裁判所に申し立てることができます。</p>
+      </Chapter>
+
+      <Chapter num="09" label="お問い合わせ" title={`ご質問は？ <em>お気軽にどうぞ。</em>`}>
+        <p><strong>提供者：</strong>Jonas Haug（Haug &amp; Datter）、ノルウェー・ドラメン。</p>
+        <p>メールは <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a> までどうぞ。アプリの<a class="tx-link" href="/ja/plantekn/personvern/">プライバシーポリシー</a>はこちら、実際の使い方に関する質問は<a class="tx-link" href="/ja/plantekn/support/">サポートページ</a>にまとめています。</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · 利用規約`} />
+</AppLayout>

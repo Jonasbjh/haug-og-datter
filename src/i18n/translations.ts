@@ -4,8 +4,27 @@
  * kun for navigasjon, knapper, labels og lignende UI-tekst.
  *
  * Bruk: `t('en').appRail.personvern` → 'Privacy'
+ *
+ * Fire språk, men ikke for alle sider. `no` og `en` finnes overalt; `de` og
+ * `ja` finnes foreløpig bare under /plantekn. Se EXTRA_LOCALE_PREFIXES —
+ * legger du til flere oversatte apper, er det den ene lista som må utvides.
  */
-export type Locale = 'no' | 'en';
+export const LOCALES = ['no', 'en', 'de', 'ja'] as const;
+export type Locale = (typeof LOCALES)[number];
+
+/** Kort merkelapp i språkvelgeren. */
+export const LOCALE_LABELS: Record<Locale, string> = {
+  no: 'NO',
+  en: 'EN',
+  de: 'DE',
+  ja: 'JA',
+};
+
+/** Språk som finnes for hver eneste side. */
+const BASE_LOCALES: Locale[] = ['no', 'en'];
+/** Stier som i tillegg er oversatt til språkene under. */
+const EXTRA_LOCALE_PREFIXES = ['/plantekn'];
+const EXTRA_LOCALES: Locale[] = ['de', 'ja'];
 
 export const translations = {
   no: {
@@ -49,11 +68,11 @@ export const translations = {
       home: 'hjem',
     },
     langSwitcher: {
-      toEn: 'Switch to English',
-      toNo: 'Bytt til norsk',
       ariaLabel: 'Velg språk',
+      switchTo: (name: string) => `Bytt til ${name}`,
     },
     htmlLang: 'nb',
+    ogLocale: 'nb_NO',
   },
   en: {
     nav: {
@@ -96,44 +115,162 @@ export const translations = {
       home: 'home',
     },
     langSwitcher: {
-      toEn: 'Switch to English',
-      toNo: 'Bytt til norsk',
       ariaLabel: 'Select language',
+      switchTo: (name: string) => `Switch to ${name}`,
     },
     htmlLang: 'en',
+    ogLocale: 'en_US',
+  },
+  de: {
+    nav: {
+      hub: 'Hub',
+      // Die Hub- und Über-Seiten gibt es nur auf Norwegisch und Englisch.
+      about: 'Über uns',
+      aboutPath: '/en/about',
+    },
+    atelier: {
+      eyebrow: 'Das Atelier',
+      hint: 'Auf eine App zeigen',
+      goTo: (name: string) => `Zu ${name}`,
+    },
+    appRail: {
+      oversikt: 'Übersicht',
+      personvern: 'Datenschutz',
+      vilkar: 'Nutzungsbedingungen',
+      support: 'Support',
+      pagesFor: 'Seiten zu dieser App',
+      appStoreCta: 'Laden im',
+      appStoreName: 'App Store',
+      appStoreAria: (name: string) => `${name} im App Store laden`,
+      inDevelopment: 'In Entwicklung. Noch nicht im App Store.',
+    },
+    topbar: {
+      back: 'Zurück',
+      contact: 'Kontakt',
+    },
+    prevNext: {
+      prev: '← Vorherige',
+      next: 'Nächste →',
+      otherApps: 'Andere Apps',
+    },
+    appMenu: {
+      label: 'Hauptmenü',
+    },
+    kbdHint: {
+      press: 'Drücke',
+      forApp: 'für App',
+      search: 'Suche',
+      home: 'Start',
+    },
+    langSwitcher: {
+      ariaLabel: 'Sprache wählen',
+      switchTo: (name: string) => `Wechseln zu ${name}`,
+    },
+    htmlLang: 'de',
+    ogLocale: 'de_DE',
+  },
+  ja: {
+    nav: {
+      hub: 'ハブ',
+      // ハブと運営者ページはノルウェー語と英語のみ。
+      about: '運営者について',
+      aboutPath: '/en/about',
+    },
+    atelier: {
+      eyebrow: 'アトリエ',
+      hint: 'アプリにカーソルを合わせる',
+      goTo: (name: string) => `${name}へ`,
+    },
+    appRail: {
+      oversikt: '概要',
+      personvern: 'プライバシー',
+      vilkar: '利用規約',
+      support: 'サポート',
+      pagesFor: 'このアプリのページ',
+      appStoreCta: 'ダウンロード',
+      appStoreName: 'App Store',
+      appStoreAria: (name: string) => `${name}をApp Storeでダウンロード`,
+      inDevelopment: '開発中。App Storeではまだ公開していません。',
+    },
+    topbar: {
+      back: '戻る',
+      contact: 'お問い合わせ',
+    },
+    prevNext: {
+      prev: '← 前へ',
+      next: '次へ →',
+      otherApps: 'ほかのアプリ',
+    },
+    appMenu: {
+      label: 'メインメニュー',
+    },
+    kbdHint: {
+      press: 'キー',
+      forApp: 'でアプリ',
+      search: '検索',
+      home: 'ホーム',
+    },
+    langSwitcher: {
+      ariaLabel: '言語を選択',
+      switchTo: (name: string) => `${name}に切り替える`,
+    },
+    htmlLang: 'ja',
+    ogLocale: 'ja_JP',
   },
 } as const;
 
-/** Hent oversettelses-bundle for gjeldende locale. */
-export function t(locale: Locale | string | undefined) {
-  return locale === 'en' ? translations.en : translations.no;
-}
-
 /** Normaliser Astro.currentLocale til vår Locale-type. */
 export function resolveLocale(locale: string | undefined): Locale {
-  return locale === 'en' ? 'en' : 'no';
+  return (LOCALES as readonly string[]).includes(locale ?? '')
+    ? (locale as Locale)
+    : 'no';
+}
+
+/** Hent oversettelses-bundle for gjeldende locale. */
+export function t(locale: Locale | string | undefined) {
+  return translations[resolveLocale(locale)];
 }
 
 /**
- * Bygg URL med riktig locale-prefix.
+ * Fjern locale-prefikset fra en sti, slik at vi står igjen med den
+ * kanoniske (norske) stien.
+ *   '/ja/plantekn/support' → '/plantekn/support'
+ *   '/en'                  → '/'
+ */
+export function stripLocale(pathname: string): string {
+  for (const l of LOCALES) {
+    if (l === 'no') continue;
+    if (pathname === `/${l}` || pathname === `/${l}/`) return '/';
+    if (pathname.startsWith(`/${l}/`)) return pathname.slice(l.length + 1);
+  }
+  return pathname;
+}
+
+/** Hvilke språk finnes for denne stien? */
+export function localesForPath(pathname: string): Locale[] {
+  const base = stripLocale(pathname);
+  const hasExtra = EXTRA_LOCALE_PREFIXES.some(
+    (p) => base === p || base.startsWith(`${p}/`),
+  );
+  return hasExtra ? [...BASE_LOCALES, ...EXTRA_LOCALES] : BASE_LOCALES;
+}
+
+/**
+ * Bygg URL med riktig locale-prefiks.
  * - localizedPath('en', '/tenkt/personvern') → '/en/tenkt/personvern'
  * - localizedPath('no', '/tenkt/personvern') → '/tenkt/personvern'
+ *
+ * Ber man om et språk som ikke finnes for stien — for eksempel tysk på
+ * /tenkt — faller vi tilbake til engelsk framfor å lenke til en 404.
  */
 export function localizedPath(locale: Locale, path: string): string {
   const clean = path.startsWith('/') ? path : `/${path}`;
-  if (locale === 'en') {
-    return clean === '/' ? '/en' : `/en${clean}`;
-  }
-  return clean;
+  const target = localesForPath(clean).includes(locale) ? locale : 'en';
+  if (target === 'no') return clean;
+  return clean === '/' ? `/${target}` : `/${target}${clean}`;
 }
 
-/**
- * Bytt språk på gjeldende URL. Hvis pathname starter med /en, fjern det;
- * ellers legg til /en-prefiks. Brukes av LanguageSwitcher.
- */
-export function toggleLocalePath(pathname: string): string {
-  if (pathname === '/en' || pathname === '/en/') return '/';
-  if (pathname.startsWith('/en/')) return pathname.slice(3);
-  if (pathname === '/') return '/en';
-  return `/en${pathname}`;
+/** Speil gjeldende URL over i et annet språk. Brukes av LanguageSwitcher. */
+export function switchLocalePath(pathname: string, target: Locale): string {
+  return localizedPath(target, stripLocale(pathname));
 }

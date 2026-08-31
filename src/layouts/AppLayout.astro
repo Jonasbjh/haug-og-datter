@@ -9,7 +9,7 @@ import '../styles/global.css';
 import type { AppDef } from '../data/apps';
 import { getTagline } from '../data/apps';
 import AppMenu from '../components/AppMenu.astro';
-import { resolveLocale, t } from '../i18n/translations';
+import { resolveLocale, t, localesForPath, switchLocalePath } from '../i18n/translations';
 
 interface Props {
   app: AppDef;
@@ -23,6 +23,7 @@ const pageTitle = title ?? `${app.name} · Haug & Datter`;
 const pageDesc = description ?? getTagline(app, locale);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://haugogdatter.no').toString();
 const ogImage = new URL('/logo/haug-datter-skogen-og.png', Astro.site ?? 'https://haugogdatter.no').toString();
+const altLocales = localesForPath(Astro.url.pathname);
 ---
 <!doctype html>
 <html lang={strings.htmlLang}>
@@ -32,6 +33,15 @@ const ogImage = new URL('/logo/haug-datter-skogen-og.png', Astro.site ?? 'https:
     <meta name="description" content={pageDesc} />
     <meta name="theme-color" content={app.accent} />
     <link rel="canonical" href={canonicalUrl} />
+    {/* Språkalternativer for denne siden. Sitemapen har de samme, men
+        crawlere som leser siden direkte finner dem her. */}
+    {altLocales.map((l) => (
+      <link
+        rel="alternate"
+        hreflang={l === 'no' ? 'nb-NO' : l}
+        href={new URL(switchLocalePath(Astro.url.pathname, l), Astro.site ?? 'https://haugogdatter.no').toString()}
+      />
+    ))}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,7 +52,7 @@ const ogImage = new URL('/logo/haug-datter-skogen-og.png', Astro.site ?? 'https:
     />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Haug & Datter" />
-    <meta property="og:locale" content={locale === 'en' ? 'en_US' : 'nb_NO'} />
+    <meta property="og:locale" content={strings.ogLocale} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDesc} />

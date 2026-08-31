@@ -343,14 +343,20 @@ body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in okl
 /* Språkvelger — integrert i menubar, men visuelt avgrenset
    med en hairline-divider på venstresiden. */
 .menubar .lang-switch {
-  margin-left: 4px;
   padding: 4px 9px;
-  border-left: 1px solid rgba(240,244,236,0.15);
-  border-radius: 0 999px 999px 0;
   font-weight: 500;
   opacity: 0.82;
   letter-spacing: 0.08em;
+  border-radius: 0;
 }
+/* Språkvelgeren er én til tre lenker, avhengig av hvor mange språk siden
+   finnes på. Skillelinja skal bare stå foran den første, og pille-formen
+   bare på den siste, ellers ser rekka ut som løse knapper. */
+.menubar .lang-switch:first-of-type {
+  margin-left: 4px;
+  border-left: 1px solid rgba(240,244,236,0.15);
+}
+.menubar .lang-switch:last-child { border-radius: 0 999px 999px 0; }
 .menubar .lang-switch:hover { opacity: 1; background: rgba(240,244,236,0.10); }
 @media (max-width: 720px) {
   .menubar {

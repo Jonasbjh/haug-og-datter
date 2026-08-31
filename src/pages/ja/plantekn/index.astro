@@ -1,0 +1,101 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import ChapterShots from '../../../components/ChapterShots.astro';
+import PrevNextApp from '../../../components/PrevNextApp.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('plantekn');
+---
+<AppLayout app={app}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="oversikt" />
+    <div class="app-flow">
+      <Chapter num="01" label="どんなアプリか" title={`<em>間取り図</em>を、自分の手で。`}>
+        <p class="lede">PlanteknはiPhoneとiPad向けのアプリです。実際の寸法で部屋を描き、家具を置いて、その結果を3Dで確かめられます。リフォームする人、引っ越す人、あるいは「このソファは入るのか」だけを知りたい人のために作りました。CADライセンスを持つ建築家向けではありません。</p>
+        <p>アカウントは要りません。ログインもメールアドレスの登録も不要で、描いたものはすべて自分の端末に残ります。iOS 18以降が必要で、iPhoneとiPadで同じアプリです。</p>
+        <p class="muted">自分がリフォームしたときに欲しかったので、一人で作りました。</p>
+      </Chapter>
+
+      <Chapter num="02" label="使い方" title={`描いて、<em>家具を置いて</em>、3Dへ。`}>
+        <p>まず部屋から始めます。標準寸法のある部屋タイプを選んでドラッグでサイズを合わせるか、長方形でない部屋なら自由な多角形として形を描きます。そのあと、壁の置きたい位置をタップしてドアと窓を入れます。</p>
+        <p>次に家具です。ライブラリからドラッグして入れ、90度きざみで回転させ、納得がいくまで動かします。寸法は常に画面に出ているので、狭すぎるかどうかがその場で分かります。</p>
+        <p>図面ができたら3Dに切り替えて、部屋を見て回ります。ドアの開く向きが逆だったとか、キッチンアイランドがカウンターに近すぎるとか、たいていそこで気づきます。</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/01-hero.jpg', alt: '部屋名と面積が入った完成した間取り図' },
+          { src: '/screenshots/plantekn/02-furniture.jpg', alt: 'サイドパネルに開いた家具ライブラリ、カテゴリ別' },
+        ]} />
+        <p class="muted">Apple Pencilがあれば使えます。指でも同じように描けます。</p>
+      </Chapter>
+
+      <Chapter num="03" label="作図" title={`部屋、ドア、<em>階</em>。`}>
+        <p><strong>28種類の部屋タイプ。</strong>リビング、寝室、キッチン、浴室、玄関、書斎、洗濯室、バルコニーなど。タイプごとに色と妥当な標準寸法があるので、ゼロから始めずに済みます。名前は自由に書き換えられます。</p>
+        <p><strong>長方形でも、自由な形でも。</strong>ほとんどの部屋は四角形なので、角をドラッグするだけです。L字型だったり斜めの壁があったりする部屋は、多角形として描いて頂点を一つずつ動かします。</p>
+        <p><strong>ドア6種類、窓7種類。</strong>開き戸、引き戸、両開き、引込み戸、折れ戸、ガレージドア。窓は標準、フランス窓、天窓、出窓、アーチ、はめ殺し、引き違い。階段は直線、L字、U字、らせんの4種類です。</p>
+        <p><strong>同じプロジェクトに複数の階。</strong>階と地下を追加し、各階の小さな図が並ぶ階セレクタで切り替えます。面積は全階をまたいで合計されます。</p>
+        <p><strong>図面の上にメモ。</strong>テキスト注記、矢印、6色のフリーハンドレイヤー。「ここの壁を抜く」と図面に直接書き込めます。</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/03-freeform.jpg', alt: '斜めの外壁を多角形で描いた住戸' },
+          { src: '/screenshots/plantekn/06-multifloor.jpg', alt: '各階の図と面積が並ぶ階セレクタ' },
+        ]} />
+        <p class="muted">取り消しは直前の30ステップまで戻れます。</p>
+      </Chapter>
+
+      <Chapter num="04" label="寸法と面積" title={`<em>寸法</em>が肝心。`}>
+        <p><strong>壁ごとに長さを表示。</strong>ドラッグしている間もメートルとセンチを同時に出します。ズームや移動、サイズ変更をしても寸法は正しいままで、スナップは10cmから100cmまで、必要な精度に合わせて設定できます。</p>
+        <p><strong>居住部分とそれ以外を分けて集計。</strong>選んだ部屋タイプに応じて、面積を自動で振り分けます。合計はツールバーに出たままです。</p>
+        <p><strong>屋根裏と勾配天井。</strong>屋根裏は図面上では必ず実際より広く見えます。その階の勾配天井をオンにして腰壁の高さと屋根の角度を入れると、天井高が足りる部分だけを面積に数え、調整しながら何平方メートルが外れるかを表示します。</p>
+        <p><strong>面積の区分は国ごとの慣習に従います。</strong>ノルウェー、スウェーデン、デンマーク、ドイツ、オランダ、フランスでは面積を二つに分け、それぞれ独自の用語を使います。その区分がない市場では、代わりに一つの合計面積を出します。現地の不動産広告がそう表記しているからです。</p>
+        <p><strong>カメラで測る。</strong>LiDARを搭載したiPhone ProまたはiPad Proがあれば、カメラで部屋を点から点へ測れて、メジャーが要りません。Pro機能です。</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/05-areas.jpg', alt: 'ツールバー上部に合計された面積と区分' },
+        ]} />
+        <p class="muted">Planteknは計画のための道具であって、測量機器ではありません。精度は正しく描けているかどうかで決まります。</p>
+      </Chapter>
+
+      <Chapter num="05" label="家具" title={`72種類、<em>実寸</em>で。`}>
+        <p>家具ライブラリには10カテゴリ・72種類があります。キッチン、寝室、浴室、リビング、書斎、洗濯室、屋外、電気、配管、その他。寸法は北欧の標準寸法に沿っているので、アプリの中のダブルベッドは店にあるダブルベッドと同じ幅です。</p>
+        <p>持っている家具が見つからないときは、正確な寸法で自分で作ってライブラリに保存します。譲り受けたダイニングテーブルや、センチ単位で収めたい食器棚のときは、たいていこれが一番早い道です。</p>
+        <p><strong>行き詰まったときのAI提案。</strong>部屋タイプと部屋の形から家具の配置を提案できます。動かすための出発点であって、正解ではありません。Pro機能です。</p>
+        <p><strong>Photo Trace。</strong>古い間取り図や部屋の写真を作図面の下に敷いて、その上から直接描けます。写真から寸法を推測せずに済みます。Pro機能です。</p>
+        <p class="muted">家具72種類のうち18種類は無料です。残りはProに含まれます。</p>
+      </Chapter>
+
+      <Chapter num="06" label="3D" title={`部屋を<em>内側</em>から見る。`}>
+        <p><strong>3Dは全員無料です。</strong>図面を回して、上からドールハウスのように見られます。壁の高さは1.0mから2.7mまで調整でき、間取りだけ見たいときは家具を非表示にできます。</p>
+        <p><strong>外から見た家。</strong>屋根の形は自分で選べます。切妻、寄棟、片流れ、陸屋根。外側には横張りの外壁、基礎、玄関までの階段、植栽が付きます。屋根の形は見た目だけで、プロジェクトの面積には影響しません。</p>
+        <p><strong>ウォークスルー。</strong>一人称視点で図面の中を歩けます。移動とカメラのスティック、隅には小さな地図。壁は通り抜けられません。目線の高さは子どもから大人まで設定でき、天井高と部屋の広がりを体感するのに向いています。ベータの間、ウォークスルーは無料です。</p>
+        <p><strong>素材パレット。</strong>壁・床・ドアの色を用意されたパレットから選ぶか、部屋タイプごとにアプリに自動で選ばせます。</p>
+        <ChapterShots variant="landscape" shots={[
+          { src: '/screenshots/plantekn/04-3d.jpg', alt: '壁の高さを変えるスライダーが付いた3Dの俯瞰表示' },
+        ]} />
+        <p class="muted">3Dは無料です。バージョン1.3から全員に開放しています。</p>
+      </Chapter>
+
+      <Chapter num="07" label="共有と書き出し" title={`<em>誰にでも</em>送れる。`}>
+        <p>図面は画像（PNG）、部屋の一覧が付いたPDF、あるいは受け取った人がブラウザで階を切り替えられるインタラクティブなHTMLとして書き出せます。三つとも、相手がアプリを持っていなくても開けます。</p>
+        <p>続きを編集してもらうなら、プロジェクトファイル（.plantekn）そのものをメールやAirDropで渡します。こちらはアプリが必要ですが、中身は開かれたJSON形式なので、囲い込まれることはありません。</p>
+        <p><strong>縮尺どおりの印刷。</strong>ProならA4に正確な1:50または1:100で印刷でき、定規で紙の上から直接測れます。打ち合わせで図面を机に広げるときに便利です。</p>
+        <p class="muted">無料版のPDFには小さな透かしが入ります。Proで消えます。</p>
+      </Chapter>
+
+      <Chapter num="08" label="価格" title={`無料で使えて、あとは<em>買い切り</em>。`}>
+        <p>無料版は体験版ではなく、ひとつのアプリとして完結しています。1階建てのプロジェクトを1つ、家具18種類、作図ツールのすべて、3D、ウォークスルー、PNGでの書き出し。</p>
+        <p>Plantekn PROは買い切りで、サブスクリプションではありません。プロジェクト数の制限解除、複数階と地下、家具ライブラリ全部、AI提案、Photo Trace、Apple Pencil、AR計測、リフォーム費用計算、縮尺印刷、透かしなしのPDFが使えるようになります。</p>
+        <p class="muted">お住まいの国の価格はApp Storeに表示されます。購入はApple IDに紐づき、新しい端末でも復元できます。詳しくは<a class="tx-link" href="/ja/plantekn/support/">サポート</a>をご覧ください。</p>
+      </Chapter>
+
+      <Chapter num="09" label="プライバシー" title={`サーバーなし、<em>追跡なし</em>。`}>
+        <p>Planteknにバックエンドはありません。アカウントも、解析ツールも、広告も、サードパーティのSDKもありません。描いたものはすべて端末の中にあり、同期を有効にした場合はご自身のiCloudにあります。</p>
+        <p>アプリは14言語に対応し、端末の言語、または設定で選んだ言語に従います。</p>
+        <p class="muted">詳しい<a class="tx-link" href="/ja/plantekn/personvern/">プライバシーポリシー</a>と<a class="tx-link" href="/ja/plantekn/vilkar/">利用規約</a>はこちらです。ご質問は<a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>までどうぞ。</p>
+      </Chapter>
+
+      <PrevNextApp slug={app.slug} />
+    </div>
+  </div>
+  <Footer label={`${app.name} · Haug & Datter`} />
+</AppLayout>

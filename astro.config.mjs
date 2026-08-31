@@ -15,12 +15,12 @@ export default defineConfig({
     sitemap({
       i18n: {
         defaultLocale: 'no',
-        locales: { no: 'nb-NO', en: 'en' },
+        locales: { no: 'nb-NO', en: 'en', de: 'de', ja: 'ja' },
       },
     }),
   ],
   i18n: {
-    locales: ['no', 'en'],
+    locales: ['no', 'en', 'de', 'ja'],
     defaultLocale: 'no',
     routing: {
       prefixDefaultLocale: false,

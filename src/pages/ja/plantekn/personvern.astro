@@ -1,0 +1,76 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('plantekn');
+---
+<AppLayout app={app} title={`プライバシー · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="要点" title={`プライバシーを、<em>平たい言葉で</em>。`}>
+        <p class="lede">{app.name}はiPhoneとiPad向けの間取り作成・室内設計アプリです。このアプリはあなたの個人データを収集しません。ユーザーアカウントも、サーバーも、追跡も、広告もありません。</p>
+        <p>アプリの背後にバックエンドはありません。これは方針として選んだことではなく、技術的な事実です。データを送る先のサーバーそのものが存在しません。作ったものはすべて端末に残り、iCloudを有効にしていればご自身のiCloudにも残ります。</p>
+        <p class="muted">最終更新 · 2026年8月19日。</p>
+      </Chapter>
+
+      <Chapter num="02" label="データ" title={`アプリが<em>実際に保存するもの</em>。`}>
+        <p>アプリが保存するのは、あなたが作ったものと、いくつかの技術的な設定だけです。</p>
+        <p>· <strong>あなたの間取り図：</strong>部屋、家具、ドア、窓、階段、階、メモ、フリーハンドの描画。.plantekn形式（JSON）のファイルとして保存されます。</p>
+        <p>· <strong>下敷きとして取り込んだ画像</strong>（Photo Trace、Pro機能）。プロジェクトファイルの中に保存されます。</p>
+        <p>· <strong>アプリの設定：</strong>言語、面積区分と計算に使う市場、単位、グリッドとスナップの大きさ、ライトまたはダークモード、3Dの設定、入門ガイドを見たかどうか。</p>
+        <p>· <strong>端末内のカウンタ：</strong>アプリを開いた回数、評価したかどうか、Pro画面を表示した回数。アプリがいつ何かを尋ねるかを決めるためだけに使い、端末の外に出ることはありません。</p>
+        <p>· <strong>Proの購入状態：</strong>{app.name} PROを購入したかどうか。</p>
+        <p class="muted">これらはいずれも私たちにも第三者にも送られません。私たちはあなたの間取り図を見ることができず、あなたがこのアプリを使っていることも分かりません。</p>
+      </Chapter>
+
+      <Chapter num="03" label="保存場所" title={`端末の中。<em>必要ならiCloud。</em>`}>
+        <p>データは端末内のアプリ専用フォルダに保存されます。iCloudを有効にしている場合は、ご自身のiCloud Drive（iCloud.com.jonas.Plantekn）にも保存されます。iCloudが使えない場合は、すべて端末内だけに保存されます。どちらが有効かは「設定 → このアプリについて → 保存」で確認できます。</p>
+        <p>{app.name}はあなたのiCloudアカウントにアクセスできません。Appleがあなたに代わって、あなた自身の端末どうしでファイルを同期します。「ファイル」アプリの書類と同じ仕組みです。<a class="tx-link" href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">AppleのiCloudに関するプライバシーポリシー</a>。</p>
+        <p class="muted">自分で間取り図を共有した場合——PDF、画像、HTML、.planteknファイルのいずれでも——それは送った先に届きます。誰が見られるかは、メールやAirDropなど、あなたが選んだ共有手段で決まります。</p>
+      </Chapter>
+
+      <Chapter num="04" label="カメラ" title={`カメラは<em>計測のためだけ</em>。`}>
+        <p>アプリがカメラへのアクセスを求めるのは一か所だけです。AR計測で、床や壁に向けて部屋や距離を測るときです。計測は端末上でリアルタイムに行われます。写真は撮影されず、何も保存されず、どこにも送られません。</p>
+        <p class="muted">カメラを許可しなくても、アプリのほかの部分はこれまでどおり動きます。使えなくなるのはAR計測だけです。</p>
+      </Chapter>
+
+      <Chapter num="05" label="Photo Trace" title={`選んだ写真は、<em>手元に残ります</em>。`}>
+        <p>Photo Trace（Pro）を使うときは、Apple標準の写真選択画面からフォトライブラリの画像を選びます。画像は端末上でのみ処理され、プロジェクトファイルの一部として保存されます。{app.name}はフォトライブラリ全体へのアクセスを求めません。受け取るのは、あなたが指定した1枚だけです。</p>
+        <p class="muted">Apple Pencilと触覚フィードバックはiOSの標準APIを使います。データの収集はありません。</p>
+      </Chapter>
+
+      <Chapter num="06" label="購入と評価" title={`支払いは<em>Appleが処理します</em>。`}>
+        <p>{app.name} PROの購入は、App StoreとStoreKitを通じてすべてAppleが処理します。私たちが受け取るのは、購入が完了したという信号だけです。支払い情報もカード番号も請求先住所も見えませんし、誰が購入したのかも分かりません。</p>
+        <p>アプリが{app.name}の評価をお願いするときは、Appleの標準機能を使います。評価そのものはAppleが扱います。私たちに分かるのは評価画面に進んだかどうかだけで、何を書いたか、星をいくつ付けたかは分かりません。</p>
+      </Chapter>
+
+      <Chapter num="07" label="第三者" title={`追跡なし。<em>解析なし。</em>`}>
+        <p>{app.name}には解析や追跡の技術が一切入っていません。Google Analytics、Firebase、Crashlytics、AppsFlyer、Adjust、TelemetryDeckなどのサービスは使っていません。IDFAも、広告IDも、広告ネットワークもありません。そもそもサードパーティのSDKが一つも入っていません。</p>
+        <p class="muted">関わる第三者はAppleだけで、App Store、iCloud、StoreKit、システムの評価ダイアログを通じてです。これらのサービスにはAppleの規約とプライバシーポリシーが適用されます。</p>
+      </Chapter>
+
+      <Chapter num="08" label="あなたの権利" title={`あなたの権利と、<em>それが単純な理由</em>。`}>
+        <p>EU一般データ保護規則（GDPR）は、企業が保有するあなたの個人データについて、開示、訂正、削除、移転を求める権利を認めています。</p>
+        <p>{app.name}は個人データを収集していないため、開示するものも、訂正するものも、削除するものもありません。これは形式的な話ではなく、あなたが載っているデータベースそのものが存在しないということです。</p>
+        <p>ご自身のファイルは完全にあなたの管理下にあります。.plantekn、PDF、画像、HTMLとして、いつでも書き出せます。すべて消したいときは、アプリ内でプロジェクトを削除し、iCloud Driveから取り除くか、アプリ自体を削除してください。</p>
+      </Chapter>
+
+      <Chapter num="09" label="お子さまの利用" title={`<em>どの年齢でも</em>安心して。`}>
+        <p>{app.name}は子ども向けに作られたアプリではありませんが、どの年齢でも安心して使えます。個人データを集めず、ログインがなく、広告がなく、誰かが接触できるソーシャルな仕組みもないからです。</p>
+        <p class="muted">アプリ内の購入は{app.name} PROの買い切りだけです。Appleの通常の購入ダイアログを通り、スクリーンタイムで制限できます。</p>
+      </Chapter>
+
+      <Chapter num="10" label="お問い合わせ" title={`ご質問は？ <em>お気軽にどうぞ。</em>`}>
+        <p><strong>管理者：</strong>Jonas Haug（Haug &amp; Datter）、ノルウェー・ドラメン。</p>
+        <p>メールは <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a> までどうぞ。Jonas本人が、たいてい1日以内に返信します。</p>
+        <p class="muted">アプリの機能が変わったときに、この文書を更新することがあります。変更はこのページに、新しい「最終更新」の日付とともに掲載します。アプリの<a class="tx-link" href="/ja/plantekn/vilkar/">利用規約</a>はこちらです。</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · プライバシー`} />
+</AppLayout>

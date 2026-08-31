@@ -1,0 +1,79 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('plantekn');
+---
+<AppLayout app={app} title={`Nutzungsbedingungen · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="vilkar" />
+    <div class="app-flow">
+      <Chapter num="01" label="Lizenz" title={`Vertrieb über den <em>App Store</em>.`}>
+        <p class="lede">{app.name} wird von Haug og Datter entwickelt und herausgegeben und über den Apple App Store vertrieben. Du erhältst eine persönliche, nicht übertragbare Lizenz zur Nutzung der App gemäß <a class="tx-link" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apples Standard-Endbenutzer-Lizenzvertrag</a>.</p>
+        <p class="muted">Zuletzt aktualisiert · 19. August 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Nutzung" title={`Alles läuft <em>lokal</em>.`}>
+        <p>Mit {app.name} erstellst du 2D-Grundrisse mit Möbeln, Türen, Fenstern und Treppen und stellst sie in 3D dar. Alles läuft lokal auf deinem Gerät. Du brauchst kein Benutzerkonto, und die App benötigt kein Internet, um zu funktionieren.</p>
+        <p>Du darfst die App privat wie gewerblich nutzen: für die eigene Renovierungsplanung, für Wertermittlungen, für ein Exposé oder für architektonische Skizzen. Mit {app.name} PRO gibt es keine Begrenzung der Anzahl an Grundrissen.</p>
+        <p class="muted">Du bist selbst dafür verantwortlich, die Rechte an Bildern zu haben, die du als Zeichenvorlage einlegst (Photo Trace) — etwa an einem alten Grundriss, den jemand anderes gezeichnet hat.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Kostenlos und PRO" title={`Einmaliger Kauf, <em>kein Abo</em>.`}>
+        <p>Die App ist kostenlos zum Laden. Die kostenlose Version enthält ein Projekt mit einer Etage, alle 2D-Zeichenwerkzeuge, 28 Raumtypen, 18 Möbeltypen, die 3D-Darstellung, Walkthrough und den Export als Bild.</p>
+        <p>{app.name} PRO ist ein einmaliger Kauf. Nach dem Kauf bekommst du:</p>
+        <p>· Unbegrenzt viele Projekte, und den Import von Projekten anderer</p>
+        <p>· Mehrere Etagen und einen Keller</p>
+        <p>· Die ganze Möbelbibliothek, 72 Typen</p>
+        <p>· KI-gestützte Möblierungsvorschläge</p>
+        <p>· Photo Trace, eine Vorlagenebene mit Referenzbild</p>
+        <p>· AR-Messung mit der Kamera, auf Geräten mit LiDAR</p>
+        <p>· Renovierungsrechner mit PDF-Budget</p>
+        <p>· PDF-Export mit Raumübersicht und Flächenbericht</p>
+        <p>· Druck im Maßstab 1:50 und 1:100</p>
+        <p>· Unterstützung für Apple Pencil</p>
+        <p>· Export ohne Wasserzeichen</p>
+        <p class="muted">Der Preis wird im Kaufdialog des App Store in deiner lokalen Währung angezeigt. Der Kauf ist an deine Apple-ID gebunden und lässt sich auf neuen Geräten über «Käufe wiederherstellen» zurückholen.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Erstattung" title={`Erstattungen wickelt <em>Apple</em> ab.`}>
+        <p>Die Erstattung von {app.name} PRO wickelt Apple ab. Fordere sie über den App Store an, auf <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
+        <p class="muted">{app.name} kann Käufe, die über den App Store getätigt wurden, nicht selbst erstatten, weil wir an der Zahlung nicht beteiligt sind.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Eigentum" title={`Die Grundrisse <em>gehören dir</em>.`}>
+        <p>Deine Grundrisse gehören dir. Sie liegen als .plantekn-Dateien in einem offenen JSON-Format auf deinem Gerät, und in deiner iCloud Drive, wenn du das aktiviert hast. Du kannst sie jederzeit exportieren, teilen oder löschen, und du darfst sie gewerblich nutzen, ohne uns etwas zusätzlich zu zahlen.</p>
+        <p>Wir erheben keine personenbezogenen Daten. Einzelheiten stehen in der <a class="tx-link" href="/de/plantekn/personvern/">Datenschutzerklärung</a>.</p>
+        <p class="muted">Die App selbst — Code, Design, Symbole, Möbelbibliothek und Name — gehört Haug og Datter. Der Kauf von {app.name} PRO gibt dir eine persönliche, nicht exklusive Lizenz gemäß Apples Standardlizenz. Du darfst die App nicht kopieren, verbreiten, verändern oder dekompilieren.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Haftung" title={`Eine Skizze, <em>kein Bauantrag</em>.`}>
+        <p>{app.name} wird «wie besehen» bereitgestellt. Wir übernehmen keine Gewähr dafür, dass die App fehlerfrei ist oder deine konkreten Anforderungen erfüllt. Grundrisse aus der App sind Skizzen. Sie ersetzen weder eine professionelle Architektenzeichnung noch einen Bauantrag, ein Gutachten oder eine offizielle Wertermittlung.</p>
+        <p><strong>Flächenangaben.</strong> Die Fläche wird aus dem berechnet, was du selbst zeichnest, nach der im jeweiligen Markt üblichen Aufteilung. Die Genauigkeit hängt davon ab, ob deine Maße mit der Wirklichkeit übereinstimmen. Soll die Fläche in einer Immobilienanzeige oder einem Gutachten stehen, muss sie fachlich geprüft werden.</p>
+        <p><strong>Kostenschätzungen.</strong> Der Renovierungsrechner arbeitet mit Referenzpreisen je Markt und liefert einen groben Überschlag zum Vergleich von Alternativen. Er ist kein Angebot, und die Preise können erheblich von dem abweichen, was ein Handwerksbetrieb tatsächlich verlangt.</p>
+        <p><strong>Die 3D-Ansicht ist eine Illustration.</strong> Dachform, Verschalung und Außenansicht sind Darstellung, keine Projektdaten, und sagen nichts darüber aus, was technisch möglich oder baurechtlich zulässig ist.</p>
+        <p class="muted">Soweit nach norwegischem Recht zulässig, haftet {app.name} nicht für finanzielle Verluste oder andere Folgen, die aus der Nutzung der App entstehen. Nichts in diesen Bedingungen schränkt Rechte ein, die dir als Verbraucher nach zwingendem Recht zustehen.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Änderungen" title={`Wesentliche Änderungen <em>kündigen wir an</em>.`}>
+        <p>Wir können Funktionen der App aktualisieren, ändern oder entfernen. Wesentliche Änderungen teilen wir über den Aktualisierungstext im App Store und das «Neu»-Blatt in der App mit. Als Beta gekennzeichnete Funktionen, etwa Walkthrough, können sich ändern oder später Teil von PRO werden.</p>
+        <p>Das Dateiformat ist abwärtskompatibel: Projekte aus älteren Versionen lassen sich in neueren Versionen öffnen.</p>
+        <p class="muted">Diese Bedingungen können sich ändern. Änderungen erscheinen auf dieser Seite mit neuem «Zuletzt aktualisiert»-Datum. Nutzt du die App nach einer Änderung weiter, gilt das als Zustimmung zu den neuen Bedingungen.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Rechtswahl" title={`<em>Norwegisches</em> Recht.`}>
+        <p>Für diese Bedingungen gilt norwegisches Recht. Streitigkeiten sollen zunächst einvernehmlich gelöst werden. Gelingt das nicht, können Verbraucher die Sache der norwegischen Verbraucherbehörde (Forbrukertilsynet) und danach den norwegischen Gerichten vorlegen.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Kontakt" title={`Fragen? <em>Schreib uns.</em>`}>
+        <p><strong>Anbieter:</strong> Jonas Haug (Haug &amp; Datter), Drammen, Norwegen.</p>
+        <p>Schreib eine E-Mail an <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Die <a class="tx-link" href="/de/plantekn/personvern/">Datenschutzerklärung</a> der App steht hier, und praktische Fragen sind auf der <a class="tx-link" href="/de/plantekn/support/">Support-Seite</a> gesammelt.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Nutzungsbedingungen`} />
+</AppLayout>

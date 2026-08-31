@@ -1,0 +1,163 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('plantekn');
+---
+<AppLayout app={app} title={`Support · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="support" />
+    <div class="app-flow">
+      <Chapter num="01" label="Kontakt" title={`Schreib eine <em>E-Mail</em>.`}>
+        <p class="lede">Brauchst du Hilfe mit {app.name}? Schreib an <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Du bekommst Antwort von Jonas selbst, meistens innerhalb eines Tages.</p>
+        <p class="muted">Schreib gern dazu, welches Gerät du benutzt und welche Version der App du hast. Die Versionsnummer steht unter Einstellungen → Über.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Über die App" title={`Was ${app.name} <em>ist</em>.`}>
+        <p><strong>Was ist {app.name}, und für wen ist die App gemacht?</strong></p>
+        <p class="muted">{app.name} ist ein Raumplaner für iPhone und iPad. Für dich, wenn du renovierst, einen Umzug planst oder einfach sehen willst, ob das Sofa passt — ohne ein schweres CAD-Programm lernen zu müssen. Du zeichnest Räume in echten Maßen, stellst Möbel hinein und siehst das Ergebnis in 3D. Gebaut für normale Menschen, nicht für Architekten.</p>
+        <p><strong>Brauche ich ein iPad, oder geht es auch auf dem iPhone?</strong></p>
+        <p class="muted">Beides. {app.name} ist eine App, die auf iPhone und iPad läuft (iOS 18 oder neuer). Auf dem iPad hast du mehr Platz zum Zeichnen, aber alles funktioniert auch auf dem iPhone.</p>
+        <p><strong>Brauche ich einen Apple Pencil, oder kann ich mit dem Finger zeichnen?</strong></p>
+        <p class="muted">Der Finger reicht völlig. Der Apple Pencil wird auf dem iPad vollständig unterstützt, wenn du einen hast und mehr Präzision willst, nötig ist er aber nicht.</p>
+        <p><strong>Gibt es {app.name} für Android oder Mac?</strong></p>
+        <p class="muted">Nein, vorerst nur für iPhone und iPad. Es gibt keine Android-Version und keine eigene Mac-App.</p>
+        <p><strong>Braucht die App Internet, oder läuft sie offline?</strong></p>
+        <p class="muted">Sie läuft offline. Räume zeichnen, Möbel stellen, den Plan in 3D ansehen und exportieren passiert alles lokal auf dem Gerät — du kannst im Ferienhaus ohne Empfang genauso gut planen wie zu Hause. Schaltest du die iCloud-Synchronisierung ein, wird Netz nur für die Synchronisierung selbst gebraucht.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Loslegen" title={`Die ersten <em>zehn Minuten</em>.`}>
+        <p><strong>Wo fange ich an?</strong></p>
+        <p class="muted">Beim ersten Öffnen führt dich eine kurze Einführung durch deinen ersten Raum. Danach ist die Reihenfolge meistens: Räume zeichnen, Türen und Fenster setzen, Möbel hineinziehen, in 3D drehen. Du musst es nicht so machen, aber so zeichnest du am wenigsten neu.</p>
+        <p><strong>Wie zeichne ich einen Raum?</strong></p>
+        <p class="muted">Wähle einen Raumtyp in der Seitenleiste und tippe auf das Zeichenblatt. Der Raum kommt mit vernünftigen Standardmaßen herein, und du ziehst an den Eckgriffen, bis es mit der Wirklichkeit übereinstimmt. Die Maße stehen beim Ziehen an jeder Wand. Doppeltippen auf den Raum ändert den Namen.</p>
+        <p><strong>Mein Raum ist nicht viereckig. Was mache ich?</strong></p>
+        <p class="muted">Zeichne ihn stattdessen als Polygon. Dann setzt du Punkte entlang der Wände und kannst jeden Punkt einzeln verschieben, neue hinzufügen oder welche entfernen. Winkelförmige Räume, schräge Wände und Erker löst du so.</p>
+        <p><strong>Wie setze ich Türen und Fenster ein?</strong></p>
+        <p class="muted">Wähle das Tür- oder Fensterwerkzeug und tippe auf die Wand, wo das Element stehen soll. Es heftet sich an die Wand und lässt sich danach daran entlangziehen. Es gibt sechs Türstile und sieben Fenstertypen, und die Breite kannst du überschreiben, wenn du eine Tür hast, die nicht Standard ist.</p>
+        <p><strong>Wie füge ich eine Etage oder einen Keller hinzu?</strong></p>
+        <p class="muted">Tippe in der Seitenleiste auf «+ Etage» oder «+ Keller». Der Etagenwähler zeigt einen kleinen Riss jeder Etage, du siehst also, wohin du wechselst. Mehrere Etagen brauchen Pro.</p>
+        <p><strong>Ich habe etwas falsch gemacht. Kann ich das rückgängig machen?</strong></p>
+        <p class="muted">Ja. Der Rückgängig-Knopf steht in der Werkzeugleiste, und die App behält die letzten 30 Schritte. Mit Photo Trace wird der Verlauf auf zehn Schritte gekürzt, um Speicher zu sparen.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Maße und Fläche" title={`Maße, Fläche und <em>Genauigkeit</em>.`}>
+        <p><strong>Wie genau sind die Maße in {app.name}?</strong></p>
+        <p class="muted">So genau, wie du sie zeichnest. Jede Wand zeigt beim Zeichnen Meter und Zentimeter, und die Maße bleiben präzise, wenn du zoomst oder verschiebst. Wie grob die App am Raster einrastet, stellst du von 10 bis 100 cm ein. Hast du ein iPhone Pro oder iPad Pro mit LiDAR, misst du Räume direkt mit der Kamera (AR-Messung) und hast exakte Maße, bevor du zeichnest. {app.name} ist ein Planungswerkzeug, kein Messinstrument — aber genau genug, um zu klären, ob das Sofa passt.</p>
+        <p><strong>Wie wird die Fläche berechnet?</strong></p>
+        <p class="muted">Aus dem, was du zeichnest. Die App teilt die Fläche automatisch in zwei Kategorien auf, je nachdem welchen Raumtyp du gewählt hast, und benutzt dabei die Begriffe, die in deinem Markt üblich sind. Die Gesamtfläche steht in der Werkzeugleiste, über alle Etagen zusammengerechnet, und du kannst einen Flächenbericht als PDF erzeugen.</p>
+        <p><strong>Ich habe einen Dachboden mit Schrägen. Stimmt die Fläche dann?</strong></p>
+        <p class="muted">Ja, wenn du die Dachschräge für die Etage einschaltest. Dann setzt du die Höhe des Kniestocks und die Dachneigung, und die App zählt nur die Fläche, wo die Höhe ausreicht. Beim Justieren zeigt das Blatt, wie viel zählt und wie viel herausfällt. Das sind Projektdaten und werden in der Datei gespeichert — anders als die Dachform in 3D, die reine Darstellung ist.</p>
+        <p><strong>Warum sehe ich keine Aufteilung der Fläche?</strong></p>
+        <p class="muted">Weil es diese Aufteilung nicht in jedem Land gibt. Die App benutzt den Standard, der dort gilt, wo du bist: Norwegen, Schweden, Dänemark, Deutschland, die Niederlande und Frankreich bekommen die Fläche zweigeteilt, jeweils mit eigenen Begriffen. Andere Märkte bekommen stattdessen eine Gesamtfläche, weil Immobilienanzeigen dort genau das angeben. Rät die App falsch, wählst du den Markt in den Einstellungen von Hand.</p>
+        <p><strong>Kann ich in Metern und Zentimetern zeichnen, oder in Fuß und Zoll?</strong></p>
+        <p class="muted">Jede Linie zeigt Meter und Zentimeter gleichzeitig, du musst also nicht umrechnen. Metrisch oder imperial wählt die App automatisch nach Region, und du kannst es selbst in den Einstellungen überschreiben.</p>
+        <p><strong>Kann ich den Grundriss im richtigen Maßstab drucken (1:50 / 1:100)?</strong></p>
+        <p class="muted">Ja, mit {app.name} Pro. Du druckst den Grundriss auf A4 in exakt 1:50 oder 1:100 und misst mit dem Lineal direkt auf dem Papier.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Möbel" title={`Möbel und <em>Einrichtung</em>.`}>
+        <p><strong>Was für Möbel gibt es in der Bibliothek, und passen die Maße?</strong></p>
+        <p class="muted">72 Möbeltypen in zehn Kategorien: Küche, Schlafzimmer, Bad, Wohnzimmer, Büro, Hauswirtschaftsraum, Außenbereich, Elektrik, Sanitär und Sonstiges. Darin findest du alles von Sofa, Bett und Küchenzeile bis zu Außenbauten wie Pergola, Terrassendeck und Dachüberstand. Die Maße folgen nordischen Standardmaßen, was du hineinziehst, stimmt also mit der Wirklichkeit. 18 Typen sind kostenlos, der Rest kommt mit Pro.</p>
+        <p><strong>Mein Möbelstück gibt es nicht in der Bibliothek. Was mache ich?</strong></p>
+        <p class="muted">Bau es selbst. Du kannst ein Möbelstück mit exakten Maßen definieren und in deiner eigenen Bibliothek ablegen, um es in anderen Projekten wiederzuverwenden. Bei geerbten Möbeln oder Einbauschränken ist das oft der schnellste Weg.</p>
+        <p><strong>Was machen die KI-Vorschläge für die Möblierung?</strong></p>
+        <p class="muted">Wenn du feststeckst, kann {app.name} vorschlagen, wie die Möbel im Raum stehen könnten — ausgehend vom Raumtyp und der Form des Raums. Gemeint ist das als Ausgangspunkt, den du selbst anpasst, nicht als Vorgabe. Die KI-Vorschläge sind eine Pro-Funktion, und alles wird auf dem Gerät berechnet.</p>
+        <p><strong>Was ist Photo Trace, und wie funktioniert es?</strong></p>
+        <p class="muted">Photo Trace legt ein Foto eines bestehenden Raums oder eines alten Grundrisses unter das Zeichenblatt, sodass du direkt darüber zeichnest. Dann musst du Maße nicht aus einem Foto raten. Das Bild lässt sich skalieren, transparent machen und feststellen, damit es beim Zeichnen nicht verrutscht. Photo Trace ist eine Pro-Funktion.</p>
+      </Chapter>
+
+      <Chapter num="06" label="3D" title={`3D und <em>Walkthrough</em>.`}>
+        <p><strong>Kann ich den Raum in 3D sehen, und kostet das etwas?</strong></p>
+        <p class="muted">3D ist für alle kostenlos. Kipp die Zeichnung in 3D und sieh den Plan als Puppenhaus von oben, mit einer Wandhöhe von 1,0 bis 2,7 Meter. Die Möbel lassen sich ausblenden, wenn du nur die Raumaufteilung sehen willst.</p>
+        <p><strong>Kann ich das Haus von außen sehen?</strong></p>
+        <p class="muted">Ja. Das Haus bekommt ein Dach, und die Form wählst du selbst: Satteldach, Walmdach, Pultdach oder Flachdach. Außen kommen waagerechte Verschalung, Sockel, Treppe zur Haustür und Bepflanzung dazu. Die Dachform ist eine Darstellungseinstellung, sie wird nicht im Projekt gespeichert und verändert die Fläche nicht.</p>
+        <p><strong>Wie funktioniert der Walkthrough-Modus?</strong></p>
+        <p class="muted">Im Walkthrough gehst du in der Ich-Perspektive durch den Plan, mit virtuellen Sticks für Bewegung und Kamera und einer kleinen Karte in der Ecke. Die Wände halten dich auf, und die App setzt dich meist in den Flur oder den größten Raum. Die Augenhöhe reicht von Kind bis Erwachsener — gut, um Raumhöhe zu prüfen oder ein Gefühl für den Raum zu bekommen. Walkthrough ist kostenlos, solange es in der Beta ist.</p>
+        <p><strong>Kann ich Farben für Wände und Boden wählen?</strong></p>
+        <p class="muted">Ja. Mit der Materialpalette wählst du in der 3D-Ansicht Wand-, Boden- und Türfarben aus fertigen Paletten. Lässt du sie auf automatisch, wählt die App vernünftige Farben je Raumtyp.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Rechner" title={`<em>Renovierungsrechner</em>.`}>
+        <p><strong>Was rechnet der Renovierungsrechner aus?</strong></p>
+        <p class="muted">Er schätzt die Kosten je Raum für Boden, Malerarbeiten, Elektrik und Sanitär, ausgehend von den Flächen, die du schon gezeichnet hast. Den Bodentyp wählst du je Raum, und das Budget lässt sich als PDF exportieren.</p>
+        <p><strong>Woher kommen die Preise, und gelten sie in Deutschland?</strong></p>
+        <p class="muted">Der Rechner hat Referenzpreise für vierzehn Märkte, darunter Deutschland, Norwegen, Schweden, Dänemark, Frankreich, Spanien, Italien, die Niederlande, Großbritannien, die USA und Japan. Wohnst du woanders, als die Sprache des Geräts vermuten lässt, wählst du den Markt in den Einstellungen von Hand. Alle Zahlen kannst du selbst überschreiben, und das solltest du tun, sobald du ein Angebot von einem Handwerksbetrieb hast.</p>
+        <p class="muted">Die Schätzung ist ein Ausgangspunkt zum Vergleichen von Alternativen, kein Angebot. Der Rechner ist eine Pro-Funktion.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Preis" title={`Preis und <em>Versionen</em>.`}>
+        <p><strong>Ist {app.name} kostenlos, oder muss ich zahlen?</strong></p>
+        <p class="muted">{app.name} ist kostenlos zum Laden und Benutzen. Die kostenlose Version gibt dir ein Projekt mit einer Etage, alle Zeichenwerkzeuge, 18 Möbeltypen, 3D, Walkthrough und den Export als Bild. {app.name} Pro ist ein optionaler einmaliger Kauf.</p>
+        <p><strong>Was ist der Unterschied zwischen der kostenlosen Version und {app.name} Pro?</strong></p>
+        <p class="muted">Pro schaltet unbegrenzt viele Projekte frei, mehrere Etagen und einen Keller, die ganze Möbelbibliothek, KI-Vorschläge, Photo Trace, das Zeichnen mit Apple Pencil, AR-Messung, den Renovierungsrechner mit PDF, den Flächenbericht als PDF, den Druck in 1:50 und 1:100, und den PDF-Export ohne Wasserzeichen.</p>
+        <p><strong>Ist das ein Abo oder ein einmaliger Kauf?</strong></p>
+        <p class="muted">Ein einmaliger Kauf. {app.name} Pro kaufst du einmal und besitzt es für immer. Kein Abo, keine laufenden Kosten. Den Preis für dein Land zeigt der App Store.</p>
+        <p><strong>Ich habe das Telefon gewechselt. Muss ich Pro noch einmal kaufen?</strong></p>
+        <p class="muted">Nein. Der Kauf hängt an deiner Apple-ID. Tipp unten auf dem Pro-Bildschirm auf «Käufe wiederherstellen», dann kommt er zurück. Bist du mit einer anderen Apple-ID angemeldet als der, mit der du gekauft hast, findet die App den Kauf nicht.</p>
+        <p><strong>Kann ich eine Erstattung bekommen?</strong></p>
+        <p class="muted">Erstattungen wickelt Apple ab, nicht wir. Fordere sie auf <a class="tx-link" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a> an.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Teilen" title={`Teilen und <em>exportieren</em>.`}>
+        <p><strong>Kann ich den Grundriss mit Architekt, Makler oder Familie teilen?</strong></p>
+        <p class="muted">Ja. Tipp oben auf dem Zeichenblatt auf das Teilen-Symbol und wähle ein Format. Du kannst den Plan als Datei an andere schicken, die die App benutzen, oder ihn in etwas exportieren, das alle öffnen können.</p>
+        <p><strong>In welche Dateiformate kann ich exportieren?</strong></p>
+        <p class="muted">Bild (PNG), PDF mit Raumübersicht, oder interaktives HTML, in dem die Empfänger im Browser zwischen den Etagen blättern. Zusätzlich kannst du die Projektdatei selbst (.plantekn) per E-Mail oder AirDrop teilen. In der kostenlosen Version haben PDF und HTML ein kleines Wasserzeichen, Pro entfernt es.</p>
+        <p><strong>Kann die Empfängerin den Grundriss sehen, ohne die App zu haben?</strong></p>
+        <p class="muted">Ja. PDF, Bild und der interaktive HTML-Export öffnen sich in jedem Browser oder PDF-Programm, ganz ohne {app.name}. Nur die .plantekn-Datei, die sich weiterbearbeiten lässt, braucht die App.</p>
+        <p><strong>Jemand hat mir eine .plantekn-Datei geschickt. Wie öffne ich die?</strong></p>
+        <p class="muted">Tipp die Datei in Mail, Nachrichten oder der Dateien-App an und wähle {app.name}. Sie legt sich als neues Projekt in die Liste. Der Import von Projekten braucht Pro, weil die kostenlose Version ein Projekt auf einmal hält.</p>
+      </Chapter>
+
+      <Chapter num="10" label="Dateien und iCloud" title={`Wo <em>liegen</em> die Projekte?`}>
+        <p><strong>Werden meine Daten in der Cloud gespeichert oder nur lokal?</strong></p>
+        <p class="muted">Standardmäßig liegt alles lokal auf deinem Gerät. Es gibt keinen Server, und keine Daten verlassen das Gerät. Schaltest du die iCloud-Synchronisierung ein, liegen die Projekte in deiner eigenen privaten iCloud, nicht bei uns.</p>
+        <p><strong>Werden meine Projekte zwischen iPhone und iPad synchronisiert?</strong></p>
+        <p class="muted">Ja, wenn du willst. Die iCloud-Synchronisierung ist freiwillig. Synchronisiert es nicht, prüfe, ob iCloud Drive in den iOS-Einstellungen an ist, ob beide Geräte mit derselben Apple-ID angemeldet sind und ob sie eine Weile online waren. Was gerade aktiv ist, siehst du unter Einstellungen → Über → Speicher.</p>
+        <p><strong>Was passiert mit meinen Projekten, wenn ich die App lösche?</strong></p>
+        <p class="muted">Liegen sie in der iCloud, bleiben sie dort und kommen zurück, wenn du die App neu installierst. Liegen sie nur lokal, verschwinden sie mit der App. Hast du Projekte, die du nicht verlieren willst, exportiere sie vorher als .plantekn-Datei.</p>
+        <p><strong>Kann ich alte Projekte in neuen Versionen der App öffnen?</strong></p>
+        <p class="muted">Ja. Das Dateiformat ist abwärtskompatibel, Projekte aus früheren Versionen öffnen sich wie zuvor. Projekte aus der allerersten Version wurden in einem anderen Maßstab gezeichnet und werden beim Laden automatisch umgerechnet.</p>
+      </Chapter>
+
+      <Chapter num="11" label="Datenschutz" title={`<em>Datenschutz</em>.`}>
+        <p><strong>Brauche ich ein Konto, um die App zu benutzen?</strong></p>
+        <p class="muted">Nein. Kein Konto, keine Anmeldung, keine E-Mail-Adresse. Du öffnest die App und fängst an zu zeichnen.</p>
+        <p><strong>Sammelt die App Daten über mich?</strong></p>
+        <p class="muted">Nein. In der App steckt kein Analysewerkzeug, kein Tracking, keine Werbung und kein SDK von Dritten. Die Kamera wird nur für die AR-Messung benutzt, und Photo Trace nutzt Apples eigene Bildauswahl, die App fragt also nicht nach Zugriff auf die ganze Fotomediathek. Die Einzelheiten stehen in der <a class="tx-link" href="/de/plantekn/personvern/">Datenschutzerklärung</a>.</p>
+      </Chapter>
+
+      <Chapter num="12" label="Sprachen" title={`Sprachen und <em>Bedienungshilfen</em>.`}>
+        <p><strong>Welche Sprachen unterstützt die App?</strong></p>
+        <p class="muted">Vierzehn: Norwegisch, Englisch, Schwedisch, Dänisch, Deutsch, Französisch, Spanisch, Italienisch, Niederländisch, Japanisch, Chinesisch (vereinfacht), Arabisch, Russisch und Portugiesisch (Brasilien). Die App folgt der Sprache deines Geräts, und du kannst die Sprache in der App wechseln, ohne sie neu zu starten.</p>
+        <p><strong>Funktioniert die App auf Arabisch, das von rechts nach links geschrieben wird?</strong></p>
+        <p class="muted">Ja. Die Oberfläche wird gespiegelt: Seitenleiste, Werkzeugleiste und alle Blätter. Der Grundriss selbst, die 3D-Ansicht und die Exporte bleiben wie sie sind — ein gespiegelter Grundriss wäre eine andere Wohnung.</p>
+        <p><strong>Kann ich die Schrift größer machen?</strong></p>
+        <p class="muted">Ja. Die App folgt der Schriftgröße, die du in iOS eingestellt hast, auch den großen Einstellungen. Der Dunkelmodus wird ebenfalls unterstützt.</p>
+        <p><strong>Gibt es die App auch außerhalb Norwegens?</strong></p>
+        <p class="muted">Ja. {app.name} ist international im App Store, mit automatisch metrischen oder imperialen Maßeinheiten je nach Region und Flächenbegriffen, die dem Standard im jeweiligen Markt folgen.</p>
+      </Chapter>
+
+      <Chapter num="13" label="Fehlersuche" title={`Wenn etwas <em>nicht stimmt</em>.`}>
+        <p><strong>Ich kann ein Möbelstück oder einen Raum nicht verschieben.</strong></p>
+        <p class="muted">Prüfe, ob du im Auswahlwerkzeug stehst und nicht in einem Zeichenwerkzeug. Benutzt du Photo Trace, kann das Hintergrundbild festgestellt sein — dann musst du es erst lösen, bevor du es verschiebst.</p>
+        <p><strong>Die Fläche stimmt nicht mit dem überein, was ich erwartet habe.</strong></p>
+        <p class="muted">Zwei häufige Gründe: Der Raum hat den falschen Raumtyp und landet dadurch in der falschen Flächenkategorie, oder die Etage hat eine Dachschräge, durch die Teile des Bodens nicht mitzählen. Beides änderst du am Raum oder an der Etage.</p>
+        <p><strong>Die App sieht anders aus als auf den Bildern hier.</strong></p>
+        <p class="muted">Diese Seiten zeigen die neueste Version. Prüfe, ob im App Store ein Update bereitliegt, und schau im «Neu»-Blatt der App, was sich geändert hat.</p>
+        <p><strong>Etwas stürzt ab oder verhält sich seltsam.</strong></p>
+        <p class="muted">Schreib eine E-Mail mit dem, was du direkt davor gemacht hast, welches Gerät du hast und welche Version unter Einstellungen → Über steht. Das reicht meistens, um den Fehler zu finden.</p>
+      </Chapter>
+
+      <Chapter num="14" label="Rückmeldung" title={`Ideen, <em>Bugs</em>, Hinweise.`}>
+        <p>Fehlen dir Funktionen? Nerven dich Bugs? Schick sie an dieselbe Adresse. Ich lese alles und priorisiere danach, was die App tatsächlich besser macht.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Support`} />
+</AppLayout>

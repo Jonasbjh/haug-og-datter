@@ -1,0 +1,76 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Topbar from '../../../components/Topbar.astro';
+import Footer from '../../../components/Footer.astro';
+import AppRail from '../../../components/AppRail.astro';
+import Chapter from '../../../components/Chapter.astro';
+import { getApp } from '../../../data/apps';
+const app = getApp('plantekn');
+---
+<AppLayout app={app} title={`Datenschutz · ${app.name}`}>
+  <Topbar variant="app" />
+  <div class="app-page">
+    <AppRail app={app} current="personvern" />
+    <div class="app-flow">
+      <Chapter num="01" label="Kurz gefasst" title={`Datenschutz, in <em>klaren Worten</em>.`}>
+        <p class="lede">{app.name} ist eine App zum Zeichnen von Grundrissen und zur Raumplanung, für iPhone und iPad. Die App erhebt keine personenbezogenen Daten über dich. Kein Benutzerkonto, kein Server, kein Tracking, keine Werbung.</p>
+        <p>Hinter der App steckt kein Backend. Das ist keine Richtlinie, für die wir uns entschieden haben, sondern eine technische Tatsache: Es gibt keinen Server, an den Daten gehen könnten. Alles, was du anlegst, bleibt auf deinem Gerät und in deiner eigenen iCloud, wenn du sie einschaltest.</p>
+        <p class="muted">Zuletzt aktualisiert · 19. August 2026.</p>
+      </Chapter>
+
+      <Chapter num="02" label="Daten" title={`Was die App <em>tatsächlich speichert</em>.`}>
+        <p>Die App speichert nur, was du selbst anlegst, und ein paar technische Einstellungen:</p>
+        <p>· <strong>Deine Grundrisse:</strong> Räume, Möbel, Türen, Fenster, Treppen, Etagen, Notizen und Freihandzeichnungen. Gespeichert als Dateien im .plantekn-Format (JSON).</p>
+        <p>· <strong>Bilder, die du als Zeichenvorlage einlegst</strong> (Photo Trace, Pro-Funktion). Gespeichert innerhalb deiner Projektdatei.</p>
+        <p>· <strong>App-Einstellungen:</strong> Sprachwahl, Markt für Flächenbegriffe und Rechner, Maßeinheit, Raster- und Fanggrößen, heller oder dunkler Modus, 3D-Einstellungen, und ob du die Einführung gesehen hast.</p>
+        <p>· <strong>Lokale Zähler:</strong> wie oft die App geöffnet wurde, ob du sie bewertet hast, wie oft der Pro-Bildschirm gezeigt wurde. Sie dienen nur dazu zu entscheiden, wann die App etwas fragt, und verlassen das Gerät nie.</p>
+        <p>· <strong>Pro-Status:</strong> ob du {app.name} PRO gekauft hast.</p>
+        <p class="muted">Nichts davon geht an uns oder an Dritte. Wir können deine Grundrisse nicht sehen, und wir wissen nicht, dass du die App benutzt.</p>
+      </Chapter>
+
+      <Chapter num="03" label="Speicherung" title={`Auf deinem Gerät. <em>Eventuell iCloud.</em>`}>
+        <p>Die Daten liegen auf deinem Gerät im privaten Ordner der App, und in deiner iCloud Drive (iCloud.com.jonas.Plantekn), wenn du iCloud aktiviert hast. Ist iCloud nicht verfügbar, wird alles nur lokal gespeichert. Was gerade aktiv ist, siehst du unter Einstellungen → Über → Speicher.</p>
+        <p>{app.name} hat keinen Zugriff auf dein iCloud-Konto. Apple synchronisiert die Dateien in deinem Auftrag zwischen deinen eigenen Geräten, genau wie ein Dokument in der Dateien-App. <a class="tx-link" href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apples Datenschutzrichtlinie für iCloud</a>.</p>
+        <p class="muted">Teilst du einen Grundriss selbst — als PDF, Bild, HTML oder .plantekn-Datei — geht er dorthin, wohin du ihn schickst. Dann entscheidet dein Weg des Teilens, etwa E-Mail oder AirDrop, wer ihn zu sehen bekommt.</p>
+      </Chapter>
+
+      <Chapter num="04" label="Kamera" title={`Die Kamera dient <em>nur zum Messen</em>.`}>
+        <p>Die App fragt an einer einzigen Stelle nach Kamerazugriff: beim AR-Messen, wo du Räume und Abstände misst, indem du auf Boden und Wände zielst. Die Messung läuft in Echtzeit auf dem Gerät. Es werden keine Bilder aufgenommen, nichts gespeichert und nichts weitergegeben.</p>
+        <p class="muted">Lehnst du den Kamerazugriff ab, funktioniert der Rest der App wie zuvor. Dir fehlt nur das AR-Messen.</p>
+      </Chapter>
+
+      <Chapter num="05" label="Photo Trace" title={`Das Bild, das du wählst, <em>bleibt bei dir</em>.`}>
+        <p>Benutzt du Photo Trace (Pro), wählst du ein Bild aus der Fotomediathek über Apples eigene Bildauswahl. Das Bild wird nur auf deinem Gerät verarbeitet und als Teil der Projektdatei darin gespeichert. {app.name} fragt nicht nach Zugriff auf die ganze Fotomediathek, sondern bekommt nur das eine Bild, das du auswählst.</p>
+        <p class="muted">Apple Pencil und haptisches Feedback nutzen Standard-APIs von iOS. Dabei werden keine Daten erhoben.</p>
+      </Chapter>
+
+      <Chapter num="06" label="Kauf und Bewertung" title={`Apple <em>wickelt die Zahlung ab</em>.`}>
+        <p>Der Kauf von {app.name} PRO wird vollständig von Apple über den App Store und StoreKit abgewickelt. Wir bekommen nur ein Signal, dass der Kauf abgeschlossen ist. Wir sehen keine Zahlungsdaten, keine Kartennummer und keine Rechnungsadresse, und wir wissen nicht, wer gekauft hat.</p>
+        <p>Bittet die App dich, {app.name} zu bewerten, wird Apples Standardfunktion verwendet. Die Bewertung selbst liegt bei Apple. Wir wissen nur, ob du weiter zur Bewertung gegangen bist — nicht, was du geschrieben oder wie viele Sterne du gegeben hast.</p>
+      </Chapter>
+
+      <Chapter num="07" label="Dritte" title={`Kein Tracking. <em>Keine Analyse.</em>`}>
+        <p>In {app.name} steckt keine Analyse- oder Tracking-Technologie. Wir verwenden weder Google Analytics noch Firebase, Crashlytics, AppsFlyer, Adjust, TelemetryDeck oder ähnliche Dienste. Keine IDFA, keine Werbe-ID, keine Werbenetzwerke. Die App enthält überhaupt keine SDKs von Drittanbietern.</p>
+        <p class="muted">Der einzige beteiligte Dritte ist Apple, über App Store, iCloud, StoreKit und den Bewertungsdialog des Systems. Für diese Dienste gelten Apples Bedingungen und Datenschutzrichtlinie.</p>
+      </Chapter>
+
+      <Chapter num="08" label="Deine Rechte" title={`Deine Rechte, <em>und warum sie einfach sind</em>.`}>
+        <p>Die Datenschutz-Grundverordnung (DSGVO) gibt dir das Recht auf Auskunft, Berichtigung, Löschung und Übertragbarkeit der personenbezogenen Daten, die ein Unternehmen über dich hat.</p>
+        <p>Da {app.name} keine personenbezogenen Daten erhebt, haben wir nichts, worüber wir Auskunft geben, was wir berichtigen oder löschen könnten. Das ist keine Formalie: Es gibt keine Datenbank, in der du vorkommst.</p>
+        <p>Über deine eigenen Dateien hast du die volle Kontrolle. Exportiere sie, wann du willst, als .plantekn, PDF, Bild oder HTML. Willst du alles löschen, löschst du die Projekte in der App, entfernst sie aus iCloud Drive, oder löschst die App.</p>
+      </Chapter>
+
+      <Chapter num="09" label="Kinder" title={`Sicher für <em>jedes Alter</em>.`}>
+        <p>{app.name} richtet sich nicht an Kinder, kann aber in jedem Alter bedenkenlos benutzt werden: Die App erhebt keine personenbezogenen Daten, hat keine Anmeldung, keine Werbung und keine soziale Ebene, über die jemand Kontakt aufnehmen könnte.</p>
+        <p class="muted">Der einzige Kauf in der App ist der einmalige Kauf von {app.name} PRO. Er läuft über Apples üblichen Kaufdialog und lässt sich mit der Bildschirmzeit sperren.</p>
+      </Chapter>
+
+      <Chapter num="10" label="Kontakt" title={`Fragen? <em>Schreib uns.</em>`}>
+        <p><strong>Verantwortlicher:</strong> Jonas Haug (Haug & Datter), Drammen, Norwegen.</p>
+        <p>Schreib eine E-Mail an <a class="tx-link" href="mailto:jonas@haugogdatter.no">jonas@haugogdatter.no</a>. Du bekommst Antwort von Jonas selbst, meistens innerhalb eines Tages.</p>
+        <p class="muted">Diese Erklärung kann aktualisiert werden, wenn sich Funktionen der App ändern. Änderungen erscheinen auf dieser Seite mit neuem «Zuletzt aktualisiert»-Datum. Die <a class="tx-link" href="/de/plantekn/vilkar/">Nutzungsbedingungen</a> der App stehen hier.</p>
+      </Chapter>
+    </div>
+  </div>
+  <Footer label={`${app.name} · Datenschutz`} />
+</AppLayout>
