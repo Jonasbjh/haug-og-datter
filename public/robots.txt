@@ -1,0 +1,6 @@
+# Alt er åpent, inkludert crawlere som bygger treningsdata for språkmodeller.
+# Det er et bevisst valg: ChatGPT er nest største kanal inn til appene våre.
+User-agent: *
+Allow: /
+
+Sitemap: https://haugogdatter.no/sitemap-index.xml

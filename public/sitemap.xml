@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Crawlerne spør etter /sitemap.xml, ikke /sitemap-index.xml. Denne peker
+     videre dit @astrojs/sitemap faktisk skriver. Nettstedet har ~76 URL-er,
+     langt under 50 000-grensen, så det blir aldri mer enn sitemap-0.xml. -->
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://haugogdatter.no/sitemap-0.xml</loc>
+  </sitemap>
+</sitemapindex>
