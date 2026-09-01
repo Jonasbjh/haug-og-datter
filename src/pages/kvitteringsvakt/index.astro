@@ -37,6 +37,11 @@ const app = getApp('kvitteringsvakt');
         <p><strong>Søk og eksport.</strong> Finn på butikk, dato, kategori eller fritekst. Eksporter alt eller én som PDF til forsikringssak, skattemelding eller salgsobjekt.</p>
         <p><strong>Forsikringsregister.</strong> Legg inn forsikringer ved siden av kvitteringene, så du har egenandel og polisenummer på samme sted.</p>
       </Chapter>
+      <Chapter num="04" label="Pris og personvern" title={`Gratis, og <em>ingen ser kvitteringene</em>.`}>
+        <p>{app.name} er gratis, uten kjøp i appen og uten abonnement.</p>
+        <p>Kvitteringene lagres lokalt på enheten og, hvis du vil, i din private iCloud. Tekstgjenkjenningen ved skanning skjer på telefonen med Apples Vision. Ingenting sendes til oss, vi har ingen servere.</p>
+        <p class="muted">Les hele <a class="tx-link" href="/kvitteringsvakt/personvern/">personvernerklæringen</a>.</p>
+      </Chapter>
       <PrevNextApp slug={app.slug} />
     </div>
   </div>

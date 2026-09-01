@@ -45,7 +45,7 @@ const datoFmt = new Intl.DateTimeFormat('en-GB', {
         <div class="notat__meta">
           <time datetime={data.date.toISOString().slice(0, 10)}>{datoFmt.format(data.date)}</time>
           {app && (
-            <a class="notat__app" href={`/en/${app.slug}`}>
+            <a class="notat__app" href={`/en/${app.slug}/`}>
               <span class="notat__sw" aria-hidden="true"></span>
               {app.name}
             </a>

@@ -27,18 +27,22 @@ const strings = {
 }[locale];
 ---
 <section class="naturhero">
+  {/* Plakaten er LCP-elementet på forsiden; preload gir den forsprang.
+      Lenken står i body med vilje: Astro løfter ikke head fra komponenter. */}
+  <link rel="preload" as="image" href="/video/hero-fjord-poster.webp" fetchpriority="high" />
   <div class="naturhero__media" aria-hidden="true">
+    {/* Ingen <source> i markup: scriptet under legger den til bare på brede
+        skjermer uten «spar data» og uten redusert bevegelse. Mobil får
+        plakaten alene og slipper 5,5 MB video. */}
     <video
       data-naturhero-video
-      autoplay
+      data-src="/video/hero-fjord.mp4"
       muted
       loop
       playsinline
-      preload="metadata"
-      poster="/video/hero-fjord-poster.jpg"
-    >
-      <source src="/video/hero-fjord.mp4" type="video/mp4" />
-    </video>
+      preload="none"
+      poster="/video/hero-fjord-poster.webp"
+    ></video>
     <div class="naturhero__shade"></div>
     <div class="naturhero__korn"></div>
   </div>
@@ -66,25 +70,37 @@ const strings = {
 </section>
 
 <script>
-  // Pause videoen utenfor viewport og ved prefers-reduced-motion.
-  // Autoplay-attributtet starter den; vi stopper bare når det trengs.
+  // Videoen lastes bare der den er verdt 5,5 MB: brede skjermer, uten
+  // «spar data» og uten prefers-reduced-motion. Ellers står plakaten.
+  // Pauses dessuten utenfor viewport.
   const video = document.querySelector<HTMLVideoElement>('[data-naturhero-video]');
   if (video) {
     const mq = matchMedia('(prefers-reduced-motion: reduce)');
-    const still = () => {
-      video.pause();
-      video.removeAttribute('autoplay');
+    const smal = matchMedia('(max-width: 719px)');
+    const sparData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
+    const kanSpille = () => !mq.matches && !smal.matches && !sparData;
+
+    const start = () => {
+      if (!video.querySelector('source')) {
+        const s = document.createElement('source');
+        s.src = video.dataset.src ?? '';
+        s.type = 'video/mp4';
+        video.appendChild(s);
+        video.load();
+      }
+      video.play().catch(() => {});
     };
-    if (mq.matches) still();
+
+    if (kanSpille()) start();
     mq.addEventListener?.('change', () => {
-      if (mq.matches) still();
-      else video.play().catch(() => {});
+      if (mq.matches) video.pause();
+      else if (kanSpille()) start();
     });
 
     const io = new IntersectionObserver(
       ([e]) => {
-        if (mq.matches) return;
-        if (e.isIntersecting) video.play().catch(() => {});
+        if (!kanSpille()) return;
+        if (e.isIntersecting) start();
         else video.pause();
       },
       { threshold: 0.05 }

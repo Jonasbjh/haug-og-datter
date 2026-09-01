@@ -165,7 +165,7 @@ function startSweepLinks() {
     const link = target.closest<HTMLAnchorElement>('a[href]');
     if (!link) return;
     if (link.target === '_blank') return;
-    const inSweepable = link.closest('.verket__row, .siblings, .atelier__phone');
+    const inSweepable = link.closest('.siblings, .atelier__phone');
     if (!inSweepable) return;
     const href = link.getAttribute('href') || '';
     // Kun /<slug> eller /<slug>/... matches
@@ -184,7 +184,7 @@ function startKeys() {
     if (/INPUT|TEXTAREA|SELECT/.test(tag)) return;
     if (e.key >= '1' && e.key <= '9') {
       const slug = ORDER[parseInt(e.key, 10) - 1];
-      if (slug) navWithSweep(`/${slug}`, APPS[slug].accent);
+      if (slug) navWithSweep(`/${slug}/`, APPS[slug].accent);
     } else if (e.key === 'Escape') {
       // Naviger til hub
       if (location.pathname !== '/') location.href = '/';
@@ -194,7 +194,7 @@ function startKeys() {
         const i = ORDER.indexOf(m[1]);
         const n = e.key === 'ArrowLeft' ? (i - 1 + ORDER.length) % ORDER.length : (i + 1) % ORDER.length;
         const slug = ORDER[n];
-        navWithSweep(`/${slug}`, APPS[slug].accent);
+        navWithSweep(`/${slug}/`, APPS[slug].accent);
       }
     }
   });
@@ -260,11 +260,11 @@ function startPalette() {
 
   const items: Item[] = [];
   items.push({ label: 'Forsiden', sub: 'Hub', href: '/', hex: '', sw: null });
-  items.push({ label: 'Verkstedet', sub: 'Notater fra byggingen', href: '/verkstedet', hex: '', sw: null });
-  items.push({ label: 'Om', sub: 'Haug & Datter', href: '/om', hex: '', sw: null });
+  items.push({ label: 'Verkstedet', sub: 'Notater fra byggingen', href: '/verkstedet/', hex: '', sw: null });
+  items.push({ label: 'Om', sub: 'Haug & Datter', href: '/om/', hex: '', sw: null });
   ORDER.forEach((slug) => {
     const a = APPS[slug];
-    items.push({ label: a.name, sub: a.tagline, href: `/${slug}`, hex: a.accent.toUpperCase(), sw: a.accent, slug });
+    items.push({ label: a.name, sub: a.tagline, href: `/${slug}/`, hex: a.accent.toUpperCase(), sw: a.accent, slug });
     (
       [
         ['personvern', 'Personvern'],
@@ -275,7 +275,7 @@ function startPalette() {
       items.push({
         label: `${a.name} · ${lab}`,
         sub: lab,
-        href: `/${slug}/${id}`,
+        href: `/${slug}/${id}/`,
         hex: a.accent.toUpperCase(),
         sw: a.accent,
         slug,

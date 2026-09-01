@@ -39,6 +39,11 @@ const app = getApp('tenkt');
         <p><strong>Marathon.</strong> One attempt per day, one puzzle at a time, with a countdown running. The run lasts until the timer does. It has its own ranking alongside the daily one.</p>
         <p class="muted">Traces are the in-game currency. They are earned by playing, and spent on extra hints, undo, a streak freeze or new themes and symbols. You can buy traces too if you want, but nothing in the app requires it.</p>
       </Chapter>
+      <Chapter num="04" label="Price and privacy" title={`Free to play, <em>traces</em> if you want them.`}>
+        <p>{app.name} is free. Traces are earned by playing and can be bought if you want more, but nothing in the app requires it. Purchases and unlocked items are mirrored to your own iCloud so they survive a change of device.</p>
+        <p>Puzzles are solved locally, and we run neither servers nor analytics. The leaderboard uses an anonymous iCloud identifier, never a name or an email.</p>
+        <p class="muted">Read the full <a class="tx-link" href="/en/tenkt/personvern/">privacy policy</a>.</p>
+      </Chapter>
       <PrevNextApp slug={app.slug} />
     </div>
   </div>

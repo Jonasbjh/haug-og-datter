@@ -7,7 +7,7 @@
  * Sweep-animasjonen ved klikk håndteres av main.ts via
  * `.atelier__phone` i sweep-link-interceptoren.
  */
-import { visibleApps, getTagline } from '../data/apps';
+import { visibleApps, getTagline, iconSmall } from '../data/apps';
 import { resolveLocale, t, localizedPath } from '../i18n/translations';
 
 const locale = resolveLocale(Astro.currentLocale);
@@ -44,7 +44,6 @@ const fanMid = (fanApps.length - 1) / 2;
 <section id="atelieret" class="atelier reveal" aria-label="Apper">
   <div
     class="atelier__stage"
-    role="list"
     data-default-num="01"
     data-default-name={fanApps[0]?.name ?? ''}
   >
@@ -56,8 +55,7 @@ const fanMid = (fanApps.length - 1) / 2;
       return (
         <a
           class="atelier__phone"
-          href={localizedPath(locale, `/${app.slug}`)}
-          role="listitem"
+          href={localizedPath(locale, `/${app.slug}/`)}
           data-idx={i}
           data-num={num}
           data-name={app.name}
@@ -68,7 +66,7 @@ const fanMid = (fanApps.length - 1) / 2;
           <div class="atelier__screen">
             <div class="atelier__icon">
               <img
-                src={app.iconPath}
+                src={iconSmall(app)}
                 alt=""
                 width="72"
                 height="72"

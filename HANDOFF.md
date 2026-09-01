@@ -1,3 +1,8 @@
+> **HISTORISK DOKUMENT (sep 2026).** Dette var handoff-pakken siden ble
+> bygget fra i mai 2026. Designet, paletten, antall apper og deploy-flyten
+> har endret seg siden. `preview.html` er ikke lenger fasit for noe. Les
+> `CLAUDE.md` i denne mappa for dagens arkitektur.
+
 # Handoff: haugogdatter.no
 
 Design og prosjektoppsett for **haugogdatter.no** — et lite iOS-studio fra Drammen. Hub-side + 5 apper × 4 undersider = 21 sider totalt.

@@ -1,9 +1,9 @@
 import { resolveLocale } from '../i18n/translations';
 /**
- * Sentral app-konfig. preview.html er fasiten — denne filen følger
- * den. Hvis du legger til en ny app: legg til en oppføring her, en
- * glyph i Glyph.astro, et ikon i public/icons/<slug>.png, og fire
- * sider under src/pages/<slug>/.
+ * Sentral app-konfig, én kilde for meny, vifte, palett, tastatur og
+ * JSON-LD. Hvis du legger til en ny app: legg til en oppføring her, et
+ * ikon i public/icons/<slug>.png (kjør scripts/lag-varianter.mjs og
+ * scripts/lag-og-kort.mjs etterpå), og fire sider under src/pages/<slug>/.
  *
  * App Store-URL-er:
  *   Når en app er live, bytt ut search-URL-en med den kanoniske app-
@@ -14,17 +14,6 @@ import { resolveLocale } from '../i18n/translations';
  *   App Store-søk så lenken funker dag én og auto-løser seg når
  *   appen publiseres.
  */
-export type GlyphKind =
-  | 'circles'   // bumle-bjorn
-  | 'grid'      // plantekn
-  | 'dots'      // tenkt
-  | 'lines'     // kvitteringsvakt
-  | 'script'    // inklings-journal
-  | 'rings'     // naboskap
-  | 'cabin'     // hytteliv
-  | 'cairn'     // stoneward
-  | 'orb';      // lun
-
 export interface AppDef {
   slug: string;
   name: string;
@@ -37,8 +26,6 @@ export interface AppDef {
   iconPath: string;
   /** Brand-accent. Brukes som --accent på theme-root og i swatcher. */
   accent: string;
-  /** SVG-glyph som ligger som dempet vannmerke bak app-hero. */
-  glyph: GlyphKind;
   /** applicationCategory i JSON-LD (SoftwareApplication). Bruk verdiene
    *  Google lister for rich results, f.eks. GameApplication,
    *  HealthApplication, EducationalApplication. */
@@ -61,7 +48,6 @@ export const apps: AppDef[] = [
     appStoreUrl: 'https://apps.apple.com/no/app/bumle-bjorn/id6761500591',
     iconPath: '/icons/bumle-bjorn.png?v=2',
     accent: '#A85436',
-    glyph: 'circles',
     schemaCategory: 'EducationalApplication',
   },
   {
@@ -74,7 +60,6 @@ export const apps: AppDef[] = [
     appStoreUrl: 'https://apps.apple.com/no/app/naboskap/id6768093048',
     iconPath: '/icons/naboskap.png?v=2',
     accent: '#4A6B58',
-    glyph: 'rings',
     schemaCategory: 'LifestyleApplication',
   },
   {
@@ -92,7 +77,6 @@ export const apps: AppDef[] = [
        deployen var ute, så Cloudflare cachet det gamle ikonet på nøkkelen. */
     iconPath: '/icons/plantekn.png?v=4',
     accent: '#2C4A3A',
-    glyph: 'grid',
     schemaCategory: 'DesignApplication',
   },
   {
@@ -107,20 +91,18 @@ export const apps: AppDef[] = [
        Cloudflares 24t-cache på /icons/* (samme grep som stoneward/hyttepermen). */
     iconPath: '/icons/tenkt.png?v=4',
     accent: '#8B6F47',
-    glyph: 'dots',
     schemaCategory: 'GameApplication',
   },
   {
     slug: 'kvitteringsvakt',
     name: 'Kvitteringsvakt',
     tagline: {
-      no: 'Kvittering- og garantitracker for det norske markedet.',
-      en: 'Receipt and warranty tracker for the Norwegian market.',
+      no: 'Kvitteringer og garantier, samlet.',
+      en: 'Receipts and warranties, in one place.',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/kvitteringsvakt/id6761110905',
     iconPath: '/icons/kvitteringsvakt.png?v=2',
     accent: '#7A3A22',
-    glyph: 'lines',
     schemaCategory: 'FinanceApplication',
   },
   {
@@ -133,7 +115,6 @@ export const apps: AppDef[] = [
     appStoreUrl: 'https://apps.apple.com/no/app/inklings-journal/id6760267915',
     iconPath: '/icons/inklings-journal.png?v=2',
     accent: '#1F3528',
-    glyph: 'script',
     schemaCategory: 'LifestyleApplication',
   },
   {
@@ -148,7 +129,6 @@ export const apps: AppDef[] = [
        24t-cache på /icons/*. */
     iconPath: '/icons/hyttepermen.png?v=4',
     accent: '#C97B5A',
-    glyph: 'cabin',
     schemaCategory: 'LifestyleApplication',
   },
   {
@@ -162,7 +142,6 @@ export const apps: AppDef[] = [
     appStoreUrl: 'https://apps.apple.com/no/search?term=Stoneward',
     iconPath: '/icons/stoneward.png?v=3',
     accent: '#4A5D75',
-    glyph: 'cairn',
     schemaCategory: 'GameApplication',
   },
   {
@@ -175,7 +154,6 @@ export const apps: AppDef[] = [
     appStoreUrl: 'https://apps.apple.com/no/app/lun-migraine-diary/id6781422332',
     iconPath: '/icons/lun.png?v=2',
     accent: '#474C78',
-    glyph: 'orb',
     schemaCategory: 'HealthApplication',
   },
 ];
@@ -214,6 +192,14 @@ export function siblings(slug: string): { prev: AppDef; next: AppDef } {
 
 export function indexOf(slug: string): number {
   return visibleApps.findIndex((a) => a.slug === slug);
+}
+
+/** Liten ikonvariant (144 px WebP) for 72 px-bokser i vifta og rail-en.
+ *  Genereres av scripts/lag-varianter.mjs fra PNG-en i iconPath. Nytt
+ *  filnavn ved hver kjøring er ikke nødvendig: bump v-en her hvis
+ *  ikonet byttes. */
+export function iconSmall(app: AppDef): string {
+  return app.iconPath.split('?')[0].replace(/\.png$/, '-144.webp');
 }
 
 /** Numerisk App Store-id fra appStoreUrl, eller null for apper som

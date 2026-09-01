@@ -4,6 +4,8 @@
    først, så portes hit.
    ======================================================================== */
 
+@import './fonts.css';
+
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html, body, h1, h2, h3, h4, p, ul, ol, figure, blockquote, dl, dt, dd { margin: 0; padding: 0; }
@@ -60,7 +62,8 @@ body {
   padding-top: 56px;
 }
 @media (max-width: 720px) {
-  body { padding-top: 44px; }
+  /* Menypillen er ~40 px høy på mobil, pluss 8 px topp og luft under. */
+  body { padding-top: 56px; }
 }
 
 /* Fin støvkornet tekstur — meget subtil */
@@ -152,7 +155,7 @@ body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in okl
 }
 
 /* Hero-glyph — stor SVG-mark bak app-tittel */
-.app-hero { position: relative; }
+
 .app-hero__l, .app-hero__r { position: relative; z-index: 2; }
 .app-hero__glyph {
   position: absolute;
@@ -361,7 +364,10 @@ body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in okl
 }
 .menubar a:hover { background: rgba(240,244,236,0.08); }
 .menubar a[aria-current="page"] {
-  background: var(--menu-accent, var(--accent));
+  /* Aksenten mørknes 35 % mot ink: de lyseste appfargene (Tenkt-gull,
+     Hyttepermen-terrakotta) ga under 4.5:1 mot den lyse teksten. Med
+     mix-en passerer alle ni, og fargen er fortsatt gjenkjennelig. */
+  background: color-mix(in srgb, var(--menu-accent, var(--accent)) 65%, #14181A);
   color: var(--paper-warm);
 }
 /* Språkvelger — integrert i menubar, men visuelt avgrenset
@@ -385,16 +391,17 @@ body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in okl
 @media (max-width: 720px) {
   .menubar {
     top: 8px;
-    font-size: 9px;
+    font-size: 10px;
     padding: 4px 4px;
-    /* Fade-maske på høyre side for å antyde at menyen er scrollbar
-       når ikke alt får plass. Forsvinner naturlig når man har scrollet
-       til siste element (EN) er nesten i midten. */
-    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 calc(100% - 22px), transparent 100%);
-    mask-image: linear-gradient(to right, #000 0%, #000 calc(100% - 22px), transparent 100%);
+    /* Fade-masken settes av har-mer-*-klassene (se over), ikke statisk,
+       så siste element ikke står nedtonet når man har scrollet dit. */
   }
-  .menubar a { padding: 4px 7px; letter-spacing: 0.05em; }
-  .menubar .lang-switch { padding: 4px 6px; margin-left: 2px; }
+  /* 44 px trykkflate (Apple HIG) uten at pillen blir visuelt tung:
+     synlig padding 8 px, og et usynlig ::before utvider treffområdet
+     vertikalt. Pseudo-elementet er en del av lenkens hit-testing. */
+  .menubar a { position: relative; padding: 8px 9px; letter-spacing: 0.05em; }
+  .menubar a::before { content: ""; position: absolute; inset: -8px 0; }
+  .menubar .lang-switch { padding: 8px 8px; margin-left: 2px; }
 }
 
 /* ---------- Type ---------- */
@@ -859,7 +866,9 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
     height: calc(34vh + 280px);
   }
   .naturhero__segl { width: 112px; height: 112px; margin-bottom: 30px; }
-  .naturhero__display { font-size: clamp(48px, 15vw, 80px); }
+  /* 14vw (ikke 15) så «Haug & Datter» holder seg på én linje på 390 px
+     nå som Newsreader alltid rekker å laste før første tegning. */
+  .naturhero__display { font-size: clamp(46px, 14vw, 80px); }
   .naturhero__lede { font-size: 18px; margin-top: 22px; max-width: 30ch; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -869,8 +878,6 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   .vifte-taake__dott { animation: none; }
 }
 
-/* ---------- Verket ---------- */
-.verket { margin: 24px 0 96px; }
 .verket__head {
   display: flex; justify-content: space-between; align-items: baseline;
   padding-bottom: 14px;
@@ -1318,17 +1325,6 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
 .footer a { color: var(--ink-mute); }
 .footer a:hover { color: var(--accent); }
 
-/* ---------- App-side hero ---------- */
-.app-hero {
-  margin-bottom: 72px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 48px;
-  align-items: end;
-}
-@media (min-width: 720px) {
-  .app-hero { grid-template-columns: 1.4fr 1fr; gap: 64px; }
-}
 .app-hero__l h1 {
   font-family: 'Newsreader', Georgia, serif;
   font-weight: 400;
@@ -1404,47 +1400,11 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   .app-cta .badge:hover { transform: none; }
 }
 
-/* ---------- Skjermbilder ---------- */
-.shots-row { margin: 88px 0 96px; }
 .shots-row__head {
   display: flex; justify-content: space-between; align-items: baseline;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--line);
   margin-bottom: 28px;
-}
-.shots {
-  display: flex; gap: 18px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  margin: 0 -24px;
-  padding: 0 24px 12px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-.shots::-webkit-scrollbar { display: none; }
-.shots__item {
-  flex: 0 0 auto;
-  width: 208px;
-  aspect-ratio: 9 / 19.5;
-  background: var(--card);
-  border-radius: 32px;
-  position: relative;
-  box-shadow:
-    0 1px 0 rgba(248,251,245,0.65),
-    0 28px 56px -32px rgba(26,22,16,0.32),
-    inset 0 0 0 1px var(--line);
-  scroll-snap-align: start;
-  overflow: hidden;
-}
-.shots__item::before {
-  content: ""; position: absolute;
-  top: 12px; left: 50%; transform: translateX(-50%);
-  width: 88px; height: 22px;
-  background: var(--ink); opacity: 0.85;
-  border-radius: 14px;
-}
-@media (min-width: 720px) {
-  .shots { margin: 0; padding: 0 0 12px; flex-wrap: nowrap; overflow-x: auto; }
 }
 
 /* ---------- App-page grid (sticky rail + chapter flow) ---------- */
@@ -1862,12 +1822,6 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   width: 20px; height: 78px;
 }
 
-/* ---------- Gammel .sect (beholdt for bakoverkompatibilitet) ---------- */
-.sect {
-  margin-bottom: 112px;
-  max-width: none;
-  display: block;
-}
 .sect__head {
   display: flex;
   align-items: baseline;
@@ -1942,7 +1896,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
 }
 .sect__body h3:first-child { margin-top: 0; }
 @media (max-width: 720px) {
-  .sect { margin-bottom: 80px; }
+  
   .sect__head { padding-bottom: 18px; margin-bottom: 22px; gap: 12px; }
   .sect__display { font-size: clamp(28px, 9vw, 42px); margin-bottom: 20px; max-width: 18ch; }
   .sect__body p { font-size: 17px; }
@@ -1994,28 +1948,6 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   font-size: 15px;
   margin-top: 8px;
   max-width: 30ch;
-}
-
-/* ---------- App sub-nav ---------- */
-.app-nav {
-  margin: 64px 0 0;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
-  display: flex; gap: 24px;
-  flex-wrap: wrap;
-}
-.app-nav a {
-  font-size: 13.5px;
-  color: var(--ink-soft);
-}
-.app-nav a:hover { color: var(--accent); }
-.app-nav a[aria-current="page"] {
-  color: var(--accent);
-  background-image: linear-gradient(var(--accent), var(--accent));
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  background-size: 100% 1px;
-  padding-bottom: 2px;
 }
 
 /* ---------- Doc-sider ---------- */
@@ -2137,7 +2069,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   .hero .display { font-size: clamp(56px, 16vw, 88px); }
   .hero .lede { font-size: 19px; margin-top: 24px; max-width: 28ch; }
 
-  .verket { margin: 16px 0 64px; }
+  
   .verket__head { padding-bottom: 10px; margin-bottom: 0; }
   .verket__head .l, .verket__head .r { font-size: 9.5px; letter-spacing: 0.18em; }
   .verket__row {
@@ -2159,7 +2091,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
 
   .footer { flex-direction: column; gap: 10px; align-items: center; text-align: center; font-size: 11px; }
 
-  .app-hero { gap: 36px; margin-bottom: 56px; }
+  
   .app-hero__l h1 { font-size: clamp(38px, 11vw, 64px); line-height: 1; }
   .app-hero__l .tag { font-size: 18px; }
   .app-hero__r { justify-content: flex-start; }
@@ -2188,10 +2120,10 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
     object-fit: cover !important;
   }
 
-  .shots-row { margin: 56px 0 64px; }
+  
   .shots-row__head { padding-bottom: 10px; margin-bottom: 18px; }
-  .shots { gap: 12px; margin: 0 -18px; padding: 0 18px 12px; }
-  .shots__item { width: 70vw; max-width: 220px; min-width: 168px; }
+  
+  
 
   /* .sect mobile rules ligger nå i selve .sect-blokken over. */
 
@@ -2199,7 +2131,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   .siblings a + a { border-left: 0; border-top: 1px solid var(--line); }
   .siblings a.next { text-align: left; align-items: flex-start; }
 
-  .app-nav { gap: 16px 24px; }
+  
   .doc h1 { font-size: clamp(34px, 9vw, 48px); }
   .doc p { font-size: 17px; }
   .doc p.lede { font-size: 19px; }

@@ -31,7 +31,7 @@ export const translations = {
     nav: {
       hub: 'Hub',
       about: 'Om',
-      aboutPath: '/om',
+      aboutPath: '/om/',
       verksted: 'Verksted',
       verkstedFra: 'Fra verkstedet',
     },
@@ -48,7 +48,7 @@ export const translations = {
       pagesFor: 'Sider for denne appen',
       appStoreCta: 'LAST NED I',
       appStoreName: 'App Store',
-      appStoreAria: (name: string) => `Last ned ${name} i App Store`,
+      appStoreAria: (name: string) => `Last ned i App Store · ${name}`,
       inDevelopment: 'Under utvikling. Ikke i App Store ennå.',
     },
     topbar: {
@@ -80,7 +80,7 @@ export const translations = {
     nav: {
       hub: 'Hub',
       about: 'About',
-      aboutPath: '/en/about',
+      aboutPath: '/en/about/',
       verksted: 'Workshop',
       verkstedFra: 'From the workshop',
     },
@@ -97,7 +97,7 @@ export const translations = {
       pagesFor: 'Pages for this app',
       appStoreCta: 'Download on the',
       appStoreName: 'App Store',
-      appStoreAria: (name: string) => `Download ${name} on the App Store`,
+      appStoreAria: (name: string) => `Download on the App Store · ${name}`,
       inDevelopment: 'In development. Not on the App Store yet.',
     },
     topbar: {
@@ -130,7 +130,7 @@ export const translations = {
       hub: 'Hub',
       // Die Hub- und Über-Seiten gibt es nur auf Norwegisch und Englisch.
       about: 'Über uns',
-      aboutPath: '/en/about',
+      aboutPath: '/en/about/',
       verksted: 'Werkstatt',
       verkstedFra: 'Aus der Werkstatt',
     },
@@ -147,7 +147,7 @@ export const translations = {
       pagesFor: 'Seiten zu dieser App',
       appStoreCta: 'Laden im',
       appStoreName: 'App Store',
-      appStoreAria: (name: string) => `${name} im App Store laden`,
+      appStoreAria: (name: string) => `Laden im App Store · ${name}`,
       inDevelopment: 'In Entwicklung. Noch nicht im App Store.',
     },
     topbar: {
@@ -180,7 +180,7 @@ export const translations = {
       hub: 'ハブ',
       // ハブと運営者ページはノルウェー語と英語のみ。
       about: '運営者について',
-      aboutPath: '/en/about',
+      aboutPath: '/en/about/',
       verksted: '工房',
       verkstedFra: '工房より',
     },
@@ -197,7 +197,7 @@ export const translations = {
       pagesFor: 'このアプリのページ',
       appStoreCta: 'ダウンロード',
       appStoreName: 'App Store',
-      appStoreAria: (name: string) => `${name}をApp Storeでダウンロード`,
+      appStoreAria: (name: string) => `ダウンロード App Store · ${name}`,
       inDevelopment: '開発中。App Storeではまだ公開していません。',
     },
     topbar: {
@@ -242,8 +242,8 @@ export function t(locale: Locale | string | undefined) {
 /**
  * Fjern locale-prefikset fra en sti, slik at vi står igjen med den
  * kanoniske (norske) stien.
- *   '/ja/plantekn/support' → '/plantekn/support'
- *   '/en'                  → '/'
+ *   '/ja/plantekn/support/' → '/plantekn/support/'
+ *   '/en/'                  → '/'
  */
 export function stripLocale(pathname: string): string {
   for (const l of LOCALES) {
@@ -252,6 +252,14 @@ export function stripLocale(pathname: string): string {
     if (pathname.startsWith(`/${l}/`)) return pathname.slice(l.length + 1);
   }
   return pathname;
+}
+
+/* Om-siden har ulik slug per språk. Alle andre sider deler slug. */
+const ABOUT_PATHS: Partial<Record<Locale, string>> = { no: '/om/', en: '/en/about/' };
+
+function normaliser(path: string): string {
+  const clean = path.startsWith('/') ? path : `/${path}`;
+  return clean.endsWith('/') ? clean : `${clean}/`;
 }
 
 /** Hvilke språk finnes for denne stien? */
@@ -264,21 +272,30 @@ export function localesForPath(pathname: string): Locale[] {
 }
 
 /**
- * Bygg URL med riktig locale-prefiks.
- * - localizedPath('en', '/tenkt/personvern') → '/en/tenkt/personvern'
- * - localizedPath('no', '/tenkt/personvern') → '/tenkt/personvern'
+ * Bygg URL med riktig locale-prefiks. Alltid med avsluttende skråstrek,
+ * fordi det er den formen Cloudflare Pages serverer uten omdirigering
+ * (se trailingSlash i astro.config.mjs).
+ * - localizedPath('en', '/tenkt/personvern') → '/en/tenkt/personvern/'
+ * - localizedPath('no', '/tenkt/personvern') → '/tenkt/personvern/'
+ * - localizedPath('en', '/')                 → '/en/'
  *
  * Ber man om et språk som ikke finnes for stien — for eksempel tysk på
  * /tenkt — faller vi tilbake til engelsk framfor å lenke til en 404.
  */
 export function localizedPath(locale: Locale, path: string): string {
-  const clean = path.startsWith('/') ? path : `/${path}`;
+  const clean = normaliser(path);
   const target = localesForPath(clean).includes(locale) ? locale : 'en';
   if (target === 'no') return clean;
-  return clean === '/' ? `/${target}` : `/${target}${clean}`;
+  return `/${target}${clean}`;
 }
 
-/** Speil gjeldende URL over i et annet språk. Brukes av LanguageSwitcher. */
+/** Speil gjeldende URL over i et annet språk. Brukes av LanguageSwitcher
+ *  og hreflang. Om-siden spesialhåndteres fordi slug-en er ulik per
+ *  språk ('/om/' mot '/en/about/'). */
 export function switchLocalePath(pathname: string, target: Locale): string {
-  return localizedPath(target, stripLocale(pathname));
+  const base = normaliser(stripLocale(pathname));
+  if (base === '/om/' || base === '/about/') {
+    return ABOUT_PATHS[target] ?? ABOUT_PATHS.en!;
+  }
+  return localizedPath(target, base);
 }

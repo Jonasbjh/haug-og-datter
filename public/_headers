@@ -25,6 +25,10 @@
 /video/*
   Cache-Control: public, max-age=2592000, must-revalidate
 
+# Selvhostede fonter. Byttes aldri uten nytt filnavn.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
 # OG-kort (delingsbilder). En uke, samme v-bump-triks ved utskifting.
 /og/*
   Cache-Control: public, max-age=604800, must-revalidate

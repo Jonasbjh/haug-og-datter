@@ -16,11 +16,12 @@ const strings = t(locale);
 const current = Astro.url.pathname;
 
 function isActive(href: string): boolean {
-  if (href === '/' || href === '/en') {
+  if (href === '/' || href === '/en/') {
     return current === '/' || current === '' || current === '/en' || current === '/en/';
   }
-  // Match både /<slug> og /<slug>/personvern osv.
-  return current === href || current.startsWith(href + '/');
+  // href har alltid avsluttende skråstrek ('/tenkt/'), så prefix-match
+  // dekker både /tenkt/ og /tenkt/personvern/.
+  return current === href || current === href.slice(0, -1) || current.startsWith(href);
 }
 
 // Korte navn for menyen — fullt navn ville sprengt på smale skjermer.
@@ -52,8 +53,8 @@ const hubHref = localizedPath(locale, '/');
   })}
   <a href={strings.nav.aboutPath} aria-current={isActive(strings.nav.aboutPath) ? 'page' : undefined}>{strings.nav.about}</a>
   <a
-    href={localizedPath(locale, '/verkstedet')}
-    aria-current={isActive(localizedPath(locale, '/verkstedet')) ? 'page' : undefined}
+    href={localizedPath(locale, '/verkstedet/')}
+    aria-current={isActive(localizedPath(locale, '/verkstedet/')) ? 'page' : undefined}
   >{strings.nav.verksted}</a>
   <LanguageSwitcher />
 </nav>

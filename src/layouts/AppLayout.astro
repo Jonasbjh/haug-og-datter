@@ -25,7 +25,7 @@ const site = Astro.site ?? 'https://haugogdatter.no';
 const canonicalUrl = new URL(Astro.url.pathname, site).toString();
 /* Per-app OG-kort i appens aksentfarge. Genereres av
    scripts/lag-og-kort.mjs — kjør det på nytt hvis ikon/tagline endres. */
-const ogImage = new URL(`/og/${app.slug}.png`, site).toString();
+const ogImage = new URL(`/og/${app.slug}.png?v=2`, site).toString();
 const altLocales = localesForPath(Astro.url.pathname);
 const storeId = appStoreId(app);
 
@@ -68,12 +68,10 @@ const jsonLd = {
     ))}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;450;500;600&display=swap"
-    />
+    {/* Selvhostede fonter (src/styles/fonts.css via global.css). Preload av
+        de to latin-filene som tegner nesten all tekst over folden. */}
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/newsreader-normal-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-normal-latin.woff2" crossorigin />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Haug & Datter" />
     <meta property="og:locale" content={strings.ogLocale} />
@@ -92,6 +90,8 @@ const jsonLd = {
     {storeId && <meta name="apple-itunes-app" content={`app-id=${storeId}`} />}
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <title>{pageTitle}</title>
+    {/* Uten JavaScript får .reveal aldri is-in. Da skal alt bare vises. */}
+    <noscript><style>.reveal, .stagger > * { opacity: 1 !important; transform: none !important; }</style></noscript>
   </head>
   <body>
     <div class="sweep" aria-hidden="true"></div>

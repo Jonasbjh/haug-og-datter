@@ -4,7 +4,11 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://haugogdatter.no',
   output: 'static',
-  trailingSlash: 'never',
+  // 'always': Cloudflare Pages serverer /tenkt/ (mappe med index.html) og
+  // 308-omdirigerer /tenkt dit. Med 'never' pekte lenker, canonical og
+  // sitemap på adressen som omdirigerer. Nå stemmer alt med det som
+  // faktisk serveres. localizedPath() legger på skråstreken.
+  trailingSlash: 'always',
   build: {
     format: 'directory',
   },

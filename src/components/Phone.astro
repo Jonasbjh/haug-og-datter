@@ -6,6 +6,7 @@
  * homescreen-følelse, og en blurred dock nederst.
  */
 import type { AppDef } from '../data/apps';
+import { iconSmall } from '../data/apps';
 interface Props { app: AppDef }
 const { app } = Astro.props;
 const gridDots = ['','b1','','b2','b3','','b1','','','b2','b3','b1','b1','','b2',''];
@@ -13,7 +14,8 @@ const gridDots = ['','b1','','b2','b3','','b1','','','b2','b3','b1','b1','','b2'
 <div class="app-rail__phone">
   <div class="app-rail__screen">
     <div class="app-rail__hero">
-      <img src={app.iconPath} alt={`${app.name} ikon`} width="64" height="64" />
+      {/* Dette bildet er LCP-elementet på app-sidene, derfor høy prioritet. */}
+      <img src={iconSmall(app)} alt={`${app.name} ikon`} width="64" height="64" fetchpriority="high" decoding="async" />
     </div>
     <div class="app-rail__heroLabel">{app.name}</div>
     <div class="app-rail__grid" aria-hidden="true">

@@ -37,6 +37,11 @@ const app = getApp('kvitteringsvakt');
         <p><strong>Search and export.</strong> Find by store, date, category or free text. Export everything or one as a PDF for an insurance claim, tax return or sale.</p>
         <p><strong>Insurance register.</strong> Add insurance policies alongside the receipts, so you have the deductible and policy number in the same place.</p>
       </Chapter>
+      <Chapter num="04" label="Price and privacy" title={`Free, and <em>nobody sees your receipts</em>.`}>
+        <p>{app.name} is free, with no in-app purchases and no subscription.</p>
+        <p>Receipts are stored locally on the device and, if you choose, in your private iCloud. Text recognition when scanning happens on the phone with Apple's Vision. Nothing is sent to us, we have no servers.</p>
+        <p class="muted">Read the full <a class="tx-link" href="/en/kvitteringsvakt/personvern/">privacy policy</a>.</p>
+      </Chapter>
       <PrevNextApp slug={app.slug} />
     </div>
   </div>
