@@ -31,18 +31,22 @@ const strings = {
       Lenken står i body med vilje: Astro løfter ikke head fra komponenter. */}
   <link rel="preload" as="image" href="/video/hero-fjord-poster.webp" fetchpriority="high" />
   <div class="naturhero__media" aria-hidden="true">
-    {/* Ingen <source> i markup: scriptet under legger den til bare på brede
-        skjermer uten «spar data» og uten redusert bevegelse. Mobil får
-        plakaten alene og slipper 5,5 MB video. */}
+    {/* preload="none" og ingen autoplay: nettleseren henter ikke mp4-en før
+        scriptet under kaller play(), og det gjør den bare på brede skjermer
+        uten «spar data» og uten redusert bevegelse. Mobil får plakaten
+        alene og slipper 5,5 MB video. <source> må stå statisk i markup:
+        Safari viser verken video eller plakat hvis den legges til med
+        script og load() etterpå. */}
     <video
       data-naturhero-video
-      data-src="/video/hero-fjord.mp4"
       muted
       loop
       playsinline
       preload="none"
       poster="/video/hero-fjord-poster.webp"
-    ></video>
+    >
+      <source src="/video/hero-fjord.mp4" type="video/mp4" />
+    </video>
     <div class="naturhero__shade"></div>
     <div class="naturhero__korn"></div>
   </div>
@@ -80,14 +84,9 @@ const strings = {
     const sparData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
     const kanSpille = () => !mq.matches && !smal.matches && !sparData;
 
+    // play() på et preload="none"-element starter nedlastingen. Avvises
+    // den (Safari med autoavspilling av), blir plakaten stående.
     const start = () => {
-      if (!video.querySelector('source')) {
-        const s = document.createElement('source');
-        s.src = video.dataset.src ?? '';
-        s.type = 'video/mp4';
-        video.appendChild(s);
-        video.load();
-      }
       video.play().catch(() => {});
     };
 
