@@ -40,6 +40,9 @@ const alternates: { hreflang: string; path: string }[] =
   ] : base === '/om' || base === '/about' ? [
     { hreflang: 'nb-NO', path: '/om' },
     { hreflang: 'en', path: '/en/about' },
+  ] : base === '/verkstedet' ? [
+    { hreflang: 'nb-NO', path: '/verkstedet' },
+    { hreflang: 'en', path: '/en/verkstedet' },
   ] : [];
 
 /* JSON-LD: Organization. Kun på forsidene, ikke på om/404. */
@@ -63,6 +66,7 @@ const jsonLd = base === '/' ? {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     {alternates.map((a) => (

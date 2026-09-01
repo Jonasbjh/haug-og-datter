@@ -1,16 +1,15 @@
 ---
 /**
- * Verkstedet — korte, daterte notater fra byggingen av appene.
- * Innholdet ligger i src/content/verkstedet/ (én markdown-fil per
- * notat). Engelsk utgave: /en/verkstedet.
+ * The Workshop — engelsk utgave av /verkstedet. Viser notatene med
+ * lang: en fra samme content collection.
  */
-import HubLayout from '../layouts/HubLayout.astro';
-import Topbar from '../components/Topbar.astro';
-import Footer from '../components/Footer.astro';
+import HubLayout from '../../layouts/HubLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
-import { apps } from '../data/apps';
+import { apps } from '../../data/apps';
 
-const notater = (await getCollection('verkstedet', (n) => n.data.lang === 'no')).sort(
+const notater = (await getCollection('verkstedet', (n) => n.data.lang === 'en')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 const rendret = await Promise.all(
@@ -22,22 +21,22 @@ const rendret = await Promise.all(
     return { id: n.slug.split('/').pop(), data: n.data, Content, app };
   })
 );
-const datoFmt = new Intl.DateTimeFormat('nb-NO', {
+const datoFmt = new Intl.DateTimeFormat('en-GB', {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
 });
 ---
 <HubLayout
-  title="Verkstedet · Haug & Datter"
-  description="Korte notater fra byggingen av appene: valgene, feilene og det som ble kastet underveis."
+  title="The Workshop · Haug & Datter"
+  description="Short notes from building the apps: the choices, the mistakes, and what got thrown away along the way."
 >
   <Topbar variant="hub" />
 
   <section class="hero reveal">
-    <h1 class="display">Verkstedet</h1>
-    <p class="lede">Korte notater fra byggingen. Valgene, feilene og det som ble kastet underveis.</p>
-    <img class="hero__logo" src="/logo/haug-datter-skogen.svg?v=2" alt="Haug & Datter" width="300" height="300" />
+    <h1 class="display">The Workshop</h1>
+    <p class="lede">Short notes from the building. The choices, the mistakes, and what got thrown away along the way.</p>
+    <img class="hero__logo" src="/logo/haug-datter-skogen-en.svg" alt="Haug & Datter" width="300" height="300" />
   </section>
 
   <section class="notater">
@@ -46,7 +45,7 @@ const datoFmt = new Intl.DateTimeFormat('nb-NO', {
         <div class="notat__meta">
           <time datetime={data.date.toISOString().slice(0, 10)}>{datoFmt.format(data.date)}</time>
           {app && (
-            <a class="notat__app" href={`/${app.slug}`}>
+            <a class="notat__app" href={`/en/${app.slug}`}>
               <span class="notat__sw" aria-hidden="true"></span>
               {app.name}
             </a>
@@ -60,7 +59,7 @@ const datoFmt = new Intl.DateTimeFormat('nb-NO', {
     ))}
   </section>
 
-  <Footer label="Verkstedet · Haug & Datter" />
+  <Footer label="The Workshop · Haug & Datter" />
 </HubLayout>
 
 <style>

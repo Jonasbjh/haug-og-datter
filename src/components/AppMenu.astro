@@ -51,9 +51,9 @@ const hubHref = localizedPath(locale, '/');
     );
   })}
   <a href={strings.nav.aboutPath} aria-current={isActive(strings.nav.aboutPath) ? 'page' : undefined}>{strings.nav.about}</a>
-  {/* Verkstedet finnes kun på norsk, med vilje. */}
-  {locale === 'no' && (
-    <a href="/verkstedet" aria-current={isActive('/verkstedet') ? 'page' : undefined}>Verksted</a>
-  )}
+  <a
+    href={localizedPath(locale, '/verkstedet')}
+    aria-current={isActive(localizedPath(locale, '/verkstedet')) ? 'page' : undefined}
+  >{strings.nav.verksted}</a>
   <LanguageSwitcher />
 </nav>

@@ -1,19 +1,43 @@
 ---
 /**
- * PrevNextApp — to-kort-blokk nederst på app-sider, over sub-nav-en.
- * Looper sirkulært gjennom apps-rekkefølgen (siste app sin «neste»
- * peker tilbake til første). Klikk trigger accent-svep i den
- * destinasjons-appens farge via sweep-link-interceptor.
+ * PrevNextApp — sluttblokka på oversikt-sidene: App Store-knapp (så
+ * den som har lest seg gjennom slipper å scrolle tilbake til rail-en,
+ * spesielt på mobil), eventuell «Fra verkstedet»-lenke for appen, og
+ * forrige/neste-navigasjonen. Prev/next looper sirkulært gjennom
+ * apps-rekkefølgen; klikk trigger accent-svep i destinasjons-appens
+ * farge via sweep-link-interceptoren.
  */
-import { siblings, getTagline } from '../data/apps';
+import { siblings, getApp, getTagline } from '../data/apps';
 import { resolveLocale, t, localizedPath } from '../i18n/translations';
+import { getCollection } from 'astro:content';
+import AppStoreBadge from './AppStoreBadge.astro';
 
 interface Props { slug: string }
 const { slug } = Astro.props;
 const { prev, next } = siblings(slug);
+const app = getApp(slug);
 const locale = resolveLocale(Astro.currentLocale);
 const strings = t(locale);
+
+/* Nyeste verkstedsnotat for denne appen, i sidens språk (de/ja faller
+ * til engelsk, samme som verkstedet-ruta gjør). */
+const notatLang = locale === 'no' ? 'no' : 'en';
+const notat = (await getCollection('verkstedet', (n) => n.data.lang === notatLang && n.data.app === slug))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())[0];
+const notatHref = notat
+  ? `${localizedPath(locale, '/verkstedet')}#${notat.slug.split('/').pop()}`
+  : null;
 ---
+<div class="app-cta reveal">
+  <AppStoreBadge app={app} />
+  {notat && (
+    <a class="app-cta__notat" href={notatHref}>
+      <span class="app-cta__notat-label">{strings.nav.verkstedFra}</span>
+      <em>{notat.data.title}</em>
+    </a>
+  )}
+</div>
+
 <nav class="siblings reveal" aria-label={strings.prevNext.otherApps}>
   <a class="prev" href={localizedPath(locale, `/${prev.slug}`)} style={`--sib-accent:${prev.accent}`}>
     <span class="lab">

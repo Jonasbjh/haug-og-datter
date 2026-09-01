@@ -32,6 +32,8 @@ export const translations = {
       hub: 'Hub',
       about: 'Om',
       aboutPath: '/om',
+      verksted: 'Verksted',
+      verkstedFra: 'Fra verkstedet',
     },
     atelier: {
       eyebrow: 'Atelieret',
@@ -79,6 +81,8 @@ export const translations = {
       hub: 'Hub',
       about: 'About',
       aboutPath: '/en/about',
+      verksted: 'Workshop',
+      verkstedFra: 'From the workshop',
     },
     atelier: {
       eyebrow: 'The Studio',
@@ -127,6 +131,8 @@ export const translations = {
       // Die Hub- und Über-Seiten gibt es nur auf Norwegisch und Englisch.
       about: 'Über uns',
       aboutPath: '/en/about',
+      verksted: 'Werkstatt',
+      verkstedFra: 'Aus der Werkstatt',
     },
     atelier: {
       eyebrow: 'Das Atelier',
@@ -175,6 +181,8 @@ export const translations = {
       // ハブと運営者ページはノルウェー語と英語のみ。
       about: '運営者について',
       aboutPath: '/en/about',
+      verksted: '工房',
+      verkstedFra: '工房より',
     },
     atelier: {
       eyebrow: 'アトリエ',

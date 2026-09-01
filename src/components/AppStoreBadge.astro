@@ -1,0 +1,25 @@
+---
+/**
+ * AppStoreBadge — den tegnede App Store-knappen. Brukes i AppRail
+ * (venstrespalten) og i AppStoreCta-blokken nederst på oversikt-sidene.
+ * SVG-en bruker currentColor på bakplaten så CSS-en kan endre farge
+ * på hover/focus via .app-rail__cta-klassene.
+ */
+import type { AppDef } from '../data/apps';
+import { resolveLocale, t } from '../i18n/translations';
+
+interface Props { app: AppDef }
+const { app } = Astro.props;
+const locale = resolveLocale(Astro.currentLocale);
+const strings = t(locale);
+---
+<a class="app-rail__cta" href={app.appStoreUrl} target="_blank" rel="noopener" aria-label={strings.appRail.appStoreAria(app.name)}>
+  <svg class="app-rail__cta-badge" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 44" role="img" aria-hidden="true">
+    <rect width="144" height="44" rx="8" fill="currentColor"/>
+    <g fill="#fff" transform="translate(12 9)">
+      <path d="M11.4 2.95c.58-.7.97-1.67.86-2.65-.84.04-1.86.56-2.46 1.27-.54.62-1 1.61-.88 2.56.94.07 1.9-.48 2.48-1.18zm.85 1.36c-1.36-.08-2.52.77-3.17.77-.66 0-1.65-.73-2.73-.71-1.4.02-2.7.81-3.42 2.07-1.46 2.53-.37 6.27 1.04 8.32.69.99 1.51 2.11 2.59 2.07 1.04-.04 1.43-.67 2.69-.67s1.62.67 2.72.65c1.13-.02 1.83-1.01 2.52-2.01.79-1.15 1.12-2.27 1.13-2.32-.02-.01-2.17-.83-2.19-3.3-.02-2.06 1.69-3.05 1.76-3.1-.96-1.42-2.45-1.58-2.94-1.61z"/>
+    </g>
+    <text x="40" y="18" fill="#fff" font-family="-apple-system, Helvetica, Arial, sans-serif" font-size="8" letter-spacing="0.04em">{strings.appRail.appStoreCta}</text>
+    <text x="40" y="33" fill="#fff" font-family="-apple-system, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="-0.02em">{strings.appRail.appStoreName}</text>
+  </svg>
+</a>

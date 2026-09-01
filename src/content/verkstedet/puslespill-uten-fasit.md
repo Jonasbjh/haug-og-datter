@@ -4,8 +4,8 @@ date: 2026-08-12
 app: tenkt
 ---
 
-Hvert puslespill i Tenkt genereres lokalt på telefonen din, ut fra dagens dato. Det ingen ser, er hvor mange puslespill som aldri når fram.
+Hvert puslespill i Tenkt genereres lokalt på telefonen, ut fra dagens dato. Kravet er at et brett skal ha nøyaktig én løsning, og at den skal kunne finnes med logikk alene, uten gjetting.
 
-Regelen er enkel: et puslespill skal ha nøyaktig én løsning, og den skal kunne finnes med ren logikk, uten gjetting. Så generatoren lager et brett, og en løser prøver å knekke det. Finnes det to løsninger, kastes brettet. Krever det gjetting, kastes brettet. Generatoren prøver igjen til den har et brett som består.
+Generatoren lager derfor flere brett enn den publiserer. En løser sjekker hvert brett: har det to løsninger, forkastes det. Krever det gjetting, forkastes det. Generatoren prøver igjen til brettet består.
 
-Det er derfor du aldri skal havne i den situasjonen der du stirrer på to like gode muligheter og må tippe. Skjer det likevel, er det en feil, og jeg vil gjerne ha en e-post med dato og puslespilltype. Fasiten skal alltid være der, gjemt, men entydig.
+Finner du likevel et brett som må gjettes på, er det en feil. Send meg dato og puslespilltype, så retter jeg det.

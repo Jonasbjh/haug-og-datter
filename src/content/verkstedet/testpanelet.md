@@ -1,11 +1,11 @@
 ---
-title: 'Testpanelet'
+title: 'Testing av Bumle Bjørn'
 date: 2026-05-03
 app: bumle-bjorn
 ---
 
-Bumle Bjørn har ett testpanel, og hun bor her i huset. Før en oppdatering slippes får hun prøve den, og tilbakemeldingene er umiddelbare og nådeløse. Er noe kjedelig, legges telefonen bort uten kommentar. Er noe bra, kommer «en gang til, pappa!» før skjermen har rukket å bli ferdig.
+Bumle Bjørn testes av datteren min før hver oppdatering. Tilbakemeldingene er enkle å tolke: er noe kjedelig, legger hun bort telefonen. Er noe bra, vil hun spille en gang til.
 
-Det høres ut som en spøk, men det er den mest ærlige kvalitetssikringen jeg har. Voksne testere er høflige. De sier «interessant konsept» og «kanskje litt utydelig». Et barn sier ingenting og går sin vei, og da vet du alt du trenger å vite.
+Det er mer presist enn det høres ut som. Voksne testere er høflige og sier at ting er interessante. Barn er ærlige.
 
-Så når noe overlever testpanelet, tør jeg slippe det til andre barn også. Strengere port finnes ikke.
+Det som overlever her, slippes til andre barn.

@@ -1,0 +1,60 @@
+---
+/**
+ * VerkstedTeaser — én stille linje på forsiden, under vifta, med
+ * nyeste verkstedsnotat. Gir hub-en noe som endrer seg og gir
+ * Verkstedet trafikk. Rendrer ingenting hvis det ikke finnes notater
+ * i sidens språk.
+ */
+import { getCollection } from 'astro:content';
+import { resolveLocale, t, localizedPath } from '../i18n/translations';
+
+const locale = resolveLocale(Astro.currentLocale);
+const strings = t(locale);
+const notatLang = locale === 'no' ? 'no' : 'en';
+const notat = (await getCollection('verkstedet', (n) => n.data.lang === notatLang))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())[0];
+const datoFmt = new Intl.DateTimeFormat(locale === 'no' ? 'nb-NO' : 'en-GB', {
+  day: 'numeric',
+  month: 'long',
+});
+---
+{notat && (
+  <div class="verksted-teaser reveal">
+    <a href={`${localizedPath(locale, '/verkstedet')}#${notat.slug.split('/').pop()}`}>
+      <span class="verksted-teaser__label">{strings.nav.verkstedFra} · {datoFmt.format(notat.data.date)}</span>
+      <em>{notat.data.title}</em>
+    </a>
+  </div>
+)}
+
+<style>
+  .verksted-teaser {
+    display: flex;
+    justify-content: center;
+    margin: 8px 20px 48px;
+  }
+  .verksted-teaser a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    text-decoration: none;
+    text-align: center;
+  }
+  .verksted-teaser__label {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .verksted-teaser em {
+    font-family: 'Newsreader', Georgia, serif;
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.3;
+    color: var(--ink);
+    transition: color 180ms var(--ease);
+  }
+  .verksted-teaser a:hover em { color: var(--accent); }
+</style>
