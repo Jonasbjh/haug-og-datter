@@ -21,3 +21,7 @@ pnpm-debug.log*
 # editor
 .vscode/
 .idea/
+
+# Originale bilder i full størrelse (før webp-konvertering).
+# Ligger kun lokalt — de optimaliserte versjonene i public/ er de som deployes.
+originals/

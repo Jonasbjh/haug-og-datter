@@ -17,7 +17,10 @@ img, svg { display: block; max-width: 100%; height: auto; }
   --card: #EFF1EB;
   --ink: #14181A;
   --ink-soft: #4A5054;
-  --ink-mute: #7B8186;
+  /* Mørknet fra #7B8186: den ga 3.1:1 mot --paper, under WCAG-kravet
+     på 4.5:1 for brødtekst. #61676B gir 4.5:1 og beholder samme kjølige
+     gråtone. --ink-faint er kun dekorativ (streker), ikke tekst. */
+  --ink-mute: #61676B;
   --ink-faint: #A9AEB1;
   --line: rgba(20, 24, 26, 0.12);
   --line-strong: rgba(20, 24, 26, 0.22);
@@ -221,7 +224,7 @@ body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in okl
   border-bottom: 1px solid var(--line);
 }
 .palette__sigil {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--ink-mute);
   padding: 0 18px;
@@ -277,7 +280,7 @@ body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in okl
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .palette__hex {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 10.5px; color: var(--ink-mute);
   letter-spacing: 0.06em; flex: 0 0 auto;
 }
@@ -285,7 +288,7 @@ body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in okl
   display: flex; gap: 18px; align-items: center;
   padding: 10px 16px;
   border-top: 1px solid var(--line);
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--ink-mute);
 }
@@ -314,7 +317,7 @@ body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in okl
   color: var(--paper-warm);
   padding: 6px 8px;
   border-radius: 999px;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 10.5px;
   display: flex; gap: 2px; align-items: center;
   box-shadow: 0 10px 32px rgba(0,0,0,0.18);
@@ -326,6 +329,21 @@ body:has(.theme-root[data-app="inklings-journal"]){ background: color-mix(in okl
   scrollbar-width: none;
 }
 .menubar::-webkit-scrollbar { display: none; }
+/* Scrollehint: fade i kanten(e) med mer innhold. Klassene settes av
+   startMenuFade() i main.ts ut fra scrollposisjon, så siste element
+   aldri står permanent nedtonet. */
+.menubar.har-mer-hoyre {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent);
+}
+.menubar.har-mer-venstre {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 44px);
+  mask-image: linear-gradient(to right, transparent, #000 44px);
+}
+.menubar.har-mer-venstre.har-mer-hoyre {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 44px, #000 calc(100% - 44px), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 44px, #000 calc(100% - 44px), transparent);
+}
 .menubar a {
   color: var(--paper-warm);
   padding: 4px 11px;
@@ -390,12 +408,12 @@ p { color: var(--ink-soft); }
   letter-spacing: -0.008em;
 }
 .mono {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-feature-settings: 'tnum';
   font-variant-numeric: tabular-nums;
 }
 .micro {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -460,7 +478,7 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
   color: var(--ink);
 }
 .topbar .mark .meta {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 10.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -477,7 +495,7 @@ a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; border-
 .topbar .nav a:hover { color: var(--accent); }
 .topbar .meter {
   display: inline-flex; align-items: center; gap: 14px;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 10.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -885,7 +903,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
 .verket__row:hover .verket__arrow { color: var(--paper-warm); transform: translateX(6px); }
 
 .verket__num {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-feature-settings: 'tnum';
   font-size: 12px;
   color: var(--ink-mute);
@@ -906,7 +924,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   line-height: 1.4;
 }
 .verket__meta {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 11px;
   color: var(--ink-mute);
   letter-spacing: 0.04em;
@@ -944,7 +962,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   text-transform: uppercase;
 }
 .atelier__eyebrow {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 11px;
   letter-spacing: 0.18em;
   color: var(--ink-mute);
@@ -1158,7 +1176,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   gap: 18px;
 }
 .atelier__counter {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-feature-settings: 'tnum';
   font-size: 12px;
   letter-spacing: 0.18em;
@@ -1240,7 +1258,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
 .block h2 {
   font-size: 14px;
   font-weight: 400;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-mute);
@@ -1271,7 +1289,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   color: var(--ink-mute);
 }
 .footer .l, .footer .r {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -1310,7 +1328,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   align-items: center;
   gap: 10px;
   margin-bottom: 28px;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 11px;
   letter-spacing: 0.14em;
   color: var(--ink-mute);
@@ -1578,7 +1596,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 11px;
   letter-spacing: 0.14em;
   color: var(--ink-mute);
@@ -1654,7 +1672,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
 .app-rail__sub a::before {
   content: "—";
   color: var(--ink-faint);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 11px;
   transition: color 220ms var(--ease);
 }
@@ -1681,7 +1699,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   max-width: 640px;
 }
 .chapter__num {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1798,7 +1816,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   border-bottom: 1px solid var(--line);
 }
 .sect__head h2 {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -1807,7 +1825,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   margin: 0;
 }
 .sect__num {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-feature-settings: 'tnum';
   font-size: 11px;
   font-weight: 500;
@@ -1891,7 +1909,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
 .siblings a:hover { background: rgba(26,22,16,0.03); }
 .siblings a.next { text-align: right; align-items: flex-end; }
 .siblings .lab {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--ink-mute);
   margin-bottom: 16px;
@@ -1949,7 +1967,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   margin-bottom: 24px;
 }
 .doc .doc-meta {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--ink-mute);
   margin-bottom: 36px;
@@ -1963,7 +1981,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
   margin-bottom: 56px;
 }
 .doc h2 {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -2001,7 +2019,7 @@ body:has(.theme-root--immersiv) { padding-top: 0; }
 .kbd-hint {
   position: fixed;
   bottom: 18px; left: 50%; transform: translate(-50%, 16px);
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--ink-mute);
   background: var(--paper-warm);

@@ -17,6 +17,18 @@
 /icons/*
   Cache-Control: public, max-age=86400, must-revalidate
 
+# Skjermbilder og hero-video endres sjelden. 30 dager i cache; bytter du
+# ut en fil, bruk samme v-bump-triks som ikonene (?v=2 på referansen).
+/screenshots/*
+  Cache-Control: public, max-age=2592000, must-revalidate
+
+/video/*
+  Cache-Control: public, max-age=2592000, must-revalidate
+
+# OG-kort (delingsbilder). En uke, samme v-bump-triks ved utskifting.
+/og/*
+  Cache-Control: public, max-age=604800, must-revalidate
+
 # Apple App Site Association — universal links for Hyttepermen-appen.
 # Apple krever application/json på fila (som ikke har filendelse) og
 # at den serveres uten redirect. Test etter deploy:

@@ -1,0 +1,127 @@
+---
+/**
+ * Verkstedet — korte, daterte notater fra byggingen av appene.
+ * Innholdet ligger i src/content/verkstedet/ (én markdown-fil per
+ * notat). Norsk only, med vilje: notatene er skrevet for de som
+ * faktisk følger med, og de leser norsk.
+ */
+import HubLayout from '../layouts/HubLayout.astro';
+import Topbar from '../components/Topbar.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import { apps } from '../data/apps';
+
+const notater = (await getCollection('verkstedet')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const rendret = await Promise.all(
+  notater.map(async (n) => {
+    const { Content } = await n.render();
+    const app = apps.find((a) => a.slug === n.data.app);
+    return { data: n.data, Content, app };
+  })
+);
+const datoFmt = new Intl.DateTimeFormat('nb-NO', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+<HubLayout
+  title="Verkstedet · Haug & Datter"
+  description="Korte notater fra byggingen av appene: valgene, feilene og det som ble kastet underveis."
+>
+  <Topbar variant="hub" />
+
+  <section class="hero reveal">
+    <h1 class="display">Verkstedet</h1>
+    <p class="lede">Korte notater fra byggingen. Valgene, feilene og det som ble kastet underveis.</p>
+    <img class="hero__logo" src="/logo/haug-datter-skogen.svg?v=2" alt="Haug & Datter" width="300" height="300" />
+  </section>
+
+  <section class="notater">
+    {rendret.map(({ data, Content, app }) => (
+      <article class="notat reveal" style={app ? `--accent:${app.accent}` : undefined}>
+        <div class="notat__meta">
+          <time datetime={data.date.toISOString().slice(0, 10)}>{datoFmt.format(data.date)}</time>
+          {app && (
+            <a class="notat__app" href={`/${app.slug}`}>
+              <span class="notat__sw" aria-hidden="true"></span>
+              {app.name}
+            </a>
+          )}
+        </div>
+        <h2 class="notat__tittel">{data.title}</h2>
+        <div class="notat__tekst">
+          <Content />
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <Footer label="Verkstedet · Haug & Datter" />
+</HubLayout>
+
+<style>
+  .notater {
+    max-width: 640px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 88px;
+  }
+  .notat__meta {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .notat__meta::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+    max-width: 80px;
+  }
+  .notat__app {
+    color: inherit;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .notat__app:hover { color: var(--accent); }
+  .notat__sw {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+  .notat__tittel {
+    margin-top: 16px;
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(30px, 4.4vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+  }
+  .notat__tekst {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .notat__tekst :global(p) {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink);
+    letter-spacing: -0.003em;
+  }
+</style>

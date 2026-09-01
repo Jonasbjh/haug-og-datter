@@ -2,6 +2,7 @@
 import HubLayout from '../layouts/HubLayout.astro';
 import Topbar from '../components/Topbar.astro';
 import Footer from '../components/Footer.astro';
+import { visibleApps } from '../data/apps';
 ---
 <HubLayout
   title="Om · Haug & Datter"
@@ -18,7 +19,21 @@ import Footer from '../components/Footer.astro';
   <section class="blocks reveal">
     <div class="block">
       <h2>Om</h2>
-      <p>Haug & Datter drives av Jonas. På kveldstid lager han apper og ting han liker. Datteren er to og et halvt og har, som barn i den alderen, sterke meninger om absolutt alt. Hun tester barneappene før de slippes, og «en gang til, pappa!» er den beste tilbakemeldingen jeg kan få.</p>
+      <p>Haug & Datter er meg, Jonas. På kveldstid, når huset har roet seg, lager jeg apper jeg selv vil bruke. Datteren tester barneappene før de slippes, og «en gang til, pappa!» er den beste tilbakemeldingen jeg kan få.</p>
+    </div>
+
+    <div class="block">
+      <h2>Verket</h2>
+      <p class="verkliste-intro">{visibleApps.length} apper så langt, i den rekkefølgen de ble til.</p>
+      <ol class="verkliste">
+        {visibleApps.map((app, i) => (
+          <li style={`--accent:${app.accent}`}>
+            <span class="verkliste__num">{String(i + 1).padStart(2, '0')}</span>
+            <a class="verkliste__navn" href={`/${app.slug}`}>{app.name}</a>
+            <span class="verkliste__tag">{app.tagline.no}</span>
+          </li>
+        ))}
+      </ol>
     </div>
 
     <div class="block">
@@ -31,3 +46,51 @@ import Footer from '../components/Footer.astro';
 
   <Footer label="Haug & Datter · Drammen" />
 </HubLayout>
+
+<style>
+  .verkliste-intro {
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .verkliste {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    width: 100%;
+    max-width: 52ch;
+    text-align: left;
+  }
+  .verkliste li {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .verkliste li:last-child { border-bottom: none; }
+  .verkliste__num {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--ink-mute);
+    flex: none;
+  }
+  .verkliste__navn {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 19px;
+    color: var(--ink);
+    text-decoration: none;
+    flex: none;
+  }
+  .verkliste__navn:hover { color: var(--accent); }
+  .verkliste__tag {
+    font-size: 13px;
+    color: var(--ink-mute);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  @media (max-width: 560px) {
+    .verkliste__tag { display: none; }
+  }
+</style>

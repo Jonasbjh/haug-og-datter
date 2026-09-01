@@ -2,6 +2,7 @@
 import HubLayout from '../../layouts/HubLayout.astro';
 import Topbar from '../../components/Topbar.astro';
 import Footer from '../../components/Footer.astro';
+import { visibleApps } from '../../data/apps';
 ---
 <HubLayout
   title="About · Haug & Datter"
@@ -18,7 +19,21 @@ import Footer from '../../components/Footer.astro';
   <section class="blocks reveal">
     <div class="block">
       <h2>About</h2>
-      <p>Haug & Datter is run by Jonas. In the evenings he builds apps and things he likes. His daughter is two and a half and, like kids that age, has strong opinions about absolutely everything. She tests the kids' apps before they ship, and «one more time, dad!» is the best feedback I can get.</p>
+      <p>Haug & Datter is me, Jonas. In the evenings, once the house has gone quiet, I build apps I want to use myself. My daughter tests the kids' apps before they ship, and "one more time, dad!" is the best feedback I can get.</p>
+    </div>
+
+    <div class="block">
+      <h2>The work</h2>
+      <p class="verkliste-intro">{visibleApps.length} apps so far, in the order they were made.</p>
+      <ol class="verkliste">
+        {visibleApps.map((app, i) => (
+          <li style={`--accent:${app.accent}`}>
+            <span class="verkliste__num">{String(i + 1).padStart(2, '0')}</span>
+            <a class="verkliste__navn" href={`/en/${app.slug}`}>{app.name}</a>
+            <span class="verkliste__tag">{app.tagline.en}</span>
+          </li>
+        ))}
+      </ol>
     </div>
 
     <div class="block">
@@ -31,3 +46,51 @@ import Footer from '../../components/Footer.astro';
 
   <Footer label="Haug & Datter · Drammen" />
 </HubLayout>
+
+<style>
+  .verkliste-intro {
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .verkliste {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    width: 100%;
+    max-width: 52ch;
+    text-align: left;
+  }
+  .verkliste li {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .verkliste li:last-child { border-bottom: none; }
+  .verkliste__num {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--ink-mute);
+    flex: none;
+  }
+  .verkliste__navn {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 19px;
+    color: var(--ink);
+    text-decoration: none;
+    flex: none;
+  }
+  .verkliste__navn:hover { color: var(--accent); }
+  .verkliste__tag {
+    font-size: 13px;
+    color: var(--ink-mute);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  @media (max-width: 560px) {
+    .verkliste__tag { display: none; }
+  }
+</style>

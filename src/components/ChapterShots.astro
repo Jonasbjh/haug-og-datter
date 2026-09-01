@@ -20,7 +20,16 @@ const cls = variant === 'landscape' ? 'chapter__shots chapter__shots--landscape'
 <div class={cls} role="list">
   {items.map((s) => (
     <figure class="shot" role="listitem">
-      {s.src && <img src={s.src} alt={s.alt ?? ''} />}
+      {s.src && (
+        <img
+          src={s.src}
+          alt={s.alt ?? ''}
+          loading="lazy"
+          decoding="async"
+          width={variant === 'landscape' ? 1280 : 640}
+          height={variant === 'landscape' ? 591 : 1387}
+        />
+      )}
     </figure>
   ))}
 </div>

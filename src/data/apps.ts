@@ -39,6 +39,10 @@ export interface AppDef {
   accent: string;
   /** SVG-glyph som ligger som dempet vannmerke bak app-hero. */
   glyph: GlyphKind;
+  /** applicationCategory i JSON-LD (SoftwareApplication). Bruk verdiene
+   *  Google lister for rich results, f.eks. GameApplication,
+   *  HealthApplication, EducationalApplication. */
+  schemaCategory: string;
   /** Hvis true: appen vises ikke i hub-vifta, top-meny eller
    *  forrige/neste-navigasjon, men sidene fungerer fortsatt på
    *  `/<slug>` for direkte lenking. Brukes for apper som ikke er
@@ -55,9 +59,10 @@ export const apps: AppDef[] = [
       en: 'Educational app for kids ages 1 to 8.',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/bumle-bjorn/id6761500591',
-    iconPath: '/icons/bumle-bjorn.png',
+    iconPath: '/icons/bumle-bjorn.png?v=2',
     accent: '#A85436',
     glyph: 'circles',
+    schemaCategory: 'EducationalApplication',
   },
   {
     slug: 'naboskap',
@@ -67,9 +72,10 @@ export const apps: AppDef[] = [
       en: 'For lending groups you build yourself.',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/naboskap/id6768093048',
-    iconPath: '/icons/naboskap.png',
+    iconPath: '/icons/naboskap.png?v=2',
     accent: '#4A6B58',
     glyph: 'rings',
+    schemaCategory: 'LifestyleApplication',
   },
   {
     slug: 'plantekn',
@@ -81,12 +87,13 @@ export const apps: AppDef[] = [
       ja: '実寸で描ける、シンプルな間取りアプリ。',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/plantekn/id6760789999',
-    /* ?v=3: nytt appikon i v1.7.0 (aug 2026). Query-bump omgår Cloudflares
+    /* ?v=4: nedskalert ikon (sep 2026). Query-bump omgår Cloudflares
        24t-cache på /icons/*. v=2 ble brent: den URL-en ble hentet før
        deployen var ute, så Cloudflare cachet det gamle ikonet på nøkkelen. */
-    iconPath: '/icons/plantekn.png?v=3',
+    iconPath: '/icons/plantekn.png?v=4',
     accent: '#2C4A3A',
     glyph: 'grid',
+    schemaCategory: 'DesignApplication',
   },
   {
     slug: 'tenkt',
@@ -96,11 +103,12 @@ export const apps: AppDef[] = [
       en: 'Daily logic puzzles.',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/tenkt/id6766308807',
-    /* ?v=3: nytt blokk-ikon fra V1.6 (aug 2026). Query-bumpen omgår
+    /* ?v=4: nedskalert ikon (sep 2026). Query-bumpen omgår
        Cloudflares 24t-cache på /icons/* (samme grep som stoneward/hyttepermen). */
-    iconPath: '/icons/tenkt.png?v=3',
+    iconPath: '/icons/tenkt.png?v=4',
     accent: '#8B6F47',
     glyph: 'dots',
+    schemaCategory: 'GameApplication',
   },
   {
     slug: 'kvitteringsvakt',
@@ -110,21 +118,23 @@ export const apps: AppDef[] = [
       en: 'Receipt and warranty tracker for the Norwegian market.',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/kvitteringsvakt/id6761110905',
-    iconPath: '/icons/kvitteringsvakt.png',
+    iconPath: '/icons/kvitteringsvakt.png?v=2',
     accent: '#7A3A22',
     glyph: 'lines',
+    schemaCategory: 'FinanceApplication',
   },
   {
     slug: 'inklings-journal',
     name: 'Inklings Journal',
     tagline: {
-      no: 'En journalapp.',
-      en: 'A journal app.',
+      no: 'Et stille rom for dagens tanke.',
+      en: 'A quiet room for today’s thought.',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/inklings-journal/id6760267915',
-    iconPath: '/icons/inklings-journal.png',
+    iconPath: '/icons/inklings-journal.png?v=2',
     accent: '#1F3528',
     glyph: 'script',
+    schemaCategory: 'LifestyleApplication',
   },
   {
     slug: 'hyttepermen',
@@ -134,11 +144,12 @@ export const apps: AppDef[] = [
       en: 'For the cabin you share.',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/hyttepermen/id6769565395',
-    /* ?v=3: nytt «skog ved kveld»-ikon (hytte, gran og måne) juni 2026 —
-       query-bump omgår Cloudflares 24t-cache på /icons/*. */
-    iconPath: '/icons/hyttepermen.png?v=3',
+    /* ?v=4: nedskalert ikon (sep 2026). Query-bump omgår Cloudflares
+       24t-cache på /icons/*. */
+    iconPath: '/icons/hyttepermen.png?v=4',
     accent: '#C97B5A',
     glyph: 'cabin',
+    schemaCategory: 'LifestyleApplication',
   },
   {
     slug: 'stoneward',
@@ -149,9 +160,10 @@ export const apps: AppDef[] = [
     },
     /* App Store-URL: bytt til kanonisk app-side når Stoneward er live. */
     appStoreUrl: 'https://apps.apple.com/no/search?term=Stoneward',
-    iconPath: '/icons/stoneward.png?v=2',
+    iconPath: '/icons/stoneward.png?v=3',
     accent: '#4A5D75',
     glyph: 'cairn',
+    schemaCategory: 'GameApplication',
   },
   {
     slug: 'lun',
@@ -161,9 +173,10 @@ export const apps: AppDef[] = [
       en: 'Log migraine attacks, discover the patterns.',
     },
     appStoreUrl: 'https://apps.apple.com/no/app/lun-migraine-diary/id6781422332',
-    iconPath: '/icons/lun.png',
+    iconPath: '/icons/lun.png?v=2',
     accent: '#474C78',
     glyph: 'orb',
+    schemaCategory: 'HealthApplication',
   },
 ];
 
@@ -201,4 +214,12 @@ export function siblings(slug: string): { prev: AppDef; next: AppDef } {
 
 export function indexOf(slug: string): number {
   return visibleApps.findIndex((a) => a.slug === slug);
+}
+
+/** Numerisk App Store-id fra appStoreUrl, eller null for apper som
+ *  fortsatt peker på søk (ikke lansert). Brukes til Smart App Banner
+ *  og JSON-LD. */
+export function appStoreId(app: AppDef): string | null {
+  const m = app.appStoreUrl.match(/\/id(\d+)/);
+  return m ? m[1] : null;
 }

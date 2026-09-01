@@ -7,7 +7,7 @@
  */
 import '../styles/global.css';
 import type { AppDef } from '../data/apps';
-import { getTagline } from '../data/apps';
+import { getTagline, appStoreId } from '../data/apps';
 import AppMenu from '../components/AppMenu.astro';
 import { resolveLocale, t, localesForPath, switchLocalePath } from '../i18n/translations';
 
@@ -21,9 +21,32 @@ const locale = resolveLocale(Astro.currentLocale);
 const strings = t(locale);
 const pageTitle = title ?? `${app.name} · Haug & Datter`;
 const pageDesc = description ?? getTagline(app, locale);
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://haugogdatter.no').toString();
-const ogImage = new URL('/logo/haug-datter-skogen-og.png', Astro.site ?? 'https://haugogdatter.no').toString();
+const site = Astro.site ?? 'https://haugogdatter.no';
+const canonicalUrl = new URL(Astro.url.pathname, site).toString();
+/* Per-app OG-kort i appens aksentfarge. Genereres av
+   scripts/lag-og-kort.mjs — kjør det på nytt hvis ikon/tagline endres. */
+const ogImage = new URL(`/og/${app.slug}.png`, site).toString();
 const altLocales = localesForPath(Astro.url.pathname);
+const storeId = appStoreId(app);
+
+/* JSON-LD: SoftwareApplication. Bevisst uten priser (de endres i App
+   Store uten at nettsiden vet det). */
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: app.name,
+  description: getTagline(app, locale),
+  operatingSystem: 'iOS',
+  applicationCategory: app.schemaCategory,
+  url: canonicalUrl,
+  image: new URL(app.iconPath, site).toString(),
+  ...(storeId ? { installUrl: app.appStoreUrl, sameAs: app.appStoreUrl } : {}),
+  author: {
+    '@type': 'Organization',
+    name: 'Haug & Datter',
+    url: site.toString(),
+  },
+};
 ---
 <!doctype html>
 <html lang={strings.htmlLang}>
@@ -48,7 +71,7 @@ const altLocales = localesForPath(Astro.url.pathname);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;450;500;600&display=swap"
     />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Haug & Datter" />
@@ -64,6 +87,9 @@ const altLocales = localesForPath(Astro.url.pathname);
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDesc} />
     <meta name="twitter:image" content={ogImage} />
+    {/* Smart App Banner i Safari på iOS. Kun for apper som er live. */}
+    {storeId && <meta name="apple-itunes-app" content={`app-id=${storeId}`} />}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <title>{pageTitle}</title>
   </head>
   <body>

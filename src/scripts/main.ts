@@ -200,6 +200,21 @@ function startKeys() {
   });
 }
 
+// ---- Scrollehint på menypillen ----
+// På smale skjermer klippes menyen uten noe som viser at den kan
+// scrolles. Klassene styrer en fade i kanten(e) det finnes mer innhold.
+function startMenuFade() {
+  const m = document.querySelector<HTMLElement>('.menubar');
+  if (!m) return;
+  const oppdater = () => {
+    m.classList.toggle('har-mer-hoyre', m.scrollLeft + m.clientWidth < m.scrollWidth - 4);
+    m.classList.toggle('har-mer-venstre', m.scrollLeft > 4);
+  };
+  m.addEventListener('scroll', oppdater, { passive: true });
+  window.addEventListener('resize', oppdater);
+  oppdater();
+}
+
 // ---- Tastatur-hint-pille (vises 2.2s etter sideload) ----
 function showKbdHint() {
   const hint = document.querySelector<HTMLElement>('.kbd-hint');
@@ -228,7 +243,7 @@ function startPalette() {
     <div class="palette__panel">
       <div class="palette__head">
         <span class="palette__sigil">⌘K</span>
-        <input class="palette__input" type="text" placeholder="Hopp til … (apper, personvern, vilkår, support)" autocomplete="off" spellcheck="false" />
+        <input class="palette__input" type="text" placeholder="Hopp til … (apper, personvern, vilkår, support)" aria-label="Søk i sider" autocomplete="off" spellcheck="false" />
       </div>
       <ul class="palette__list" role="listbox"></ul>
       <div class="palette__foot">
@@ -245,6 +260,8 @@ function startPalette() {
 
   const items: Item[] = [];
   items.push({ label: 'Forsiden', sub: 'Hub', href: '/', hex: '', sw: null });
+  items.push({ label: 'Verkstedet', sub: 'Notater fra byggingen', href: '/verkstedet', hex: '', sw: null });
+  items.push({ label: 'Om', sub: 'Haug & Datter', href: '/om', hex: '', sw: null });
   ORDER.forEach((slug) => {
     const a = APPS[slug];
     items.push({ label: a.name, sub: a.tagline, href: `/${slug}`, hex: a.accent.toUpperCase(), sw: a.accent, slug });
@@ -365,6 +382,7 @@ function boot() {
   startSweepLinks();
   startKeys();
   startPalette();
+  startMenuFade();
   showKbdHint();
 }
 
