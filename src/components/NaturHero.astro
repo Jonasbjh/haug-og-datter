@@ -31,18 +31,19 @@ const strings = {
       Lenken står i body med vilje: Astro løfter ikke head fra komponenter. */}
   <link rel="preload" as="image" href="/video/hero-fjord-poster.webp" fetchpriority="high" />
   <div class="naturhero__media" aria-hidden="true">
-    {/* preload="none" og ingen autoplay: nettleseren henter ikke mp4-en før
-        scriptet under kaller play(), og det gjør den bare på brede skjermer
-        uten «spar data» og uten redusert bevegelse. Mobil får plakaten
-        alene og slipper 5,5 MB video. <source> må stå statisk i markup:
-        Safari viser verken video eller plakat hvis den legges til med
-        script og load() etterpå. */}
+    {/* Ingen autoplay: scriptet under kaller play() bare på brede skjermer
+        uten «spar data» og uten redusert bevegelse, så mobil slipper 5,5 MB
+        video og beholder plakaten. To Safari-feller, verifisert 2. sep 2026:
+        (1) <source> må stå statisk i markup, WebKit tegner verken video
+        eller plakat hvis den legges til med script og load() etterpå.
+        (2) preload må være "metadata", ikke "none": med "none" starter
+        Safari aldri nedlastingen etter play(), men fjerner plakaten. */}
     <video
       data-naturhero-video
       muted
       loop
       playsinline
-      preload="none"
+      preload="metadata"
       poster="/video/hero-fjord-poster.webp"
     >
       <source src="/video/hero-fjord.mp4" type="video/mp4" />
