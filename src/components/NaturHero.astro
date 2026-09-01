@@ -31,9 +31,9 @@ const strings = {
       Lenken står i body med vilje: Astro løfter ikke head fra komponenter. */}
   <link rel="preload" as="image" href="/video/hero-fjord-poster.webp" fetchpriority="high" />
   <div class="naturhero__media" aria-hidden="true">
-    {/* Ingen autoplay: scriptet under kaller play() bare på brede skjermer
-        uten «spar data» og uten redusert bevegelse, så mobil slipper 5,5 MB
-        video og beholder plakaten. To Safari-feller, verifisert 2. sep 2026:
+    {/* Ingen autoplay: scriptet under kaller play() med mindre brukeren har
+        «spar data» eller redusert bevegelse, da står plakaten. To Safari-
+        feller, verifisert 2. sep 2026:
         (1) <source> må stå statisk i markup, WebKit tegner verken video
         eller plakat hvis den legges til med script og load() etterpå.
         (2) preload må være "metadata", ikke "none": med "none" starter
@@ -81,9 +81,11 @@ const strings = {
   const video = document.querySelector<HTMLVideoElement>('[data-naturhero-video]');
   if (video) {
     const mq = matchMedia('(prefers-reduced-motion: reduce)');
-    const smal = matchMedia('(max-width: 719px)');
+    // Videoen spilles på alle skjermstørrelser (mobil inkludert, det er
+    // en del av identiteten), men ikke ved «spar data» eller redusert
+    // bevegelse. Da står plakaten.
     const sparData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
-    const kanSpille = () => !mq.matches && !smal.matches && !sparData;
+    const kanSpille = () => !mq.matches && !sparData;
 
     // play() på et preload="none"-element starter nedlastingen. Avvises
     // den (Safari med autoavspilling av), blir plakaten stående.
