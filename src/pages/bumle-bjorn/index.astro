@@ -15,9 +15,9 @@ const app = getApp('bumle-bjorn');
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
       <Chapter num="01" label="Hvorfor" title={`Et lite stykke <em>hverdagsmagi</em>.`}>
-        <p class="lede">Bumle Bjørn finnes fordi datteren min skulle ha bedre apper enn de jeg så på App Store. De fleste barneappene jeg lastet ned ba om noe. Abonnement, oppmerksomhet, stjerner, en konto.</p>
+        <p class="lede">Bumle Bjørn finnes fordi datteren min skulle ha bedre apper enn de jeg så på App Store. De fleste barneappene jeg lastet ned ba om noe. Abonnement, oppmerksomhet, en konto.</p>
         <p>Vi ville ha noe annerledes. En bjørn som leser opp ord på kjente stemmer, og som ikke prøver å holde på barnet ett sekund lenger enn det selv vil bli.</p>
-        <p class="muted">Ingen reklame. Ingen profil. Helt greit å slutte etter fem minutter.</p>
+        <p class="muted">Ingen reklame. Ingen konto. Helt greit å slutte etter fem minutter.</p>
       </Chapter>
       <Chapter num="02" label="Slik føles det" title={`Bygget for de <em>små øyeblikkene</em>.`}>
         <p>På bussen, før leggetid, mens middagen koker. Du henter telefonen, gir den til barnet, og vet at det som dukker opp er trygt og laget for nettopp dette øyeblikket.</p>
@@ -33,12 +33,12 @@ const app = getApp('bumle-bjorn');
       </Chapter>
       <Chapter num="03" label="Hva den gjør" title={`Tre ting den gjør <em>godt</em>.`}>
         <p><strong>Egne stemmer.</strong> Foreldre, besteforeldre eller pedagoger spiller inn ordene selv. Lagres lokalt. Barnet hører kjente dialekter, ikke en ferdig pakke.</p>
-        <p><strong>Bilde og lyd-gjenkjennelse.</strong> Barnet drar, peker eller velger. Riktig svar feirer seg selv stille. Ingen poeng eller stjerner som flytter fokus bort fra mestringen.</p>
-        <p><strong>Foreldremodus med kode.</strong> Innstillinger og opptak er låst bak en enkel sperre. Barnet kan ikke slette innholdet ved et uhell, og du sitter trygt med iPad-en på fanget.</p>
+        <p><strong>Bilde og ord.</strong> Barnet trykker på bildet eller ordet. Bumle roser riktige svar, og feil svar får «Nesten!» og et nytt forsøk, aldri rødt. Det finnes stjerner og medaljer, men som en klapp på skulderen, ikke som en poengjakt.</p>
+        <p><strong>Foreldrelås.</strong> Innstillinger og opptak ligger bak et regnestykke, Face ID eller Touch ID, og lenker ut av appen og kjøp bak en regneoppgave bare voksne kan løse. Barnet kan ikke slette innholdet ved et uhell, og du sitter trygt med iPad-en på fanget.</p>
       </Chapter>
       <Chapter num="04" label="Pris og personvern" title={`Gratis å laste ned, <em>Bumle+</em> hvis dere vil ha mer.`}>
-        <p>{app.name} er gratis å laste ned. Bumle+ er en valgfri oppgradering som låser opp ekstra innhold, kjøpt via App Store og knyttet til Apple-ID-en, så den følger med til nye enheter.</p>
-        <p>Ingen registrering, ingen konto og ingen sporing. Alt appen bruker lagres lokalt på enheten. Barneprofiler synkroniseres bare til dine egne enheter via iCloud, og stemmeopptak forlater aldri telefonen.</p>
+        <p>{app.name} er gratis å laste ned. Bumle+ er et valgfritt engangskjøp som låser opp ekstra innhold, kjøpt via App Store og knyttet til Apple-ID-en, så den følger med til nye enheter.</p>
+        <p>Ingen registrering, ingen konto og ingen sporing. Alt appen bruker lagres lokalt på enheten. Barneprofiler synkroniseres bare til dine egne enheter via iCloud, og bare hvis du slår det på. Stemmeopptak forlater aldri telefonen, med mindre du selv deler en stemme som lyd-pakke.</p>
         <p class="muted">Les hele <a class="tx-link" href="/bumle-bjorn/personvern/">personvernerklæringen</a>.</p>
       </Chapter>
       <PrevNextApp slug={app.slug} />

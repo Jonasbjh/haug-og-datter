@@ -15,9 +15,9 @@ const app = getApp('bumle-bjorn');
     <AppRail app={app} current="oversikt" />
     <div class="app-flow">
       <Chapter num="01" label="Why" title={`A small piece of <em>everyday magic</em>.`}>
-        <p class="lede">Bumle Bjørn exists because my daughter deserved better apps than the ones I saw on the App Store. Most kids' apps I downloaded asked for something. Subscriptions, attention, stars, an account.</p>
+        <p class="lede">Bumle Bjørn exists because my daughter deserved better apps than the ones I saw on the App Store. Most kids' apps I downloaded asked for something. Subscriptions, attention, an account.</p>
         <p>We wanted something different. A bear that reads words in familiar voices, and that doesn't try to keep the child a single second longer than they want to stay.</p>
-        <p class="muted">No ads. No profile. Perfectly fine to quit after five minutes.</p>
+        <p class="muted">No ads. No account. Perfectly fine to quit after five minutes.</p>
       </Chapter>
       <Chapter num="02" label="How it feels" title={`Built for the <em>small moments</em>.`}>
         <p>On the bus, before bedtime, while dinner cooks. You pick up the phone, hand it to the child, and know that what shows up is safe and made for exactly that moment.</p>
@@ -33,12 +33,12 @@ const app = getApp('bumle-bjorn');
       </Chapter>
       <Chapter num="03" label="What it does" title={`Three things it does <em>well</em>.`}>
         <p><strong>Your own voices.</strong> Parents, grandparents or teachers record the words themselves. Stored locally. The child hears familiar dialects, not a packaged voice.</p>
-        <p><strong>Image and sound recognition.</strong> The child drags, points, or selects. Right answers celebrate themselves quietly. No points or stars that pull focus away from the mastery.</p>
-        <p><strong>Parent mode with code.</strong> Settings and recordings are locked behind a simple barrier. The child can't delete the content by accident, and you can sit safely with the iPad on your lap.</p>
+        <p><strong>Pictures and words.</strong> The child taps the picture or the word. Bumle praises right answers, and a wrong answer gets «Almost!» and another try, never red. There are stars and medals, but as a pat on the back, not a points chase.</p>
+        <p><strong>Parental lock.</strong> Settings and recordings sit behind a math problem, Face ID or Touch ID, and links out of the app and purchases behind a math question only adults can solve. The child can't delete the content by accident, and you can sit safely with the iPad on your lap.</p>
       </Chapter>
       <Chapter num="04" label="Price and privacy" title={`Free to download, <em>Bumle+</em> if you want more.`}>
-        <p>{app.name} is free to download. Bumle+ is an optional upgrade that unlocks extra content, bought through the App Store and tied to your Apple ID, so it follows you to new devices.</p>
-        <p>No sign-up, no account and no tracking. Everything the app uses is stored locally on the device. Child profiles sync only to your own devices via iCloud, and voice recordings never leave the phone.</p>
+        <p>{app.name} is free to download. Bumle+ is an optional one-time purchase that unlocks extra content, bought through the App Store and tied to your Apple ID, so it follows you to new devices.</p>
+        <p>No sign-up, no account and no tracking. Everything the app uses is stored locally on the device. Child profiles sync only to your own devices via iCloud, and only if you turn it on. Voice recordings never leave the phone, unless you share a voice as a voice pack yourself.</p>
         <p class="muted">Read the full <a class="tx-link" href="/en/bumle-bjorn/personvern/">privacy policy</a>.</p>
       </Chapter>
       <PrevNextApp slug={app.slug} />

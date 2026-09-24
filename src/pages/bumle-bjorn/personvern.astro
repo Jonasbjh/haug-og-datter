@@ -14,54 +14,56 @@ const app = getApp('bumle-bjorn');
     <div class="app-flow">
       <Chapter num="01" label="I korte trekk" title={`Personvern, på <em>vanlig norsk</em>.`}>
         <p class="lede">{app.name} er utviklet av Haug & Datter (Jonas Haug, Drammen, Norge). Denne erklæringen forklarer hvordan appen håndterer data. Vi tar personvern på alvor, spesielt fordi appen er laget for barn.</p>
-        <p class="muted">Sist oppdatert · 25. april 2026.</p>
+        <p class="muted">Sist oppdatert · 24. september 2026.</p>
       </Chapter>
 
       <Chapter num="02" label="Datainnsamling" title={`Vi har ingen <em>brukerkontoer</em>.`}>
         <p>{app.name} samler ikke inn personopplysninger. Det finnes ingen registrering, ingen pålogging, og ingen brukerkonto. All data appen bruker, lagres lokalt på enheten din eller i din egen iCloud-konto:</p>
-        <p><strong>Barneprofiler.</strong> Navn, alder, avatar og læringsframgang lagres i UserDefaults og synkroniseres via iCloud Key-Value Store til dine egne enheter.</p>
-        <p><strong>Lydopptak.</strong> Stemmeopptak som foreldre eller fagpersoner spiller inn, lagres kun lokalt og er kryptert med en enhetsspesifikk nøkkel. {app.name} sender aldri opptak til våre eller tredjeparts servere.</p>
-        <p><strong>Egne kategorier og bilder.</strong> Foreldre kan lage egne kategorier med egne bilder. Familien, leker, steder barnet kjenner. Bilder og kategori-data forblir lokalt på enheten.</p>
-        <p><strong>Innstillinger.</strong> Brukervalg som språk, vanskelighetsgrad og skjermtid lagres lokalt.</p>
+        <p><strong>Barneprofiler.</strong> Navn, alder, avatar eller profilbilde og læringsframgang lagres i UserDefaults på enheten. Slår du på iCloud-synkronisering i Foreldrekontroll, synkroniseres profilene via iCloud Key-Value Store til dine egne enheter. Synkroniseringen er av som standard.</p>
+        <p><strong>Lydopptak.</strong> Stemmeopptak som foreldre eller fagpersoner spiller inn, lagres kun lokalt og er kryptert med en enhetsspesifikk nøkkel. {app.name} sender aldri opptak til våre eller tredjeparts servere, og synkroniserer dem ikke.</p>
+        <p><strong>Egne kategorier og bilder.</strong> Foreldre kan lage egne kategorier med egne bilder. Familien, leker, steder barnet kjenner. Bilder og kategori-data lagres kun lokalt på enheten, uten kryptering.</p>
+        <p><strong>Innstillinger.</strong> Brukervalg som språk, vanskelighetsgrad og skjermtid lagres lokalt. Valgene for hvert barn ligger i barneprofilen og følger den hvis iCloud-synkronisering er på.</p>
       </Chapter>
 
       <Chapter num="03" label="Deling" title={`Lyd-pakker du <em>velger å sende</em>.`}>
         <p>Foreldre eller fagpersoner (typisk en logoped eller en bestemor som spiller inn til barnebarnet) kan eksportere alle opptak fra én stemme som en <code>.bumlepack</code>-fil og dele den via systemets vanlige kanaler (AirDrop, iMessage, Filer).</p>
-        <p class="muted">Eksport skjer kun når du eksplisitt velger det. Når du deler en pakke, går filen utenfor appens kontroll og er underlagt delings-kanalens egne vilkår. Pakken inneholder lydopptak i klartekst slik at mottakeren kan importere dem; mottakerens enhet krypterer filene på nytt med sin egen lokale nøkkel.</p>
+        <p class="muted">Eksport skjer kun når du eksplisitt velger det. Når du deler en pakke, går filen utenfor appens kontroll og er underlagt delings-kanalens egne vilkår. Pakken inneholder lydopptakene i klartekst, sammen med navnet og rollen til stemmen, slik at mottakeren kan importere dem; mottakerens enhet krypterer filene på nytt med sin egen lokale nøkkel.</p>
         <p class="muted">Du har ansvar for at delingen skjer med samtykke fra alle involverte, særlig den som har spilt inn stemmen.</p>
       </Chapter>
 
       <Chapter num="04" label="Tredjepart" title={`Ingen SDK-er. <em>Ingen sporing.</em>`}>
         <p>{app.name} bruker ingen tredjeparts SDK-er, analysetjenester, annonsenettverk eller sporingsverktøy. Vi deler ingen data med tredjeparter.</p>
+        <p>iOS kan gi appen tekniske rapporter om ytelse og krasj (MetricKit). Appen lagrer dem bare på enheten, sletter dem når de er eldre enn sju dager og sender dem ikke videre.</p>
         <p class="muted">Appen inneholder ingen reklame. Vi bruker ikke IDFA, fingerprinting eller andre identifiseringsmetoder.</p>
       </Chapter>
 
       <Chapter num="05" label="Bumle+" title={`Kjøp via <em>App Store</em>.`}>
-        <p>Bumle+ er en valgfri oppgradering som håndteres av Apple gjennom App Store. Vi har ikke tilgang til betalingsinformasjon. Kjøpsstatus sjekkes via StoreKit og lagres lokalt.</p>
+        <p>Bumle+ er et valgfritt engangskjøp, uten abonnement og uten automatisk fornyelse, som håndteres av Apple gjennom App Store. Bumle+ kan også aktiveres med en tilbudskode fra utvikleren, som løses inn gjennom App Store og gir samme tilgang. Vi har ikke tilgang til betalingsinformasjon. Kjøpsstatus sjekkes via StoreKit og lagres lokalt.</p>
       </Chapter>
 
       <Chapter num="06" label="Barn og COPPA" title={`Ekstra <em>varsom</em> når barn bruker appen.`}>
         <p>{app.name} er designet for barn i alderen 1–8 år. Appen følger både COPPA og GDPR-K, og:</p>
         <p>· Samler ikke inn personlig identifiserbar informasjon fra barn.</p>
-        <p>· Inneholder ingen lenker til sosiale medier eller eksterne nettsider.</p>
-        <p>· Har foreldrekontroll med PIN-kode og Face ID.</p>
+        <p>· Inneholder ingen lenker til sosiale medier. Lenker ut av appen, til App Store, e-post og personvernerklæringen og vilkårene på nett, ligger bak en regneoppgave som bare voksne kan løse.</p>
+        <p>· Har foreldrelås med regnestykke, Face ID eller Touch ID.</p>
         <p>· Tillater ikke barn å dele informasjon ut av appen.</p>
         <p>· Inneholder ingen reklame.</p>
       </Chapter>
 
       <Chapter num="07" label="Datakontroll" title={`Du har <em>full kontroll</em>.`}>
-        <p><strong>Sletting.</strong> All data kan slettes permanent via Innstillinger → Om {app.name} → Slett alle data.</p>
-        <p><strong>Lydopptak.</strong> Individuelle opptak kan slettes via lydinnstillingene.</p>
-        <p><strong>Profiler.</strong> Profiler kan slettes enkeltvis i sidemenyen.</p>
-        <p><strong>Importerte stemmer.</strong> Stemmer importert fra en <code>.bumlepack</code>-pakke kan slettes som en vanlig stemme.</p>
+        <p><strong>Sletting.</strong> Alle data om familien kan slettes permanent via Innstillinger → Foreldrekontroll → Slett alle data. Det sletter profilene med fremgang og profilbilder, også kopien i iCloud, og lydopptak, stemmer, egne kategorier og egne navn og bilder på kortene. iCloud-synkroniseringen slås samtidig av. Kjøpet av Bumle+, språket og valget av foreldrelås blir stående.</p>
+        <p><strong>Lydopptak.</strong> Enkeltopptak kan slettes via Innstillinger → Lyd og stemme, under Familiestemmer og Tilbakemeldingslyder.</p>
+        <p><strong>Profiler.</strong> Profiler kan slettes enkeltvis i Innstillinger: bytt til profilen, trykk på den aktive profilen øverst og deretter på profilkortet, og velg Slett profilen nederst i Rediger profil. Fremgangen og profilbildet forsvinner, mens lydopptak, stemmer og egne kategorier hører til hele familien og blir liggende. Den siste profilen fjernes med Slett alle data.</p>
+        <p><strong>Stemmer.</strong> En stemme kan slettes med alle opptakene sine, også en stemme importert fra en <code>.bumlepack</code>-pakke.</p>
+        <p><strong>Flere enheter.</strong> Sletting synkroniseres ikke til andre enheter. Bruker du iCloud-synkronisering på flere enheter, slår du den av på de andre enhetene først og sletter der også. Ellers kan en av dem legge profilene tilbake i iCloud.</p>
       </Chapter>
 
       <Chapter num="08" label="Sikkerhet" title={`Kryptert <em>på enheten</em>.`}>
-        <p>· PIN-koder lagres som SHA256-hash i iOS Keychain.</p>
+        <p>· PIN-koder fra eldre versjoner av appen lagres som SHA256-hash i iOS Keychain.</p>
         <p>· Lydopptak krypteres med AES-256-GCM via CryptoKit.</p>
         <p>· Krypteringsnøkkelen er enhetsspesifikk og forlater aldri Keychain.</p>
         <p>· Filer er beskyttet med iOS File Protection.</p>
-        <p>· Foreldrelås krever PIN og/eller Face ID.</p>
+        <p>· Foreldrelåsen krever regnestykke, Face ID eller Touch ID.</p>
       </Chapter>
 
       <Chapter num="09" label="Kontakt" title={`Spørsmål? <em>Skriv til oss.</em>`}>
